@@ -46,6 +46,21 @@ import { auth } from '@/lib/better-auth';
 
 const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET || 'super-secret-key-change-this-in-env');
 const ALG = 'HS256';
+const rateLimitBuckets = new Map<string, { count: number; resetAt: number }>();
+
+async function enforceRateLimit(bucket: string, limit: number, windowMs: number) {
+    const requestHeaders = await headers();
+    const forwarded = requestHeaders.get('x-forwarded-for') || requestHeaders.get('x-real-ip') || 'unknown';
+    const key = `${bucket}:${forwarded.split(',')[0].trim()}`;
+    const now = Date.now();
+    const current = rateLimitBuckets.get(key);
+    if (!current || current.resetAt <= now) {
+        rateLimitBuckets.set(key, { count: 1, resetAt: now + windowMs });
+        return;
+    }
+    if (current.count >= limit) throw new AppError('Too many requests. Try again shortly.', 429, 'RATE_LIMITED');
+    current.count += 1;
+}
 
 // ============================================================================
 // ERROR HANDLING & UTILITIES
@@ -354,6 +369,7 @@ export async function loginUser(data: {
     password: string;
 }): Promise<ApiResponse<SessionUser>> {
     return handleServerAction(async () => {
+        await enforceRateLimit('login', 10, 15 * 60_000);
         if (!data.email || !data.password) {
             throw new AppError('Email and password are required', 400, 'VALIDATION_ERROR');
         }
@@ -394,6 +410,7 @@ export async function loginUser(data: {
 
 export async function adminLogin(email: string, password: string): Promise<ApiResponse<SessionUser>> {
     return handleServerAction(async () => {
+        await enforceRateLimit('admin-login', 6, 15 * 60_000);
         if (!email || !password) {
             throw new AppError('Email and password are required', 400, 'VALIDATION_ERROR');
         }
@@ -2137,19 +2154,22 @@ export async function validateCoupon(code: string, cartTotal: number): Promise<{
 
 export async function updateOrderStatus(orderId: number, status: string): Promise<ApiResponse> {
     return handleServerAction(async () => {
+        await enforceRateLimit('admin-order-status', 30, 60_000);
+        if (!Number.isInteger(Number(orderId)) || Number(orderId) <= 0) throw new AppError('Invalid order ID', 400, 'VALIDATION_ERROR');
+        const allowedStatuses = ['pending', 'confirmed', 'processing', 'shipped', 'delivered', 'cancelled', 'returned'];
+        if (!allowedStatuses.includes(status)) throw new AppError('Invalid order status', 400, 'VALIDATION_ERROR');
         const userResponse = await getCurrentUser();
         // Check admin role
         if (!userResponse.data || userResponse.data.role !== 'admin') {
             throw new AppError('Unauthorized', 403, 'ADMIN_REQUIRED');
         }
 
-        await db.update(orders)
-            .set({
-                orderStatus: status as any, // Cast to enum type
-                updatedAt: new Date()
-            })
-            .where(eq(orders.id, orderId));
-
+                const [updated] = await db.update(orders)
+            .set({ orderStatus: status as any, updatedAt: new Date() })
+            .where(eq(orders.id, orderId))
+            .returning({ id: orders.id, orderStatus: orders.orderStatus });
+        if (!updated) throw new AppError('Order not found', 404, 'ORDER_NOT_FOUND');
+        await db.insert(auditLogs).values({ userId: userResponse.data.id, userEmail: userResponse.data.email, action: 'update_order_status', entity: 'order', entityId: orderId, newValues: { status } });
         return { message: `Order status updated to ${status}` };
     }, ['/admin/orders', `/admin/orders/${orderId}`]);
 }
@@ -2796,12 +2816,14 @@ export async function getAdminOrderById(orderId: number): Promise<ApiResponse<an
 
 export async function updateAdminPaymentStatus(orderId: number, status: 'pending' | 'paid' | 'failed' | 'refunded', failureReason?: string): Promise<ApiResponse> {
     return handleServerAction(async () => {
-        await requireAdminUser();
+        const admin = await requireAdminUser();
+        if (!['pending', 'paid', 'failed', 'refunded'].includes(status)) throw new AppError('Invalid payment status', 400, 'VALIDATION_ERROR');
         const order = await db.query.orders.findFirst({ where: eq(orders.id, orderId) });
         if (!order) throw new AppError('Order not found', 404, 'ORDER_NOT_FOUND');
         await db.transaction(async (tx) => {
             await tx.update(orders).set({ paymentStatus: status, updatedAt: new Date() }).where(eq(orders.id, orderId));
             await tx.update(payments).set({ status, failureReason: failureReason || null, paidAt: status === 'paid' ? new Date() : null, updatedAt: new Date() }).where(eq(payments.orderId, orderId));
+            await tx.insert(auditLogs).values({ userId: admin.id, userEmail: admin.email, action: 'update_payment_status', entity: 'order', entityId: orderId, newValues: { status, failureReason: failureReason || null } });
         });
         return { message: `Payment status updated to ${status}` };
     }, [`/admin/orders/${orderId}`, '/admin/payments']);
@@ -2842,17 +2864,19 @@ export async function getAdminCustomerById(userId: number): Promise<ApiResponse<
 
 export async function updateAdminCustomerStatus(userId: number, status: 'active' | 'blocked'): Promise<ApiResponse> {
     return handleServerAction(async () => {
-        await requireAdminUser();
+        const admin = await requireAdminUser();
         const [user] = await db.update(users).set({ status, updatedAt: new Date() }).where(eq(users.id, userId)).returning({ id: users.id, status: users.status });
         if (!user) throw new AppError('Customer not found', 404, 'CUSTOMER_NOT_FOUND');
+        await db.insert(auditLogs).values({ userId: admin.id, userEmail: admin.email, action: 'update_customer_status', entity: 'user', entityId: userId, newValues: { status } });
         return user;
     }, [`/admin/customers/${userId}`, '/admin/customers']);
 }
 
 export async function revokeAllCustomerSessions(userId: number): Promise<ApiResponse> {
     return handleServerAction(async () => {
-        await requireAdminUser();
-        await db.update(userSessions).set({ isActive: false }).where(eq(userSessions.userId, userId));
+        const admin = await requireAdminUser();
+        await db.update(userSessions).set({ isActive: false, expiresAt: new Date() }).where(eq(userSessions.userId, userId));
+        await db.insert(auditLogs).values({ userId: admin.id, userEmail: admin.email, action: 'revoke_customer_sessions', entity: 'user', entityId: userId, newValues: { revokedAt: new Date().toISOString() } });
         return { message: 'All customer sessions revoked' };
     }, [`/admin/customers/${userId}`, '/admin/security']);
 }
