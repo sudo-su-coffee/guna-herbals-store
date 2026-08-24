@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo, useEffect } from 'react';
 import { getAdminStat } from '@/lib/api';
+import { Icon, IconName } from '@/components/Icon';
 
 export default function AnalyticsPage() {
     const [data, setData] = useState<any>(null);
@@ -74,16 +75,16 @@ export default function AnalyticsPage() {
                     <h1 className="text-3xl font-bold font-serif text-gray-800">Analytics & Reports</h1>
                     <p className="text-gray-500">Real-time insights into store performance.</p>
                 </div>
-                <button className="bg-white border border-gray-200 text-gray-600 px-4 py-2 rounded-lg text-sm font-bold shadow-sm hover:bg-gray-50">
-                    Download Report
+                <button onClick={() => { const report = `Metric,Value\nTotal Sales,${stats.totalRevenue.toFixed(2)}\nTotal Orders,${stats.totalOrders}\nAverage Order Value,${stats.avgOrderValue.toFixed(2)}\nTotal Customers,${stats.totalCustomers}`; const blob = new Blob([report], { type: 'text/csv;charset=utf-8' }); const url = URL.createObjectURL(blob); const link = document.createElement('a'); link.href = url; link.download = 'guna-analytics-report.csv'; link.click(); URL.revokeObjectURL(url); }} className="flex items-center gap-2 bg-white border border-gray-200 text-gray-600 px-4 py-2 rounded-lg text-sm font-bold shadow-sm hover:bg-gray-50">
+                    <Icon name="download" size={15} /> Download Report
                 </button>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <StatCard title="Total Sales" value={`₹${stats.totalRevenue.toLocaleString()}`} icon="💰" trend="+15%" color="green" />
-                <StatCard title="Total Orders" value={stats.totalOrders.toString()} icon="🛒" trend="+8%" color="blue" />
-                <StatCard title="Avg. Order Value" value={`₹${stats.avgOrderValue.toFixed(0)}`} icon="🏷️" trend="-2%" color="orange" />
-                <StatCard title="Total Customers" value={stats.totalCustomers.toString()} icon="👥" trend="+12%" color="purple" />
+                <StatCard title="Total Sales" value={`₹${stats.totalRevenue.toLocaleString()}`} icon="chart" trend="Live" color="green" />
+                <StatCard title="Total Orders" value={stats.totalOrders.toString()} icon="package" trend="Live" color="blue" />
+                <StatCard title="Avg. Order Value" value={`₹${stats.avgOrderValue.toFixed(0)}`} icon="credit-card" trend="Live" color="orange" />
+                <StatCard title="Total Customers" value={stats.totalCustomers.toString()} icon="users" trend="Live" color="purple" />
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -154,7 +155,7 @@ export default function AnalyticsPage() {
     );
 };
 
-const StatCard = ({ title, value, icon, trend, color }: { title: string, value: string, icon: string, trend: string, color: string }) => {
+const StatCard = ({ title, value, icon, trend, color }: { title: string, value: string, icon: IconName, trend: string, color: string }) => {
     const colorClasses: any = {
         green: 'text-green-600 bg-green-50',
         blue: 'text-blue-600 bg-blue-50',
@@ -168,7 +169,7 @@ const StatCard = ({ title, value, icon, trend, color }: { title: string, value: 
         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 flex flex-col justify-between h-full hover:shadow-md transition-shadow">
             <div className="flex justify-between items-start mb-4">
                 <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-2xl ${colorClasses[color]}`}>
-                    {icon}
+                    <Icon name={icon} size={22} />
                 </div>
                 <span className={`text-xs font-bold px-2 py-1 rounded ${isNegative ? 'bg-red-50 text-red-600' : 'bg-green-50 text-green-600'}`}>
                     {trend}
