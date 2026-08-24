@@ -2747,3 +2747,15 @@ export async function updateAdminPaymentStatus(orderId: number, status: 'pending
         return { message: `Payment status updated to ${status}` };
     }, [`/admin/orders/${orderId}`, '/admin/payments']);
 }
+
+
+export async function getAdminPayments(): Promise<ApiResponse<any[]>> {
+    return handleServerAction(async () => {
+        await requireAdminUser();
+        return db.query.payments.findMany({
+            with: { order: true },
+            orderBy: desc(payments.createdAt),
+            limit: 200,
+        });
+    }, ['/admin/payments']);
+}
