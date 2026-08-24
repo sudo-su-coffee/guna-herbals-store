@@ -2478,7 +2478,7 @@ export async function createAdminManualOrder(data: {
 }
 
 export async function getAllOrders(): Promise<any[]> {
-    const response = await getOrders();
+    const response = await getAdminOrders();
     return response.success && response.data ? response.data : [];
 }
 

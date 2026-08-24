@@ -43,14 +43,14 @@ export default function OrdersPage() {
     const filteredOrders = useMemo(() => {
         const sorted = [...orders].sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
         if (filter === 'All') return sorted;
-        return sorted.filter(o => o.status === filter.toLowerCase());
+        return sorted.filter(o => o.orderStatus === filter.toLowerCase());
     }, [orders, filter]);
 
     const exportToCsv = () => {
         if (filteredOrders.length === 0) return;
         const header = "Order ID,Date,Customer,Email,Phone,Total,Status,Payment Method";
         const rows = filteredOrders.map(o =>
-            `${o.id},${o.date},"${o.shipping.name}","${o.shipping.email}",${o.shipping.phone},${o.total},${o.status},${o.paymentMethod}`
+            `${o.id},${o.createdAt},"${o.shippingAddress?.name || o.user?.name || 'Guest'}","${o.shippingAddress?.email || o.user?.email || ''}",${o.shippingAddress?.phone || o.user?.phone || ''},${o.totalAmount},${o.orderStatus},${o.paymentMethod}`
         ).join('\n');
         const csvContent = `data:text/csv;charset=utf-8,${header}\n${rows}`;
         const encodedUri = encodeURI(csvContent);
@@ -92,17 +92,17 @@ export default function OrdersPage() {
         {
             header: "Status",
             accessor: (o) => (
-                <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide border ${o.status === 'delivered' ? 'bg-green-50 text-green-700 border-green-200' :
-                    o.status === 'pending' ? 'bg-yellow-50 text-yellow-700 border-yellow-200' :
-                        o.status === 'cancelled' ? 'bg-red-50 text-red-700 border-red-200' :
+                <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide border ${o.orderStatus === 'delivered' ? 'bg-green-50 text-green-700 border-green-200' :
+                    o.orderStatus === 'pending' ? 'bg-yellow-50 text-yellow-700 border-yellow-200' :
+                        o.orderStatus === 'cancelled' ? 'bg-red-50 text-red-700 border-red-200' :
                             'bg-blue-50 text-blue-700 border-blue-200'
                     }`}>
-                    <span className={`w-1.5 h-1.5 rounded-full ${o.status === 'delivered' ? 'bg-green-500' :
-                        o.status === 'pending' ? 'bg-yellow-500' :
-                            o.status === 'cancelled' ? 'bg-red-500' :
+                    <span className={`w-1.5 h-1.5 rounded-full ${o.orderStatus === 'delivered' ? 'bg-green-500' :
+                        o.orderStatus === 'pending' ? 'bg-yellow-500' :
+                            o.orderStatus === 'cancelled' ? 'bg-red-500' :
                                 'bg-blue-500'
                         }`}></span>
-                    {o.status}
+                    {o.orderStatus}
                 </span>
             ),
             sortKey: 'status'
@@ -133,7 +133,7 @@ export default function OrdersPage() {
                             {f}
                             {f !== 'All' && (
                                 <span className={`ml-2 text-xs opacity-70 ${filter === f ? 'text-white' : 'text-gray-400'}`}>
-                                    {orders.filter(o => o.status === f.toLowerCase()).length}
+                                    {orders.filter(o => o.orderStatus === f.toLowerCase()).length}
                                 </span>
                             )}
                         </button>
