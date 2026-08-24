@@ -2396,6 +2396,65 @@ async function requireAdminUser() {
     return response.data;
 }
 
+export async function createAdminManualOrder(data: {
+    items: Array<{ variantId: number; quantity: number }>;
+    shippingAddress: { name: string; phone: string; email?: string; address: string; city?: string; state?: string; zip?: string };
+    notes?: string;
+}): Promise<ApiResponse<{ orderId: number; orderNumber: string }>> {
+    return handleServerAction(async () => {
+        const admin = await requireAdminUser();
+        if (!data.items?.length) throw new AppError('Add at least one item', 400, 'EMPTY_ORDER');
+        if (!data.shippingAddress?.name || !data.shippingAddress?.phone || !data.shippingAddress?.address) {
+            throw new AppError('Customer name, phone, and address are required', 400, 'INVALID_ADDRESS');
+        }
+        if (!validatePhone(data.shippingAddress.phone.replace(/\\D/g, ''))) throw new AppError('Enter a valid 10-digit phone number', 400, 'INVALID_PHONE');
+
+        const result = await db.transaction(async (tx) => {
+            const calculatedItems: any[] = [];
+            let subtotal = 0;
+            for (const requested of data.items) {
+                const quantity = Number(requested.quantity);
+                if (!Number.isInteger(quantity) || quantity < 1) throw new AppError('Invalid item quantity', 400, 'INVALID_QUANTITY');
+                const rows = await tx.select({ variant: productVariants, product: products, inventory: inventory })
+                    .from(productVariants)
+                    .innerJoin(products, eq(products.id, productVariants.productId))
+                    .leftJoin(inventory, eq(inventory.variantId, productVariants.id))
+                    .where(and(eq(productVariants.id, Number(requested.variantId)), eq(productVariants.isActive, true), eq(products.isActive, true)));
+                if (!rows.length) throw new AppError('Product variant is unavailable', 400, 'VARIANT_UNAVAILABLE');
+                const variant = rows[0].variant;
+                const available = rows.reduce((sum: number, row: any) => sum + Math.max(0, (row.inventory?.stockQty ?? 0) - (row.inventory?.reservedQty ?? 0)), 0);
+                if (available < quantity) throw new AppError(`Insufficient stock for ${rows[0].product.name}`, 400, 'INSUFFICIENT_STOCK');
+                const price = Number(variant.price);
+                const lineTotal = price * quantity;
+                subtotal += lineTotal;
+                calculatedItems.push({ variantId: variant.id, quantity, price: price.toFixed(2), productName: rows[0].product.name, variantName: variant.variantName, sku: variant.sku, totalAmount: lineTotal.toFixed(2) });
+            }
+            const shippingCharge = subtotal >= 500 ? 0 : 50;
+            const totalAmount = subtotal + shippingCharge;
+            const orderNumber = `GUN-${new Date().getFullYear()}-${Date.now().toString(36).toUpperCase()}`;
+            const address = { ...data.shippingAddress, country: 'India' };
+            const [order] = await tx.insert(orders).values({ orderNumber, userId: null, orderStatus: 'processing', paymentStatus: 'pending', paymentMethod: 'cod', subtotal: subtotal.toFixed(2), discountAmount: '0', taxAmount: '0', shippingCharge: shippingCharge.toFixed(2), totalAmount: totalAmount.toFixed(2), shippingAddress: address, billingAddress: address, internalNotes: data.notes || 'Manual order created by admin' }).returning({ id: orders.id, orderNumber: orders.orderNumber });
+            for (const item of calculatedItems) {
+                await tx.insert(orderItems).values({ orderId: order.id, variantId: item.variantId, productName: item.productName, variantName: item.variantName, sku: item.sku, quantity: item.quantity, price: item.price, taxAmount: '0', discountAmount: '0', totalAmount: item.totalAmount });
+                const stockRows = await tx.select({ id: inventory.id, warehouseId: inventory.warehouseId, stockQty: inventory.stockQty, reservedQty: inventory.reservedQty }).from(inventory).where(eq(inventory.variantId, item.variantId));
+                let remaining = item.quantity;
+                for (const stock of stockRows) {
+                    if (remaining <= 0) break;
+                    const decrement = Math.min(remaining, Math.max(0, stock.stockQty - stock.reservedQty));
+                    if (decrement > 0) {
+                        await tx.update(inventory).set({ stockQty: sql`${inventory.stockQty} - ${decrement}`, updatedAt: new Date() }).where(eq(inventory.id, stock.id));
+                        await tx.insert(stockMovements).values({ variantId: item.variantId, warehouseId: stock.warehouseId, movementType: 'out', quantity: decrement, referenceType: 'manual_order', referenceId: order.id, createdBy: admin.id, notes: order.orderNumber });
+                        remaining -= decrement;
+                    }
+                }
+            }
+            await tx.insert(auditLogs).values({ userId: admin.id, userEmail: admin.email, action: 'create_manual_order', entity: 'order', entityId: order.id, newValues: { orderNumber, totalAmount, itemCount: calculatedItems.length } });
+            return order;
+        });
+        return result;
+    }, ['/admin/orders', '/admin/dashboard', '/admin/products']);
+}
+
 export async function getAllOrders(): Promise<any[]> {
     const response = await getOrders();
     return response.success && response.data ? response.data : [];

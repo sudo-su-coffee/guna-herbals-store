@@ -3,7 +3,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { OrderStatus } from '@/lib/types';
-import { getAllOrders, getAllProducts, createOrder } from '@/lib/api';
+import { getAllOrders, getAllProducts, createAdminManualOrder } from '@/lib/api';
 import { AdminPageHeader } from '@/components/admin/AdminPageHeader';
 import { AdminTable, Column } from '@/components/admin/AdminTable';
 import { toast } from 'sonner';
@@ -190,7 +190,8 @@ const CreateOrderModal = ({ products, onClose, onRefresh }: { products: any[], o
                 shippingAddress: shipping,
                 orderSource: 'manual'
             };
-            await createOrder(orderData as any);
+            const result = await createAdminManualOrder({ items: orderData.items, shippingAddress: shipping });
+            if (!result.success) throw new Error(result.error || 'Unable to create order');
             onRefresh();
             onClose();
             toast.success("Order Created Successfully");
