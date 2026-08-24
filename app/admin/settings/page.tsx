@@ -1,185 +1,100 @@
 'use client';
 
-import React, { useState } from 'react';
-import { useShop } from '@/lib/ShopContext';
-import { StoreSettings } from '@/lib/types';
-import { Icon, type IconName } from '@/components/Icon';
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { Icon } from '@/components/Icon';
+import { getAdminIntegrationHealth } from '@/lib/api';
 
-type SettingsTab = 'storefront' | 'payments' | 'shipping' | 'integrations' | 'backup';
+type ProviderHealth = Record<string, { provider: string; configured: boolean }>;
+
+const integrationLabels: Record<string, string> = {
+    media: 'Media storage',
+    support: 'Customer support',
+    analytics: 'Product analytics',
+    notifications: 'Transactional email',
+    payments: 'Payments',
+    authentication: 'Authentication',
+};
 
 export default function SettingsPage() {
-    const [activeTab, setActiveTab] = useState<SettingsTab>('storefront');
-    const { storeSettings, updateStoreSettings } = useShop();
+    const [health, setHealth] = useState<ProviderHealth>({});
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
-    const handleSave = (updatedSettings: Partial<StoreSettings>) => {
-        // Logic to update settings
-        const newSettings = { ...storeSettings, ...updatedSettings };
-        updateStoreSettings(newSettings);
-        alert('Settings saved successfully!');
+    const loadHealth = async () => {
+        setLoading(true);
+        setError(null);
+        const response = await getAdminIntegrationHealth();
+        if (response.success && response.data) setHealth(response.data);
+        else setError(response.error || 'Unable to load runtime configuration');
+        setLoading(false);
     };
 
-    const renderTabContent = () => {
-        switch (activeTab) {
-            case 'storefront':
-                return <StorefrontSettings settings={storeSettings} onSave={handleSave} />;
-            case 'payments':
-                return <PaymentSettings settings={storeSettings} onSave={handleSave} />;
-            case 'shipping':
-                return <ShippingSettings settings={storeSettings} onSave={handleSave} />;
-            case 'integrations':
-                return <IntegrationSettings settings={storeSettings} onSave={handleSave} />;
-            case 'backup':
-                return <BackupSettings settings={storeSettings} />;
-            default:
-                return null;
-        }
-    };
+    useEffect(() => {
+        void loadHealth();
+    }, []);
 
     return (
-        <div className="space-y-6 animate-fade-in pb-12 w-full max-w-full">
-            <div>
-                <h1 className="text-3xl font-bold font-serif text-gray-800">Store Settings</h1>
-                <p className="text-gray-500">Configure your store, payments, and shipping.</p>
+        <div className="space-y-6 animate-fade-in pb-12 w-full max-w-5xl">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+                <div>
+                    <h1 className="text-3xl font-bold font-serif text-gray-800">Store Settings</h1>
+                    <p className="text-gray-500">Operational configuration for the production storefront.</p>
+                </div>
+                <button onClick={() => void loadHealth()} disabled={loading} className="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-bold text-gray-700 shadow-sm hover:bg-gray-50 disabled:opacity-50">
+                    <Icon name="refresh" size={16} />
+                    {loading ? 'Checking…' : 'Refresh status'}
+                </button>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-                {/* Sidebar Navigation */}
-                <div className="lg:col-span-1">
-                    <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-                        <div className="p-4 bg-gray-50 font-bold text-gray-500 uppercase text-xs tracking-wider border-b border-gray-100">
-                            Configuration
-                        </div>
-                        <nav className="flex flex-col p-2 space-y-1">
-                            <TabButton id="storefront" label="Store Details" icon="store" active={activeTab === 'storefront'} onClick={() => setActiveTab('storefront')} />
-                            <TabButton id="payments" label="Payments" icon="credit-card" active={activeTab === 'payments'} onClick={() => setActiveTab('payments')} />
-                            <TabButton id="shipping" label="Shipping" icon="truck" active={activeTab === 'shipping'} onClick={() => setActiveTab('shipping')} />
-                            <TabButton id="integrations" label="Integrations" icon="settings" active={activeTab === 'integrations'} onClick={() => setActiveTab('integrations')} />
-                            <TabButton id="backup" label="Backup & Data" icon="scroll" active={activeTab === 'backup'} onClick={() => setActiveTab('backup')} />
-                        </nav>
-                    </div>
-                </div>
+            {error && <div className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700">{error}</div>}
 
-                {/* Main Content Area */}
-                <div className="lg:col-span-3">
-                    {renderTabContent()}
-                </div>
+            <div className="grid gap-6 lg:grid-cols-2">
+                <Section title="Storefront" description="Public store identity is intentionally code- and environment-driven, not browser-persisted mock state.">
+                    <InfoRow label="Store name" value="Guna Herbals" />
+                    <InfoRow label="Store location" value="Tenkasi, Tamil Nadu" />
+                    <InfoRow label="Catalog and content" value="Managed through the admin catalog and journal routes" />
+                </Section>
+
+                <Section title="Payments" description="Secrets stay server-side. Payment credentials are supplied through deployment environment variables.">
+                    <InfoRow label="Online payments" value={health.payments?.configured ? `Ready (${health.payments.provider})` : 'Credential required'} tone={health.payments?.configured ? 'success' : 'warning'} />
+                    <InfoRow label="Cash on delivery" value="Available for checkout and manual admin orders" />
+                    <Link href="/admin/integrations" className="inline-flex items-center gap-2 text-sm font-bold text-herbal-800 hover:text-herbal-950">Open integration health <Icon name="arrow-right" size={15} /></Link>
+                </Section>
+
+                <Section title="Shipping and fulfillment" description="Shipping is deliberately provider-neutral and managed through the manual courier workflow.">
+                    <InfoRow label="Courier mode" value="Manual shipper assignment" />
+                    <InfoRow label="Order flow" value="Processing → Shipped → Delivered" />
+                    <Link href="/admin/delivery" className="inline-flex items-center gap-2 text-sm font-bold text-herbal-800 hover:text-herbal-950">Open delivery operations <Icon name="arrow-right" size={15} /></Link>
+                </Section>
+
+                <Section title="Provider status" description="Only configuration presence is shown here; secret values are never returned to the browser.">
+                    <div className="space-y-3">
+                        {Object.entries(integrationLabels).map(([key, label]) => {
+                            const item = health[key];
+                            return <div key={key} className="flex items-center justify-between gap-4 rounded-lg border border-gray-100 bg-gray-50 px-4 py-3">
+                                <div><p className="text-sm font-bold text-gray-800">{label}</p><p className="text-xs text-gray-500">{item?.provider || 'Environment configuration'}</p></div>
+                                <span className={`rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide ${item?.configured ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'}`}>{item?.configured ? 'Ready' : 'Needs setup'}</span>
+                            </div>;
+                        })}
+                    </div>
+                </Section>
+
+                <Section title="Data and migration" description="Database backups and provider migration are operational tasks, not client-side downloads from a mock store.">
+                    <InfoRow label="Primary database" value="Neon PostgreSQL via Drizzle" />
+                    <InfoRow label="Future headless target" value="Medusa, with staging SQL foundation documented" />
+                    <Link href="/admin/logs" className="inline-flex items-center gap-2 text-sm font-bold text-herbal-800 hover:text-herbal-950">Review audit logs <Icon name="arrow-right" size={15} /></Link>
+                </Section>
             </div>
         </div>
     );
-};
-
-const TabButton = ({ id, label, icon, active, onClick }: { id: string, label: string, icon: IconName, active: boolean, onClick: () => void }) => (
-    <button
-        onClick={onClick}
-        className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-bold transition-all ${active ? 'bg-herbal-800 text-white shadow-md' : 'text-gray-600 hover:bg-gray-50'
-            }`}
-    >
-        <Icon name={icon} size={18} />
-        {label}
-    </button>
-);
-
-const Section = ({ title, description, children }: { title: string, description: string, children: React.ReactNode }) => (
-    <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-200 animate-slide-up">
-        <div className="mb-8 border-b border-gray-100 pb-6">
-            <h2 className="text-xl font-bold font-serif text-gray-800">{title}</h2>
-            <p className="text-sm text-gray-500 mt-1">{description}</p>
-        </div>
-        <div className="space-y-6">
-            {children}
-        </div>
-    </div>
-);
-
-const InputField = ({ label, value, onChange, placeholder }: { label: string, value: string, onChange: (val: string) => void, placeholder?: string }) => (
-    <div>
-        <label className="block text-sm font-bold text-gray-700 mb-2">{label}</label>
-        <input
-            type="text"
-            value={value}
-            onChange={(e) => onChange(e.target.value)}
-            placeholder={placeholder}
-            className="w-full p-3 border border-gray-200 rounded-lg text-black bg-white focus:outline-none focus:ring-2 focus:ring-herbal-500 transition-shadow"
-        />
-    </div>
-);
-
-const Toggle = ({ label, checked, onChange }: { label: string, checked: boolean, onChange: (val: boolean) => void }) => (
-    <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-100">
-        <span className="font-bold text-gray-700 text-sm">{label}</span>
-        <button
-            onClick={() => onChange(!checked)}
-            className={`w-12 h-6 rounded-full p-1 transition-colors duration-300 ease-in-out ${checked ? 'bg-green-500' : 'bg-gray-300'}`}
-        >
-            <div className={`bg-white w-4 h-4 rounded-full shadow-md transform transition-transform duration-300 ${checked ? 'translate-x-6' : 'translate-x-0'}`}></div>
-        </button>
-    </div>
-);
-
-// --- Sub-components (Simplified for brevity, assuming they accept correct props) ---
-
-const StorefrontSettings = ({ settings, onSave }: any) => {
-    const [name, setName] = useState(settings.storeName);
-    const [contact, setContact] = useState(settings.supportEmail);
-
-    return (
-        <Section title="Store Details" description="Manage your store identity and support contact info.">
-            <InputField label="Store Name" value={name} onChange={setName} />
-            <InputField label="Support Email" value={contact} onChange={setContact} />
-            <div className="pt-4 flex justify-end">
-                <button onClick={() => onSave({ storeName: name, supportEmail: contact })} className="bg-herbal-800 text-white px-6 py-2 rounded-lg font-bold shadow-sm hover:bg-herbal-900">Save Changes</button>
-            </div>
-        </Section>
-    )
 }
 
-const PaymentSettings = ({ settings, onSave }: any) => {
-    const [razorpayId, setRazorpayId] = useState(settings.razorpayKeyId);
-    return (
-        <Section title="Payment Gateways" description="Configure how you accept payments.">
-            <InputField label="Razorpay Key ID" value={razorpayId} onChange={setRazorpayId} placeholder="rzp_live_..." />
-            <div className="pt-4 flex justify-end">
-                <button onClick={() => onSave({ razorpayKeyId: razorpayId })} className="bg-herbal-800 text-white px-6 py-2 rounded-lg font-bold shadow-sm hover:bg-herbal-900">Update Keys</button>
-            </div>
-        </Section>
-    )
+function Section({ title, description, children }: { title: string; description: string; children: React.ReactNode }) {
+    return <section className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm"><div className="mb-5 border-b border-gray-100 pb-4"><h2 className="font-serif text-xl font-bold text-gray-800">{title}</h2><p className="mt-1 text-sm text-gray-500">{description}</p></div><div className="space-y-4">{children}</div></section>;
 }
 
-const ShippingSettings = ({ settings, onSave }: any) => {
-    const [threshold, setThreshold] = useState(settings.freeShippingThreshold.toString());
-    const [fee, setFee] = useState(settings.shippingFee.toString());
-
-    return (
-        <Section title="Shipping Rules" description="Set delivery fees and free shipping limits.">
-            <div className="grid grid-cols-2 gap-6">
-                <InputField label="Standard Shipping Fee (₹)" value={fee} onChange={setFee} />
-                <InputField label="Free Shipping Threshold (₹)" value={threshold} onChange={setThreshold} />
-            </div>
-            <div className="pt-4 flex justify-end">
-                <button onClick={() => onSave({ shippingFee: Number(fee), freeShippingThreshold: Number(threshold) })} className="bg-herbal-800 text-white px-6 py-2 rounded-lg font-bold shadow-sm hover:bg-herbal-900">Save Rules</button>
-            </div>
-        </Section>
-    )
+function InfoRow({ label, value, tone = 'default' }: { label: string; value: string; tone?: 'default' | 'success' | 'warning' }) {
+    const toneClass = tone === 'success' ? 'text-green-700' : tone === 'warning' ? 'text-amber-700' : 'text-gray-800';
+    return <div className="flex items-start justify-between gap-4 border-b border-gray-100 pb-3 last:border-0 last:pb-0"><span className="text-sm text-gray-500">{label}</span><span className={`max-w-[65%] text-right text-sm font-bold ${toneClass}`}>{value}</span></div>;
 }
-
-const IntegrationSettings = ({ settings, onSave }: any) => (
-    <Section title="Integrations" description="Manage third-party connections.">
-        <div className="text-center p-8 text-gray-500">
-            Please use the dedicated <a href="/admin/integrations" className="text-herbal-700 font-bold underline">Integrations Page</a> for advanced configuration.
-        </div>
-    </Section>
-);
-
-const BackupSettings = ({ settings }: any) => (
-    <Section title="Data Management" description="Download backups and manage system data.">
-        <div className="space-y-4">
-            <div className="p-4 border border-gray-200 rounded-lg flex justify-between items-center">
-                <div>
-                    <p className="font-bold text-gray-800">Export All Data</p>
-                    <p className="text-xs text-gray-500">Download a JSON backup of products, orders, and customers.</p>
-                </div>
-                <button className="text-herbal-700 border border-herbal-200 px-4 py-2 rounded font-bold text-sm hover:bg-herbal-50">Download JSON</button>
-            </div>
-        </div>
-    </Section>
-);
