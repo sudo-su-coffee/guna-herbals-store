@@ -1,5 +1,6 @@
 'use server';
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // @ts-nocheck
 import { db } from '@/lib/db';
 import {

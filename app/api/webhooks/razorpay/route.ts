@@ -22,9 +22,16 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Invalid webhook signature' }, { status: 401 });
   }
 
-  let event: any;
+  type RazorpayEvent = {
+    event?: string;
+    payload?: {
+      order?: { entity?: { id?: string } };
+      payment?: { entity?: { id?: string; order_id?: string; status?: string; error_description?: string; error_reason?: string } };
+    };
+  };
+  let event: RazorpayEvent;
   try {
-    event = JSON.parse(rawBody);
+    event = JSON.parse(rawBody) as RazorpayEvent;
   } catch {
     return NextResponse.json({ error: 'Invalid JSON payload' }, { status: 400 });
   }

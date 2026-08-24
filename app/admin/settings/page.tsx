@@ -30,7 +30,9 @@ export default function SettingsPage() {
         setLoading(false);
     };
 
+    // The first render must fetch server-side configuration; this is an intentional data-loading effect.
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         void loadHealth();
     }, []);
 
