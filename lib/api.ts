@@ -2797,3 +2797,18 @@ export async function revokeAllCustomerSessions(userId: number): Promise<ApiResp
         return { message: 'All customer sessions revoked' };
     }, [`/admin/customers/${userId}`, '/admin/security']);
 }
+
+
+export async function getAdminIntegrationHealth(): Promise<ApiResponse<Record<string, { provider: string; configured: boolean }>>> {
+    return handleServerAction(async () => {
+        await requireAdminUser();
+        return {
+            media: { provider: process.env.MEDIA_PROVIDER || 'cloudinary', configured: Boolean(process.env.CLOUDINARY_CLOUD_NAME) },
+            support: { provider: process.env.SUPPORT_PROVIDER || 'chatwoot', configured: Boolean(process.env.SUPPORT_BASE_URL && process.env.SUPPORT_WEBSITE_TOKEN) },
+            analytics: { provider: process.env.NEXT_PUBLIC_POSTHOG_KEY ? 'posthog' : 'disabled', configured: Boolean(process.env.NEXT_PUBLIC_POSTHOG_KEY) },
+            notifications: { provider: process.env.NOTIFICATIONS_PROVIDER || 'sendgrid', configured: Boolean(process.env.SENDGRID_API_KEY && (process.env.SENDGRID_FROM_EMAIL || process.env.NOTIFICATIONS_FROM_EMAIL)) },
+            payments: { provider: process.env.PAYMENTS_PROVIDER || 'razorpay', configured: Boolean(process.env.RAZORPAY_KEY_ID && process.env.RAZORPAY_KEY_SECRET) },
+            auth: { provider: process.env.AUTH_PROVIDER || 'better-auth', configured: Boolean(process.env.BETTER_AUTH_SECRET) },
+        };
+    }, ['/admin/integrations']);
+}
