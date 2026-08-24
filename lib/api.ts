@@ -42,6 +42,7 @@ import { revalidatePath } from 'next/cache';
 import bcrypt from 'bcryptjs';
 import { SignJWT, jwtVerify } from 'jose';
 import { sendTransactionalEmail } from '@/lib/integrations';
+import { auth } from '@/lib/better-auth';
 
 const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET || 'super-secret-key-change-this-in-env');
 const ALG = 'HS256';
@@ -118,6 +119,25 @@ export async function getCurrentUser(): Promise<ApiResponse<SessionUser>> {
         const sessionToken = cookieStore.get('sessionToken')?.value;
 
         if (!sessionToken) {
+            const betterAuthSession = await auth.api.getSession({ headers: await headers() });
+            if (betterAuthSession?.user?.email) {
+                const linkedUser = await db.query.users.findFirst({
+                    where: eq(users.email, betterAuthSession.user.email),
+                    with: { profile: true }
+                });
+                if (!linkedUser) {
+                    throw new AppError('Account is not linked to a customer profile', 409, 'ACCOUNT_NOT_LINKED');
+                }
+                if (linkedUser.status === 'blocked') throw new AppError('Account is blocked', 403, 'ACCOUNT_BLOCKED');
+                return {
+                    id: linkedUser.id,
+                    name: linkedUser.name,
+                    email: linkedUser.email,
+                    role: linkedUser.role,
+                    phone: linkedUser.phone || undefined,
+                    profile: linkedUser.profile || undefined
+                };
+            }
             throw new AppError('Not authenticated', 401, 'NOT_AUTHENTICATED');
         }
 

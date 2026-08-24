@@ -10,7 +10,6 @@ import { ShippingDetails } from '@/lib/types';
 import { toast } from 'sonner';
 import { useCart } from '@/context/CartContext';
 
-declare const jspdf: any;
 declare global {
     interface Window {
         Razorpay?: new (options: Record<string, unknown>) => { open: () => void };
@@ -103,7 +102,7 @@ export default function Checkout() {
         return sum + (price * item.quantity);
     }, 0);
     const shipping = subtotal > SITE_CONFIG.shipping.freeShippingThreshold ? 0 : SITE_CONFIG.shipping.standardRate;
-    const codCharge = paymentMethod === 'COD' ? SITE_CONFIG.payment.codExtraCharge : 0;
+    const codCharge = paymentMethod === 'COD' ? SITE_CONFIG.payments.codExtraCharge : 0;
     const finalTotal = subtotal + shipping + codCharge;
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -170,21 +169,22 @@ export default function Checkout() {
             });
 
             if (orderRes.success && orderRes.data) {
+                const createdOrder = orderRes.data;
                 if (paymentMethod === 'Razorpay') {
-                    if (!orderRes.data.payment) throw new Error('Razorpay payment order was not created');
+                    if (!createdOrder.payment) throw new Error('Razorpay payment order was not created');
                     const loaded = await loadRazorpayScript();
                     if (!loaded || !window.Razorpay) throw new Error('Razorpay Checkout is unavailable');
 
                     await new Promise<void>((resolve, reject) => {
                         const checkout = new window.Razorpay!({
-                            key: orderRes.data.payment.key,
-                            amount: orderRes.data.payment.amount,
-                            currency: orderRes.data.payment.currency,
+                            key: createdOrder.payment.key,
+                            amount: createdOrder.payment.amount,
+                            currency: createdOrder.payment.currency,
                             name: SITE_CONFIG.name,
                             description: 'Guna Herbals order',
-                            order_id: orderRes.data.payment.id,
+                            order_id: createdOrder.payment.id,
                             prefill: { name: details.name, email: details.email, contact: details.phone },
-                            notes: { orderId: String(orderRes.data.orderId) },
+                            notes: { orderId: String(createdOrder.orderId) },
                             theme: { color: '#315b45' },
                             handler: async (response: { razorpay_order_id: string; razorpay_payment_id: string; razorpay_signature: string }) => {
                                 try {
@@ -203,8 +203,8 @@ export default function Checkout() {
 
                 await clearCart();
                 setGeneratedOrder({
-                    ...orderRes.data,
-                    id: `ORD-${orderRes.data.orderId}`,
+                    ...createdOrder,
+                    id: `ORD-${createdOrder.orderId}`,
                     paymentMethod,
                     paymentStatus: paymentMethod === 'COD' ? 'pending' : 'paid',
                     total: finalTotal
@@ -226,14 +226,15 @@ export default function Checkout() {
     if (loading) return <div className="min-h-screen pt-32 text-center font-serif text-lg">Preparing checkout...</div>;
 
     const downloadPDFReceipt = () => {
-        if (!generatedOrder || typeof jspdf === 'undefined') return;
-        const { jsPDF } = jspdf;
-        const doc = new jsPDF();
-        doc.text(`Receipt for Order: ${generatedOrder.id}`, 20, 20);
-        doc.text(`Method: ${generatedOrder.paymentMethod}`, 20, 30);
-        doc.text(`Total Amount: Rs. ${generatedOrder.total}`, 20, 40);
-        doc.text(`Status: ${generatedOrder.paymentStatus}`, 20, 50);
-        doc.save(`Receipt-${generatedOrder.id}.pdf`);
+        if (!generatedOrder?.orderId) return;
+        window.location.href = `/api/orders/${generatedOrder.orderId}/receipt`;
+    };
+
+    const shareOrderOnWhatsApp = () => {
+        if (!generatedOrder?.orderId) return;
+        const trackingUrl = `${window.location.origin}/track-order?order=${encodeURIComponent(generatedOrder.id)}`;
+        const message = `My Guna's Herbals order ${generatedOrder.id} is confirmed. Track it here: ${trackingUrl}`;
+        window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
     };
 
     if (cart.length === 0 && !orderComplete) {
@@ -263,8 +264,11 @@ export default function Checkout() {
                         <button onClick={downloadPDFReceipt} className="w-full bg-herbal-800 hover:bg-herbal-900 text-white font-bold py-3.5 rounded-lg shadow-md flex items-center justify-center gap-2 transition-all hover:shadow-lg">
                             <Icon name="scroll" size={17} /> Download Order Summary
                         </button>
-                        <button onClick={() => router.push('/track-order')} className="w-full bg-white border-2 border-herbal-100 text-herbal-800 font-bold py-3.5 rounded-lg hover:bg-herbal-50 transition-all">
+                        <button onClick={() => router.push(`/track-order?order=${encodeURIComponent(generatedOrder.id)}`)} className="w-full bg-white border-2 border-herbal-100 text-herbal-800 font-bold py-3.5 rounded-lg hover:bg-herbal-50 transition-all">
                             Track This Order
+                        </button>
+                        <button onClick={shareOrderOnWhatsApp} className="w-full bg-[#128C7E] text-white font-bold py-3.5 rounded-lg hover:bg-[#075E54] transition-all">
+                            Share Tracking on WhatsApp
                         </button>
                         <button onClick={() => router.push('/')} className="w-full text-gray-500 font-bold py-2 rounded-lg hover:text-gray-700 transition-all text-sm">
                             Return Home
@@ -421,9 +425,9 @@ export default function Checkout() {
                                         <p className="font-bold text-gray-800 text-sm md:text-base">Cash on Delivery (COD)</p>
                                         <p className="text-[10px] md:text-xs text-gray-500">Pay with cash when you receive the order.</p>
                                     </div>
-                                    {SITE_CONFIG.payment.codExtraCharge > 0 && (
+                                    {SITE_CONFIG.payments.codExtraCharge > 0 && (
                                         <span className="text-[10px] font-bold bg-orange-100 text-orange-800 px-2 py-1 rounded">
-                                            +₹{SITE_CONFIG.payment.codExtraCharge} Fee
+                                            +₹{SITE_CONFIG.payments.codExtraCharge} Fee
                                         </span>
                                     )}
                                 </label>

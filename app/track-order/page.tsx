@@ -2,12 +2,13 @@
 
 import React, { useState, Suspense, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { getOrderithDetails } from '@/lib/api';
+import { getOrderById } from '@/lib/api';
+import { Icon } from '@/components/Icon';
 
 // Separate component to use useSearchParams which requires Suspense
 function TrackOrderContent() {
     const searchParams = useSearchParams();
-    const initialOrderId = searchParams.get('orderId') || '';
+    const initialOrderId = searchParams.get('orderId') || searchParams.get('order') || '';
 
     const [orderId, setOrderId] = useState(initialOrderId);
     const [searchedOrder, setSearchedOrder] = useState<any | null>(null);
@@ -32,7 +33,8 @@ function TrackOrderContent() {
                 return;
             }
 
-            const found = await getOrderWithDetails(numericId);
+            const foundResponse = await getOrderById(numericId);
+            const found = foundResponse.success ? foundResponse.data : null;
             if (found) {
                 setSearchedOrder(found);
             } else {
@@ -128,7 +130,7 @@ function TrackOrderContent() {
                     {searchedOrder.shipment ? (
                         <div className="bg-blue-50 p-6 rounded-2xl border border-blue-100">
                             <div className="flex gap-4 items-start">
-                                <div className="bg-white p-3 rounded-full shadow-sm text-2xl">🚚</div>
+                                <div className="bg-white p-3 rounded-full shadow-sm"><Icon name="package" size={24} /></div>
                                 <div>
                                     <h4 className="font-bold text-blue-900 mb-1">On the way with {searchedOrder.shipment.courier}</h4>
                                     <p className="text-sm text-blue-700 mb-4">Tracking ID: {searchedOrder.shipment.trackingId || searchedOrder.shipment.awb}</p>
