@@ -7,7 +7,7 @@ export function getIntegrationConfig() {
     media: process.env.MEDIA_PROVIDER || 'cloudinary',
     support: process.env.SUPPORT_PROVIDER || 'chatwoot',
     analytics: process.env.NEXT_PUBLIC_POSTHOG_KEY ? 'posthog' : 'disabled',
-    notifications: process.env.NOTIFICATIONS_PROVIDER || 'unconfigured',
+    notifications: process.env.SENDGRID_API_KEY ? 'sendgrid' : 'unconfigured',
     payments: process.env.RAZORPAY_KEY_ID && process.env.RAZORPAY_KEY_SECRET ? 'razorpay' : 'unconfigured',
     auth: process.env.AUTH_PROVIDER || 'local',
   } as const;
@@ -37,4 +37,39 @@ export function supportWidgetConfig() {
   const baseUrl = process.env.SUPPORT_BASE_URL?.replace(/\/$/, '');
   if (!websiteToken || !baseUrl) return null;
   return { websiteToken, baseUrl };
+}
+
+export type TransactionalEmail = {
+  to: string;
+  subject: string;
+  text: string;
+  html?: string;
+};
+
+export async function sendTransactionalEmail(email: TransactionalEmail) {
+  const apiKey = process.env.SENDGRID_API_KEY;
+  const from = process.env.SENDGRID_FROM_EMAIL || process.env.NOTIFICATIONS_FROM_EMAIL;
+  if (!apiKey || !from) return { sent: false, skipped: true, reason: 'SENDGRID_NOT_CONFIGURED' as const };
+
+  const response = await fetch('https://api.sendgrid.com/v3/mail/send', {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      personalizations: [{ to: [{ email: email.to }] }],
+      from: { email: from, name: process.env.SENDGRID_FROM_NAME || "Guna's Herbals" },
+      subject: email.subject,
+      content: [
+        { type: 'text/plain', value: email.text },
+        ...(email.html ? [{ type: 'text/html', value: email.html }] : [])
+      ]
+    }),
+    cache: 'no-store'
+  });
+
+  if (!response.ok) {
+    const detail = await response.text();
+    console.error('SendGrid email failed', { status: response.status, detail });
+    throw new Error('Transactional email delivery failed');
+  }
+  return { sent: true, skipped: false };
 }

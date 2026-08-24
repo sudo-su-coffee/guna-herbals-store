@@ -23,13 +23,13 @@ The application should keep **business truth in Neon PostgreSQL** and use PostHo
 | Orders, products, inventory, payments, shipments | Neon PostgreSQL + Drizzle | Existing database schema remains authoritative |
 | Product and customer behavior | PostHog | Browser SDK with explicit commerce events and privacy masking |
 | Operational logs | JSON application logger plus database audit logs | Keep structured server logs provider-neutral; forward to a log service later if needed |
-| Transactional email | Confirm SendTree provider/API first | Use an adapter with provider URL and API key in server environment variables |
+| Transactional email | **SendGrid now; SMTP later** | Use the provider-neutral mail adapter with SendGrid API credentials now, then swap to a Cloudflare-compatible SMTP adapter later [12] |
 | Product images and documents | **Cloudinary** | Server-side uploads, CDN delivery, responsive transformations, and signed operations; keep API secret server-side [6] |
 | Raw exports, backups, and large non-image files | Optional Cloudflare R2 | S3-compatible adapter; use a public read URL or signed URLs, never expose secret keys in the browser [10] |
 | DNS and edge routing | Cloudflare DNS | DNS only for the domain and optional first-party analytics proxy; deployment can remain on Vercel |
 | Deployment | Vercel | Keep secrets in Vercel environment variables; do not put credentials in Git |
 | Customer support | **Chatwoot Cloud now; self-hosted Chatwoot later** | Website chat, email, WhatsApp, help center, API, and optional voice through Twilio/WhatsApp; keep conversation data in Chatwoot and link order IDs from the app [11] |
-| Authentication | Current local session system first; migrate to OIDC later | Use a stable internal user ID and OIDC claims mapping; Keycloak is the strongest self-hosted provider option [7] |
+| Authentication | **Better Auth later, after current auth is stable** | TypeScript-native sessions, social login, 2FA, and database-backed migration; preserve internal user IDs and roles [9] |
 
 ## Business events to instrument
 
@@ -45,23 +45,21 @@ Razorpay is not considered live until test-mode credentials, webhook configurati
 
 ## Authentication recommendation
 
-For this business, choose **Keycloak when self-hosting and centralized identity are hard requirements**. It speaks OpenID Connect, OAuth 2.0, and SAML, supports social login and identity brokering, and provides centralized users, sessions, roles, and two-factor authentication [7]. It is a separate operational service, so it is more work than keeping authentication inside the Next.js application.
+Use **Better Auth** as the planned authentication platform, but do not replace the currently working login in the same release as payments. Better Auth is a TypeScript-native framework with database-backed sessions, social sign-on, rate limiting, 2FA, organizations, and plugins [9]. It keeps identity logic close to this Next.js application and is the lowest-operations path for one store.
 
-Choose **Better Auth instead when the priority is a TypeScript-native system that lives with the application code**. Better Auth provides email/password, sessions, rate limiting, social sign-on, two-factor authentication, organizations, and a plugin ecosystem [9]. It is easier to keep in the same repository and database, but it is an application library rather than an independent identity platform.
-
-For Guna Herbals, the practical sequence is to keep the existing login stable, add an OIDC-compatible abstraction, and migrate only after the storefront and admin roles are stable. If the eventual target is a company-wide identity service shared by multiple systems, use Keycloak. If the target is one portable Next.js product with minimal operations, use Better Auth.
+The migration should preserve the existing internal user ID, email, phone, role, and account status. Add a provider-account mapping and migrate customers gradually on first successful login instead of forcing a mass password reset. Choose Auth0 only if you later need a fully managed enterprise identity service for multiple applications; moving away from Auth0 later is a managed-service migration project. Keycloak remains the alternative if you eventually need a central self-hosted identity platform shared across products.
 
 ## Activation checklist
 
 1. Create a PostHog project and provide `NEXT_PUBLIC_POSTHOG_KEY`; keep `NEXT_PUBLIC_POSTHOG_HOST` pointed to PostHog Cloud or your self-hosted domain.
-2. Confirm whether the intended email provider is **SendTree.io** or **SendGrid**. The name “SendTree” resolves to a separate email product with API and SMTP access, so the exact API contract must be confirmed before coding provider-specific calls.
+2. Create a SendGrid sender identity and provide `SENDGRID_API_KEY`, `SENDGRID_FROM_EMAIL`, and `SENDGRID_FROM_NAME`. The code now uses a provider-neutral `sendTransactionalEmail` function.
 3. Add Razorpay test credentials to the deployment environment and set `RAZORPAY_WEBHOOK_SECRET` in Razorpay Dashboard and Vercel.
 4. Configure the Razorpay webhook URL as `https://your-domain.com/api/webhooks/razorpay`, then complete one successful and one failed test payment.
 5. Create a Cloudinary product environment and configure `CLOUDINARY_URL` or the individual Cloudinary variables. Use product folders such as `guna-herbals/products`, `guna-herbals/banners`, and `guna-herbals/journal`.
 6. Create a Chatwoot Cloud account or self-hosted deployment, configure the website token and base URL, and link support conversations to customer/order IDs without copying full conversation contents into Neon.
 7. Use R2 only if raw backups or non-image files need separate low-cost object storage. Configure its server-only keys when that need exists.
 8. Configure the production domain in Cloudflare DNS and point the application to Vercel. Keep all secrets server-side.
-9. Decide between Keycloak and Better Auth before replacing the current login. Do not migrate authentication, payments, and support in the same release.
+9. Keep the current login stable for the first release, then migrate to Better Auth in a dedicated release with user-identity mapping and a rollback plan. Do not migrate authentication, payments, and support in the same release.
 
 ## References
 
@@ -86,3 +84,5 @@ For Guna Herbals, the practical sequence is to keep the existing login stable, a
 [10]: https://cloudinary.com/documentation "Cloudinary Documentation"
 
 [11]: https://www.chatwoot.com/ "Chatwoot Customer Support Platform"
+
+[12]: https://www.twilio.com/docs/sendgrid/api-reference/mail-send/mail-send "SendGrid Mail Send API"

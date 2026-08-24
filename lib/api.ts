@@ -41,6 +41,7 @@ import crypto from 'crypto';
 import { revalidatePath } from 'next/cache';
 import bcrypt from 'bcryptjs';
 import { SignJWT, jwtVerify } from 'jose';
+import { sendTransactionalEmail } from '@/lib/integrations';
 
 const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET || 'super-secret-key-change-this-in-env');
 const ALG = 'HS256';
@@ -2335,6 +2336,16 @@ export async function verifyPayment(data: {
                 .set({ paymentStatus: 'paid', orderStatus: 'confirmed', updatedAt: new Date() })
                 .where(eq(orders.id, payment.orderId));
         });
+
+        const orderForEmail = await db.query.orders.findFirst({ where: eq(orders.id, payment.orderId), with: { user: true } });
+        if (orderForEmail?.user?.email) {
+            void sendTransactionalEmail({
+                to: orderForEmail.user.email,
+                subject: `Order confirmed — ${orderForEmail.orderNumber}`,
+                text: `Thank you for your order. Your payment for ${orderForEmail.orderNumber} was confirmed. Total: INR ${orderForEmail.totalAmount}.`,
+                html: `<p>Thank you for your order.</p><p>Your payment for <strong>${orderForEmail.orderNumber}</strong> was confirmed.</p><p>Total: INR ${orderForEmail.totalAmount}</p>`
+            }).catch((error) => console.error('Order confirmation email failed', error));
+        }
 
         return { message: 'Payment verified successfully' };
     });
