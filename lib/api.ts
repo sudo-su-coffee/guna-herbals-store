@@ -2759,3 +2759,11 @@ export async function getAdminPayments(): Promise<ApiResponse<any[]>> {
         });
     }, ['/admin/payments']);
 }
+
+
+export async function getAdminAuditLogs(): Promise<ApiResponse<any[]>> {
+    return handleServerAction(async () => {
+        await requireAdminUser();
+        return db.query.auditLogs.findMany({ orderBy: desc(auditLogs.createdAt), limit: 300 });
+    }, ['/admin/logs']);
+}
