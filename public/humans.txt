@@ -1,0 +1,25 @@
+/* TEAM */
+Website: Guna's Herbal Products
+Location: Tenkasi, Tamil Nadu, India
+Developer: Blacklovertech
+Owner: Janarthana Subanantham
+
+/* THANKS */
+To our customers for supporting traditional herbal wellness.
+To the Siddha practitioners who preserved this ancient knowledge.
+
+/* SITE */
+Last update: 2025/12/28
+Standards: HTML5, CSS3, JavaScript ES6+, React, Next.js
+Components: Next.js 14, TypeScript, Tailwind CSS
+Software: VS Code, Git
+Language: English, Tamil
+Doctype: HTML5
+IDE: Visual Studio Code
+
+/* CONTACT */
+Email: contact@gunasherbals.store
+Phone: +91-XXXXXXXXXX
+Address: 1163, VAIYAPURIPATTI, Kayampatti, Sivaganga, Tamil Nadu, 630501, India
+Instagram: https://www.instagram.com/gunasherbals
+Facebook: https://www.facebook.com/gunasherbals

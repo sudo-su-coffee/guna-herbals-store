@@ -1,0 +1,11 @@
+Contact: mailto:security@gunasherbals.store
+Contact: https://www.gunasherbals.store/contact
+Expires: 2026-12-31T23:59:59.000Z
+Preferred-Languages: en, ta
+Canonical: https://www.gunasherbals.store/.well-known/security.txt
+
+# Our security policy
+Policy: https://www.gunasherbals.store/policies
+
+# Acknowledgments
+Acknowledgments: https://www.gunasherbals.store/security-acknowledgments
