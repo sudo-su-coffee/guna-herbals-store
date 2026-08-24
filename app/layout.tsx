@@ -200,7 +200,7 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
         <div className="fixed inset-0 z-[60] bg-[#FAFAF5]/95 backdrop-blur-xl animate-fade-in">
           <div className="max-w-5xl mx-auto px-6 pt-24 md:pt-32">
             <div className="relative">
-              <input ref={searchInputRef} type="text" placeholder="Search for products..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="w-full bg-transparent border-b-2 border-gray-200 text-3xl md:text-5xl font-serif text-herbal-900 placeholder-gray-300 py-6 outline-none focus:border-herbal-800 transition-colors" />
+              <input ref={searchInputRef} type="text" placeholder="Search for products..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter') { router.push(`/search${searchQuery.trim() ? `?q=${encodeURIComponent(searchQuery.trim())}` : ''}`); handleSearchClose(); } }} className="w-full bg-transparent border-b-2 border-gray-200 text-3xl md:text-5xl font-serif text-herbal-900 placeholder-gray-300 py-6 outline-none focus:border-herbal-800 transition-colors" />
               <button onClick={handleSearchClose} className="absolute right-0 top-1/2 -translate-y-1/2 text-gray-400 hover:text-herbal-900 transition-colors p-2"><span className="text-sm font-bold uppercase tracking-widest mr-2 hidden md:inline">Close</span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8 inline"><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg></button>
             </div>
             <div className="mt-12">
@@ -220,6 +220,9 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
                   ))}
                 </div>
               )}
+              <div className="mt-10 text-center">
+                <button onClick={() => { router.push(`/search${searchQuery.trim() ? `?q=${encodeURIComponent(searchQuery.trim())}` : ''}`); handleSearchClose(); }} className="border-b border-herbal-900 pb-2 text-xs font-bold uppercase tracking-[0.18em] text-herbal-900">View all results {searchQuery ? `for “${searchQuery}”` : ''}</button>
+              </div>
               {searchQuery && filteredSuggestions.length === 0 && (
                 <div className="text-center py-10 text-gray-500">
                   No products found matching "{searchQuery}"
