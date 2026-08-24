@@ -1,93 +1,17 @@
 'use client';
 
-import React, { useState } from 'react';
-import { useShop } from '@/lib/ShopContext';
+import React, { useEffect, useMemo, useState } from 'react';
+import { getAdminAuditLogs, getAdminStat, updateAdminCustomerStatus } from '@/lib/api';
+import { AdminPageHeader } from '@/components/admin/AdminPageHeader';
+import { Icon } from '@/components/Icon';
+import { toast } from 'sonner';
 
 export default function SecurityPage() {
-    const { logs, customers, banUser } = useShop();
-    const [searchTerm, setSearchTerm] = useState('');
-
-    const highRiskUsers = customers.filter(c => c.riskScore > 50 || c.status === 'banned');
-
-    return (
-        <div className="space-y-8 animate-fade-in pb-12 w-full max-w-full">
-            <div>
-                <h1 className="text-3xl font-bold font-serif text-gray-800">Security Center</h1>
-                <p className="text-gray-500">Monitor threats, audit logs, and manage user access control.</p>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                {/* Threat Monitor */}
-                <div className="lg:col-span-1 bg-white rounded-xl shadow-sm border border-red-100 overflow-hidden w-full">
-                    <div className="p-6 border-b border-red-50 bg-red-50/30">
-                        <h3 className="font-bold text-red-900 flex items-center gap-2">
-                            <span>🛡️</span> High Risk Accounts
-                        </h3>
-                    </div>
-                    <div className="divide-y divide-gray-100 max-h-96 overflow-y-auto">
-                        {highRiskUsers.map(user => (
-                            <div key={user.id} className="p-4 hover:bg-red-50/10 transition-colors flex justify-between items-center">
-                                <div>
-                                    <p className="font-bold text-gray-800 text-sm">{user.name}</p>
-                                    <p className="text-xs text-gray-500">{user.phone}</p>
-                                </div>
-                                <div className="text-right">
-                                    <span className={`text-[10px] uppercase font-bold px-2 py-1 rounded ${user.status === 'banned' ? 'bg-red-600 text-white' : 'bg-yellow-100 text-yellow-800'}`}>
-                                        {user.status === 'banned' ? 'Banned' : `Risk: ${user.riskScore}`}
-                                    </span>
-                                    {user.status !== 'banned' && (
-                                        <button onClick={() => { if (confirm('Ban user?')) banUser(user.id) }} className="block mt-2 text-xs text-red-600 hover:underline">Ban Now</button>
-                                    )}
-                                </div>
-                            </div>
-                        ))}
-                        {highRiskUsers.length === 0 && <div className="p-8 text-center text-gray-400 text-sm">No high risk users detected.</div>}
-                    </div>
-                </div>
-
-                {/* Audit Logs */}
-                <div className="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden w-full">
-                    <div className="p-6 border-b border-gray-100 flex justify-between items-center">
-                        <h3 className="font-bold text-gray-800">System Audit Logs</h3>
-                        <input
-                            type="text"
-                            placeholder="Search logs..."
-                            value={searchTerm}
-                            onChange={e => setSearchTerm(e.target.value)}
-                            className="text-sm border rounded px-3 py-1 bg-white"
-                        />
-                    </div>
-                    <div className="overflow-x-auto w-full">
-                        <table className="w-full text-left text-sm whitespace-nowrap md:whitespace-normal">
-                            <thead className="bg-gray-50 text-gray-500 uppercase text-xs font-bold tracking-wider">
-                                <tr>
-                                    <th className="px-4 py-3 md:px-6 md:py-4">Time</th>
-                                    <th className="px-4 py-3 md:px-6 md:py-4 hidden md:table-cell">Actor</th>
-                                    <th className="px-4 py-3 md:px-6 md:py-4">Action</th>
-                                    <th className="px-4 py-3 md:px-6 md:py-4">Details</th>
-                                </tr>
-                            </thead>
-                            <tbody className="divide-y divide-gray-100">
-                                {logs.filter(l => l.details.toLowerCase().includes(searchTerm.toLowerCase())).map(log => (
-                                    <tr key={log.id} className="hover:bg-gray-50">
-                                        <td className="px-4 py-3 md:px-6 md:py-4 text-gray-500 font-mono text-xs whitespace-nowrap">{new Date(log.timestamp).toLocaleString()}</td>
-                                        <td className="px-4 py-3 md:px-6 md:py-4 font-bold text-gray-700 hidden md:table-cell">{log.user}</td>
-                                        <td className="px-4 py-3 md:px-6 md:py-4">
-                                            <span className={`text-[10px] font-bold px-2 py-1 rounded border ${log.severity === 'critical' ? 'bg-red-50 text-red-700 border-red-200' :
-                                                log.severity === 'warning' ? 'bg-orange-50 text-orange-700 border-orange-200' :
-                                                    'bg-blue-50 text-blue-700 border-blue-200'
-                                                }`}>
-                                                {log.action}
-                                            </span>
-                                        </td>
-                                        <td className="px-4 py-3 md:px-6 md:py-4 text-gray-600">{log.details}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-};
+    const [customers, setCustomers] = useState<any[]>([]); const [logs, setLogs] = useState<any[]>([]); const [query, setQuery] = useState(''); const [loading, setLoading] = useState(true);
+    const load = async () => { setLoading(true); const [customerResponse, logResponse] = await Promise.all([getAdminStat(), getAdminAuditLogs()]); setCustomers(customerResponse.customers || []); if (logResponse.success) setLogs(logResponse.data || []); setLoading(false); };
+    useEffect(() => { load(); }, []);
+    const blocked = useMemo(() => customers.filter(customer => customer.status === 'blocked'), [customers]);
+    const filteredLogs = useMemo(() => logs.filter(log => `${log.action} ${log.entity} ${log.userEmail || ''}`.toLowerCase().includes(query.toLowerCase())), [logs, query]);
+    const toggle = async (user: any) => { const response = await updateAdminCustomerStatus(user.id, user.status === 'blocked' ? 'active' : 'blocked'); if (!response.success) toast.error(response.error || 'Unable to update account'); else { toast.success('Account status updated'); await load(); } };
+    return <div className="space-y-8 animate-fade-in pb-12"><AdminPageHeader title="Security center" description="Review blocked accounts and operational audit events." primaryAction={{ label: 'Refresh', onClick: load, icon: <Icon name="refresh" size={15} /> }} /><div className="grid grid-cols-1 gap-8 lg:grid-cols-3"><div className="overflow-hidden rounded-xl border border-red-100 bg-white shadow-sm"><div className="flex items-center gap-2 border-b border-red-50 bg-red-50/30 p-6"><Icon name="shield" size={18} className="text-red-800" /><h2 className="font-bold text-red-900">Blocked accounts</h2></div><div className="divide-y divide-gray-100">{loading ? <p className="p-6 text-sm text-gray-500">Loading accounts...</p> : blocked.map(user => <div key={user.id} className="flex items-center justify-between gap-3 p-4"><div><p className="font-bold text-sm">{user.name || user.email}</p><p className="text-xs text-gray-500">{user.email}</p></div><button onClick={() => toggle(user)} className="text-xs font-bold text-herbal-700 underline">Unblock</button></div>)}{!loading && blocked.length === 0 && <p className="p-8 text-center text-sm text-gray-500">No blocked accounts.</p>}</div></div><div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm lg:col-span-2"><div className="flex flex-wrap items-center justify-between gap-3 border-b border-gray-100 p-6"><h2 className="font-bold text-gray-800">System audit events</h2><input value={query} onChange={e => setQuery(e.target.value)} placeholder="Search events" className="rounded-lg border border-gray-200 p-2 text-sm outline-none focus:border-herbal-600" /></div><div className="overflow-x-auto"><table className="w-full text-left text-sm"><thead className="bg-gray-50 text-xs uppercase tracking-wider text-gray-500"><tr><th className="px-6 py-4">Time</th><th className="px-6 py-4">Action</th><th className="px-6 py-4">Actor</th></tr></thead><tbody className="divide-y divide-gray-100">{filteredLogs.slice(0, 100).map(log => <tr key={log.id}><td className="px-6 py-4 text-gray-500">{new Date(log.createdAt).toLocaleString()}</td><td className="px-6 py-4"><span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-bold">{log.action}</span><p className="mt-1 text-xs text-gray-500">{log.entity}{log.entityId ? ` #${log.entityId}` : ''}</p></td><td className="px-6 py-4">{log.userEmail || `User #${log.userId || 'system'}`}</td></tr>)}{!loading && filteredLogs.length === 0 && <tr><td colSpan={3} className="px-6 py-12 text-center text-gray-500">No audit events found.</td></tr>}</tbody></table></div></div></div></div>;
+}
