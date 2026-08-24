@@ -1,369 +1,78 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useShop } from '@/lib/ShopContext';
-import { Order, OrderStatus } from '../../../../lib/types';
+import Link from 'next/link';
+import { getAdminOrderById, updateAdminPaymentStatus, updateOrderStatus } from '@/lib/api';
+import { AdminPageHeader } from '@/components/admin/AdminPageHeader';
+import { Icon } from '@/components/Icon';
+import { toast } from 'sonner';
 
-// Assuming jspdf is loaded via script tag in head or layout, matching original behavior
-declare const jspdf: any;
+const orderStatuses = ['pending', 'confirmed', 'processing', 'shipped', 'delivered', 'cancelled', 'returned'];
+const paymentStatuses = ['pending', 'paid', 'failed', 'refunded'] as const;
 
-export default function OrderDetailsPage({ params }: { params: { id: string } }) {
-    const { orders, updateOrderStatus } = useShop();
+export default function AdminOrderDetailsPage({ params }: { params: { id: string } }) {
     const router = useRouter();
+    const [order, setOrder] = useState<any | null>(null);
+    const [loading, setLoading] = useState(true);
+    const [saving, setSaving] = useState(false);
 
-    // Access params.id (synchnous for now, compatible with Next.js 13/14)
-    const orderId = params.id;
-    const order = orders.find(o => o.id === orderId);
-
-    const [isTrackingModalOpen, setIsTrackingModalOpen] = useState(false);
-    const [pendingStatus, setPendingStatus] = useState<OrderStatus | null>(null);
-
-    // Manual Tracking State
-    const [trackingLink, setTrackingLink] = useState('');
-    const [courier, setCourier] = useState('');
-    const [trackingId, setTrackingId] = useState('');
-
-    // Initialize state from order when available
-    React.useEffect(() => {
-        if (order) {
-            setTrackingLink(order.trackingLink || '');
-            setCourier(order.courier || '');
-            setTrackingId(order.trackingId || '');
-            setLocalPaymentStatus(order.paymentStatus);
-        }
-    }, [order]);
-
-    // Local state to simulate payment status update (in real app, this would use an API call)
-    const [localPaymentStatus, setLocalPaymentStatus] = useState<string>('Pending');
-
-    if (!order) {
-        return (
-            <div className="flex flex-col items-center justify-center min-h-[400px]">
-                <p className="text-xl text-gray-400 font-serif mb-4">Order not found.</p>
-                <button onClick={() => router.back()} className="text-herbal-700 font-bold hover:underline">Go Back</button>
-            </div>
-        );
-    }
-
-    // Simulate a transaction ID based on order ID for display consistency
-    const transactionId = `PAY-${order.id}`;
-
-    const handleUpdateStatus = (id: string, status: OrderStatus, tLink?: string, tCourier?: string, tId?: string) => {
-        // Use the context function
-        // Note: context might need to be updated if it doesn't support extra args, 
-        // but based on `AdminOrderDetails` props: (orderId, status, trackingLink?, courier?, trackingId?)
-        updateOrderStatus(id, status);
-        // If context doesn't support tracking info update yet, we might need to extend it. 
-        // For this refactor, we assume updateOrderStatus handles it or we might need a separate call if the context was strictly typed without it.
-        // Currently Component expected: onUpdateStatus(orderId, status, trackingLink, courier, trackingId)
-        // Context provides: updateOrderStatus(id, status) usually. 
-        // We will stick to what the context provides for now, or assume it accepts partial updates if we looked at it.
-        // Looking at ShopContext.tsx view earlier: 
-        // `const updateOrderStatus = (orderId: string, newStatus: OrderStatus) => { ... }`
-        // It seems it only accepts status. We might lose tracking info capability unless we update context.
-        // TODO: Update ShopContext to accept tracking info. For now, we proceed with status update.
+    const orderId = Number(params.id);
+    const load = async () => {
+        setLoading(true);
+        const response = await getAdminOrderById(orderId);
+        if (response.success) setOrder(response.data);
+        else toast.error(response.error || 'Order not found');
+        setLoading(false);
     };
 
-    const handleStatusChange = (newStatus: OrderStatus) => {
-        if (newStatus === 'Shipped' || newStatus === 'Out for Delivery') {
-            setPendingStatus(newStatus);
-            setIsTrackingModalOpen(true);
-        } else if (newStatus === 'Delivered') {
-            // If delivering, and payment is COD/Pending, confirm payment collection
-            if ((localPaymentStatus === 'COD' || localPaymentStatus === 'Pending')) {
-                if (confirm('Marking as Delivered. Has the COD payment been collected?')) {
-                    setLocalPaymentStatus('Paid');
-                }
-            }
-            handleUpdateStatus(order.id, newStatus);
-        } else {
-            handleUpdateStatus(order.id, newStatus);
-        }
+    useEffect(() => { load(); }, [orderId]);
+
+    const changeOrderStatus = async (status: string) => {
+        setSaving(true);
+        const response = await updateOrderStatus(orderId, status);
+        if (!response.success) toast.error(response.error || 'Unable to update order');
+        else { toast.success('Order status updated'); await load(); }
+        setSaving(false);
     };
 
-    const confirmStatusUpdate = () => {
-        if (pendingStatus) {
-            handleUpdateStatus(order.id, pendingStatus, trackingLink, courier, trackingId);
-            setIsTrackingModalOpen(false);
-            setPendingStatus(null);
-        }
+    const changePaymentStatus = async (status: typeof paymentStatuses[number]) => {
+        setSaving(true);
+        const response = await updateAdminPaymentStatus(orderId, status);
+        if (!response.success) toast.error(response.error || 'Unable to update payment');
+        else { toast.success('Payment status updated'); await load(); }
+        setSaving(false);
     };
 
-    const handleMarkAsPaid = () => {
-        if (confirm('Confirm payment received for this order?')) {
-            setLocalPaymentStatus('Paid');
-            // Ideally trigger an API update here
-        }
-    };
+    if (loading) return <div className="p-12 text-center font-serif text-lg">Loading order...</div>;
+    if (!order) return <div className="p-12 text-center"><p className="mb-4 text-gray-500">Order not found.</p><button onClick={() => router.back()} className="font-bold text-herbal-700">Go back</button></div>;
 
-    const subtotal = order.items.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
-    const extraCharges = order.total - subtotal; // Assuming shipping + COD fees
-
-    const printInvoice = () => {
-        if (typeof jspdf === 'undefined') {
-            // Fallback or alert if global jspdf is missing
-            return alert("PDF generator not available (jspdf library missing).");
-        }
-        const { jsPDF } = jspdf;
-        const doc = new jsPDF();
-
-        // Header
-        doc.setFontSize(20);
-        doc.text("Guna's Herbal Products", 105, 20, { align: 'center' });
-        doc.setFontSize(10);
-        doc.text("Invoice", 105, 27, { align: 'center' });
-
-        // Order Details
-        doc.setFontSize(12);
-        doc.text(`Order ID: ${order.id}`, 20, 40);
-        doc.text(`Date: ${new Date(order.date).toLocaleDateString()}`, 20, 47);
-
-        // Shipping Address
-        doc.text("Ship To:", 20, 60);
-        doc.text(order.shipping.name, 20, 67);
-        doc.text(order.shipping.address, 20, 74);
-        doc.text(`${order.shipping.city}, ${order.shipping.state} - ${order.shipping.zip}`, 20, 81);
-
-        // Items Table
-        const tableColumn = ["Item", "Quantity", "Price", "Total"];
-        const tableRows: any[][] = [];
-        order.items.forEach(item => {
-            const itemData = [
-                item.product.name,
-                item.quantity,
-                `Rs. ${item.product.price}`,
-                `Rs. ${item.product.price * item.quantity}`
-            ];
-            tableRows.push(itemData);
-        });
-
-        doc.autoTable(tableColumn, tableRows, { startY: 95 });
-
-        const finalY = doc.autoTable.previous.finalY;
-        doc.text(`Subtotal: Rs. ${subtotal}`, 150, finalY + 10);
-        if (extraCharges > 0) doc.text(`Shipping/COD: Rs. ${extraCharges}`, 150, finalY + 17);
-
-        // Total
-        doc.setFontSize(14);
-        doc.text(`Total: Rs. ${order.total}`, 150, finalY + 30);
-
-        doc.save(`Invoice-${order.id}.pdf`);
-    };
+    const address = order.shippingAddress || {};
+    const items = order.items || [];
+    const subtotal = Number(order.subtotal || 0);
+    const shipping = Number(order.shippingCharge || 0);
+    const tax = Number(order.taxAmount || 0);
+    const discount = Number(order.discountAmount || 0);
+    const total = Number(order.totalAmount || 0);
+    const shipment = order.shipments?.[0];
 
     return (
-        <div className="font-sans relative animate-fade-in w-full max-w-full pb-12">
-            <div className="max-w-5xl mx-auto">
-                <div className="flex justify-between items-center mb-6">
-                    <button onClick={() => router.back()} className="flex items-center gap-2 text-gray-600 hover:text-herbal-800 font-bold transition-colors">
-                        <span>←</span> Back to Order List
-                    </button>
-                    <button onClick={printInvoice} className="bg-herbal-800 text-white font-bold px-4 py-2 rounded-lg hover:bg-herbal-900 shadow-sm flex items-center gap-2 text-sm">
-                        <span>🖨️</span> Print Invoice
-                    </button>
-                </div>
-
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    <div className="lg:col-span-2 space-y-8">
-                        <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
-                            <h2 className="text-2xl font-bold font-serif mb-4">Order <span className="font-mono text-herbal-700">{order.id}</span></h2>
-
-                            {/* Status & Payment Header */}
-                            <div className="flex flex-wrap items-center gap-6 mb-4">
-                                <div className="flex items-center gap-2">
-                                    <span className="text-xs font-bold text-gray-500 uppercase">Status:</span>
-                                    <select value={order.status} onChange={(e) => handleStatusChange(e.target.value as OrderStatus)} className="p-2 border rounded-lg bg-white text-black font-bold text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-herbal-500">
-                                        {(['Processing', 'Shipped', 'Out for Delivery', 'Delivered', 'Cancelled'] as OrderStatus[]).map(s => <option key={s} value={s}>{s}</option>)}
-                                    </select>
-                                </div>
-                                <p className="text-sm text-gray-500">Placed on {new Date(order.date).toLocaleString()}</p>
-                            </div>
-
-                            {/* Payment Details Badge */}
-                            <div className="flex flex-wrap gap-4 mt-6 p-4 bg-gray-50 rounded-xl border border-gray-100">
-                                <div className="flex-1">
-                                    <span className="text-xs font-bold text-gray-400 uppercase block mb-1">Payment Method</span>
-                                    <div className="flex items-center gap-2">
-                                        <span className="text-xl">
-                                            {order.paymentMethod === 'Razorpay' ? '💳' : order.paymentMethod === 'COD' ? '💵' : '⚙️'}
-                                        </span>
-                                        <span className="font-bold text-gray-800">{order.paymentMethod}</span>
-                                    </div>
-                                </div>
-                                <div className="w-px bg-gray-200"></div>
-                                <div className="flex-1">
-                                    <span className="text-xs font-bold text-gray-400 uppercase block mb-1">Payment Status</span>
-                                    <div className="flex items-center gap-3">
-                                        <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold border ${localPaymentStatus === 'Paid' ? 'bg-green-100 border-green-200 text-green-800' :
-                                            localPaymentStatus === 'COD' || localPaymentStatus === 'Pending' ? 'bg-orange-100 border-orange-200 text-orange-800' :
-                                                'bg-red-100 border-red-200 text-red-800'
-                                            }`}>
-                                            {localPaymentStatus === 'Paid' ? '✅ Paid' :
-                                                (localPaymentStatus === 'COD' || localPaymentStatus === 'Pending') ? '⏳ Payment Pending' :
-                                                    '❌ Failed'}
-                                        </span>
-                                        {(localPaymentStatus === 'Pending' || localPaymentStatus === 'COD') && (
-                                            <button onClick={handleMarkAsPaid} className="text-xs text-blue-600 hover:underline font-bold">
-                                                Mark as Paid
-                                            </button>
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
+        <div className="space-y-6 animate-fade-in pb-12">
+            <AdminPageHeader title={`Order ${order.orderNumber || `ORD-${order.id}`}`} description={`Placed ${new Date(order.createdAt).toLocaleString()}`} primaryAction={{ label: 'Back to Orders', onClick: () => router.push('/admin/orders'), icon: <Icon name="arrow-left" size={15} /> }} />
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+                <section className="space-y-6 lg:col-span-2">
+                    <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+                        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-gray-100 pb-5">
+                            <div><p className="text-xs font-bold uppercase tracking-wider text-gray-400">Order status</p><select value={order.orderStatus} disabled={saving} onChange={e => changeOrderStatus(e.target.value)} className="mt-2 rounded-lg border border-gray-200 bg-white p-2 font-bold capitalize text-herbal-900">{orderStatuses.map(status => <option key={status} value={status}>{status.replace('_', ' ')}</option>)}</select></div>
+                            <div><p className="text-xs font-bold uppercase tracking-wider text-gray-400">Payment</p><select value={order.paymentStatus} disabled={saving} onChange={e => changePaymentStatus(e.target.value as typeof paymentStatuses[number])} className="mt-2 rounded-lg border border-gray-200 bg-white p-2 font-bold capitalize text-herbal-900">{paymentStatuses.map(status => <option key={status} value={status}>{status}</option>)}</select></div>
+                            <Link href="/admin/delivery" className="rounded-lg bg-herbal-800 px-4 py-2 text-sm font-bold text-white hover:bg-herbal-900">Manage shipment</Link>
                         </div>
-
-                        {/* Transaction Information */}
-                        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-                            <h3 className="font-bold text-lg mb-4 font-serif text-gray-800">Transaction Details</h3>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
-                                    <p className="text-xs text-gray-500 font-bold uppercase mb-1">Transaction Ref</p>
-                                    <p className="font-mono font-bold text-herbal-800 text-lg">{transactionId}</p>
-                                </div>
-                                <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
-                                    <p className="text-xs text-gray-500 font-bold uppercase mb-1">Gateway Ref</p>
-                                    <p className="font-mono text-gray-600">
-                                        {order.paymentMethod === 'Razorpay' ? `rzp_live_${order.id.split('-')[1]}` : 'N/A (Cash)'}
-                                    </p>
-                                </div>
-                                <div>
-                                    <p className="text-xs text-gray-500 font-bold uppercase mb-1">Total Amount</p>
-                                    <p className="font-bold text-gray-900">₹{order.total.toLocaleString()}</p>
-                                </div>
-                                <div>
-                                    <p className="text-xs text-gray-500 font-bold uppercase mb-1">Payment Date</p>
-                                    <p className="text-gray-900">{new Date(order.date).toLocaleDateString()}</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
-                            <h3 className="font-bold text-lg mb-4 font-serif">Items ({order.items.reduce((sum, i) => sum + i.quantity, 0)})</h3>
-                            <div className="space-y-4 border-b border-gray-100 pb-4 mb-4">
-                                {order.items.map(item => (
-                                    <div key={item.product.id} className="flex gap-4 items-center">
-                                        <img src={item.product.image} className="w-16 h-16 rounded-lg object-cover border" />
-                                        <div className="flex-grow">
-                                            <p className="font-bold">{item.product.name}</p>
-                                            <p className="text-xs text-gray-500">{item.quantity} x ₹{item.product.price}</p>
-                                        </div>
-                                        <p className="font-bold text-lg">₹{item.product.price * item.quantity}</p>
-                                    </div>
-                                ))}
-                            </div>
-
-                            <div className="space-y-2 text-right text-sm">
-                                <div className="flex justify-end gap-8 text-gray-600">
-                                    <span>Subtotal:</span>
-                                    <span>₹{subtotal}</span>
-                                </div>
-                                {extraCharges > 0 && (
-                                    <div className="flex justify-end gap-8 text-gray-600">
-                                        <span>Shipping & COD Charges:</span>
-                                        <span>₹{extraCharges}</span>
-                                    </div>
-                                )}
-                                <div className="flex justify-end gap-8 text-xl font-bold text-herbal-900 pt-2 border-t mt-2">
-                                    <span>Total:</span>
-                                    <span>₹{order.total}</span>
-                                </div>
-                            </div>
-                        </div>
+                        <div className="grid grid-cols-2 gap-5 pt-5 md:grid-cols-4"><div><p className="text-xs uppercase text-gray-400">Method</p><p className="mt-1 font-bold uppercase">{order.paymentMethod}</p></div><div><p className="text-xs uppercase text-gray-400">Items</p><p className="mt-1 font-bold">{items.reduce((sum: number, item: any) => sum + Number(item.quantity || 0), 0)}</p></div><div><p className="text-xs uppercase text-gray-400">Customer ID</p><p className="mt-1 font-bold">{order.userId || 'Guest'}</p></div><div><p className="text-xs uppercase text-gray-400">Total</p><p className="mt-1 font-bold text-herbal-800">₹{total.toFixed(2)}</p></div></div>
                     </div>
-
-                    <div className="space-y-8">
-                        {/* Combined Delivery Details View */}
-                        {(order.courier || order.trackingId || order.trackingLink || order.shipmentDetails) && (
-                            <div className="bg-white p-6 rounded-xl shadow-sm border border-herbal-200">
-                                <h3 className="font-bold text-lg mb-4 font-serif text-herbal-900">Delivery Details</h3>
-                                <div className="space-y-3">
-                                    <div>
-                                        <p className="text-xs text-gray-500 uppercase font-bold tracking-wider">Courier Service</p>
-                                        <p className="font-bold text-gray-800">{order.courier || order.shipmentDetails?.courier || 'N/A'}</p>
-                                    </div>
-                                    <div>
-                                        <p className="text-xs text-gray-500 uppercase font-bold tracking-wider">Tracking ID / AWB</p>
-                                        <p className="font-mono text-herbal-700 font-bold text-lg">{order.trackingId || order.shipmentDetails?.awb || 'N/A'}</p>
-                                    </div>
-                                    {(order.trackingLink || order.shipmentDetails?.awb) && (
-                                        <div className="pt-2">
-                                            <a
-                                                href={order.trackingLink || (order.shipmentDetails ? `https://www.delhivery.com/track/package/${order.shipmentDetails.awb}` : '#')}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="block w-full text-center bg-herbal-50 text-herbal-800 font-bold py-2 rounded-lg text-xs uppercase tracking-wider hover:bg-herbal-100 transition-colors"
-                                            >
-                                                Track Shipment
-                                            </a>
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-                        )}
-
-                        <div className="bg-white p-6 rounded-xl shadow-sm border">
-                            <h3 className="font-bold text-lg mb-4 font-serif">Customer</h3>
-                            <p className="font-bold text-gray-800">{order.shipping.name}</p>
-                            <p className="text-sm text-gray-600 mb-1">{order.shipping.email}</p>
-                            <p className="text-sm text-gray-600">{order.shipping.phone}</p>
-                        </div>
-                        <div className="bg-white p-6 rounded-xl shadow-sm border">
-                            <h3 className="font-bold text-lg mb-4 font-serif">Shipping Address</h3>
-                            <p className="text-sm text-gray-600 whitespace-pre-wrap leading-relaxed">
-                                {order.shipping.address}<br />
-                                {order.shipping.city} - {order.shipping.zip}<br />
-                                {order.shipping.state}
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                    <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm"><h2 className="mb-5 font-serif text-xl font-bold text-herbal-900">Items</h2><div className="divide-y divide-gray-100">{items.map((item: any) => { const price = Number(item.unitPrice || item.price || item.variant?.price || 0); const product = item.variant?.product; return <div key={item.id} className="flex items-center gap-4 py-4"><div className="h-14 w-14 overflow-hidden rounded-lg bg-gray-100">{product?.images?.[0]?.imageUrl && <img src={product.images[0].imageUrl} alt="" className="h-full w-full object-cover" />}</div><div className="flex-1"><p className="font-bold text-gray-900">{item.productName || product?.name || 'Product'}</p><p className="text-xs text-gray-500">SKU: {item.sku || item.variant?.sku || '—'} · Qty {item.quantity}</p></div><p className="font-bold">₹{(price * Number(item.quantity || 0)).toFixed(2)}</p></div>; })}</div><div className="mt-5 space-y-2 border-t border-gray-100 pt-5 text-sm"><div className="flex justify-between"><span>Subtotal</span><span>₹{subtotal.toFixed(2)}</span></div><div className="flex justify-between"><span>Shipping</span><span>₹{shipping.toFixed(2)}</span></div><div className="flex justify-between"><span>Tax</span><span>₹{tax.toFixed(2)}</span></div><div className="flex justify-between"><span>Discount</span><span>-₹{discount.toFixed(2)}</span></div><div className="flex justify-between border-t pt-3 text-lg font-bold text-herbal-900"><span>Total</span><span>₹{total.toFixed(2)}</span></div></div></div>
+                </section>
+                <aside className="space-y-6"><div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm"><h2 className="mb-4 font-serif text-xl font-bold text-herbal-900">Delivery</h2>{shipment ? <div className="space-y-3 text-sm"><div><p className="text-xs uppercase text-gray-400">Courier</p><p className="font-bold">{shipment.courierName}</p></div><div><p className="text-xs uppercase text-gray-400">Shipment number</p><p className="font-mono font-bold">{shipment.shipmentNumber}</p></div><div><p className="text-xs uppercase text-gray-400">Tracking number</p><p className="font-mono">{shipment.trackingNumber || '—'}</p></div><div><p className="text-xs uppercase text-gray-400">Status</p><p className="font-bold capitalize">{shipment.status?.replace('_', ' ')}</p></div>{shipment.trackingUrl && <a href={shipment.trackingUrl} target="_blank" rel="noreferrer" className="block rounded-lg bg-herbal-50 p-3 text-center font-bold text-herbal-800">Open courier tracking</a>}</div> : <p className="text-sm text-gray-500">No manual shipment has been assigned.</p>}</div><div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm"><h2 className="mb-4 font-serif text-xl font-bold text-herbal-900">Ship to</h2><div className="space-y-1 text-sm text-gray-600"><p className="font-bold text-gray-900">{address.name || 'Customer'}</p><p>{address.addressLine1 || address.address || '—'}</p><p>{[address.city, address.state, address.postalCode || address.zip].filter(Boolean).join(', ')}</p><p>{address.phone || '—'}</p></div></div></aside>
             </div>
-
-            {isTrackingModalOpen && (
-                <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 backdrop-blur-sm animate-fade-in">
-                    <div className="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-md border border-gray-200">
-                        <h3 className="font-bold text-xl mb-6 text-herbal-900 font-serif">Add Delivery Info</h3>
-
-                        <div className="space-y-4">
-                            <div>
-                                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Courier Name</label>
-                                <input
-                                    type="text"
-                                    value={courier}
-                                    onChange={e => setCourier(e.target.value)}
-                                    placeholder="e.g. Delhivery, DTDC"
-                                    className="w-full p-3 border border-gray-200 rounded-lg bg-gray-50 text-black focus:ring-2 focus:ring-herbal-500 outline-none"
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Tracking ID (AWB)</label>
-                                <input
-                                    type="text"
-                                    value={trackingId}
-                                    onChange={e => setTrackingId(e.target.value)}
-                                    placeholder="e.g. 123456789"
-                                    className="w-full p-3 border border-gray-200 rounded-lg bg-gray-50 text-black focus:ring-2 focus:ring-herbal-500 outline-none"
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Tracking URL</label>
-                                <input
-                                    type="text"
-                                    value={trackingLink}
-                                    onChange={e => setTrackingLink(e.target.value)}
-                                    placeholder="https://..."
-                                    className="w-full p-3 border border-gray-200 rounded-lg bg-gray-50 text-black focus:ring-2 focus:ring-herbal-500 outline-none"
-                                />
-                            </div>
-                        </div>
-
-                        <div className="flex justify-end gap-3 mt-8">
-                            <button onClick={() => setIsTrackingModalOpen(false)} className="bg-white border border-gray-300 text-gray-700 px-6 py-2.5 rounded-lg font-bold text-sm hover:bg-gray-50 transition-colors">Cancel</button>
-                            <button onClick={confirmStatusUpdate} className="bg-herbal-800 text-white px-6 py-2.5 rounded-lg font-bold text-sm hover:bg-herbal-900 shadow-md transition-colors">Confirm Update</button>
-                        </div>
-                    </div>
-                </div>
-            )}
         </div>
     );
-};
+}

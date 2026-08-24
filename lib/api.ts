@@ -2717,3 +2717,33 @@ export async function createRefund(data: { returnId: number; amount: number; ref
         });
     }, ['/admin/orders', '/admin/returns', '/admin/payments']);
 }
+
+
+export async function getAdminOrderById(orderId: number): Promise<ApiResponse<any>> {
+    return handleServerAction(async () => {
+        await requireAdminUser();
+        const order = await db.query.orders.findFirst({
+            where: eq(orders.id, orderId),
+            with: {
+                items: { with: { variant: { with: { product: true } } } },
+                payment: true,
+                shipments: true,
+            },
+        });
+        if (!order) throw new AppError('Order not found', 404, 'ORDER_NOT_FOUND');
+        return order;
+    }, [`/admin/orders/${orderId}`]);
+}
+
+export async function updateAdminPaymentStatus(orderId: number, status: 'pending' | 'paid' | 'failed' | 'refunded', failureReason?: string): Promise<ApiResponse> {
+    return handleServerAction(async () => {
+        await requireAdminUser();
+        const order = await db.query.orders.findFirst({ where: eq(orders.id, orderId) });
+        if (!order) throw new AppError('Order not found', 404, 'ORDER_NOT_FOUND');
+        await db.transaction(async (tx) => {
+            await tx.update(orders).set({ paymentStatus: status, updatedAt: new Date() }).where(eq(orders.id, orderId));
+            await tx.update(payments).set({ status, failureReason: failureReason || null, paidAt: status === 'paid' ? new Date() : null, updatedAt: new Date() }).where(eq(payments.orderId, orderId));
+        });
+        return { message: `Payment status updated to ${status}` };
+    }, [`/admin/orders/${orderId}`, '/admin/payments']);
+}
