@@ -10,6 +10,7 @@ import { useState, useEffect, useRef } from "react";
 import { BRAND_LOGO, CONTACT_INFO } from "@/lib/constants";
 import { Toaster } from 'sonner';
 import { AnalyticsProvider } from '@/components/AnalyticsProvider';
+import { SupportWidget } from '@/components/SupportWidget';
 import { CartProvider, useCart } from "@/context/CartContext";
 import CartDrawer from "@/components/CartDrawer";
 
@@ -483,6 +484,7 @@ export default function RootLayout({
       <body style={{ fontFamily: "'Playfair Display', serif" }}>
 
         <AnalyticsProvider>
+          <SupportWidget />
           <CartProvider>
             <LayoutContent>{children}</LayoutContent>
             <Toaster position="top-center" richColors />

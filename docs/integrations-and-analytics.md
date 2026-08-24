@@ -24,9 +24,11 @@ The application should keep **business truth in Neon PostgreSQL** and use PostHo
 | Product and customer behavior | PostHog | Browser SDK with explicit commerce events and privacy masking |
 | Operational logs | JSON application logger plus database audit logs | Keep structured server logs provider-neutral; forward to a log service later if needed |
 | Transactional email | Confirm SendTree provider/API first | Use an adapter with provider URL and API key in server environment variables |
-| Product images and documents | Cloudflare R2 | S3-compatible adapter; use a public read URL or signed URLs, never expose secret keys in the browser [6] |
+| Product images and documents | **Cloudinary** | Server-side uploads, CDN delivery, responsive transformations, and signed operations; keep API secret server-side [6] |
+| Raw exports, backups, and large non-image files | Optional Cloudflare R2 | S3-compatible adapter; use a public read URL or signed URLs, never expose secret keys in the browser [10] |
 | DNS and edge routing | Cloudflare DNS | DNS only for the domain and optional first-party analytics proxy; deployment can remain on Vercel |
 | Deployment | Vercel | Keep secrets in Vercel environment variables; do not put credentials in Git |
+| Customer support | **Chatwoot Cloud now; self-hosted Chatwoot later** | Website chat, email, WhatsApp, help center, API, and optional voice through Twilio/WhatsApp; keep conversation data in Chatwoot and link order IDs from the app [11] |
 | Authentication | Current local session system first; migrate to OIDC later | Use a stable internal user ID and OIDC claims mapping; Keycloak is the strongest self-hosted provider option [7] |
 
 ## Business events to instrument
@@ -55,9 +57,11 @@ For Guna Herbals, the practical sequence is to keep the existing login stable, a
 2. Confirm whether the intended email provider is **SendTree.io** or **SendGrid**. The name “SendTree” resolves to a separate email product with API and SMTP access, so the exact API contract must be confirmed before coding provider-specific calls.
 3. Add Razorpay test credentials to the deployment environment and set `RAZORPAY_WEBHOOK_SECRET` in Razorpay Dashboard and Vercel.
 4. Configure the Razorpay webhook URL as `https://your-domain.com/api/webhooks/razorpay`, then complete one successful and one failed test payment.
-5. Create the R2 bucket and server-only access keys. Configure `R2_ACCOUNT_ID`, `R2_BUCKET`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, and `R2_PUBLIC_BASE_URL`.
-6. Configure the production domain in Cloudflare DNS and point the application to Vercel. Keep R2 and analytics secrets server-side.
-7. Decide between Keycloak and Better Auth before replacing the current login. Do not migrate authentication and payments in the same release.
+5. Create a Cloudinary product environment and configure `CLOUDINARY_URL` or the individual Cloudinary variables. Use product folders such as `guna-herbals/products`, `guna-herbals/banners`, and `guna-herbals/journal`.
+6. Create a Chatwoot Cloud account or self-hosted deployment, configure the website token and base URL, and link support conversations to customer/order IDs without copying full conversation contents into Neon.
+7. Use R2 only if raw backups or non-image files need separate low-cost object storage. Configure its server-only keys when that need exists.
+8. Configure the production domain in Cloudflare DNS and point the application to Vercel. Keep all secrets server-side.
+9. Decide between Keycloak and Better Auth before replacing the current login. Do not migrate authentication, payments, and support in the same release.
 
 ## References
 
@@ -78,3 +82,7 @@ For Guna Herbals, the practical sequence is to keep the existing login stable, a
 [8]: https://posthog.com/docs/libraries/next-js "PostHog Next.js Integration"
 
 [9]: https://better-auth.com/docs/introduction "Better Auth Introduction"
+
+[10]: https://cloudinary.com/documentation "Cloudinary Documentation"
+
+[11]: https://www.chatwoot.com/ "Chatwoot Customer Support Platform"
