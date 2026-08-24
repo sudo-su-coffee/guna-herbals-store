@@ -2534,3 +2534,104 @@ export async function markEnquiryRead(enquiryId: number): Promise<ApiResponse> {
         return { message: 'Enquiry marked as read' };
     }, ['/admin/notifications', '/admin/logs']);
 }
+
+
+// ============================================================================
+// ADMIN FULFILLMENT — MANUAL COURIER WORKFLOW
+// ============================================================================
+
+export async function getAdminOrders(): Promise<ApiResponse<any[]>> {
+    return handleServerAction(async () => {
+        await requireAdminUser();
+        return db.query.orders.findMany({
+            with: { shipments: true },
+            orderBy: desc(orders.createdAt),
+            limit: 100,
+        });
+    }, ['/admin/delivery', '/admin/orders']);
+}
+
+export async function getAdminShipments(): Promise<ApiResponse<any[]>> {
+    return handleServerAction(async () => {
+        await requireAdminUser();
+        return db.query.shipments.findMany({
+            with: { order: true },
+            orderBy: desc(shipments.createdAt),
+            limit: 100,
+        });
+    }, ['/admin/delivery']);
+}
+
+export async function createManualShipment(data: {
+    orderId: number;
+    courierName: string;
+    shipmentNumber?: string;
+    trackingNumber?: string;
+    trackingUrl?: string;
+    status?: string;
+    estimatedDelivery?: string;
+}): Promise<ApiResponse<any>> {
+    return handleServerAction(async () => {
+        await requireAdminUser();
+        const courierName = data.courierName?.trim();
+        if (!data.orderId || !courierName) throw new AppError('Order and courier are required', 400, 'VALIDATION_ERROR');
+
+        const order = await db.query.orders.findFirst({ where: eq(orders.id, data.orderId) });
+        if (!order) throw new AppError('Order not found', 404, 'ORDER_NOT_FOUND');
+
+        const existing = await db.query.shipments.findFirst({ where: eq(shipments.orderId, data.orderId) });
+        if (existing) throw new AppError('This order already has a shipment', 409, 'SHIPMENT_EXISTS');
+
+        const status = data.status || 'label_created';
+        const shipmentNumber = data.shipmentNumber?.trim() || `GUNA-SHP-${Date.now()}`;
+        const [shipment] = await db.insert(shipments).values({
+            orderId: data.orderId,
+            shipmentNumber,
+            courierName,
+            trackingNumber: data.trackingNumber?.trim() || null,
+            trackingUrl: data.trackingUrl?.trim() || null,
+            shippingAddress: order.shippingAddress as any,
+            status,
+            shippedAt: ['shipped', 'in_transit', 'delivered'].includes(status) ? new Date() : null,
+            estimatedDelivery: data.estimatedDelivery ? new Date(data.estimatedDelivery) : null,
+        }).returning();
+
+        const orderStatus = ['shipped', 'in_transit'].includes(status) ? 'shipped' : status === 'delivered' ? 'delivered' : 'processing';
+        await db.update(orders).set({ orderStatus: orderStatus as any, updatedAt: new Date() }).where(eq(orders.id, data.orderId));
+        return shipment;
+    }, ['/admin/delivery', '/admin/orders']);
+}
+
+export async function updateManualShipment(id: number, data: {
+    courierName?: string;
+    shipmentNumber?: string;
+    trackingNumber?: string;
+    trackingUrl?: string;
+    status?: string;
+    estimatedDelivery?: string | null;
+    deliveryProof?: string | null;
+}): Promise<ApiResponse<any>> {
+    return handleServerAction(async () => {
+        await requireAdminUser();
+        const existing = await db.query.shipments.findFirst({ where: eq(shipments.id, id) });
+        if (!existing) throw new AppError('Shipment not found', 404, 'SHIPMENT_NOT_FOUND');
+
+        const status = data.status || existing.status || 'pending';
+        const [shipment] = await db.update(shipments).set({
+            courierName: data.courierName?.trim() || existing.courierName,
+            shipmentNumber: data.shipmentNumber?.trim() || existing.shipmentNumber,
+            trackingNumber: data.trackingNumber?.trim() || null,
+            trackingUrl: data.trackingUrl?.trim() || null,
+            status,
+            estimatedDelivery: data.estimatedDelivery === null ? null : data.estimatedDelivery ? new Date(data.estimatedDelivery) : existing.estimatedDelivery,
+            shippedAt: ['shipped', 'in_transit', 'delivered'].includes(status) ? (existing.shippedAt || new Date()) : existing.shippedAt,
+            deliveredAt: status === 'delivered' ? (existing.deliveredAt || new Date()) : null,
+            deliveryProof: data.deliveryProof ?? existing.deliveryProof,
+            updatedAt: new Date(),
+        }).where(eq(shipments.id, id)).returning();
+
+        const orderStatus = ['shipped', 'in_transit'].includes(status) ? 'shipped' : status === 'delivered' ? 'delivered' : status === 'cancelled' ? 'cancelled' : 'processing';
+        await db.update(orders).set({ orderStatus: orderStatus as any, updatedAt: new Date() }).where(eq(orders.id, existing.orderId));
+        return shipment;
+    }, ['/admin/delivery', '/admin/orders']);
+}
