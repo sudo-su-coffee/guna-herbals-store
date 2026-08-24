@@ -2635,3 +2635,85 @@ export async function updateManualShipment(id: number, data: {
         return shipment;
     }, ['/admin/delivery', '/admin/orders']);
 }
+
+
+// ============================================================================
+// ADMIN INVENTORY, RETURNS & REFUNDS
+// ============================================================================
+
+export async function adjustInventory(data: {
+    variantId: number;
+    warehouseId: number;
+    quantity: number;
+    movementType: 'in' | 'out' | 'adjustment';
+    notes?: string;
+}): Promise<ApiResponse<any>> {
+    return handleServerAction(async () => {
+        const admin = await requireAdminUser();
+        const quantity = Number(data.quantity);
+        if (!data.variantId || !data.warehouseId || !Number.isInteger(quantity) || quantity === 0) {
+            throw new AppError('Variant, warehouse, and non-zero integer quantity are required', 400, 'VALIDATION_ERROR');
+        }
+
+        return db.transaction(async (tx) => {
+            const current = await tx.query.inventory.findFirst({
+                where: and(eq(inventory.variantId, data.variantId), eq(inventory.warehouseId, data.warehouseId))
+            });
+            const previousQty = Number(current?.stockQty || 0);
+            const newQty = data.movementType === 'adjustment' ? quantity : previousQty + (data.movementType === 'in' ? quantity : -quantity);
+            if (newQty < 0) throw new AppError('Inventory cannot become negative', 400, 'INSUFFICIENT_STOCK');
+
+            let inventoryRow;
+            if (current) {
+                [inventoryRow] = await tx.update(inventory).set({ stockQty: newQty, updatedAt: new Date(), lastRestocked: data.movementType === 'in' ? new Date() : current.lastRestocked }).where(eq(inventory.id, current.id)).returning();
+            } else {
+                if (data.movementType !== 'in' && data.movementType !== 'adjustment') throw new AppError('Inventory row does not exist', 404, 'INVENTORY_NOT_FOUND');
+                [inventoryRow] = await tx.insert(inventory).values({ variantId: data.variantId, warehouseId: data.warehouseId, stockQty: newQty, reorderLevel: 10 }).returning();
+            }
+            await tx.insert(stockMovements).values({
+                variantId: data.variantId,
+                warehouseId: data.warehouseId,
+                movementType: data.movementType,
+                quantity: Math.abs(quantity),
+                previousQty,
+                newQty,
+                referenceType: 'admin_adjustment',
+                notes: data.notes || null,
+                createdBy: admin.id,
+                createdAt: new Date(),
+            });
+            return inventoryRow;
+        });
+    }, ['/admin/products', '/admin/inventory']);
+}
+
+export async function createRefund(data: { returnId: number; amount: number; refundMethod?: string; notes?: string }): Promise<ApiResponse<any>> {
+    return handleServerAction(async () => {
+        await requireAdminUser();
+        const amount = Number(data.amount);
+        if (!data.returnId || !Number.isFinite(amount) || amount <= 0) throw new AppError('Return and positive refund amount are required', 400, 'VALIDATION_ERROR');
+        const ret = await db.query.returns.findFirst({ where: eq(returns.id, data.returnId), with: { order: true } });
+        if (!ret) throw new AppError('Return not found', 404, 'RETURN_NOT_FOUND');
+        if (ret.status !== 'approved') throw new AppError('Return must be approved before refunding', 409, 'RETURN_NOT_APPROVED');
+        const duplicate = await db.query.refunds.findFirst({ where: and(eq(refunds.returnId, data.returnId), inArray(refunds.status, ['pending', 'processed'])) });
+        if (duplicate) throw new AppError('A refund already exists for this return', 409, 'REFUND_EXISTS');
+
+        return db.transaction(async (tx) => {
+            const [refund] = await tx.insert(refunds).values({
+                returnId: data.returnId,
+                refundNumber: `REF-${Date.now()}`,
+                amount: amount.toFixed(2),
+                refundMethod: data.refundMethod || 'manual',
+                status: 'processed',
+                processedAt: new Date(),
+                notes: data.notes || null,
+            }).returning();
+            await tx.update(returns).set({ status: 'completed', refundAmount: amount.toFixed(2), completedAt: new Date(), updatedAt: new Date() }).where(eq(returns.id, data.returnId));
+            if (ret.order) {
+                await tx.update(orders).set({ paymentStatus: 'refunded', updatedAt: new Date() }).where(eq(orders.id, ret.order.id));
+                await tx.update(payments).set({ status: 'refunded', updatedAt: new Date() }).where(eq(payments.orderId, ret.order.id));
+            }
+            return refund;
+        });
+    }, ['/admin/orders', '/admin/returns', '/admin/payments']);
+}
