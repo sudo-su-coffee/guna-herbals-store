@@ -108,6 +108,31 @@ export default function About() {
                 </div>
             </div>
 
+            {/* Moved from the homepage: brand story and proof points */}
+            <section className="bg-[#e8e2d5] px-6 py-20 md:px-12 md:py-28">
+                <div className="mx-auto grid max-w-7xl items-center gap-10 md:grid-cols-2 md:gap-20">
+                    <div className="relative min-h-[390px] overflow-hidden bg-[#19372f]">
+                        <img src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=1200&q=85" alt="Raw herbal ingredients" className="absolute inset-0 h-full w-full object-cover opacity-65" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#19372f] to-transparent" />
+                        <div className="relative flex min-h-[390px] flex-col justify-end p-8 text-[#f8f5ed] md:p-12">
+                            <p className="text-xs font-sans font-bold uppercase tracking-[0.3em] text-[#d6b875]">From our home to yours</p>
+                            <h2 className="mt-4 max-w-md text-4xl md:text-5xl">Beauty that remembers.</h2>
+                        </div>
+                    </div>
+                    <div>
+                        <p className="mb-4 text-xs font-sans font-bold uppercase tracking-[0.3em] text-[#a4864d]">Our everyday philosophy</p>
+                        <h2 className="text-4xl leading-tight md:text-6xl">Rooted in care,<br /><em className="font-normal text-[#a4864d]">made for today.</em></h2>
+                        <p className="mt-7 max-w-md text-base leading-7 text-[#54635c]">Our formulas are inspired by recipes shared across generations in Tamil homes. We keep the ingredients close to their natural form, the batches considered, and the experience distinctly human.</p>
+                        <div className="mt-10 grid max-w-md grid-cols-2 gap-6 border-t border-[#cfc6b4] pt-6">{[['55+', 'Herbal essentials'], ['2018', 'Since our first batch'], ['100%', 'Made with care'], ['Tenkasi', 'Our home']].map(([value, label]) => <div key={label}><p className="text-2xl text-[#19372f]">{value}</p><p className="mt-1 text-[10px] font-sans uppercase tracking-[0.16em] text-[#8a877d]">{label}</p></div>)}</div>
+                    </div>
+                </div>
+            </section>
+
+            <section className="mx-auto max-w-7xl px-6 py-20 md:px-12 md:py-28">
+                <div className="mb-10 text-center"><p className="mb-3 text-xs font-sans font-bold uppercase tracking-[0.3em] text-[#a4864d]">Why Guna</p><h2 className="text-4xl md:text-6xl">A better kind of<br /><em className="font-normal text-[#a4864d]">everyday care.</em></h2></div>
+                <div className="grid gap-5 md:grid-cols-3">{[['Made in small batches', 'Fresh formulas, thoughtful preparation, and no unnecessary fuss.'], ['Ingredients with a story', 'Traditional botanicals selected for familiar, useful rituals.'], ['Care that feels personal', 'From our Tenkasi shelves to your home, packed with warmth.']].map(([title, text], index) => <div key={title} className="border-t border-[#cfc6b4] pt-5"><span className="font-sans text-xs text-[#a4864d]">0{index + 1}</span><h3 className="mt-8 text-2xl">{title}</h3><p className="mt-3 max-w-sm text-sm leading-6 text-[#68756d]">{text}</p></div>)}</div>
+            </section>
+
             {/* EXTENDED SECTIONS */}
             <div className="max-w-7xl mx-auto px-6 py-16 md:py-20 space-y-16 md:space-y-24">
 
