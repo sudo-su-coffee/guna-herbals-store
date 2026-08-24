@@ -30,6 +30,11 @@ export async function POST(request: Request) {
   }
 
   const eventType = String(event.event || 'unknown');
+  const duplicate = signature
+    ? await db.query.paymentWebhooks.findFirst({ where: and(eq(paymentWebhooks.provider, 'razorpay'), eq(paymentWebhooks.signature, signature)) })
+    : null;
+  if (duplicate) return NextResponse.json({ received: true, duplicate: true });
+
   const gatewayOrderId = event.payload?.order?.entity?.id || event.payload?.payment?.entity?.order_id;
   const gatewayPaymentId = event.payload?.payment?.entity?.id;
 

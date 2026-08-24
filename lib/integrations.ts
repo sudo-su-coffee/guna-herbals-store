@@ -1,4 +1,5 @@
 import 'server-only';
+import crypto from 'node:crypto';
 
 export type IntegrationName = 'media' | 'support' | 'analytics' | 'notifications' | 'payments' | 'auth';
 
@@ -11,6 +12,25 @@ export function getIntegrationConfig() {
     payments: process.env.RAZORPAY_KEY_ID && process.env.RAZORPAY_KEY_SECRET ? 'razorpay' : 'unconfigured',
     auth: process.env.AUTH_PROVIDER || 'local',
   } as const;
+}
+
+export function cloudinaryUploadSignature(params: Record<string, string | number>) {
+  const cloudName = process.env.CLOUDINARY_CLOUD_NAME;
+  const apiKey = process.env.CLOUDINARY_API_KEY;
+  const apiSecret = process.env.CLOUDINARY_API_SECRET;
+  if (!cloudName || !apiKey || !apiSecret) return null;
+  const timestamp = Math.floor(Date.now() / 1000);
+  const payload = Object.entries({ ...params, timestamp })
+    .filter(([, value]) => value !== undefined && value !== null && value !== '')
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([key, value]) => `${key}=${value}`)
+    .join('&');
+  return {
+    cloudName,
+    apiKey,
+    timestamp,
+    signature: crypto.createHash('sha1').update(`${payload}${apiSecret}`).digest('hex'),
+  };
 }
 
 export function cloudinaryDeliveryUrl(publicId: string, options?: { width?: number; height?: number; crop?: 'fill' | 'fit' | 'thumb' }) {
@@ -51,7 +71,11 @@ export async function sendTransactionalEmail(email: TransactionalEmail) {
   const from = process.env.SENDGRID_FROM_EMAIL || process.env.NOTIFICATIONS_FROM_EMAIL;
   if (!apiKey || !from) return { sent: false, skipped: true, reason: 'SENDGRID_NOT_CONFIGURED' as const };
 
-  const response = await fetch('https://api.sendgrid.com/v3/mail/send', {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 10_000);
+  let response: Response;
+  try {
+    response = await fetch('https://api.sendgrid.com/v3/mail/send', {
     method: 'POST',
     headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -63,8 +87,12 @@ export async function sendTransactionalEmail(email: TransactionalEmail) {
         ...(email.html ? [{ type: 'text/html', value: email.html }] : [])
       ]
     }),
-    cache: 'no-store'
-  });
+      cache: 'no-store',
+      signal: controller.signal,
+    });
+  } finally {
+    clearTimeout(timeout);
+  }
 
   if (!response.ok) {
     const detail = await response.text();
