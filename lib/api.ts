@@ -125,17 +125,26 @@ export async function getCurrentUser(): Promise<ApiResponse<SessionUser>> {
                     where: eq(users.email, betterAuthSession.user.email),
                     with: { profile: true }
                 });
-                if (!linkedUser) {
-                    throw new AppError('Account is not linked to a customer profile', 409, 'ACCOUNT_NOT_LINKED');
+                let commerceUser = linkedUser;
+                if (!commerceUser) {
+                    const [createdUser] = await db.insert(users).values({
+                        name: betterAuthSession.user.name || 'Customer',
+                        email: betterAuthSession.user.email,
+                        passwordHash: await bcrypt.hash(crypto.randomUUID(), 10),
+                        role: 'customer',
+                        status: 'active',
+                        emailVerified: betterAuthSession.user.emailVerified,
+                    }).returning();
+                    commerceUser = { ...createdUser, profile: null };
                 }
-                if (linkedUser.status === 'blocked') throw new AppError('Account is blocked', 403, 'ACCOUNT_BLOCKED');
+                if (commerceUser.status === 'blocked') throw new AppError('Account is blocked', 403, 'ACCOUNT_BLOCKED');
                 return {
-                    id: linkedUser.id,
-                    name: linkedUser.name,
-                    email: linkedUser.email,
-                    role: linkedUser.role,
-                    phone: linkedUser.phone || undefined,
-                    profile: linkedUser.profile || undefined
+                    id: commerceUser.id,
+                    name: commerceUser.name,
+                    email: commerceUser.email,
+                    role: commerceUser.role,
+                    phone: commerceUser.phone || undefined,
+                    profile: commerceUser.profile || undefined
                 };
             }
             throw new AppError('Not authenticated', 401, 'NOT_AUTHENTICATED');
