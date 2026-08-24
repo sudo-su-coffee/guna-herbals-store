@@ -720,9 +720,7 @@ export async function getAllProducts(params?: ProductFilterParams): Promise<ApiR
                 break;
         }
 
-        // Apply pagination
-        query = (query as any).limit(limit).offset(offset);
-
+        // Fetch joined rows first; pagination is applied after grouping so multiple variants do not hide products.
         const results = await query;
 
         // Group products and their variants
@@ -736,7 +734,7 @@ export async function getAllProducts(params?: ProductFilterParams): Promise<ApiR
                     category: row.category,
                     image: row.image,
                     variants: [],
-                    images: [],
+                    images: row.image ? [row.image] : [],
                     reviews: []
                 });
             }
@@ -791,7 +789,7 @@ export async function getAllProducts(params?: ProductFilterParams): Promise<ApiR
             .where(and(...conditions));
         const total = countResult[0]?.count || 0;
 
-        return filteredProducts;
+        return filteredProducts.slice(offset, offset + limit);
     });
 }
 
@@ -2320,48 +2318,150 @@ export async function verifyPayment(data: {
 
 
 // Compatibility wrappers for legacy screens included in the original archive.
-// These keep route contracts stable while the current server actions remain canonical.
+// These wrappers now use the real Neon-backed tables and enforce admin access for mutations.
+async function requireAdminUser() {
+    const response = await getCurrentUser();
+    if (!response.success || !response.data || !['admin', 'staff'].includes(response.data.role)) {
+        throw new AppError('Admin access required', 403, 'ADMIN_REQUIRED');
+    }
+    return response.data;
+}
+
 export async function getAllOrders(): Promise<any[]> {
     const response = await getOrders();
     return response.success && response.data ? response.data : [];
 }
 
 export async function getAllUsers(): Promise<any[]> {
-    return [];
+    const admin = await requireAdminUser();
+    void admin;
+    return db.query.users.findMany({
+        with: { profile: true },
+        orderBy: desc(users.createdAt)
+    });
 }
 
 export async function getAdminStat(): Promise<any> {
     const stats = await getDashboardStats();
-    return stats.success && stats.data ? (stats.data as unknown as Record<string, number>) : {};
+    return stats.success && stats.data ? {
+        ...stats.data,
+        customers: await getAllUsers(),
+        orders: await getAllOrders()
+    } : {};
 }
 
 export async function getOrdersByUser(userId: number): Promise<any[]> {
-    void userId;
     const response = await getOrders();
-    return response.success && response.data ? response.data : [];
+    return response.success && response.data ? response.data.filter((order: any) => order.userId === userId || order.user?.id === userId) : [];
 }
 
 export async function getWishlistWithItems(userId: number): Promise<{ items: any[] }> {
-    const response = await getWishlist();
-    return { items: response.success && response.data ? response.data : [] };
+    const rows = await db.query.wishlistItems.findMany({
+        with: { product: { with: { images: true, variants: true } } },
+        where: eq(wishlistItems.wishlistId, userId)
+    });
+    return { items: rows };
 }
 
 export async function getSessionsByUser(userId: number): Promise<any[]> {
-    return [];
+    await requireAdminUser();
+    return db.select().from(userSessions).where(eq(userSessions.userId, userId)).orderBy(desc(userSessions.createdAt));
 }
 
 export async function revokeSession(sessionId: number): Promise<ApiResponse> {
-    return { success: true };
+    return handleServerAction(async () => {
+        await requireAdminUser();
+        await db.update(userSessions).set({ isActive: false }).where(eq(userSessions.id, sessionId));
+        return { message: 'Session revoked' };
+    }, ['/admin/security']);
 }
 
-export async function addProduct(data: unknown): Promise<ApiResponse> {
-    return { success: false, error: 'Product administration is not available in this local build.' };
+function slugify(value: string) {
+    return value.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 }
 
-export async function updateProduct(id: number, data: unknown): Promise<ApiResponse> {
-    return { success: false, error: 'Product administration is not available in this local build.' };
+export async function addProduct(data: any): Promise<ApiResponse> {
+    return handleServerAction(async () => {
+        await requireAdminUser();
+        if (!data?.name || !data?.categoryId) throw new AppError('Product name and category are required', 400, 'VALIDATION_ERROR');
+        const baseSlug = slugify(data.slug || data.name);
+        const [product] = await db.insert(products).values({
+            name: data.name,
+            slug: baseSlug,
+            description: data.description || null,
+            shortDescription: data.shortDescription || null,
+            categoryId: Number(data.categoryId),
+            brandId: data.brandId ? Number(data.brandId) : null,
+            isActive: data.isActive !== false,
+            isFeatured: Boolean(data.isFeatured)
+        }).returning();
+        const variant = data.variants?.[0] || {};
+        if (variant.price) {
+            const [createdVariant] = await db.insert(productVariants).values({
+                productId: product.id,
+                sku: variant.sku || `GUNA-${product.id}`,
+                variantName: variant.variantName || 'Standard',
+                price: String(variant.price),
+                compareAtPrice: variant.compareAtPrice ? String(variant.compareAtPrice) : null,
+                weight: variant.weight ? String(variant.weight) : null,
+                isActive: true
+            }).returning();
+            const warehouse = await db.query.warehouses.findFirst({ where: eq(warehouses.isActive, true) });
+            if (warehouse) await db.insert(inventory).values({ variantId: createdVariant.id, warehouseId: warehouse.id, stockQty: Number(variant.stock || 0), reorderLevel: 10 });
+        }
+        return product;
+    }, ['/admin/products']);
+}
+
+export async function updateProduct(id: number, data: any): Promise<ApiResponse> {
+    return handleServerAction(async () => {
+        await requireAdminUser();
+        const [product] = await db.update(products).set({
+            name: data.name,
+            slug: data.slug || slugify(data.name),
+            description: data.description || null,
+            shortDescription: data.shortDescription || null,
+            categoryId: data.categoryId ? Number(data.categoryId) : undefined,
+            brandId: data.brandId ? Number(data.brandId) : null,
+            isActive: data.isActive !== false,
+            isFeatured: Boolean(data.isFeatured),
+            updatedAt: new Date()
+        }).where(eq(products.id, id)).returning();
+        const variant = data.variants?.[0];
+        if (variant) {
+            const existing = await db.query.productVariants.findFirst({ where: eq(productVariants.productId, id) });
+            if (existing) await db.update(productVariants).set({ price: String(variant.price || existing.price), sku: variant.sku || existing.sku, updatedAt: new Date() }).where(eq(productVariants.id, existing.id));
+        }
+        return product;
+    }, ['/admin/products', `/shop/${id}`]);
 }
 
 export async function deleteProduct(id: number): Promise<ApiResponse> {
-    return { success: false, error: 'Product administration is not available in this local build.' };
+    return handleServerAction(async () => {
+        await requireAdminUser();
+        await db.update(products).set({ isActive: false, updatedAt: new Date() }).where(eq(products.id, id));
+        return { message: 'Product archived' };
+    }, ['/admin/products', '/shop']);
+}
+
+export async function getAdminNotifications(): Promise<ApiResponse<any[]>> {
+    return handleServerAction(async () => {
+        await requireAdminUser();
+        const [pendingOrders, unreadEnquiries] = await Promise.all([
+            db.query.orders.findMany({ where: eq(orders.orderStatus, 'pending'), orderBy: desc(orders.createdAt), limit: 20 }),
+            db.query.enquiries.findMany({ where: eq(enquiries.status, 'pending'), orderBy: desc(enquiries.createdAt), limit: 20 })
+        ]);
+        return [
+            ...pendingOrders.map((order: any) => ({ id: `order-${order.id}`, type: 'order', title: `New order #${order.orderNumber || order.id}`, body: `₹${order.totalAmount || 0} awaiting confirmation`, status: 'unread', createdAt: order.createdAt, href: `/admin/orders/${order.id}` })),
+            ...unreadEnquiries.map((enquiry: any) => ({ id: `enquiry-${enquiry.id}`, type: 'enquiry', title: enquiry.subject || 'New customer enquiry', body: `${enquiry.name} · ${enquiry.email}`, status: 'unread', createdAt: enquiry.createdAt, href: '/admin/customers' }))
+        ].sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+    });
+}
+
+export async function markEnquiryRead(enquiryId: number): Promise<ApiResponse> {
+    return handleServerAction(async () => {
+        await requireAdminUser();
+        await db.update(enquiries).set({ status: 'read', updatedAt: new Date() }).where(eq(enquiries.id, enquiryId));
+        return { message: 'Enquiry marked as read' };
+    }, ['/admin/notifications', '/admin/logs']);
 }

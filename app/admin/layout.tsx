@@ -13,6 +13,7 @@ interface AdminLayoutProps {
 const navItems = [
     { id: 'dashboard', label: 'Dashboard', icon: '📊', href: '/admin/dashboard' },
     { id: 'orders', label: 'Orders', icon: '📦', href: '/admin/orders' },
+    { id: 'notifications', label: 'Notifications', icon: '🔔', href: '/admin/notifications' },
     { id: 'delivery', label: 'Logistics', icon: '🚚', href: '/admin/delivery' },
     { id: 'products', label: 'Products', icon: '🌿', href: '/admin/products' },
     { id: 'customers', label: 'Users & Roles', icon: '👥', href: '/admin/customers' },
@@ -35,6 +36,10 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
         await logout();
         window.location.href = '/admin/login';
     };
+
+    if (pathname === '/admin/login') {
+        return <>{children}</>;
+    }
 
     return (
         <div className="min-h-screen bg-herbal-50/50 flex font-sans overflow-hidden">

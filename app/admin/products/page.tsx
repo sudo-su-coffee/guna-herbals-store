@@ -20,8 +20,8 @@ export default function ProductsPage() {
     const loadProducts = async () => {
         setLoading(true);
         try {
-            const data = await getAllProducts();
-            setProducts(data);
+            const response = await getAllProducts();
+            setProducts(response.success && response.data ? response.data : []);
         } catch (err) {
             console.error("Load products error:", err);
         } finally {
