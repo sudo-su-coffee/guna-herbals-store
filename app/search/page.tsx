@@ -6,9 +6,14 @@ import { getAllProducts } from '@/lib/api';
 import { ProductWithDetails, SortOption } from '@/lib/types';
 import { ProductCard } from '@/components/ProductCard';
 import { useCart } from '@/context/CartContext';
-import { FALLBACK_PRODUCTS } from '@/app/shop/page';
 import { toast } from 'sonner';
 
+const SEARCH_FALLBACK: ProductWithDetails[] = [
+  { id: 1, product: { id: 1, name: "Guna's Hair Growth Oil", description: 'A botanical infusion for a nourished scalp and stronger-looking hair.' }, category: { name: 'Oil', slug: 'oil' }, variants: [{ id: 1, price: '220', costPrice: '300', variantName: '200ml', stockQty: 25 }], images: [{ imageUrl: 'https://images.unsplash.com/photo-1611073769451-3f5d9b2a3a7d?auto=format&fit=crop&w=800&q=85', isPrimary: true }] } as unknown as ProductWithDetails,
+  { id: 2, product: { id: 2, name: "Guna's Onion Hibiscus Shampoo", description: 'A gentle cleansing ritual with traditional plant extracts.' }, category: { name: 'Shampoo', slug: 'shampoo' }, variants: [{ id: 2, price: '180', costPrice: '230', variantName: '200ml', stockQty: 25 }], images: [{ imageUrl: 'https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?auto=format&fit=crop&w=800&q=85', isPrimary: true }] } as unknown as ProductWithDetails,
+  { id: 3, product: { id: 3, name: "Guna's Nalangu Maavu Soap", description: 'A soft, earthy cleansing bar inspired by South Indian beauty rituals.' }, category: { name: 'Soap', slug: 'soap' }, variants: [{ id: 3, price: '100', costPrice: '160', variantName: '80g', stockQty: 25 }], images: [{ imageUrl: 'https://images.unsplash.com/photo-1600857062241-98e5dba7f214?auto=format&fit=crop&w=800&q=85', isPrimary: true }] } as unknown as ProductWithDetails,
+  { id: 4, product: { id: 4, name: "Guna's Natural Honey", description: 'Golden, naturally collected honey for a sweeter daily ritual.' }, category: { name: 'Honey', slug: 'honey' }, variants: [{ id: 4, price: '240', costPrice: '300', variantName: '100g', stockQty: 25 }], images: [{ imageUrl: 'https://images.unsplash.com/photo-1471943311424-646960669fbc?auto=format&fit=crop&w=800&q=85', isPrimary: true }] } as unknown as ProductWithDetails,
+];
 function SearchContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -21,8 +26,8 @@ function SearchContent() {
 
   useEffect(() => {
     getAllProducts().then((response) => {
-      setProducts(response.success && response.data?.length ? response.data : FALLBACK_PRODUCTS);
-    }).catch(() => setProducts(FALLBACK_PRODUCTS)).finally(() => setLoading(false));
+      setProducts(response.success && response.data?.length ? response.data : SEARCH_FALLBACK);
+    }).catch(() => setProducts(SEARCH_FALLBACK)).finally(() => setLoading(false));
   }, []);
 
   useEffect(() => {

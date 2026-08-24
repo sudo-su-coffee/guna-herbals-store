@@ -30,7 +30,7 @@ export default function CustomerLogin() {
             if (res.success) {
                 setStep('otp');
                 toast.success("OTP sent to your mobile!", {
-                    description: "Use 123456 as the demo OTP."
+                    description: "Use 1234 as the demo OTP."
                 });
             } else {
                 setError(res.error || "Failed to send OTP");

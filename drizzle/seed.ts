@@ -135,11 +135,11 @@ async function seed() {
             },
         ];
 
-        const insertedCategories = await db
+        await db
             .insert(categories)
             .values(categoriesData)
-            .onConflictDoNothing()
-            .returning();
+            .onConflictDoNothing();
+        const insertedCategories = await db.select().from(categories);
 
         console.log(`✅ Seeded ${insertedCategories.length} categories`);
 
@@ -176,11 +176,11 @@ async function seed() {
             },
         ];
 
-        const insertedBrands = await db
+        await db
             .insert(brands)
             .values(brandsData)
-            .onConflictDoNothing()
-            .returning();
+            .onConflictDoNothing();
+        const insertedBrands = await db.select().from(brands);
 
         console.log(`✅ Seeded ${insertedBrands.length} brands`);
 
@@ -334,11 +334,11 @@ async function seed() {
             },
         ];
 
-        const insertedProducts = await db
+        await db
             .insert(products)
             .values(productsData)
-            .onConflictDoNothing()
-            .returning();
+            .onConflictDoNothing();
+        const insertedProducts = await db.select().from(products);
 
         console.log(`✅ Seeded ${insertedProducts.length} products`);
 
@@ -370,11 +370,13 @@ async function seed() {
             }
         }
 
-        const insertedVariants = await db
-            .insert(productVariants)
-            .values(variantsData)
-            .onConflictDoNothing()
-            .returning();
+        if (variantsData.length > 0) {
+            await db
+                .insert(productVariants)
+                .values(variantsData)
+                .onConflictDoNothing();
+        }
+        const insertedVariants = await db.select().from(productVariants);
 
         console.log(`✅ Seeded ${insertedVariants.length} product variants`);
 
@@ -485,11 +487,11 @@ async function seed() {
             },
         ];
 
-        const insertedWarehouses = await db
+        await db
             .insert(warehouses)
             .values(warehousesData)
-            .onConflictDoNothing()
-            .returning();
+            .onConflictDoNothing();
+        const insertedWarehouses = await db.select().from(warehouses);
 
         console.log(`✅ Seeded ${insertedWarehouses.length} warehouses`);
 
@@ -514,11 +516,11 @@ async function seed() {
             }
         }
 
-        const insertedInventory = await db
+        const insertedInventory = inventoryData.length > 0 ? await db
             .insert(inventory)
             .values(inventoryData)
             .onConflictDoNothing()
-            .returning();
+            .returning() : [];
 
         console.log(`✅ Seeded ${insertedInventory.length} inventory records`);
 
@@ -534,8 +536,8 @@ async function seed() {
                 usageLimit: 100,
                 usageCount: 0,
                 perUserLimit: 1,
-                startDate: new Date('2024-01-01'),
-                expiryDate: new Date('2024-12-31'),
+                startDate: '2024-01-01',
+                expiryDate: '2024-12-31',
                 isActive: true,
             },
             {
@@ -547,8 +549,8 @@ async function seed() {
                 usageLimit: 200,
                 usageCount: 0,
                 perUserLimit: 1,
-                startDate: new Date('2024-01-01'),
-                expiryDate: new Date('2024-12-31'),
+                startDate: '2024-01-01',
+                expiryDate: '2024-12-31',
                 isActive: true,
             },
             {
@@ -560,8 +562,8 @@ async function seed() {
                 usageLimit: 50,
                 usageCount: 0,
                 perUserLimit: 2,
-                startDate: new Date('2024-01-01'),
-                expiryDate: new Date('2024-12-31'),
+                startDate: '2024-01-01',
+                expiryDate: '2024-12-31',
                 isActive: true,
             },
             {
@@ -573,8 +575,8 @@ async function seed() {
                 usageLimit: 1000,
                 usageCount: 0,
                 perUserLimit: 3,
-                startDate: new Date('2024-01-01'),
-                expiryDate: new Date('2024-12-31'),
+                startDate: '2024-01-01',
+                expiryDate: '2024-12-31',
                 isActive: true,
             },
         ];
@@ -596,8 +598,8 @@ async function seed() {
                 value: '15',
                 minOrderAmount: '1000',
                 maxDiscountAmount: '300',
-                startDate: new Date('2024-10-01'),
-                endDate: new Date('2024-10-31'),
+                startDate: '2024-10-01',
+                endDate: '2024-10-31',
                 isActive: true,
                 usageLimit: 1000,
                 usageCount: 0,
@@ -608,8 +610,8 @@ async function seed() {
                 value: '100',
                 minOrderAmount: '1500',
                 maxDiscountAmount: '100',
-                startDate: new Date('2024-12-01'),
-                endDate: new Date('2024-12-31'),
+                startDate: '2024-12-01',
+                endDate: '2024-12-31',
                 isActive: true,
                 usageLimit: 500,
                 usageCount: 0,
@@ -620,8 +622,8 @@ async function seed() {
                 value: '25',
                 minOrderAmount: '2500',
                 maxDiscountAmount: '750',
-                startDate: new Date('2024-07-01'),
-                endDate: new Date('2024-07-31'),
+                startDate: '2024-07-01',
+                endDate: '2024-07-31',
                 isActive: true,
                 usageLimit: 300,
                 usageCount: 0,
@@ -648,8 +650,8 @@ async function seed() {
                 buttonText: 'Shop Now',
                 displayOrder: 1,
                 isActive: true,
-                startDate: new Date('2024-01-01'),
-                endDate: new Date('2024-12-31'),
+                startDate: '2024-01-01',
+                endDate: '2024-12-31',
             },
             {
                 title: 'Summer Sale',
@@ -660,8 +662,8 @@ async function seed() {
                 buttonText: 'Grab Deal',
                 displayOrder: 2,
                 isActive: true,
-                startDate: new Date('2024-06-01'),
-                endDate: new Date('2024-08-31'),
+                startDate: '2024-06-01',
+                endDate: '2024-08-31',
             },
             {
                 title: 'New Arrivals',
@@ -672,8 +674,8 @@ async function seed() {
                 buttonText: 'Explore',
                 displayOrder: 3,
                 isActive: true,
-                startDate: new Date('2024-01-01'),
-                endDate: new Date('2024-12-31'),
+                startDate: '2024-01-01',
+                endDate: '2024-12-31',
             },
             {
                 title: 'Free Shipping',
@@ -684,8 +686,8 @@ async function seed() {
                 buttonText: 'Learn More',
                 displayOrder: 4,
                 isActive: true,
-                startDate: new Date('2024-01-01'),
-                endDate: new Date('2024-12-31'),
+                startDate: '2024-01-01',
+                endDate: '2024-12-31',
             },
         ];
 

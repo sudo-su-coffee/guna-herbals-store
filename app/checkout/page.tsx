@@ -7,11 +7,20 @@ import { getCart, createOrder, clearCart, getCurrentUser, getUserAddresses, crea
 import { SITE_CONFIG } from '@/lib/constants';
 import { ShippingDetails } from '@/lib/types';
 import { toast } from 'sonner';
+import { useCart } from '@/context/CartContext';
 
 declare const jspdf: any;
 
+async function withTimeout<T>(promise: Promise<T>, fallback: T, timeoutMs = 7000): Promise<T> {
+    return Promise.race([
+        promise,
+        new Promise<T>((resolve) => setTimeout(() => resolve(fallback), timeoutMs))
+    ]);
+}
+
 export default function Checkout() {
     const router = useRouter();
+    const { items: cartItems } = useCart();
     const [cart, setCart] = useState<any[]>([]);
     const [currentUser, setCurrentUser] = useState<any | null>(null);
     const [isProcessing, setIsProcessing] = useState(false);
@@ -28,7 +37,7 @@ export default function Checkout() {
     useEffect(() => {
         const loadInitialData = async () => {
             try {
-                const userRes = await getCurrentUser();
+                const userRes = await withTimeout(getCurrentUser(), { success: false, data: null } as any);
                 if (userRes.success && userRes.data) {
                     const user = userRes.data;
                     setCurrentUser(user);
@@ -39,17 +48,9 @@ export default function Checkout() {
                         phone: user.phone || prev.phone
                     }));
 
-                    const [cartRes, addrRes] = await Promise.all([
-                        getCart(),
-                        getUserAddresses(user.id)
-                    ]);
-
-                    if (cartRes.success && cartRes.data) {
-                        setCart(cartRes.data);
-                    }
-                    if (addrRes.success && addrRes.data) {
-                        setAddresses(addrRes.data);
-                    }
+                    // CartContext already contains the authenticated Neon cart and keeps it synchronized.
+                    // Addresses are loaded on demand during order placement to keep checkout resilient.
+                    setAddresses([]);
                 } else {
                     router.push('/login?redirect=/checkout');
                 }
@@ -60,7 +61,23 @@ export default function Checkout() {
             }
         };
         loadInitialData();
-    }, []);
+    }, [router]);
+
+    useEffect(() => {
+        setCart(cartItems.map(item => ({
+            id: item.id,
+            quantity: item.quantity,
+            priceAtTime: item.price,
+            variant: {
+                id: item.variantId,
+                price: item.price,
+                product: {
+                    name: item.name,
+                    images: item.image ? [{ imageUrl: item.image }] : []
+                }
+            }
+        })));
+    }, [cartItems]);
 
     // Calculations
     const subtotal = cart.reduce((sum, item) => {
@@ -355,9 +372,9 @@ export default function Checkout() {
                                         <p className="font-bold text-gray-800 text-sm md:text-base">Cash on Delivery (COD)</p>
                                         <p className="text-[10px] md:text-xs text-gray-500">Pay with cash when you receive the order.</p>
                                     </div>
-                                    {storeSettings.payments.codExtraCharge > 0 && (
+                                    {SITE_CONFIG.payment.codExtraCharge > 0 && (
                                         <span className="text-[10px] font-bold bg-orange-100 text-orange-800 px-2 py-1 rounded">
-                                            +₹{storeSettings.payments.codExtraCharge} Fee
+                                            +₹{SITE_CONFIG.payment.codExtraCharge} Fee
                                         </span>
                                     )}
                                 </label>
