@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { useShop } from '@/lib/ShopContext';
 import { StoreSettings } from '@/lib/types';
+import { Icon, type IconName } from '@/components/Icon';
 
 type SettingsTab = 'storefront' | 'payments' | 'shipping' | 'integrations' | 'backup';
 
@@ -49,11 +50,11 @@ export default function SettingsPage() {
                             Configuration
                         </div>
                         <nav className="flex flex-col p-2 space-y-1">
-                            <TabButton id="storefront" label="Store Details" icon="🏪" active={activeTab === 'storefront'} onClick={() => setActiveTab('storefront')} />
-                            <TabButton id="payments" label="Payments" icon="💳" active={activeTab === 'payments'} onClick={() => setActiveTab('payments')} />
-                            <TabButton id="shipping" label="Shipping" icon="🚚" active={activeTab === 'shipping'} onClick={() => setActiveTab('shipping')} />
-                            <TabButton id="integrations" label="Integrations" icon="🔌" active={activeTab === 'integrations'} onClick={() => setActiveTab('integrations')} />
-                            <TabButton id="backup" label="Backup & Data" icon="💾" active={activeTab === 'backup'} onClick={() => setActiveTab('backup')} />
+                            <TabButton id="storefront" label="Store Details" icon="store" active={activeTab === 'storefront'} onClick={() => setActiveTab('storefront')} />
+                            <TabButton id="payments" label="Payments" icon="credit-card" active={activeTab === 'payments'} onClick={() => setActiveTab('payments')} />
+                            <TabButton id="shipping" label="Shipping" icon="truck" active={activeTab === 'shipping'} onClick={() => setActiveTab('shipping')} />
+                            <TabButton id="integrations" label="Integrations" icon="settings" active={activeTab === 'integrations'} onClick={() => setActiveTab('integrations')} />
+                            <TabButton id="backup" label="Backup & Data" icon="scroll" active={activeTab === 'backup'} onClick={() => setActiveTab('backup')} />
                         </nav>
                     </div>
                 </div>
@@ -67,13 +68,13 @@ export default function SettingsPage() {
     );
 };
 
-const TabButton = ({ id, label, icon, active, onClick }: { id: string, label: string, icon: string, active: boolean, onClick: () => void }) => (
+const TabButton = ({ id, label, icon, active, onClick }: { id: string, label: string, icon: IconName, active: boolean, onClick: () => void }) => (
     <button
         onClick={onClick}
         className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-bold transition-all ${active ? 'bg-herbal-800 text-white shadow-md' : 'text-gray-600 hover:bg-gray-50'
             }`}
     >
-        <span className="text-lg">{icon}</span>
+        <Icon name={icon} size={18} />
         {label}
     </button>
 );

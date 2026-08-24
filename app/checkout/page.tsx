@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { Icon } from '@/components/Icon';
 import { useRouter } from 'next/navigation';
 import { getCart, createOrder, clearCart, getCurrentUser, getUserAddresses, createAddress } from '@/lib/api';
 import { SITE_CONFIG } from '@/lib/constants';
@@ -202,7 +203,7 @@ export default function Checkout() {
                 <div className="bg-white p-8 md:p-12 rounded-2xl shadow-xl text-center max-w-lg w-full border border-herbal-100 relative overflow-hidden animate-slide-up">
                     <div className={`absolute top-0 left-0 w-full h-2 ${generatedOrder.paymentMethod === 'COD' ? 'bg-orange-500' : 'bg-herbal-500'}`}></div>
                     <div className={`w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center mx-auto mb-6 border-4 relative ${generatedOrder.paymentMethod === 'COD' ? 'bg-orange-50 border-orange-100' : 'bg-green-50 border-green-100'}`}>
-                        <span className="text-4xl md:text-5xl">{generatedOrder.paymentMethod === 'COD' ? '📦' : '🛡️'}</span>
+                        <Icon name={generatedOrder.paymentMethod === 'COD' ? 'package' : 'shield'} size={44} />
                         <div className={`absolute -bottom-2 -right-2 text-white rounded-full p-1.5 border-2 border-white ${generatedOrder.paymentMethod === 'COD' ? 'bg-orange-500' : 'bg-green-500'}`}>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" className="w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
                         </div>
@@ -212,7 +213,7 @@ export default function Checkout() {
                     <p className="font-mono bg-gray-100 inline-block px-3 py-1 rounded text-sm text-gray-700 mb-8">{generatedOrder.id}</p>
                     <div className="space-y-4">
                         <button onClick={downloadPDFReceipt} className="w-full bg-herbal-800 hover:bg-herbal-900 text-white font-bold py-3.5 rounded-lg shadow-md flex items-center justify-center gap-2 transition-all hover:shadow-lg">
-                            <span>📄</span> Download Order Summary
+                            <Icon name="scroll" size={17} /> Download Order Summary
                         </button>
                         <button onClick={() => router.push('/track-order')} className="w-full bg-white border-2 border-herbal-100 text-herbal-800 font-bold py-3.5 rounded-lg hover:bg-herbal-50 transition-all">
                             Track This Order
@@ -245,7 +246,7 @@ export default function Checkout() {
                         {/* Shipping Details Form */}
                         <div className="bg-white p-5 md:p-8 rounded-2xl shadow-sm border border-gray-200">
                             <h3 className="font-bold text-lg md:text-xl mb-6 flex items-center gap-3 text-gray-800 border-b border-gray-100 pb-4">
-                                <span className="bg-herbal-100 p-2 rounded-lg text-herbal-800 text-lg md:text-xl">📍</span> Delivery Address
+                                <span className="bg-herbal-100 p-2 rounded-lg text-herbal-800"><Icon name="store" size={20} /></span> Delivery Address
                             </h3>
 
                             {/* Saved Addresses for Logged In Users */}
@@ -289,7 +290,7 @@ export default function Checkout() {
                                             onClick={() => setDetails({ name: '', phone: '', email: '', address: '', city: '', state: '', zip: '' })}
                                             className="p-4 rounded-xl border-2 border-dashed border-gray-300 text-gray-500 text-sm font-bold flex flex-col items-center justify-center hover:bg-gray-50 hover:border-gray-400 transition-colors h-full min-h-[100px]"
                                         >
-                                            <span className="text-2xl mb-1">+</span>
+                                            <Icon name="plus" size={22} className="mb-1" />
                                             <span>Add New Address</span>
                                         </button>
                                     </div>
@@ -336,7 +337,7 @@ export default function Checkout() {
                         {/* Payment Method Selection */}
                         <div className="bg-white p-5 md:p-8 rounded-2xl shadow-sm border border-gray-200">
                             <h3 className="font-bold text-lg md:text-xl mb-6 flex items-center gap-3 text-gray-800 border-b border-gray-100 pb-4">
-                                <span className="bg-herbal-100 p-2 rounded-lg text-herbal-800 text-lg md:text-xl">💳</span> Payment Method
+                                <span className="bg-herbal-100 p-2 rounded-lg text-herbal-800"><Icon name="credit-card" size={20} /></span> Payment Method
                             </h3>
                             <div className="space-y-4">
 

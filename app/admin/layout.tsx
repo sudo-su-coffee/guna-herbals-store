@@ -5,24 +5,25 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { BRAND_LOGO } from '@/lib/constants';
 import { logout } from '@/lib/api';
+import { Icon } from '@/components/Icon';
 
 interface AdminLayoutProps {
     children: ReactNode;
 }
 
 const navItems = [
-    { id: 'dashboard', label: 'Dashboard', icon: '📊', href: '/admin/dashboard' },
-    { id: 'orders', label: 'Orders', icon: '📦', href: '/admin/orders' },
-    { id: 'notifications', label: 'Notifications', icon: '🔔', href: '/admin/notifications' },
-    { id: 'delivery', label: 'Logistics', icon: '🚚', href: '/admin/delivery' },
-    { id: 'products', label: 'Products', icon: '🌿', href: '/admin/products' },
-    { id: 'customers', label: 'Users & Roles', icon: '👥', href: '/admin/customers' },
-    { id: 'security', label: 'Security Center', icon: '🛡️', href: '/admin/security' },
-    { id: 'payments', label: 'Payments', icon: '💳', href: '/admin/payments' },
-    { id: 'analytics', label: 'Analytics', icon: '📈', href: '/admin/analytics' },
-    { id: 'gallery', label: 'Gallery', icon: '🖼️', href: '/admin/gallery' },
-    { id: 'logs', label: 'Audit Logs', icon: '📜', href: '/admin/logs' },
-    { id: 'settings', label: 'Settings', icon: '⚙️', href: '/admin/settings' },
+    { id: 'dashboard', label: 'Dashboard', icon: 'dashboard', href: '/admin/dashboard' },
+    { id: 'orders', label: 'Orders', icon: 'package', href: '/admin/orders' },
+    { id: 'notifications', label: 'Notifications', icon: 'bell', href: '/admin/notifications' },
+    { id: 'delivery', label: 'Logistics', icon: 'truck', href: '/admin/delivery' },
+    { id: 'products', label: 'Products', icon: 'leaf', href: '/admin/products' },
+    { id: 'customers', label: 'Users & Roles', icon: 'users', href: '/admin/customers' },
+    { id: 'security', label: 'Security Center', icon: 'shield', href: '/admin/security' },
+    { id: 'payments', label: 'Payments', icon: 'credit-card', href: '/admin/payments' },
+    { id: 'analytics', label: 'Analytics', icon: 'chart', href: '/admin/analytics' },
+    { id: 'gallery', label: 'Gallery', icon: 'image', href: '/admin/gallery' },
+    { id: 'logs', label: 'Audit Logs', icon: 'scroll', href: '/admin/logs' },
+    { id: 'settings', label: 'Settings', icon: 'settings', href: '/admin/settings' },
 ];
 
 export default function AdminLayout({ children }: AdminLayoutProps) {
@@ -73,7 +74,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
                                     : 'text-gray-300 hover:bg-herbal-800 hover:text-white'
                                     }`}
                             >
-                                <span>{item.icon}</span>
+                                <Icon name={item.icon as any} size={17} />
                                 {item.label}
                             </Link>
                         );
@@ -81,10 +82,10 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
                 </nav>
                 <div className="p-4 border-t border-herbal-800 space-y-2 flex-shrink-0">
                     <Link href="/" className="text-sm w-full px-2 py-2 rounded hover:bg-herbal-800 transition-colors flex items-center gap-2 text-herbal-200 block">
-                        <span>🛍️</span> Back to Store
+                        <Icon name="store" size={16} /> Back to Store
                     </Link>
                     <button onClick={handleLogout} className="text-sm w-full px-2 py-2 rounded hover:bg-red-900/50 transition-colors flex items-center gap-2 text-red-300">
-                        <span>🚪</span> Logout
+                        <Icon name="logout" size={16} /> Logout
                     </button>
                 </div>
             </aside>

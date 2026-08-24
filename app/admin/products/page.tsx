@@ -6,6 +6,7 @@ import { getAllProducts, addProduct, updateProduct, deleteProduct } from '@/lib/
 import { AdminPageHeader } from '@/components/admin/AdminPageHeader';
 import { AdminTable, Column } from '@/components/admin/AdminTable';
 import { toast } from 'sonner';
+import { Icon } from '@/components/Icon';
 
 const ITEMS_PER_PAGE = 20;
 
@@ -173,8 +174,8 @@ export default function ProductsPage() {
             <AdminPageHeader
                 title="Inventory"
                 description="Manage catalog, pricing, and stock levels."
-                primaryAction={{ label: "Add Product", onClick: handleAddNew, icon: <span>+</span> }}
-                secondaryAction={{ label: "Export CSV", onClick: exportToCsv, icon: <span>⬇</span> }}
+                primaryAction={{ label: "Add Product", onClick: handleAddNew, icon: <Icon name="plus" size={15} /> }}
+                secondaryAction={{ label: "Export CSV", onClick: exportToCsv, icon: <Icon name="download" size={15} /> }}
             />
 
             <AdminTable

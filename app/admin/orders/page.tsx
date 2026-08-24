@@ -7,6 +7,7 @@ import { getAllOrders, getAllProducts, createOrder } from '@/lib/api';
 import { AdminPageHeader } from '@/components/admin/AdminPageHeader';
 import { AdminTable, Column } from '@/components/admin/AdminTable';
 import { toast } from 'sonner';
+import { Icon } from '@/components/Icon';
 
 export default function OrdersPage() {
     const [orders, setOrders] = useState<any[]>([]);
@@ -111,8 +112,8 @@ export default function OrdersPage() {
             <AdminPageHeader
                 title="Orders"
                 description="Process and track customer purchases."
-                primaryAction={{ label: "Manual Order", onClick: () => setCreateModalOpen(true), icon: <span>+</span> }}
-                secondaryAction={{ label: "Export CSV", onClick: exportToCsv, icon: <span>⬇</span> }}
+                primaryAction={{ label: "Manual Order", onClick: () => setCreateModalOpen(true), icon: <Icon name="plus" size={15} /> }}
+                secondaryAction={{ label: "Export CSV", onClick: exportToCsv, icon: <Icon name="download" size={15} /> }}
             />
 
             {/* Filter Tabs */}
@@ -226,7 +227,7 @@ const CreateOrderModal = ({ products, onClose, onRefresh }: { products: any[], o
                                     className="p-2 border border-gray-200 rounded-lg text-sm outline-none focus:border-herbal-500 w-full sm:w-48"
                                 />
                                 <button onClick={handleAddItem} className="text-xs font-bold bg-herbal-800 text-white px-4 py-2 rounded hover:bg-herbal-900 transition-colors whitespace-nowrap">
-                                    + Add Item
+                                    <Icon name="plus" size={14} /> Add Item
                                 </button>
                             </div>
                         </div>
@@ -240,7 +241,7 @@ const CreateOrderModal = ({ products, onClose, onRefresh }: { products: any[], o
                                     <span className="text-sm font-bold flex-grow">{item.product.name}</span>
                                     <input type="number" value={item.quantity} onChange={e => handleQtyChange(index, parseInt(e.target.value))} className="w-16 p-2 border border-gray-200 rounded text-center text-sm font-bold" min="1" />
                                     <span className="text-sm font-bold w-20 text-right">₹{parseFloat(item.variant.price) * item.quantity}</span>
-                                    <button onClick={() => handleRemoveItem(index)} className="text-red-400 hover:text-red-600 px-2">✕</button>
+                                    <button onClick={() => handleRemoveItem(index)} className="text-red-400 hover:text-red-600 px-2"><Icon name="plus" size={14} className="rotate-45" /></button>
                                 </div>
                             ))}
                         </div>

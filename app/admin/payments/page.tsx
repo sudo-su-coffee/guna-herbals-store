@@ -4,6 +4,7 @@ import React, { useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useShop } from '@/lib/ShopContext';
 import { Payment } from '../../../lib/types';
+import { Icon } from '@/components/Icon';
 
 type MethodFilter = 'All' | 'Razorpay' | 'COD' | 'Manual';
 type StatusFilter = 'All' | 'Success' | 'Failed';
@@ -74,7 +75,7 @@ export default function PaymentsPage() {
             <div className="animate-slide-up space-y-6">
                 <div className="flex items-center justify-between">
                     <button onClick={() => setSelectedPayment(null)} className="flex items-center gap-2 text-gray-600 hover:text-herbal-800 font-bold transition-colors">
-                        <span>←</span> Back to List
+                        <Icon name="arrow-left" size={16} /> Back to List
                     </button>
                     <button onClick={() => window.print()} className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider">
                         Print Details
@@ -140,7 +141,7 @@ export default function PaymentsPage() {
                             </div>
 
                             <div className="mt-6 p-4 bg-blue-50 text-blue-800 rounded-lg text-xs flex items-start gap-3 border border-blue-100">
-                                <span className="text-lg">ℹ️</span>
+                                <Icon name="shield" size={18} className="shrink-0" />
                                 <p className="leading-relaxed">
                                     This transaction was processed securely. The data above represents the final state returned by the payment provider.
                                     If the status is 'captured', the funds have been settled to your account.
@@ -161,7 +162,7 @@ export default function PaymentsPage() {
                     <p className="text-gray-500">Track all incoming transactions and their statuses.</p>
                 </div>
                 <button onClick={exportToCsv} className="bg-herbal-800 text-white font-bold px-6 py-2.5 rounded-lg shadow-sm hover:bg-herbal-900 transition-all flex items-center gap-2 text-sm uppercase tracking-wider">
-                    <span>⬇</span> Export CSV
+                    <Icon name="download" size={15} /> Export CSV
                 </button>
             </div>
 
