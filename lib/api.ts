@@ -2251,27 +2251,58 @@ export async function processReturn(returnId: number, action: 'approve' | 'rejec
 // ============================================================================
 
 export async function createPaymentOrder(orderId: number, amount: number): Promise<{ id: string; currency: string; amount: number; key: string }> {
-    // Mock Razorpay Order Creation
-    // In prod: const order = await razorpay.orders.create({ ... })
+    return handleServerAction(async () => {
+        const keyId = process.env.RAZORPAY_KEY_ID;
+        const keySecret = process.env.RAZORPAY_KEY_SECRET;
+        if (!keyId || !keySecret) {
+            throw new AppError('Razorpay is not configured. Add RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET.', 503, 'RAZORPAY_NOT_CONFIGURED');
+        }
 
-    const gatewayOrderId = `order_${Math.random().toString(36).substring(7)}`; // Mock ID
+        const order = await db.query.orders.findFirst({ where: eq(orders.id, orderId) });
+        if (!order) throw new AppError('Order not found', 404, 'ORDER_NOT_FOUND');
 
-    // Store intent in DB
-    await db.insert(payments).values({
-        orderId,
-        paymentMethod: 'razorpay', // Default
-        amount: amount.toString(),
-        status: 'pending',
-        gatewayOrderId: gatewayOrderId,
-        createdAt: new Date()
+        const existingPayment = await db.query.payments.findFirst({
+            where: and(eq(payments.orderId, orderId), eq(payments.status, 'pending')),
+            orderBy: desc(payments.createdAt)
+        });
+        if (existingPayment?.gatewayOrderId) {
+            return { id: existingPayment.gatewayOrderId, currency: 'INR', amount: Math.round(amount * 100), key: keyId };
+        }
+
+        const response = await fetch('https://api.razorpay.com/v1/orders', {
+            method: 'POST',
+            headers: {
+                Authorization: `Basic ${Buffer.from(`${keyId}:${keySecret}`).toString('base64')}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                amount: Math.round(amount * 100),
+                currency: 'INR',
+                receipt: order.orderNumber,
+                notes: { orderId: String(order.id) }
+            }),
+            cache: 'no-store'
+        });
+        const gatewayOrder = await response.json();
+        if (!response.ok || !gatewayOrder.id) {
+            console.error('Razorpay order creation failed', { status: response.status, gatewayOrder });
+            throw new AppError('Unable to create Razorpay payment order', 502, 'RAZORPAY_ORDER_FAILED');
+        }
+
+        await db.insert(payments).values({
+            orderId,
+            paymentMethod: 'razorpay',
+            paymentGateway: 'razorpay',
+            amount: amount.toFixed(2),
+            currency: 'INR',
+            status: 'pending',
+            gatewayOrderId: gatewayOrder.id,
+            initiatedAt: new Date(),
+            createdAt: new Date()
+        });
+
+        return { id: gatewayOrder.id, currency: gatewayOrder.currency || 'INR', amount: gatewayOrder.amount, key: keyId };
     });
-
-    return {
-        id: gatewayOrderId,
-        currency: 'INR',
-        amount: amount * 100, // paise
-        key: process.env.RAZORPAY_KEY_ID || 'test_key'
-    };
 }
 
 export async function verifyPayment(data: {
@@ -2280,37 +2311,30 @@ export async function verifyPayment(data: {
     razorpay_signature: string;
 }): Promise<ApiResponse> {
     return handleServerAction(async () => {
-        // Verify signature (mock)
-        // const generated_signature = hmac_sha256(order_id + "|" + payment_id, secret);
-        // if (generated_signature == signature) ...
+        const secret = process.env.RAZORPAY_KEY_SECRET;
+        if (!secret) throw new AppError('Razorpay is not configured', 503, 'RAZORPAY_NOT_CONFIGURED');
 
-        const isValid = true; // Assume valid for now
-
-        if (!isValid) throw new AppError('Payment verification failed', 400);
-
-        // Update Payment Record
-        await db.update(payments)
-            .set({
-                status: 'paid',
-                gatewayPaymentId: data.razorpay_payment_id,
-                gatewaySignature: data.razorpay_signature,
-                paidAt: new Date()
-            })
-            .where(eq(payments.gatewayOrderId, data.razorpay_order_id));
-
-        // Update Order Status
-        const payment = await db.query.payments.findFirst({
-            where: eq(payments.gatewayOrderId, data.razorpay_order_id)
-        });
-
-        if (payment) {
-            await db.update(orders)
-                .set({
-                    paymentStatus: 'paid',
-                    orderStatus: 'confirmed'
-                })
-                .where(eq(orders.id, payment.orderId));
+        const payment = await db.query.payments.findFirst({ where: eq(payments.gatewayOrderId, data.razorpay_order_id) });
+        if (!payment) throw new AppError('Payment order not found', 404, 'PAYMENT_NOT_FOUND');
+        if (payment.status === 'paid' && payment.gatewayPaymentId === data.razorpay_payment_id) {
+            return { message: 'Payment already verified' };
         }
+
+        const expectedSignature = crypto
+            .createHmac('sha256', secret)
+            .update(`${data.razorpay_order_id}|${data.razorpay_payment_id}`)
+            .digest('hex');
+        const signaturesMatch = expectedSignature.length === data.razorpay_signature.length && crypto.timingSafeEqual(Buffer.from(expectedSignature), Buffer.from(data.razorpay_signature));
+        if (!signaturesMatch) throw new AppError('Payment verification failed', 400, 'INVALID_PAYMENT_SIGNATURE');
+
+        await db.transaction(async (tx) => {
+            await tx.update(payments)
+                .set({ status: 'paid', gatewayPaymentId: data.razorpay_payment_id, gatewaySignature: data.razorpay_signature, paidAt: new Date(), updatedAt: new Date() })
+                .where(eq(payments.id, payment.id));
+            await tx.update(orders)
+                .set({ paymentStatus: 'paid', orderStatus: 'confirmed', updatedAt: new Date() })
+                .where(eq(orders.id, payment.orderId));
+        });
 
         return { message: 'Payment verified successfully' };
     });

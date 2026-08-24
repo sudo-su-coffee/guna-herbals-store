@@ -4,13 +4,30 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Icon } from '@/components/Icon';
 import { useRouter } from 'next/navigation';
-import { getCart, createOrder, clearCart, getCurrentUser, getUserAddresses, createAddress } from '@/lib/api';
+import { getCart, createOrder, verifyPayment, clearCart, getCurrentUser, getUserAddresses, createAddress } from '@/lib/api';
 import { SITE_CONFIG } from '@/lib/constants';
 import { ShippingDetails } from '@/lib/types';
 import { toast } from 'sonner';
 import { useCart } from '@/context/CartContext';
 
 declare const jspdf: any;
+declare global {
+    interface Window {
+        Razorpay?: new (options: Record<string, unknown>) => { open: () => void };
+    }
+}
+
+async function loadRazorpayScript() {
+    if (window.Razorpay) return true;
+    await new Promise<void>((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+        script.onload = () => resolve();
+        script.onerror = () => reject(new Error('Unable to load Razorpay Checkout'));
+        document.body.appendChild(script);
+    });
+    return Boolean(window.Razorpay);
+}
 
 async function withTimeout<T>(promise: Promise<T>, fallback: T, timeoutMs = 7000): Promise<T> {
     return Promise.race([
@@ -153,11 +170,42 @@ export default function Checkout() {
             });
 
             if (orderRes.success && orderRes.data) {
+                if (paymentMethod === 'Razorpay') {
+                    if (!orderRes.data.payment) throw new Error('Razorpay payment order was not created');
+                    const loaded = await loadRazorpayScript();
+                    if (!loaded || !window.Razorpay) throw new Error('Razorpay Checkout is unavailable');
+
+                    await new Promise<void>((resolve, reject) => {
+                        const checkout = new window.Razorpay!({
+                            key: orderRes.data.payment.key,
+                            amount: orderRes.data.payment.amount,
+                            currency: orderRes.data.payment.currency,
+                            name: SITE_CONFIG.name,
+                            description: 'Guna Herbals order',
+                            order_id: orderRes.data.payment.id,
+                            prefill: { name: details.name, email: details.email, contact: details.phone },
+                            notes: { orderId: String(orderRes.data.orderId) },
+                            theme: { color: '#315b45' },
+                            handler: async (response: { razorpay_order_id: string; razorpay_payment_id: string; razorpay_signature: string }) => {
+                                try {
+                                    const verification = await verifyPayment(response);
+                                    if (!verification.success) throw new Error(verification.error || 'Payment verification failed');
+                                    resolve();
+                                } catch (error) {
+                                    reject(error);
+                                }
+                            },
+                            modal: { ondismiss: () => reject(new Error('Payment was cancelled')) }
+                        });
+                        checkout.open();
+                    });
+                }
+
                 await clearCart();
                 setGeneratedOrder({
                     ...orderRes.data,
                     id: `ORD-${orderRes.data.orderId}`,
-                    paymentMethod: paymentMethod,
+                    paymentMethod,
                     paymentStatus: paymentMethod === 'COD' ? 'pending' : 'paid',
                     total: finalTotal
                 });
