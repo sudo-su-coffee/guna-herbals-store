@@ -25,7 +25,7 @@ function SearchContent() {
   const [sort, setSort] = useState<SortOption>('featured');
 
   useEffect(() => {
-    getAllProducts().then((response) => {
+    getAllProducts({ limit: 1000 }).then((response) => {
       setProducts(response.success && response.data?.length ? response.data : SEARCH_FALLBACK);
     }).catch(() => setProducts(SEARCH_FALLBACK)).finally(() => setLoading(false));
   }, []);

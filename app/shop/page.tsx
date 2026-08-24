@@ -48,7 +48,7 @@ function ShopContent() {
                 setUser(response.data); // Set user object
             }
 
-            const productsResponse = await getAllProducts();
+            const productsResponse = await getAllProducts({ limit: 1000 });
             if (productsResponse.success && productsResponse.data?.length) {
                 setProducts(productsResponse.data);
             } else {
