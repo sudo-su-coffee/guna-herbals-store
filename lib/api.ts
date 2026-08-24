@@ -721,7 +721,8 @@ export async function getAllProducts(params?: ProductFilterParams): Promise<ApiR
                 brand: brands,
                 category: categories,
                 image: productImages,
-                variants: productVariants
+                variants: productVariants,
+                inventory: inventory
             })
             .from(products)
             .leftJoin(brands, eq(products.brandId, brands.id))
@@ -731,6 +732,7 @@ export async function getAllProducts(params?: ProductFilterParams): Promise<ApiR
                 eq(productImages.isPrimary, true)
             ))
             .leftJoin(productVariants, eq(productVariants.productId, products.id))
+            .leftJoin(inventory, eq(inventory.variantId, productVariants.id))
             .where(and(...conditions));
 
         // Apply sorting
@@ -771,7 +773,10 @@ export async function getAllProducts(params?: ProductFilterParams): Promise<ApiR
 
             const productData = productMap.get(row.product.id)!;
             if (row.variants && !productData.variants?.some(v => v.id === row.variants!.id)) {
-                productData.variants!.push(row.variants);
+                productData.variants!.push({
+                    ...row.variants,
+                    inventory: row.inventory ? [row.inventory] : [],
+                } as any);
             }
         }
 

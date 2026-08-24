@@ -22,7 +22,22 @@ export default function ProductsPage() {
         setLoading(true);
         try {
             const response = await getAllProducts();
-            setProducts(response.success && response.data ? response.data : []);
+            const rows = response.success && response.data ? response.data : [];
+            setProducts(rows.map((row: any) => {
+                const product = row.product || row;
+                const variants = (row.variants || []).map((variant: any) => ({
+                    ...variant,
+                    stock: variant.stock ?? variant.inventory?.reduce((sum: number, item: any) => sum + Number(item.stockQty || 0), 0) ?? 0,
+                }));
+                return {
+                    ...product,
+                    category: row.category,
+                    brand: row.brand,
+                    image: row.image,
+                    images: row.images || (row.image ? [row.image] : []),
+                    variants,
+                };
+            }));
         } catch (err) {
             console.error("Load products error:", err);
         } finally {
@@ -96,9 +111,9 @@ export default function ProductsPage() {
 
     const exportToCsv = () => {
         if (products.length === 0) return;
-        const header = "ID,Name,Category,Price,Stock,SKU";
+        const header = "ID,Name,Category,Unit,Price,Stock,SKU";
         const rows = products.map(p =>
-            `${p.id},"${p.name}",${p.category},${p.price},${p.stock || 0},${p.sku || ''}`
+            `${p.id},"${p.name}","${p.category?.name || ''}","${p.variants?.[0]?.variantName || 'Standard'}",${p.variants?.[0]?.price || 0},${p.variants?.[0]?.stock || 0},${p.variants?.[0]?.sku || ''}`
         ).join('\n');
         const csvContent = `data:text/csv;charset=utf-8,${header}\n${rows}`;
         const encodedUri = encodeURI(csvContent);
@@ -136,10 +151,19 @@ export default function ProductsPage() {
             sortKey: 'categoryId'
         },
         {
+            header: "Unit",
+            accessor: (p) => {
+                const variant = p.variants?.[0];
+                return <span className="text-xs text-gray-600">{variant?.variantName || 'Standard'}{variant?.weight ? ` · ${variant.weight}` : ''}</span>;
+            },
+            className: "hidden lg:table-cell",
+            sortable: false
+        },
+        {
             header: "Price",
             accessor: (p) => {
                 const variant = p.variants?.[0];
-                return <span className="font-bold text-gray-900">₹{parseFloat(variant?.price || '0')}</span>;
+                return <span className="font-bold text-gray-900">₹{parseFloat(variant?.price || '0').toFixed(2)}</span>;
             },
             sortable: false
         },
