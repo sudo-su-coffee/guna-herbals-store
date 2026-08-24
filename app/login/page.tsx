@@ -92,6 +92,7 @@ export default function CustomerLogin() {
                 <div className="flex items-center gap-3 my-6 text-[10px] uppercase tracking-widest text-gray-400"><span className="h-px bg-gray-200 flex-1" />or<span className="h-px bg-gray-200 flex-1" /></div>
                 <button type="button" onClick={handleGoogle} disabled={loading} className="w-full border border-gray-200 text-herbal-950 font-bold py-4 rounded-full hover:border-herbal-900 transition-colors uppercase text-xs tracking-[0.15em] disabled:opacity-70">Continue with Google</button>
 
+                {mode === 'sign-in' && <button type="button" onClick={() => router.push('/reset-password')} className="w-full mt-4 text-xs font-bold text-herbal-700 hover:text-herbal-950 transition-colors">Forgot your password?</button>}
                 <button type="button" onClick={() => { setMode(mode === 'sign-in' ? 'sign-up' : 'sign-in'); setError(''); }} className="w-full mt-6 text-xs text-gray-500 hover:text-herbal-900 transition-colors">
                     {mode === 'sign-in' ? 'New here? Create an account' : 'Already have an account? Sign in'}
                 </button>
