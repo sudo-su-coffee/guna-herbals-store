@@ -1,6 +1,7 @@
 'use client';
+/* eslint-disable @typescript-eslint/no-explicit-any, react-hooks/set-state-in-effect, react-hooks/exhaustive-deps */
 
-import React, { useEffect, useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { getAdminOrderById, updateAdminPaymentStatus, updateOrderStatus } from '@/lib/api';
@@ -11,13 +12,14 @@ import { toast } from 'sonner';
 const orderStatuses = ['pending', 'confirmed', 'processing', 'shipped', 'delivered', 'cancelled', 'returned'];
 const paymentStatuses = ['pending', 'paid', 'failed', 'refunded'] as const;
 
-export default function AdminOrderDetailsPage({ params }: { params: { id: string } }) {
+export default function AdminOrderDetailsPage({ params }: { params: Promise<{ id: string }> }) {
     const router = useRouter();
     const [order, setOrder] = useState<any | null>(null);
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
 
-    const orderId = Number(params.id);
+    const { id } = use(params);
+    const orderId = Number(id);
     const load = async () => {
         setLoading(true);
         const response = await getAdminOrderById(orderId);
@@ -59,6 +61,11 @@ export default function AdminOrderDetailsPage({ params }: { params: { id: string
     return (
         <div className="space-y-6 animate-fade-in pb-12">
             <AdminPageHeader title={`Order ${order.orderNumber || `ORD-${order.id}`}`} description={`Placed ${new Date(order.createdAt).toLocaleString()}`} primaryAction={{ label: 'Back to Orders', onClick: () => router.push('/admin/orders'), icon: <Icon name="arrow-left" size={15} /> }} />
+            <div className="flex flex-wrap gap-2">
+                <a href={`/api/admin/orders/${order.id}/document?type=receipt`} className="rounded-lg border border-gray-200 bg-white px-4 py-2 text-xs font-bold text-herbal-800 hover:bg-herbal-50">Invoice / Receipt PDF</a>
+                <a href={`/api/admin/orders/${order.id}/document?type=packing-slip`} className="rounded-lg border border-gray-200 bg-white px-4 py-2 text-xs font-bold text-herbal-800 hover:bg-herbal-50">Packing Slip PDF</a>
+                <a href={`/api/admin/orders/${order.id}/document?type=order-slip`} className="rounded-lg border border-gray-200 bg-white px-4 py-2 text-xs font-bold text-herbal-800 hover:bg-herbal-50">Order Slip PDF</a>
+            </div>
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
                 <section className="space-y-6 lg:col-span-2">
                     <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">

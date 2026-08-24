@@ -2455,6 +2455,7 @@ export async function createAdminManualOrder(data: {
             const orderNumber = `GUN-${new Date().getFullYear()}-${Date.now().toString(36).toUpperCase()}`;
             const address = { ...data.shippingAddress, country: 'India' };
             const [order] = await tx.insert(orders).values({ orderNumber, userId: null, orderStatus: 'processing', paymentStatus: 'pending', paymentMethod: 'cod', subtotal: subtotal.toFixed(2), discountAmount: '0', taxAmount: '0', shippingCharge: shippingCharge.toFixed(2), totalAmount: totalAmount.toFixed(2), shippingAddress: address, billingAddress: address, internalNotes: data.notes || 'Manual order created by admin' }).returning({ id: orders.id, orderNumber: orders.orderNumber });
+            await tx.insert(payments).values({ orderId: order.id, paymentMethod: 'cod', paymentGateway: 'manual', amount: totalAmount.toFixed(2), currency: 'INR', status: 'pending' });
             for (const item of calculatedItems) {
                 await tx.insert(orderItems).values({ orderId: order.id, variantId: item.variantId, productName: item.productName, variantName: item.variantName, sku: item.sku, quantity: item.quantity, price: item.price, taxAmount: '0', discountAmount: '0', totalAmount: item.totalAmount });
                 const stockRows = await tx.select({ id: inventory.id, warehouseId: inventory.warehouseId, stockQty: inventory.stockQty, reservedQty: inventory.reservedQty }).from(inventory).where(eq(inventory.variantId, item.variantId));
@@ -2843,6 +2844,18 @@ export async function getAdminPayments(): Promise<ApiResponse<any[]>> {
 }
 
 
+export async function getAdminPaymentById(paymentId: number): Promise<ApiResponse<any>> {
+    return handleServerAction(async () => {
+        await requireAdminUser();
+        const payment = await db.query.payments.findFirst({
+            where: eq(payments.id, paymentId),
+            with: { order: true, webhooks: { orderBy: desc(paymentWebhooks.receivedAt), limit: 100 } },
+        });
+        if (!payment) throw new AppError('Payment not found', 404, 'PAYMENT_NOT_FOUND');
+        return payment;
+    }, [`/admin/payments/${paymentId}`]);
+}
+
 export async function getAdminAuditLogs(): Promise<ApiResponse<any[]>> {
     return handleServerAction(async () => {
         await requireAdminUser();
@@ -2859,7 +2872,25 @@ export async function getAdminCustomerById(userId: number): Promise<ApiResponse<
             with: { profile: true, addresses: true, orders: { orderBy: desc(orders.createdAt) }, sessions: true, auditLogs: { orderBy: desc(auditLogs.createdAt), limit: 50 } },
         });
         if (!user) throw new AppError('Customer not found', 404, 'CUSTOMER_NOT_FOUND');
-        return user;
+        const [cart, wishlist, paymentRows, customerEnquiries] = await Promise.all([
+            db.query.carts.findFirst({
+                where: eq(carts.userId, userId),
+                with: { items: { with: { variant: { with: { product: true } } } } },
+            }),
+            db.query.wishlists.findFirst({
+                where: and(eq(wishlists.userId, userId), eq(wishlists.isDefault, true)),
+                with: { items: { with: { product: true } } },
+            }),
+            db.select({ payment: payments, order: orders }).from(payments).innerJoin(orders, eq(orders.id, payments.orderId)).where(eq(orders.userId, userId)).orderBy(desc(payments.createdAt)).limit(100),
+            db.query.enquiries.findMany({ where: eq(enquiries.userId, userId), orderBy: desc(enquiries.createdAt), limit: 100 }),
+        ]);
+        return {
+            ...user,
+            cart: cart || null,
+            wishlist: wishlist || null,
+            payments: paymentRows.map(({ payment, order }) => ({ ...payment, order: { orderNumber: order.orderNumber } })),
+            enquiries: customerEnquiries,
+        };
     }, [`/admin/customers/${userId}`]);
 }
 

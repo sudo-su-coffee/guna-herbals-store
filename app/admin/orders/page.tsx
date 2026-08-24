@@ -28,7 +28,7 @@ export default function OrdersPage() {
                 getAllProducts()
             ]);
             setOrders(ordersData);
-            setProducts(productsData);
+            setProducts(productsData.success && productsData.data ? productsData.data : []);
         } catch (err) {
             console.error("Load orders error:", err);
         } finally {
@@ -164,7 +164,7 @@ const CreateOrderModal = ({ products, onClose, onRefresh }: { products: any[], o
     const total = items.reduce((sum, i) => sum + (parseFloat(i.variant.price) * i.quantity), 0);
 
     const handleAddItem = () => {
-        const defaultProduct = products.filter(p => p.name.toLowerCase().includes(productSearch.toLowerCase()))[0];
+        const defaultProduct = products.filter(p => p.product?.name?.toLowerCase().includes(productSearch.toLowerCase()))[0];
         if (defaultProduct) {
             const variant = defaultProduct.variants?.[0] || { price: '0', id: 0 };
             setItems(prev => [...prev, { product: defaultProduct, variant, quantity: 1 }]);
@@ -202,7 +202,7 @@ const CreateOrderModal = ({ products, onClose, onRefresh }: { products: any[], o
         }
     };
 
-    const filteredProducts = products.filter(p => p.name.toLowerCase().includes(productSearch.toLowerCase()));
+    const filteredProducts = products.filter(p => p.product?.name?.toLowerCase().includes(productSearch.toLowerCase()));
 
     return (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
@@ -241,7 +241,7 @@ const CreateOrderModal = ({ products, onClose, onRefresh }: { products: any[], o
                                     <div className="w-8 h-8 rounded bg-white border border-gray-200 overflow-hidden flex-shrink-0">
                                         <img src={item.product.images?.[0]?.imageUrl || '/placeholder.jpg'} className="w-full h-full object-cover" />
                                     </div>
-                                    <span className="text-sm font-bold flex-grow">{item.product.name}</span>
+                                    <span className="text-sm font-bold flex-grow">{item.product?.name || 'Product'}</span>
                                     <input type="number" value={item.quantity} onChange={e => handleQtyChange(index, parseInt(e.target.value))} className="w-16 p-2 border border-gray-200 rounded text-center text-sm font-bold" min="1" />
                                     <span className="text-sm font-bold w-20 text-right">₹{parseFloat(item.variant.price) * item.quantity}</span>
                                     <button onClick={() => handleRemoveItem(index)} className="text-red-400 hover:text-red-600 px-2"><Icon name="plus" size={14} className="rotate-45" /></button>
