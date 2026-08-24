@@ -2767,3 +2767,33 @@ export async function getAdminAuditLogs(): Promise<ApiResponse<any[]>> {
         return db.query.auditLogs.findMany({ orderBy: desc(auditLogs.createdAt), limit: 300 });
     }, ['/admin/logs']);
 }
+
+
+export async function getAdminCustomerById(userId: number): Promise<ApiResponse<any>> {
+    return handleServerAction(async () => {
+        await requireAdminUser();
+        const user = await db.query.users.findFirst({
+            where: eq(users.id, userId),
+            with: { profile: true, addresses: true, orders: { orderBy: desc(orders.createdAt) }, sessions: true, auditLogs: { orderBy: desc(auditLogs.createdAt), limit: 50 } },
+        });
+        if (!user) throw new AppError('Customer not found', 404, 'CUSTOMER_NOT_FOUND');
+        return user;
+    }, [`/admin/customers/${userId}`]);
+}
+
+export async function updateAdminCustomerStatus(userId: number, status: 'active' | 'blocked'): Promise<ApiResponse> {
+    return handleServerAction(async () => {
+        await requireAdminUser();
+        const [user] = await db.update(users).set({ status, updatedAt: new Date() }).where(eq(users.id, userId)).returning({ id: users.id, status: users.status });
+        if (!user) throw new AppError('Customer not found', 404, 'CUSTOMER_NOT_FOUND');
+        return user;
+    }, [`/admin/customers/${userId}`, '/admin/customers']);
+}
+
+export async function revokeAllCustomerSessions(userId: number): Promise<ApiResponse> {
+    return handleServerAction(async () => {
+        await requireAdminUser();
+        await db.update(userSessions).set({ isActive: false }).where(eq(userSessions.userId, userId));
+        return { message: 'All customer sessions revoked' };
+    }, [`/admin/customers/${userId}`, '/admin/security']);
+}
