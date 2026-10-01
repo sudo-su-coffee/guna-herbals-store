@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Apothecary Management Portal - Feedback Hub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#dbdad8",
+                        "tertiary-container": "#171e1b",
+                        "tertiary-fixed-dim": "#c1c8c3",
+                        "border-subtle": "rgba(255, 255, 255, 0.1)",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#f5f3f2",
+                        "inverse-surface": "#303030",
+                        "on-secondary-fixed": "#1c1c18",
+                        "on-primary-fixed-variant": "#3a4a46",
+                        "on-primary-container": "#778884",
+                        "surface-container-highest": "#e4e2e1",
+                        "surface-tint": "#51625e",
+                        "tertiary-fixed": "#dde4df",
+                        "background": "#fbf9f8",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed-variant": "#474742",
+                        "primary-container": "#0f1f1c",
+                        "surface-variant": "#e4e2e1",
+                        "secondary-fixed": "#e5e2db",
+                        "text-muted": "rgba(15, 31, 28, 0.6)",
+                        "surface": "#fbf9f8",
+                        "on-primary-fixed": "#0e1e1b",
+                        "primary-fixed": "#d4e6e1",
+                        "on-error": "#ffffff",
+                        "primary": "#000101",
+                        "brand-green": "#1a2e29",
+                        "outline": "#727876",
+                        "primary-fixed-dim": "#b8cac5",
+                        "on-background": "#1b1c1b",
+                        "surface-card": "#ffffff",
+                        "outline-variant": "#c2c8c5",
+                        "on-tertiary-fixed-variant": "#414845",
+                        "on-secondary-container": "#65645f",
+                        "on-tertiary-container": "#7f8682",
+                        "on-surface": "#1b1c1b",
+                        "surface-bright": "#fbf9f8",
+                        "on-tertiary-fixed": "#161d1a",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#eae8e6",
+                        "inverse-primary": "#b8cac5",
+                        "on-surface-variant": "#424846",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-container": "#e5e2db",
+                        "secondary-fixed-dim": "#c9c6c0",
+                        "secondary": "#5f5e59",
+                        "status-sale": "#0f1f1c",
+                        "error-container": "#ffdad6",
+                        "inverse-on-surface": "#f2f0ef",
+                        "tertiary": "#000201",
+                        "surface-container": "#efedec",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "section-gap-sm": "2.5rem",
+                        "grid-gutter": "1rem",
+                        "container-margin": "1.5rem",
+                        "section-gap-lg": "5rem",
+                        "element-gap": "0.5rem"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Noto Sans"],
+                        "headline-lg": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "price-tag": ["Noto Sans"],
+                        "body-md": ["Noto Sans"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                        "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                        "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                        "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-tab-indicator {
+            position: relative;
+        }
+        .active-tab-indicator::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: currentColor;
+        }
+        body {
+            background-color: #fbf9f8;
+            color: #1b1c1b;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<!-- Sidebar Navigation Shell -->
+<aside class="fixed left-0 top-0 h-screen w-64 bg-brand-green dark:bg-status-sale flex flex-col h-full py-8 z-50">
+<div class="px-6 mb-12">
+<h1 class="font-headline-lg text-headline-lg text-on-primary dark:text-on-primary-fixed mb-1">Apothecary</h1>
+<p class="font-label-caps text-label-caps text-on-tertiary-container">Management Portal</p>
+</div>
+<nav class="flex-grow space-y-1">
+<a class="text-on-tertiary-container hover:text-on-primary p-3 mx-2 flex items-center gap-3 transition-all duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-caps text-label-caps">Dashboard</span>
+</a>
+<a class="text-on-tertiary-container hover:text-on-primary p-3 mx-2 flex items-center gap-3 transition-all duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="potted_plant">potted_plant</span>
+<span class="font-label-caps text-label-caps">Inventory</span>
+</a>
+<a class="text-on-tertiary-container hover:text-on-primary p-3 mx-2 flex items-center gap-3 transition-all duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+<span class="font-label-caps text-label-caps">Orders</span>
+</a>
+<a class="bg-on-primary-container text-on-primary rounded-lg p-3 mx-2 flex items-center gap-3 transition-all duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-caps text-label-caps">Customers</span>
+</a>
+<a class="text-on-tertiary-container hover:text-on-primary p-3 mx-2 flex items-center gap-3 transition-all duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="leaderboard">leaderboard</span>
+<span class="font-label-caps text-label-caps">Analytics</span>
+</a>
+<a class="text-on-tertiary-container hover:text-on-primary p-3 mx-2 flex items-center gap-3 transition-all duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="local_shipping">local_shipping</span>
+<span class="font-label-caps text-label-caps">Suppliers</span>
+</a>
+</nav>
+<div class="mt-auto pt-8 border-t border-border-subtle">
+<a class="text-on-tertiary-container hover:text-on-primary p-3 mx-2 flex items-center gap-3 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+<span class="font-label-caps text-label-caps">Support</span>
+</a>
+<a class="text-on-tertiary-container hover:text-on-primary p-3 mx-2 flex items-center gap-3 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-label-caps text-label-caps">Log Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 min-h-screen">
+<!-- Top Navigation Bar -->
+<header class="bg-background dark:bg-background border-b border-outline-variant dark:border-border-subtle w-full h-20 flex items-center justify-between px-container-margin sticky top-0 z-40">
+<div class="flex items-center gap-8">
+<h2 class="font-headline-md text-headline-md text-primary dark:text-primary-fixed">Feedback Hub</h2>
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
+<input class="w-full bg-surface-container border-none focus:ring-1 focus:ring-primary py-2 pl-10 text-body-md rounded-lg" placeholder="Search reviews..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4 text-on-surface-variant">
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors" data-icon="settings">settings</span>
+</div>
+<div class="h-10 w-10 bg-primary-fixed rounded-full flex items-center justify-center overflow-hidden">
+<img alt="Administrator profile photo" class="w-full h-full object-cover" data-alt="A close-up professional headshot of a mature person with a calm, scholarly expression, set against a blurred apothecary background of glass jars and dried herbs. The lighting is soft and directional, creating a thoughtful, high-end atmosphere consistent with a luxury botanical brand. The colors are muted and earthy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-SvmlAMNjVO4yvKtBauuWUl7hqvEpxERm3xstpA_XrmBZDOM8c0GAS7kNTbU0KiYvbxGd_5sF9Df5rwJi8aDBsDGWEhZD6Bqq4krOHUQXTsefcBubRpjYHYLr1LzkybutKqfc5YvKinLk1aBT-miYgGbjQlt9IOQoAEDE9A-ZZzDhb8EKAqIZTWIkH1NQIFYt0k_A2RBaILPBG1nuyRnoF-vTOsHXMyLVgphHaczFEHpQHhrDCzuBgmFADuQqN79FQYmen2frmUTR"/>
+</div>
+</div>
+</header>
+<div class="p-8">
+<!-- Stats Overview Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+<div class="bg-surface-card p-6 border border-outline-variant rounded-lg">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-2">Average Rating</p>
+<div class="flex items-end gap-2">
+<span class="font-headline-lg text-headline-lg">4.8</span>
+<div class="flex mb-1 text-primary">
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star_half" style="font-variation-settings: 'FILL' 1;">star_half</span>
+</div>
+</div>
+<p class="text-xs text-status-sale mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="trending_up">trending_up</span> +0.2 this month
+                    </p>
+</div>
+<div class="bg-surface-card p-6 border border-outline-variant rounded-lg">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-2">Positive Sentiment</p>
+<div class="font-headline-lg text-headline-lg">92%</div>
+<div class="w-full bg-surface-container h-1 rounded-full mt-4">
+<div class="bg-brand-green h-full w-[92%] rounded-full"></div>
+</div>
+</div>
+<div class="bg-surface-card p-6 border border-outline-variant rounded-lg">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-2">Pending Reviews</p>
+<div class="font-headline-lg text-headline-lg">14</div>
+<p class="text-xs text-on-surface-variant mt-2 italic">Requires alchemist attention</p>
+</div>
+<div class="bg-brand-green p-6 rounded-lg text-on-primary">
+<p class="font-label-caps text-label-caps mb-2 opacity-80">Community Pulse</p>
+<div class="font-headline-lg text-headline-lg">Vibrant</div>
+<div class="mt-4 flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-brand-green overflow-hidden">
+<img alt="User" data-alt="Small avatar of a smiling young woman with a natural, minimalist look, conveying health and wellness in a bright setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwDASuk5LKH-o8durYayNgrgIvZTQqr8RSMNoz_VuK1T0Ug34LTSroiPwY7ZwV3pVdEqtSkIQsr-et8i4KJqApoGHYfqpx7K0ndSTOXQMf032C_idgdLSTSlT9k01prsTpd_0Y5KjlA-7s1gJlrW0ZhQdiPJ0tOUEEca2rSVOFdcI5W8yDkkAZBtRYivLY91rlaYILm2T1950qhOd2HicFtMBwoYNCW0f5uVYEOmheJKi6HHiI2zXL40mueKbeN3G1v2QJPcjhw7bE"/>
+</div>
+<div class="w-8 h-8 rounded-full border-2 border-brand-green overflow-hidden">
+<img alt="User" data-alt="Small avatar of a man with a beard and glasses, looking thoughtful and sophisticated in a bright, modern indoor environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOpGHjvZpEjd1egjCEiRGZINGWNJDm0HjSVGPyHlN93bF0Q5gIofdY4Jhb5OdI8CGTW3R4LJYiH5KdDattO8FPqPSYl2cNKkIDrjCb9xY34JsAa3V2ZTPmOz9NFCm9r1lmU1Syd4Eqlnrlc4Hl2KvINWofJPmSHUxQKST5DbYK1H2Nn7axZDmGeZ0c3x4FkVacso8OuDnlgR6pMY2FjFHzAsBEMwm-B-wZ9bXBV6G5dVJFn7DwyEYUoohyffbri2DIZhp661hv8PwD"/>
+</div>
+<div class="w-8 h-8 rounded-full border-2 border-brand-green overflow-hidden">
+<img alt="User" data-alt="Small avatar of a person with short hair laughing, set against a soft daylight background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrO8ZmpfxBzunWbT_Gm-7WzN_AdzS_mh5xN-51oMtZP7NEEwZIqGIKd9FwUB9h-mQ1UxdCyh93BfC9oNRYDsBCdr9cUXsXDjvaDclLFG3x-eHPdt1Hwcl5PGHQDH3xPJlIeMvb_237W8L3ih2Omyo2Nwzl-CYpXLcIxHIGdP8Udg-pQzj5mU5gB1xO7gp7qiVmoA-moufLhM8-vNyRi5lBZtRqzoUYKqwOCdqf-XFVgjc1vOKQH3lLV0iK-_okNc-y4qtao2uBJPxI"/>
+</div>
+<div class="w-8 h-8 rounded-full bg-on-primary-container flex items-center justify-center text-[10px] font-bold">+42</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+<!-- Main Feed -->
+<div class="lg:col-span-2 space-y-6">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-md text-headline-md">Recent Wisdom</h3>
+<div class="flex gap-2">
+<button class="px-4 py-1.5 rounded-full border border-outline-variant text-label-caps font-label-caps text-on-surface-variant hover:bg-surface-container transition-colors">All</button>
+<button class="px-4 py-1.5 rounded-full border border-outline-variant text-label-caps font-label-caps text-on-surface-variant hover:bg-surface-container transition-colors">Pending</button>
+<button class="px-4 py-1.5 rounded-full border border-outline-variant text-label-caps font-label-caps text-on-surface-variant hover:bg-surface-container transition-colors">Flagged</button>
+</div>
+</div>
+<!-- Review Card 1 -->
+<article class="bg-surface-card border border-outline-variant p-6 rounded-lg shadow-sm group hover:border-primary transition-all">
+<div class="flex items-start justify-between mb-4">
+<div class="flex gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center overflow-hidden">
+<img alt="Product" data-alt="A macro photograph of a luxurious botanical serum bottle on a textured stone surface, surrounded by droplets of water and a sprig of fresh sage. The lighting is moody and dramatic, emphasizing the premium quality of the product." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCf5If7pT6h8uijKHYfSuMFgQPoFMod4yTt7cyR4biLjyWkByADXhBHhpaUce6vpd8yPUZRkyeFDDwrFm2vxJ9smMX_0yoSM-sg9_bEXjejZmaBMY2G9GIQ-eP-5BirhQ_xg0KDu32kDL_LUU534M1CrIQfZeQ__6vlx0pDcPsORaDrZBBsYLpxFsALBY9WC_khDm6xD7UbGDJYchVZorNpItU6dOEHMrJ27V-UT8f4tcGL96py9zO2v9N-oinrna5mP-NguErN6xn8"/>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-brand-green">Elderberry Restorative Elixir</p>
+<div class="flex items-center gap-2">
+<h4 class="font-bold text-on-surface">Elowen Thorne</h4>
+<span class="text-xs text-on-surface-variant">• 2 hours ago</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<blockquote class="italic font-headline-md text-headline-md text-on-surface mb-4 leading-relaxed">
+                            "The depth of flavor and the grounding effect of this elixir is unlike anything else in my collection. It feels like a ritual in a bottle."
+                        </blockquote>
+<div class="flex items-center gap-4 mb-6">
+<span class="bg-surface-container-high px-3 py-1 rounded text-xs font-bold text-brand-green flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="sentiment_very_satisfied">sentiment_very_satisfied</span> Positive Sentiment
+                            </span>
+<span class="text-xs text-on-surface-variant">Verified Purchase</span>
+</div>
+<div class="flex items-center justify-end gap-3 pt-6 border-t border-outline-variant">
+<button class="px-4 py-2 text-label-caps font-label-caps border border-outline text-on-surface-variant hover:bg-surface-container transition-colors">Flag</button>
+<button class="px-4 py-2 text-label-caps font-label-caps bg-brand-green text-on-primary hover:bg-opacity-90 transition-colors">Approve</button>
+<button class="px-6 py-2 text-label-caps font-label-caps bg-primary text-on-primary group-hover:scale-[1.02] transition-transform flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="magic_button">magic_button</span> Reply with Alchemist Wisdom
+                            </button>
+</div>
+</article>
+<!-- Review Card 2 -->
+<article class="bg-surface-card border border-outline-variant p-6 rounded-lg shadow-sm group hover:border-primary transition-all">
+<div class="flex items-start justify-between mb-4">
+<div class="flex gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center overflow-hidden">
+<img alt="Product" data-alt="An artistic shot of a handmade ceramic jar of herbal balm, resting on a rustic wooden table with scattered dried lavender flowers and a linen cloth. The warm, golden hour sunlight creates long shadows and a cozy, artisan boutique feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgwqj6kaKENq62zGeu3bBh-YWCFjyVPnVLjH190Kr-eucfl30adky_pw9qG_S1Ekx1B8YIvpcBY7ncla8suAZC0bZWa7orPDekHUDYK-nV1mTXtScObdArE2Uo-aq3VVNA2-cK_LEkMKdG-ug-7Zdra1hCqGK6VFxgU58QKJFUhKUpIv_78Akn7RaE0FZDr85MYQlIXsDAuRhwynijEYzy8xNBd3_W_9BlwBUTNE5NUZYISnQ_Smi6MRZ5AQTex4Ju0gXvroSFyc0n"/>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-brand-green">Wild Lavender Balm</p>
+<div class="flex items-center gap-2">
+<h4 class="font-bold text-on-surface">Julian Vane</h4>
+<span class="text-xs text-on-surface-variant">• 5 hours ago</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star_outline">star_outline</span>
+<span class="material-symbols-outlined text-sm" data-icon="star_outline">star_outline</span>
+</div>
+</div>
+<blockquote class="italic font-headline-md text-headline-md text-on-surface mb-4 leading-relaxed">
+                            "The scent is beautiful, but the texture was slightly more solid than expected. Hard to apply in cooler temperatures."
+                        </blockquote>
+<div class="flex items-center gap-4 mb-6">
+<span class="bg-secondary-container px-3 py-1 rounded text-xs font-bold text-on-secondary-container flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="sentiment_neutral">sentiment_neutral</span> Neutral Sentiment
+                            </span>
+</div>
+<div class="flex items-center justify-end gap-3 pt-6 border-t border-outline-variant">
+<button class="px-4 py-2 text-label-caps font-label-caps border border-outline text-on-surface-variant hover:bg-surface-container transition-colors">Flag</button>
+<button class="px-4 py-2 text-label-caps font-label-caps bg-brand-green text-on-primary hover:bg-opacity-90 transition-colors">Approve</button>
+<button class="px-6 py-2 text-label-caps font-label-caps bg-primary text-on-primary transition-transform flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="magic_button">magic_button</span> Reply with Alchemist Wisdom
+                            </button>
+</div>
+</article>
+</div>
+<!-- Sidebar Content -->
+<aside class="space-y-8">
+<!-- Top Reviewers Leaderboard -->
+<section class="bg-surface-container-low border border-outline-variant p-6 rounded-lg">
+<h3 class="font-label-caps text-label-caps mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-lg" data-icon="workspace_premium">workspace_premium</span> Top Reviewers
+                        </h3>
+<ul class="space-y-6">
+<li class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary text-xs font-bold">1</div>
+<div>
+<p class="font-bold text-sm">Aria Nightshade</p>
+<p class="text-[10px] text-on-surface-variant">24 Reviews • 112 Likes</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-brand-green text-lg" data-icon="shield" style="font-variation-settings: 'FILL' 1;">shield</span>
+</li>
+<li class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full border border-outline-variant flex items-center justify-center text-xs font-bold">2</div>
+<div>
+<p class="font-bold text-sm">Silas Root</p>
+<p class="text-[10px] text-on-surface-variant">18 Reviews • 89 Likes</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-lg" data-icon="shield">shield</span>
+</li>
+<li class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full border border-outline-variant flex items-center justify-center text-xs font-bold">3</div>
+<div>
+<p class="font-bold text-sm">Fern Oak</p>
+<p class="text-[10px] text-on-surface-variant">15 Reviews • 45 Likes</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-lg" data-icon="shield">shield</span>
+</li>
+</ul>
+</section>
+<!-- Rating Trends -->
+<section class="bg-surface-card border border-outline-variant p-6 rounded-lg relative overflow-hidden">
+<h3 class="font-label-caps text-label-caps mb-6">Rating Trends</h3>
+<div class="h-40 w-full flex items-end gap-2 px-2">
+<div class="flex-1 bg-surface-container hover:bg-brand-green transition-colors h-[60%] rounded-t-sm group relative">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">4.2</div>
+</div>
+<div class="flex-1 bg-surface-container hover:bg-brand-green transition-colors h-[75%] rounded-t-sm group relative">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">4.5</div>
+</div>
+<div class="flex-1 bg-surface-container hover:bg-brand-green transition-colors h-[65%] rounded-t-sm group relative">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">4.3</div>
+</div>
+<div class="flex-1 bg-brand-green h-[90%] rounded-t-sm group relative">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold">4.8</div>
+</div>
+</div>
+<div class="flex justify-between mt-4 px-2 text-[10px] font-label-caps text-on-surface-variant uppercase tracking-widest">
+<span>Mar</span>
+<span>Apr</span>
+<span>May</span>
+<span>Jun</span>
+</div>
+</section>
+<!-- Featured Feedback Area -->
+<div class="rounded-lg bg-surface-container p-6 relative">
+<span class="material-symbols-outlined absolute top-4 right-4 text-brand-green opacity-20 text-6xl" data-icon="auto_awesome">auto_awesome</span>
+<p class="font-label-caps text-label-caps text-brand-green mb-2">Editor's Pick</p>
+<p class="text-sm italic leading-relaxed mb-4">"The curation here is impeccable. Every review feels like a conversation with a fellow nature lover."</p>
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-[10px] text-on-primary">M</div>
+<span class="text-xs font-bold">Morgan P.</span>
+</div>
+</div>
+</aside>
+</div>
+</div>
+</main>
+<script>
+        // Micro-interactions for buttons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.style.transform = 'scale(0.98)';
+            });
+            button.addEventListener('mouseup', () => {
+                button.style.transform = 'scale(1)';
+            });
+            button.addEventListener('mouseleave', () => {
+                button.style.transform = 'scale(1)';
+            });
+        });
+
+        // Simulating "Alchemist Wisdom" Reply Logic
+        const magicButtons = document.querySelectorAll('[data-icon="magic_button"]');
+        magicButtons.forEach(btn => {
+            btn.parentElement.addEventListener('click', function() {
+                const article = this.closest('article');
+                const author = article.querySelector('h4').textContent;
+                const overlay = document.createElement('div');
+                overlay.className = 'fixed inset-0 bg-primary/20 backdrop-blur-sm z-[100] flex items-center justify-center p-6';
+                overlay.innerHTML = `
+                    <div class="bg-background max-w-md w-full p-8 rounded-lg shadow-xl border border-primary animate-in fade-in zoom-in duration-300">
+                        <h3 class="font-headline-md text-headline-md mb-4">Crafting Wisdom for ${author}...</h3>
+                        <p class="font-body-md text-body-md italic mb-6 leading-relaxed text-on-surface-variant">
+                            "Dear seeker, your appreciation for the grounding qualities of our elixirs warms our hearth. May the botanical spirits guide your journey towards balance..."
+                        </p>
+                        <div class="flex justify-end gap-3">
+                            <button class="close-wisdom px-4 py-2 font-label-caps text-label-caps border border-outline">Cancel</button>
+                            <button class="close-wisdom px-4 py-2 font-label-caps text-label-caps bg-primary text-on-primary">Post Response</button>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(overlay);
+                
+                overlay.querySelectorAll('.close-wisdom').forEach(b => {
+                    b.addEventListener('click', () => overlay.remove());
+                });
+            });
+        });
+    </script>
+</body></html>

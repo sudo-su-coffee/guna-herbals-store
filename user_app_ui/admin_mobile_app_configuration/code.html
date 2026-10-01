@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Apothecary Admin | App Configuration</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error": "#ba1a1a",
+                    "text-muted": "rgba(15, 31, 28, 0.6)",
+                    "surface-bright": "#fbf9f8",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#c1c8c3",
+                    "surface-variant": "#e4e2e1",
+                    "brand-green": "#1a2e29",
+                    "on-surface": "#1b1c1b",
+                    "on-tertiary-fixed": "#161d1a",
+                    "secondary-fixed": "#e5e2db",
+                    "on-tertiary": "#ffffff",
+                    "secondary-container": "#e5e2db",
+                    "primary": "#000101",
+                    "primary-fixed-dim": "#b8cac5",
+                    "surface-container-low": "#f5f3f2",
+                    "on-tertiary-container": "#7f8682",
+                    "surface-card": "#ffffff",
+                    "tertiary-fixed": "#dde4df",
+                    "on-error": "#ffffff",
+                    "primary-container": "#0f1f1c",
+                    "error-container": "#ffdad6",
+                    "outline-variant": "#c2c8c5",
+                    "tertiary-container": "#171e1b",
+                    "tertiary": "#000201",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "inverse-primary": "#b8cac5",
+                    "surface-container": "#efedec",
+                    "on-surface-variant": "#424846",
+                    "status-sale": "#0f1f1c",
+                    "surface-container-high": "#eae8e6",
+                    "surface": "#fbf9f8",
+                    "background": "#fbf9f8",
+                    "surface-dim": "#dbdad8",
+                    "surface-container-highest": "#e4e2e1",
+                    "on-background": "#1b1c1b",
+                    "on-tertiary-fixed-variant": "#414845",
+                    "border-subtle": "rgba(255, 255, 255, 0.1)",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed-variant": "#3a4a46",
+                    "on-secondary-container": "#65645f",
+                    "secondary-fixed-dim": "#c9c6c0",
+                    "on-secondary-fixed-variant": "#474742",
+                    "inverse-on-surface": "#f2f0ef",
+                    "primary-fixed": "#d4e6e1",
+                    "on-primary-fixed": "#0e1e1b",
+                    "outline": "#727876",
+                    "surface-tint": "#51625e",
+                    "inverse-surface": "#303030",
+                    "on-secondary-fixed": "#1c1c18",
+                    "on-primary-container": "#778884",
+                    "secondary": "#5f5e59"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "container-margin": "1.5rem",
+                    "section-gap-lg": "5rem",
+                    "element-gap": "0.5rem",
+                    "section-gap-sm": "2.5rem",
+                    "grid-gutter": "1rem"
+            },
+            "fontFamily": {
+                    "label-caps": ["Noto Sans"],
+                    "price-tag": ["Noto Sans"],
+                    "body-md": ["Noto Sans"],
+                    "headline-md": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"],
+                    "headline-lg": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                    "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                    "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                    "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .form-input-focus:focus {
+            outline: none;
+            border-color: #1a2e29;
+            box-shadow: 0 0 0 1px #1a2e29;
+        }
+        .toggle-dot { transition: all 0.3s ease-in-out; }
+        input:checked ~ .toggle-bg { background-color: #1a2e29; }
+        input:checked ~ .toggle-dot { transform: translateX(100%); }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-brand-green dark:bg-primary-container flex flex-col py-8 z-50">
+<div class="px-6 mb-10">
+<h1 class="font-headline-md text-headline-md text-surface-bright">Apothecary Admin</h1>
+<p class="font-label-caps text-label-caps text-on-primary-container/60 mt-1">Premium Botanical</p>
+</div>
+<nav class="flex-1 space-y-2">
+<!-- Dashboard -->
+<a class="flex items-center space-x-3 text-on-primary-container/70 dark:text-on-primary-container/50 hover:text-surface-bright pl-5 hover:bg-primary-container/50 transition-colors duration-200 py-3" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<!-- Inventory -->
+<a class="flex items-center space-x-3 text-on-primary-container/70 dark:text-on-primary-container/50 hover:text-surface-bright pl-5 hover:bg-primary-container/50 transition-colors duration-200 py-3" href="#">
+<span class="material-symbols-outlined" data-icon="herbal_medicine">kebab_dining</span>
+<span class="font-body-md text-body-md">Inventory</span>
+</a>
+<!-- Orders -->
+<a class="flex items-center space-x-3 text-on-primary-container/70 dark:text-on-primary-container/50 hover:text-surface-bright pl-5 hover:bg-primary-container/50 transition-colors duration-200 py-3" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+<span class="font-body-md text-body-md">Orders</span>
+</a>
+<!-- Customers -->
+<a class="flex items-center space-x-3 text-on-primary-container/70 dark:text-on-primary-container/50 hover:text-surface-bright pl-5 hover:bg-primary-container/50 transition-colors duration-200 py-3" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-body-md text-body-md">Customers</span>
+</a>
+<!-- Analytics -->
+<a class="flex items-center space-x-3 text-on-primary-container/70 dark:text-on-primary-container/50 hover:text-surface-bright pl-5 hover:bg-primary-container/50 transition-colors duration-200 py-3" href="#">
+<span class="material-symbols-outlined" data-icon="leaderboard">leaderboard</span>
+<span class="font-body-md text-body-md">Analytics</span>
+</a>
+<!-- Settings (ACTIVE) -->
+<a class="flex items-center space-x-3 text-surface-bright font-bold border-l-4 border-surface-bright pl-4 transition-colors duration-200 py-3 bg-primary-container/30" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto px-6 space-y-4">
+<button class="w-full py-3 bg-surface-bright text-brand-green font-label-caps text-label-caps text-center hover:opacity-90 transition-opacity">
+                New Formulation
+            </button>
+<div class="pt-6 border-t border-on-primary-container/20 space-y-4">
+<a class="flex items-center space-x-3 text-on-primary-container/70 hover:text-surface-bright transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+<span class="font-body-md text-body-md">Support</span>
+</a>
+<a class="flex items-center space-x-3 text-on-primary-container/70 hover:text-surface-bright transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-body-md text-body-md">Sign Out</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<div class="ml-64 min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center px-container-margin py-4 w-full sticky top-0 bg-surface-bright dark:bg-surface border-b border-outline-variant/30 z-40">
+<div class="flex items-center space-x-8">
+<span class="font-headline-md text-headline-md text-brand-green">Apothecary Admin</span>
+<div class="hidden md:flex space-x-6">
+<a class="font-label-caps text-label-caps text-text-muted hover:text-primary transition-all duration-200" href="#">Direct Ship</a>
+<a class="font-label-caps text-label-caps text-text-muted hover:text-primary transition-all duration-200" href="#">Wholesale</a>
+<a class="font-label-caps text-label-caps text-text-muted hover:text-primary transition-all duration-200" href="#">Archive</a>
+</div>
+</div>
+<div class="flex items-center space-x-6">
+<button class="hidden lg:block font-label-caps text-label-caps text-primary border border-primary px-4 py-2 hover:bg-primary hover:text-on-primary transition-all duration-200">
+                    Create Report
+                </button>
+<div class="flex items-center space-x-4">
+<button class="text-primary hover:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="h-8 w-8 rounded-full overflow-hidden bg-secondary-container">
+<img alt="Administrator Profile" data-alt="A professional headshot of a boutique apothecary manager with a clean, minimalist aesthetic. The portrait has soft, natural lighting against a muted cream-toned background, reflecting a calm and authentic brand identity suitable for a high-end wellness administrator." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcLZO0ypTk4hUJlyicBq0Q-bUxSw6ImGZGj9z0Owe2DsJ8L1fwWwdQLxE5QORe2XNUpno85wYKJtYKAq6FjXzTVGp6QsvxNxextwjjkHIfUrX1vNyIzQshbnp3i9h0ai9HOTc0DONU4lGC-P1ZE3ZhWNDIDxYlMJMEX86376kHUDLehtes4_9gGxiFiWh05lafNIfLKHd1nYhSgwY5OPxxxx_SFdXgbIUZvN7GPoqfRjx7S-hWMuAHzmoj5SjEJoq_NpTfV-1ODo_5"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Page Content: App Configuration -->
+<main class="flex-1 p-10 max-w-6xl mx-auto w-full">
+<div class="mb-12">
+<h2 class="font-display-lg text-display-lg mb-2">App Configuration</h2>
+<p class="text-text-muted max-w-2xl">Manage global variables and operational states for the consumer mobile application. Changes here reflect in real-time across all user endpoints.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+<!-- System Status Section (Bento Style) -->
+<section class="lg:col-span-8 space-y-10">
+<!-- Maintenance & Visibility -->
+<div class="bg-surface-card p-8 border border-outline-variant/30 shadow-sm">
+<div class="flex justify-between items-start mb-8">
+<div>
+<h3 class="font-headline-md text-headline-md mb-1">Service Continuity</h3>
+<p class="text-text-muted font-body-md">Toggle the public availability of the consumer app.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer group">
+<input class="sr-only peer" id="maintenance-toggle" type="checkbox"/>
+<div class="w-12 h-6 bg-secondary-fixed rounded-full toggle-bg ring-2 ring-transparent group-hover:ring-outline-variant/30 transition-all"></div>
+<div class="absolute left-1 top-1 bg-surface-bright w-4 h-4 rounded-full toggle-dot shadow-sm"></div>
+</label>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-on-surface/70">Scheduled End Time</label>
+<input class="w-full bg-surface-container-low border border-outline-variant/30 p-3 font-body-md form-input-focus" type="datetime-local"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-on-surface/70">Reason for Downtime</label>
+<select class="w-full bg-surface-container-low border border-outline-variant/30 p-3 font-body-md form-input-focus">
+<option>Database Migration</option>
+<option>Seasonal Refresh</option>
+<option>Critical Security Patch</option>
+<option>General Maintenance</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Global Banner Alerts -->
+<div class="bg-surface-card p-8 border border-outline-variant/30 shadow-sm relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-brand-green"></div>
+<h3 class="font-headline-md text-headline-md mb-6">Global Application Banner</h3>
+<div class="space-y-6">
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-on-surface/70">Banner Content</label>
+<textarea class="w-full bg-surface-container-low border border-outline-variant/30 p-4 font-body-md form-input-focus italic" placeholder="e.g., Free botanical extraction guide with every order over $150 this week." rows="3"></textarea>
+</div>
+<div class="flex flex-wrap gap-4 items-center justify-between">
+<div class="flex space-x-6">
+<label class="flex items-center space-x-2 cursor-pointer">
+<input checked="" class="text-brand-green focus:ring-brand-green" name="banner-type" type="radio"/>
+<span class="text-body-md">Informational</span>
+</label>
+<label class="flex items-center space-x-2 cursor-pointer">
+<input class="text-brand-green focus:ring-brand-green" name="banner-type" type="radio"/>
+<span class="text-body-md">Promotion</span>
+</label>
+<label class="flex items-center space-x-2 cursor-pointer">
+<input class="text-brand-green focus:ring-brand-green" name="banner-type" type="radio"/>
+<span class="text-body-md">Warning</span>
+</label>
+</div>
+<button class="bg-brand-green text-surface-bright font-label-caps text-label-caps px-8 py-3 hover:opacity-90 transition-all uppercase tracking-widest">
+                                    Push Banner Update
+                                </button>
+</div>
+</div>
+</div>
+<!-- Version Control -->
+<div class="bg-surface-card p-8 border border-outline-variant/30 shadow-sm">
+<h3 class="font-headline-md text-headline-md mb-6">Enforcement &amp; Versioning</h3>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="border-b border-outline-variant/30">
+<tr>
+<th class="py-4 font-label-caps text-label-caps text-text-muted">Platform</th>
+<th class="py-4 font-label-caps text-label-caps text-text-muted">Current Version</th>
+<th class="py-4 font-label-caps text-label-caps text-text-muted">Min Required</th>
+<th class="py-4 font-label-caps text-label-caps text-text-muted text-right">Force Update</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<tr>
+<td class="py-5 font-body-md">iOS Application</td>
+<td class="py-5 font-body-md">v2.4.1</td>
+<td class="py-5">
+<input class="w-20 bg-transparent border-b border-outline-variant/50 focus:border-brand-green font-body-md focus:outline-none" type="text" value="v2.3.0"/>
+</td>
+<td class="py-5 text-right">
+<label class="relative inline-flex items-center cursor-pointer group">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-10 h-5 bg-secondary-fixed rounded-full toggle-bg ring-1 ring-transparent group-hover:ring-outline-variant/30 transition-all"></div>
+<div class="absolute left-1 top-1 bg-surface-bright w-3 h-3 rounded-full toggle-dot shadow-sm"></div>
+</label>
+</td>
+</tr>
+<tr>
+<td class="py-5 font-body-md">Android Application</td>
+<td class="py-5 font-body-md">v2.4.0</td>
+<td class="py-5">
+<input class="w-20 bg-transparent border-b border-outline-variant/50 focus:border-brand-green font-body-md focus:outline-none" type="text" value="v2.2.8"/>
+</td>
+<td class="py-5 text-right">
+<label class="relative inline-flex items-center cursor-pointer group">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-10 h-5 bg-secondary-fixed rounded-full toggle-bg ring-1 ring-transparent group-hover:ring-outline-variant/30 transition-all"></div>
+<div class="absolute left-1 top-1 bg-surface-bright w-3 h-3 rounded-full toggle-dot shadow-sm"></div>
+</label>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- Sidebar Controls (Right Column) -->
+<aside class="lg:col-span-4 space-y-10">
+<!-- API Management -->
+<div class="bg-surface-container-low p-8 border border-outline-variant/20">
+<div class="flex items-center space-x-2 mb-6">
+<span class="material-symbols-outlined text-brand-green" data-icon="key">key</span>
+<h4 class="font-label-caps text-label-caps uppercase">API Gateway Keys</h4>
+</div>
+<div class="space-y-6">
+<div>
+<label class="block font-label-caps text-[9px] text-text-muted mb-2 uppercase">Development Tier</label>
+<div class="relative group">
+<input class="w-full bg-surface-bright border border-outline-variant/30 p-3 pr-10 text-[12px] font-mono" readonly="" type="password" value="sk_test_apothecary_4492"/>
+<button class="absolute right-3 top-3 text-text-muted hover:text-brand-green transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="content_copy">content_copy</span>
+</button>
+</div>
+</div>
+<div>
+<label class="block font-label-caps text-[9px] text-text-muted mb-2 uppercase">Production Tier</label>
+<div class="relative group">
+<input class="w-full bg-surface-bright border border-outline-variant/30 p-3 pr-10 text-[12px] font-mono" readonly="" type="password" value="sk_live_botanical_001x"/>
+<button class="absolute right-3 top-3 text-text-muted hover:text-brand-green transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="content_copy">content_copy</span>
+</button>
+</div>
+</div>
+<button class="w-full text-center font-label-caps text-label-caps text-text-muted border-b border-transparent hover:border-text-muted transition-all py-2">
+                                Rotate Master Keys
+                            </button>
+</div>
+</div>
+<!-- Splash Screen Versioning -->
+<div class="bg-surface-card p-8 border border-outline-variant/30 shadow-sm">
+<h4 class="font-label-caps text-label-caps uppercase mb-6">Asset Versioning</h4>
+<div class="aspect-[9/16] bg-secondary-fixed relative mb-6 overflow-hidden">
+<img alt="Active Splash Screen" class="w-full h-full object-cover grayscale brightness-75 hover:grayscale-0 transition-all duration-700" data-alt="A vertical, high-fashion lifestyle shot for an apothecary brand splash screen. The image features soft focus eucalyptus branches and artisanal glass jars against a minimalist cream background. The lighting is bright and airy, following a modern boutique aesthetic that evokes serenity and luxury." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmiHof8mLkNHWwGI2QIlsPGJIyJfzdSsXmv4xAzLXH3-aH2nAQKx8cka445HUufIJ9iWx-CnMEi6SGMGcsL7TcKpai_nhJQdUWANoS2otP5GZNLgE5HlPJmagLzILekHafTebBMJLmZG2H_z8s4tDIwkiNWIzfAnbiURM_Y6g_sFT2gZ9H3UoCKq9QGXMnXYE2IWTRDFsAFEnSXor-H4dfH9d2mf_FCS5gzMJbpGISm3vUcyFebrr3LrnXwU-NO6GfKwlQbiDqxTJV"/>
+<div class="absolute inset-0 bg-brand-green/20"></div>
+<div class="absolute bottom-4 left-4 right-4 bg-surface-bright/90 p-4">
+<p class="font-label-caps text-[9px] text-brand-green">ACTIVE VERSION</p>
+<p class="font-headline-md text-[18px]">Spring Awakening v2</p>
+</div>
+</div>
+<div class="space-y-4">
+<button class="w-full bg-brand-green text-on-primary py-3 font-label-caps text-label-caps flex items-center justify-center space-x-2">
+<span class="material-symbols-outlined text-sm" data-icon="upload">upload</span>
+<span>Upload New Splash</span>
+</button>
+<button class="w-full border border-outline-variant/50 text-text-muted py-3 font-label-caps text-label-caps">
+                                Asset Library
+                            </button>
+</div>
+</div>
+<!-- Quick Logs -->
+<div class="p-4 border-l-2 border-brand-green bg-surface-container">
+<h4 class="font-label-caps text-[9px] text-text-muted uppercase mb-3">Recent Activity</h4>
+<ul class="space-y-3">
+<li class="text-[11px] leading-tight">
+<span class="font-bold">Admin-04</span> modified <span class="italic">Force Update (iOS)</span>
+<div class="text-[9px] text-text-muted">2 mins ago</div>
+</li>
+<li class="text-[11px] leading-tight">
+<span class="font-bold">System</span> rotated <span class="italic">Webhook Keys</span>
+<div class="text-[9px] text-text-muted">1 hour ago</div>
+</li>
+</ul>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer -->
+<footer class="mt-auto border-t border-outline-variant/30 py-8 px-container-margin bg-surface-container-low flex justify-between items-center">
+<div class="flex items-center space-x-4">
+<div class="h-2 w-2 bg-green-500 rounded-full animate-pulse"></div>
+<span class="font-label-caps text-[10px] text-text-muted">Edge Gateway: London-01 (Active)</span>
+</div>
+<div class="flex space-x-6 text-text-muted font-label-caps text-[10px]">
+<a class="hover:text-primary" href="#">System Logs</a>
+<a class="hover:text-primary" href="#">Documentation</a>
+<a class="hover:text-primary" href="#">Security Audit</a>
+</div>
+</footer>
+</div>
+<script>
+        // Micro-interactions and Tab Highlighting
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if(this.getAttribute('href') === '#') e.preventDefault();
+            });
+        });
+
+        // Maintenance Toggle Feedback
+        const maintenanceToggle = document.getElementById('maintenance-toggle');
+        maintenanceToggle.addEventListener('change', function() {
+            if(this.checked) {
+                console.log("Maintenance mode activated globally.");
+                // Add atmospheric subtle shift or notification here
+            } else {
+                console.log("Maintenance mode deactivated.");
+            }
+        });
+
+        // Copy key interaction
+        document.querySelectorAll('button:has(.material-symbols-outlined[data-icon="content_copy"])').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const icon = this.querySelector('.material-symbols-outlined');
+                const original = icon.innerText;
+                icon.innerText = 'check';
+                setTimeout(() => icon.innerText = original, 2000);
+            });
+        });
+    </script>
+</body></html>

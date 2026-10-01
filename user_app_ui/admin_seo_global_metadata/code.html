@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Apothecary | SEO Management Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary": "#ffffff",
+                    "surface-dim": "#dbdad8",
+                    "tertiary-container": "#171e1b",
+                    "tertiary-fixed-dim": "#c1c8c3",
+                    "border-subtle": "rgba(255, 255, 255, 0.1)",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-low": "#f5f3f2",
+                    "inverse-surface": "#303030",
+                    "on-secondary-fixed": "#1c1c18",
+                    "on-primary-fixed-variant": "#3a4a46",
+                    "on-primary-container": "#778884",
+                    "surface-container-highest": "#e4e2e1",
+                    "surface-tint": "#51625e",
+                    "tertiary-fixed": "#dde4df",
+                    "background": "#fbf9f8",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed-variant": "#474742",
+                    "primary-container": "#0f1f1c",
+                    "surface-variant": "#e4e2e1",
+                    "secondary-fixed": "#e5e2db",
+                    "text-muted": "rgba(15, 31, 28, 0.6)",
+                    "surface": "#fbf9f8",
+                    "on-primary-fixed": "#0e1e1b",
+                    "primary-fixed": "#d4e6e1",
+                    "on-error": "#ffffff",
+                    "primary": "#000101",
+                    "brand-green": "#1a2e29",
+                    "outline": "#727876",
+                    "primary-fixed-dim": "#b8cac5",
+                    "on-background": "#1b1c1b",
+                    "surface-card": "#ffffff",
+                    "outline-variant": "#c2c8c5",
+                    "on-tertiary-fixed-variant": "#414845",
+                    "on-secondary-container": "#65645f",
+                    "on-tertiary-container": "#7f8682",
+                    "on-surface": "#1b1c1b",
+                    "surface-bright": "#fbf9f8",
+                    "on-tertiary-fixed": "#161d1a",
+                    "error": "#ba1a1a",
+                    "surface-container-high": "#eae8e6",
+                    "inverse-primary": "#b8cac5",
+                    "on-surface-variant": "#424846",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#e5e2db",
+                    "secondary-fixed-dim": "#c9c6c0",
+                    "secondary": "#5f5e59",
+                    "status-sale": "#0f1f1c",
+                    "error-container": "#ffdad6",
+                    "inverse-on-surface": "#f2f0ef",
+                    "tertiary": "#000201",
+                    "surface-container": "#efedec",
+                    "on-error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "section-gap-sm": "2.5rem",
+                    "grid-gutter": "1rem",
+                    "container-margin": "1.5rem",
+                    "section-gap-lg": "5rem",
+                    "element-gap": "0.5rem"
+            },
+            "fontFamily": {
+                    "label-caps": ["Noto Sans"],
+                    "headline-lg": ["Playfair Display"],
+                    "headline-md": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"],
+                    "price-tag": ["Noto Sans"],
+                    "body-md": ["Noto Sans"]
+            },
+            "fontSize": {
+                    "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                    "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                    "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                    "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #fbf9f8;
+            color: #1b1c1b;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #fbf9f8;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #d4e6e1;
+            border-radius: 10px;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<!-- Sidebar Navigation -->
+<aside class="fixed left-0 top-0 h-screen w-64 bg-brand-green dark:bg-status-sale flex flex-col h-full py-8 z-50">
+<div class="px-6 mb-12">
+<h1 class="font-headline-lg text-headline-lg text-on-primary dark:text-on-primary-fixed">Apothecary</h1>
+<p class="font-label-caps text-label-caps text-on-primary-container mt-1 opacity-70">Management Portal</p>
+</div>
+<nav class="flex-1 space-y-2">
+<div class="text-on-tertiary-container hover:text-on-primary p-3 mx-2 cursor-pointer active:scale-95 transition-transform flex items-center gap-3">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-caps text-label-caps">Dashboard</span>
+</div>
+<div class="text-on-tertiary-container hover:text-on-primary p-3 mx-2 cursor-pointer active:scale-95 transition-transform flex items-center gap-3">
+<span class="material-symbols-outlined">potted_plant</span>
+<span class="font-label-caps text-label-caps">Inventory</span>
+</div>
+<!-- Active State -->
+<div class="bg-on-primary-container text-on-primary rounded-lg p-3 mx-2 cursor-pointer active:scale-95 transition-transform flex items-center gap-3 shadow-lg shadow-black/20">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">leaderboard</span>
+<span class="font-label-caps text-label-caps">Analytics &amp; SEO</span>
+</div>
+<div class="text-on-tertiary-container hover:text-on-primary p-3 mx-2 cursor-pointer active:scale-95 transition-transform flex items-center gap-3">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-caps text-label-caps">Customers</span>
+</div>
+</nav>
+<div class="mt-auto px-2 space-y-2">
+<div class="text-on-tertiary-container hover:text-on-primary p-3 mx-2 cursor-pointer active:scale-95 transition-transform flex items-center gap-3">
+<span class="material-symbols-outlined">help_outline</span>
+<span class="font-label-caps text-label-caps">Support</span>
+</div>
+<div class="text-on-tertiary-container hover:text-on-primary p-3 mx-2 cursor-pointer active:scale-95 transition-transform flex items-center gap-3">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-caps text-label-caps">Log Out</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen">
+<!-- Top Navigation -->
+<header class="bg-background dark:bg-background border-b border-outline-variant dark:border-border-subtle flex items-center justify-between px-container-margin w-full h-20 sticky top-0 z-40">
+<div class="flex items-center gap-8">
+<h2 class="font-headline-md text-headline-md text-primary dark:text-primary-fixed">Metadata Manager</h2>
+<div class="hidden md:flex gap-6">
+<span class="font-body-md text-body-md text-primary dark:text-primary-fixed font-bold border-b-2 border-primary cursor-pointer">Pages List</span>
+<span class="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors cursor-pointer">Site-wide Settings</span>
+<span class="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors cursor-pointer">Global Meta</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="bg-surface-container-low border-none rounded-full pl-10 pr-4 py-2 text-sm focus:ring-1 focus:ring-primary w-64" placeholder="Search pages..." type="text"/>
+</div>
+<div class="flex gap-2">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<div class="h-10 w-10 rounded-full bg-primary-fixed overflow-hidden border border-outline-variant">
+<img alt="Administrator profile photo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgRjuaHvnh0wcekv7s8GhdnV8DtHOMRhQalfMY_WQiWWsT5pPDH3GXaf6g03L5qF0xp0CLGuwIEmYKuygxg8mB8DpQeKKih98Le5TFHPHlLlYghRCZ5iO2YoTho8NAgB0NO1obnLBW94DpYbdLc5YP1d4hukfJcdTOJg9OfgRtTQ4prREXamp0u5lZtu_xNDiW5AzNVPU8kEf4X3Z5Z1ThmYaaq1N28Zznpglmxk6Yf4vi2qptMt6GDXRuArsIlLK6xn70sfOVkwyp"/>
+</div>
+</div>
+</header>
+<section class="p-8 max-w-7xl mx-auto space-y-12">
+<!-- Quick Stats / Status Banner -->
+<div class="flex items-center justify-between bg-brand-green text-on-primary p-6 rounded-lg shadow-sm">
+<div>
+<h3 class="font-headline-md text-headline-md italic">SEO Health Overview</h3>
+<p class="opacity-80 font-body-md">Your site-wide indexing health is looking excellent this month.</p>
+</div>
+<div class="flex gap-12">
+<div class="text-center">
+<div class="text-2xl font-bold">98%</div>
+<div class="text-[10px] font-label-caps opacity-60">PAGES INDEXED</div>
+</div>
+<div class="text-center">
+<div class="text-2xl font-bold">12</div>
+<div class="text-[10px] font-label-caps opacity-60">MISSING TITLES</div>
+</div>
+</div>
+</div>
+<!-- Main Page Editor Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Page List Column -->
+<div class="lg:col-span-1 space-y-4">
+<div class="flex items-center justify-between">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant">RECENTLY UPDATED PAGES</h3>
+<button class="text-[10px] font-label-caps text-primary border-b border-primary">VIEW ALL</button>
+</div>
+<div class="space-y-3">
+<!-- Active Page Card -->
+<div class="bg-surface-card p-4 border-l-4 border-primary shadow-sm cursor-pointer group">
+<div class="flex justify-between items-start mb-2">
+<span class="bg-primary text-on-primary text-[9px] px-2 py-0.5 font-bold uppercase">LIVE</span>
+<span class="text-[10px] font-label-caps text-on-surface-variant">/products/essential-oils</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-lg group-hover:italic transition-all">Essential Oils Collection</h4>
+<p class="text-xs text-on-surface-variant mt-1 line-clamp-1">Pure botanical extracts for modern wellness rituals.</p>
+</div>
+<!-- Secondary Page Card -->
+<div class="bg-surface-container-low p-4 border border-outline-variant hover:border-primary transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-2">
+<span class="bg-secondary text-on-primary text-[9px] px-2 py-0.5 font-bold uppercase">DRAFT</span>
+<span class="text-[10px] font-label-caps text-on-surface-variant">/blog/herbal-wisdom</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-lg">The Wisdom of Elderberry</h4>
+<p class="text-xs text-on-surface-variant mt-1 line-clamp-1">Discover the ancient secrets behind our immune support...</p>
+</div>
+<div class="bg-surface-container-low p-4 border border-outline-variant hover:border-primary transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-2">
+<span class="bg-primary text-on-primary text-[9px] px-2 py-0.5 font-bold uppercase">LIVE</span>
+<span class="text-[10px] font-label-caps text-on-surface-variant">/about-us</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-lg">Our Botanical Heritage</h4>
+<p class="text-xs text-on-surface-variant mt-1 line-clamp-1">Apothecary was founded on the principles of purity...</p>
+</div>
+</div>
+</div>
+<!-- Editor Column -->
+<div class="lg:col-span-2 bg-surface-card p-8 border border-outline-variant shadow-sm relative overflow-hidden">
+<!-- Subtle background decoration -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary-fixed opacity-10 blur-3xl -mr-32 -mt-32 rounded-full"></div>
+<div class="flex items-center justify-between mb-8 relative z-10">
+<div>
+<h3 class="font-headline-lg text-headline-lg">Page Editor</h3>
+<p class="text-on-surface-variant font-body-md italic">Essential Oils Collection — Editing Metadata</p>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2 text-xs font-bold uppercase tracking-widest hover:bg-brand-green transition-colors">SAVE CHANGES</button>
+</div>
+<div class="space-y-8 relative z-10">
+<!-- Meta Title Input -->
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-primary">META TITLE (60 chars recommended)</label>
+<input class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 px-0 py-2 font-headline-md italic transition-all" type="text" value="Essential Oils Collection | Pure Botanical Extracts | Apothecary"/>
+<div class="flex justify-end">
+<span class="text-[10px] font-label-caps text-on-surface-variant">61 / 60</span>
+</div>
+</div>
+<!-- Meta Description Input -->
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-primary">META DESCRIPTION (160 chars recommended)</label>
+<textarea class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 px-0 py-2 font-body-md transition-all" rows="3">Explore our curated collection of organic essential oils. Sourced from sustainable botanical farms and distilled for maximum therapeutic purity. Elevate your wellness ritual naturally.</textarea>
+<div class="flex justify-end">
+<span class="text-[10px] font-label-caps text-on-surface-variant">158 / 160</span>
+</div>
+</div>
+<!-- Social Preview Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
+<!-- OpenGraph Image -->
+<div class="space-y-3">
+<label class="font-label-caps text-label-caps text-primary block">OPENGRAPH PREVIEW IMAGE</label>
+<div class="aspect-[1.91/1] bg-surface-container-low relative group overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A sophisticated top-down photographic composition of apothecary essential oil bottles on a neutral linen surface, styled with dried botanical sprigs and soft natural shadows. The lighting is ethereal and bright, evoking a high-end wellness brand aesthetic with a minimalist color palette of cream, sage, and dark glass." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcnROQmLnb18J9ENAXH4T1lPOPmp5M21jkaTEeS8Jh6SIdTHMW2lnu4mK_K67gkpAaLqqYv9PHQPA5lSZDNBWgrw85NwHPWsjUUwlRtRGNGJ7Y-co27pvs6o436u1DgRQy8nnE29s2bXPjCO8Kavfk0EcriJApCE1mMEQpFtmSYpkPNq8QKPju_MMHZUp8n0vCd-QHsGps8ldrGT-XwsKCw42PHRP2ZaQ4Uju-o2iYrFeBmXLqhYioTfP8qMBbPBbLTwELKVJBnUQS"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<button class="bg-white text-black px-4 py-2 text-[10px] font-bold uppercase tracking-tighter flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">upload_file</span> CHANGE IMAGE
+                                        </button>
+</div>
+</div>
+</div>
+<!-- Search Engine Preview Simulation -->
+<div class="space-y-3">
+<label class="font-label-caps text-label-caps text-primary block">SERP SIMULATION</label>
+<div class="p-4 bg-white border border-outline-variant shadow-sm rounded-lg space-y-1">
+<div class="text-blue-700 text-lg hover:underline cursor-pointer">Essential Oils Collection | Pure Botanical Extracts...</div>
+<div class="text-green-800 text-xs">https://apothecary.com/products/essential-oils</div>
+<div class="text-on-surface-variant text-xs line-clamp-2">Explore our curated collection of organic essential oils. Sourced from sustainable botanical farms and distilled for maximum...</div>
+</div>
+<p class="text-[10px] text-on-surface-variant italic">This is a mock representation of how this page may appear in Google search results.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Site-wide Configuration Section -->
+<div class="space-y-6 pt-12 border-t border-outline-variant">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'opsz' 48;">settings_input_component</span>
+<h3 class="font-headline-lg text-headline-lg">Global Site Configuration</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Robots.txt Card -->
+<div class="bg-surface-container-low p-6 border border-outline-variant group hover:bg-white transition-all cursor-pointer">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-primary">smart_toy</span>
+<span class="bg-green-100 text-green-800 text-[9px] px-2 py-0.5 rounded-full font-bold">OPTIMIZED</span>
+</div>
+<h4 class="font-label-caps text-label-caps text-on-surface mb-2">ROBOTS.TXT</h4>
+<p class="text-xs text-on-surface-variant mb-4">Manage crawler directives and indexing exclusions for search engine bots.</p>
+<code class="block bg-on-secondary p-2 text-[10px] border border-outline-variant font-mono">User-agent: * <br/> Disallow: /admin/</code>
+</div>
+<!-- Sitemap Card -->
+<div class="bg-surface-container-low p-6 border border-outline-variant group hover:bg-white transition-all cursor-pointer">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-primary">account_tree</span>
+<span class="bg-blue-100 text-blue-800 text-[9px] px-2 py-0.5 rounded-full font-bold">AUTOMATED</span>
+</div>
+<h4 class="font-label-caps text-label-caps text-on-surface mb-2">XML SITEMAP</h4>
+<p class="text-xs text-on-surface-variant mb-4">Dynamic sitemap generation for site structure visibility. Last sync: 2h ago.</p>
+<button class="text-[10px] font-bold uppercase border-b border-primary text-primary">REGENERATE NOW</button>
+</div>
+<!-- Global Social Image Card -->
+<div class="bg-surface-container-low p-6 border border-outline-variant group hover:bg-white transition-all cursor-pointer">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-primary">share</span>
+<span class="bg-amber-100 text-amber-800 text-[9px] px-2 py-0.5 rounded-full font-bold">MISSING</span>
+</div>
+<h4 class="font-label-caps text-label-caps text-on-surface mb-2">FALLBACK OG:IMAGE</h4>
+<p class="text-xs text-on-surface-variant mb-4">Default image used when a page specific social image is not defined.</p>
+<button class="text-[10px] font-bold uppercase border-b border-primary text-primary">UPLOAD DEFAULT</button>
+</div>
+<!-- Google Console Card -->
+<div class="bg-surface-container-low p-6 border border-outline-variant group hover:bg-white transition-all cursor-pointer">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-primary">monitoring</span>
+<span class="bg-green-100 text-green-800 text-[9px] px-2 py-0.5 rounded-full font-bold">CONNECTED</span>
+</div>
+<h4 class="font-label-caps text-label-caps text-on-surface mb-2">SEARCH CONSOLE</h4>
+<p class="text-xs text-on-surface-variant mb-4">Direct integration with Google API for crawl data and indexing status.</p>
+<button class="text-[10px] font-bold uppercase border-b border-primary text-primary">VIEW INSIGHTS</button>
+</div>
+</div>
+</div>
+<!-- Advanced Settings Tabs -->
+<div class="bg-surface-container-high p-8 rounded-lg">
+<div class="flex gap-8 border-b border-outline-variant mb-8 overflow-x-auto">
+<button class="pb-4 font-label-caps text-label-caps text-primary border-b-2 border-primary whitespace-nowrap">SCHEMA.ORG MARKUP</button>
+<button class="pb-4 font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap">CANONICAL TAGS</button>
+<button class="pb-4 font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap">TRACKING SCRIPTS</button>
+<button class="pb-4 font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap">REDIRECT MANAGER</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<div class="space-y-4">
+<h4 class="font-headline-md text-headline-md">Global Organization Schema</h4>
+<p class="text-on-surface-variant text-sm">Define how your brand appears in Google Knowledge Panels. This data is automatically injected into the HEAD of every page.</p>
+<div class="p-4 bg-primary-container text-on-primary-container font-mono text-[11px] rounded-lg border border-primary-fixed-dim">
+                            {<br/>
+                              "@context": "https://schema.org",<br/>
+                              "@type": "Organization",<br/>
+                              "name": "Apothecary",<br/>
+                              "url": "https://apothecary.com",<br/>
+                              "logo": "https://apothecary.com/logo.png"<br/>
+                            }
+                        </div>
+</div>
+<div class="space-y-4">
+<h4 class="font-headline-md text-headline-md">Active Tracking Pixels</h4>
+<ul class="space-y-3">
+<li class="flex items-center justify-between p-3 bg-white border border-outline-variant">
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 bg-green-500 rounded-full"></span>
+<span class="text-sm font-medium">Google Analytics 4</span>
+</div>
+<span class="text-[10px] font-mono text-on-surface-variant">G-X4B2N9M...</span>
+</li>
+<li class="flex items-center justify-between p-3 bg-white border border-outline-variant">
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 bg-green-500 rounded-full"></span>
+<span class="text-sm font-medium">Meta Pixel</span>
+</div>
+<span class="text-[10px] font-mono text-on-surface-variant">294021984...</span>
+</li>
+<li class="flex items-center justify-between p-3 bg-white border border-outline-variant opacity-50">
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 bg-gray-400 rounded-full"></span>
+<span class="text-sm font-medium">TikTok Pixel</span>
+</div>
+<span class="text-[10px] font-label-caps text-on-surface-variant">INACTIVE</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer Info -->
+<footer class="px-container-margin py-12 border-t border-outline-variant flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="text-center md:text-left">
+<p class="font-label-caps text-label-caps text-primary opacity-50">© 2024 APOTHECARY GLOBAL</p>
+<p class="text-[11px] text-on-surface-variant">Last database sync: Today at 04:22 PM</p>
+</div>
+<div class="flex gap-8">
+<a class="text-[10px] font-label-caps text-on-surface-variant hover:text-primary" href="#">Documentation</a>
+<a class="text-[10px] font-label-caps text-on-surface-variant hover:text-primary" href="#">API Status</a>
+<a class="text-[10px] font-label-caps text-on-surface-variant hover:text-primary" href="#">Developer Portal</a>
+</div>
+</footer>
+</main>
+<!-- Contextual FAB (Only on main dashboard/management screens) -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-brand-green text-on-primary rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50 group">
+<span class="material-symbols-outlined text-2xl">add</span>
+<div class="absolute right-full mr-4 bg-brand-green text-on-primary px-3 py-1 rounded text-[10px] font-label-caps opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">ADD NEW PAGE</div>
+</button>
+<script>
+        // Micro-interaction for the search input
+        const searchInput = document.querySelector('input[placeholder="Search pages..."]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.classList.add('w-80');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.classList.remove('w-80');
+        });
+
+        // Simple tab switching logic for the editor cards
+        const pageCards = document.querySelectorAll('.lg\\:col-span-1 div[class*="cursor-pointer"]');
+        pageCards.forEach(card => {
+            card.addEventListener('click', () => {
+                pageCards.forEach(c => {
+                    c.classList.remove('bg-surface-card', 'border-l-4', 'border-primary', 'shadow-sm');
+                    c.classList.add('bg-surface-container-low', 'border', 'border-outline-variant');
+                });
+                card.classList.add('bg-surface-card', 'border-l-4', 'border-primary', 'shadow-sm');
+                card.classList.remove('bg-surface-container-low', 'border', 'border-outline-variant');
+            });
+        });
+    </script>
+</body></html>

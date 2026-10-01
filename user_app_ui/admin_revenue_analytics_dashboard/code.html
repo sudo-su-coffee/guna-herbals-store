@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Apothecary Admin | Revenue &amp; Analytics</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#c1c8c3",
+                    "on-tertiary-fixed-variant": "#414845",
+                    "on-secondary": "#ffffff",
+                    "surface-container-highest": "#e4e2e1",
+                    "status-sale": "#0f1f1c",
+                    "secondary-fixed-dim": "#c9c6c0",
+                    "secondary": "#5f5e59",
+                    "on-tertiary-container": "#7f8682",
+                    "outline-variant": "#c2c8c5",
+                    "surface": "#fbf9f8",
+                    "on-surface-variant": "#424846",
+                    "tertiary": "#000201",
+                    "error-container": "#ffdad6",
+                    "primary-fixed-dim": "#b8cac5",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#efedec",
+                    "primary-fixed": "#d4e6e1",
+                    "on-secondary-fixed": "#1c1c18",
+                    "brand-green": "#1a2e29",
+                    "on-primary-container": "#778884",
+                    "on-primary-fixed": "#0e1e1b",
+                    "surface-container-high": "#eae8e6",
+                    "on-secondary-fixed-variant": "#474742",
+                    "border-subtle": "rgba(255, 255, 255, 0.1)",
+                    "on-tertiary-fixed": "#161d1a",
+                    "surface-bright": "#fbf9f8",
+                    "secondary-fixed": "#e5e2db",
+                    "on-primary-fixed-variant": "#3a4a46",
+                    "error": "#ba1a1a",
+                    "on-error-container": "#93000a",
+                    "on-background": "#1b1c1b",
+                    "background": "#fbf9f8",
+                    "secondary-container": "#e5e2db",
+                    "tertiary-container": "#171e1b",
+                    "outline": "#727876",
+                    "inverse-primary": "#b8cac5",
+                    "surface-tint": "#51625e",
+                    "text-muted": "rgba(15, 31, 28, 0.6)",
+                    "inverse-surface": "#303030",
+                    "on-surface": "#1b1c1b",
+                    "tertiary-fixed": "#dde4df",
+                    "on-secondary-container": "#65645f",
+                    "surface-dim": "#dbdad8",
+                    "surface-container-low": "#f5f3f2",
+                    "primary-container": "#0f1f1c",
+                    "inverse-on-surface": "#f2f0ef",
+                    "on-error": "#ffffff",
+                    "surface-card": "#ffffff",
+                    "primary": "#000101",
+                    "surface-variant": "#e4e2e1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "container-margin": "1.5rem",
+                    "element-gap": "0.5rem",
+                    "section-gap-sm": "2.5rem",
+                    "grid-gutter": "1rem",
+                    "section-gap-lg": "5rem"
+            },
+            "fontFamily": {
+                    "headline-md": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"],
+                    "headline-lg": ["Playfair Display"],
+                    "body-md": ["Noto Sans"],
+                    "price-tag": ["Noto Sans"],
+                    "label-caps": ["Noto Sans"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                    "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                    "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #fbf9f8;
+            font-family: 'Noto Sans', sans-serif;
+            color: #1b1c1b;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #efedec;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #1a2e29;
+        }
+        .chart-gradient {
+            background: linear-gradient(180deg, rgba(26, 46, 41, 0.1) 0%, rgba(26, 46, 41, 0) 100%);
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden">
+<!-- SIDE NAVIGATION SHELL -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-brand-green flex flex-col py-8 px-4 z-50">
+<div class="mb-12 px-2">
+<h1 class="font-headline-md text-headline-md text-secondary-fixed tracking-tight">Apothecary Admin</h1>
+<p class="font-label-caps text-label-caps text-primary-fixed-dim uppercase opacity-60">Premium Botanical</p>
+</div>
+<nav class="flex-grow space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 bg-on-primary-fixed-variant text-primary-fixed rounded-lg scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-label-caps text-label-caps">Overview</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-on-primary-fixed-variant/30 transition-colors" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-caps text-label-caps">Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-on-primary-fixed-variant/30 transition-colors" href="#">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="font-label-caps text-label-caps">Orders</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-on-primary-fixed-variant/30 transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-caps text-label-caps">Customers</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-on-primary-fixed-variant/30 transition-colors" href="#">
+<span class="material-symbols-outlined">auto_stories</span>
+<span class="font-label-caps text-label-caps">Rituals</span>
+</a>
+</nav>
+<div class="mt-auto border-t border-on-primary-fixed-variant/20 pt-6">
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-on-primary-fixed-variant/30 transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-caps text-label-caps">Settings</span>
+</a>
+</div>
+</aside>
+<!-- MAIN CANVAS -->
+<main class="ml-64 min-h-screen">
+<!-- TOP NAVIGATION -->
+<header class="h-20 w-[calc(100%-16rem)] fixed right-0 top-0 bg-surface flex justify-between items-center px-10 border-b border-outline-variant z-40">
+<div class="flex items-center bg-surface-container rounded-full px-4 py-2 w-96">
+<span class="material-symbols-outlined text-on-surface-variant mr-3">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md w-full placeholder-on-surface-variant/50" placeholder="Search analytics..." type="text"/>
+</div>
+<div class="flex items-center gap-6">
+<button class="relative text-on-surface-variant hover:text-brand-green transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
+</button>
+<button class="text-on-surface-variant hover:text-brand-green transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="flex items-center gap-3 border-l border-outline-variant pl-6">
+<div class="text-right">
+<p class="font-label-caps text-label-caps leading-none">Admin User</p>
+<p class="text-[10px] text-on-surface-variant mt-1">Super Admin</p>
+</div>
+<img alt="Administrator Profile" class="w-10 h-10 rounded-full border border-outline-variant object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7ZPitHgN5dUrKCpXL2vHzVsCZWYJqX6MN9FyJTR37vrktp7qAUobJfit3jOfknwE_1vs4Vj1m5PFE35wjc80QU0MdgneWUT550QbccKCmgsg1dyOOlmOhNs9eTaKqzhFwaAFxgRfLKl4IwFwc5bK6e-AXqsMmnwcbtckkJ2Svgdhjh_hDcn2prMdlKVEunA4DfWjGwRWITSIKEg6CHSHt0CB0-pME4DcRBcMnTjBgqHO6QaO1GXZD6XVd8P-9VoHe39VbkTiq7h7A"/>
+</div>
+</div>
+</header>
+<!-- DASHBOARD CONTENT -->
+<section class="pt-28 px-10 pb-16">
+<div class="flex justify-between items-end mb-10">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary">Revenue &amp; Performance</h2>
+<p class="font-body-md text-on-surface-variant mt-1 italic opacity-80">"Data is the ritual of refinement." — Botanical Apothecary Intelligence</p>
+</div>
+<div class="flex gap-3">
+<button class="bg-brand-green text-surface px-6 py-2.5 font-label-caps text-label-caps tracking-widest uppercase hover:opacity-90 transition-opacity">
+                        Download Report
+                    </button>
+<div class="bg-surface-container border border-outline-variant flex items-center px-4 rounded-sm">
+<span class="material-symbols-outlined text-sm mr-2">calendar_today</span>
+<span class="font-label-caps text-[11px] tracking-tight">MARCH 1 - MARCH 31, 2024</span>
+</div>
+</div>
+</div>
+<!-- KPI GRID (BENTO STYLE) -->
+<div class="grid grid-cols-4 gap-6 mb-8">
+<div class="bg-surface-card p-8 border border-outline-variant/30 flex flex-col justify-between h-44 shadow-sm">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-brand-green">payments</span>
+<span class="text-status-sale font-label-caps text-[10px] bg-primary-fixed px-2 py-0.5 rounded-full">+12.4%</span>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1">TOTAL REVENUE</p>
+<p class="font-headline-md text-headline-md tracking-tighter">₹24,82,100</p>
+</div>
+</div>
+<div class="bg-surface-card p-8 border border-outline-variant/30 flex flex-col justify-between h-44 shadow-sm">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-brand-green">query_stats</span>
+<span class="text-status-sale font-label-caps text-[10px] bg-primary-fixed px-2 py-0.5 rounded-full">+8.2%</span>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1">NET PROFIT</p>
+<p class="font-headline-md text-headline-md tracking-tighter">₹8,45,200</p>
+</div>
+</div>
+<div class="bg-brand-green p-8 flex flex-col justify-between h-44">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-primary-fixed">eco</span>
+<span class="material-symbols-outlined text-primary-fixed text-sm">trending_up</span>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-primary-fixed-dim mb-1">TOP CATEGORY</p>
+<p class="font-headline-md text-headline-md text-surface tracking-tighter">Facial Oils</p>
+</div>
+</div>
+<div class="bg-surface-card p-8 border border-outline-variant/30 flex flex-col justify-between h-44 shadow-sm">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-brand-green">conversion_path</span>
+<span class="text-error font-label-caps text-[10px] bg-error-container px-2 py-0.5 rounded-full">-2.1%</span>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1">CONV. RATE</p>
+<p class="font-headline-md text-headline-md tracking-tighter">4.82%</p>
+</div>
+</div>
+</div>
+<!-- MAIN CHART & PAYMENT SPLIT -->
+<div class="grid grid-cols-3 gap-6 mb-8">
+<!-- Interactive Revenue Trend -->
+<div class="col-span-2 bg-surface-card p-10 border border-outline-variant/30 shadow-sm relative overflow-hidden">
+<div class="flex justify-between items-center mb-12">
+<h3 class="font-headline-md text-headline-md">Monthly Revenue Trend</h3>
+<div class="flex gap-4">
+<span class="flex items-center gap-2 font-label-caps text-[10px]"><span class="w-2 h-2 bg-brand-green rounded-full"></span> GROSS</span>
+<span class="flex items-center gap-2 font-label-caps text-[10px] opacity-40"><span class="w-2 h-2 bg-on-tertiary-container rounded-full"></span> PREVIOUS</span>
+</div>
+</div>
+<div class="h-64 flex items-end justify-between relative">
+<!-- Chart Grid Lines -->
+<div class="absolute inset-0 flex flex-col justify-between opacity-5 pointer-events-none">
+<div class="border-t border-brand-green w-full"></div>
+<div class="border-t border-brand-green w-full"></div>
+<div class="border-t border-brand-green w-full"></div>
+<div class="border-t border-brand-green w-full"></div>
+</div>
+<!-- Simulated Chart Points (Visual Mockup) -->
+<div class="flex-1 group relative h-full flex items-end justify-center">
+<div class="w-1 bg-brand-green h-[40%] opacity-40 group-hover:opacity-100 transition-all rounded-t-sm"></div>
+<div class="absolute bottom-[40%] bg-brand-green text-surface px-2 py-1 text-[9px] font-bold opacity-0 group-hover:opacity-100 -translate-y-2 transition-all">₹2.1L</div>
+<p class="absolute -bottom-6 font-label-caps text-[9px] text-on-surface-variant">JAN</p>
+</div>
+<div class="flex-1 group relative h-full flex items-end justify-center">
+<div class="w-1 bg-brand-green h-[55%] opacity-40 group-hover:opacity-100 transition-all rounded-t-sm"></div>
+<p class="absolute -bottom-6 font-label-caps text-[9px] text-on-surface-variant">FEB</p>
+</div>
+<div class="flex-1 group relative h-full flex items-end justify-center">
+<div class="w-1 bg-brand-green h-[85%] opacity-100 transition-all rounded-t-sm"></div>
+<div class="absolute bottom-[85%] bg-brand-green text-surface px-2 py-1 text-[9px] font-bold opacity-0 group-hover:opacity-100 -translate-y-2 transition-all">₹4.8L</div>
+<p class="absolute -bottom-6 font-label-caps text-[9px] font-bold text-brand-green">MAR</p>
+</div>
+<div class="flex-1 group relative h-full flex items-end justify-center">
+<div class="w-1 bg-brand-green h-[60%] opacity-40 group-hover:opacity-100 transition-all rounded-t-sm"></div>
+<p class="absolute -bottom-6 font-label-caps text-[9px] text-on-surface-variant">APR</p>
+</div>
+<div class="flex-1 group relative h-full flex items-end justify-center">
+<div class="w-1 bg-brand-green h-[45%] opacity-40 group-hover:opacity-100 transition-all rounded-t-sm"></div>
+<p class="absolute -bottom-6 font-label-caps text-[9px] text-on-surface-variant">MAY</p>
+</div>
+<div class="flex-1 group relative h-full flex items-end justify-center">
+<div class="w-1 bg-brand-green h-[70%] opacity-40 group-hover:opacity-100 transition-all rounded-t-sm"></div>
+<p class="absolute -bottom-6 font-label-caps text-[9px] text-on-surface-variant">JUN</p>
+</div>
+</div>
+</div>
+<!-- Payment Method Breakdown -->
+<div class="bg-surface-card p-10 border border-outline-variant/30 shadow-sm flex flex-col">
+<h3 class="font-headline-md text-headline-md mb-8">Gateways</h3>
+<div class="space-y-8 flex-grow flex flex-col justify-center">
+<div class="space-y-3">
+<div class="flex justify-between font-label-caps text-[11px] mb-2">
+<span>RAZORPAY</span>
+<span>68%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-brand-green w-[68%]"></div>
+</div>
+<p class="text-[10px] text-on-surface-variant italic">Secure cards &amp; Net banking</p>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between font-label-caps text-[11px] mb-2">
+<span>UPI (DIRECT)</span>
+<span>32%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-on-primary-container w-[32%]"></div>
+</div>
+<p class="text-[10px] text-on-surface-variant italic">Google Pay, PhonePe, Paytm</p>
+</div>
+</div>
+<div class="mt-8 pt-8 border-t border-outline-variant flex justify-between items-center">
+<span class="font-label-caps text-[10px] opacity-60">AVG ORDER VALUE</span>
+<span class="font-price-tag text-price-tag font-bold">₹2,840</span>
+</div>
+</div>
+</div>
+<!-- TOP PERFORMING PRODUCTS -->
+<div class="bg-surface-card border border-outline-variant/30 shadow-sm overflow-hidden">
+<div class="px-10 py-8 border-b border-outline-variant flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md">Top Performing Rituals</h3>
+<button class="text-on-surface-variant font-label-caps text-[10px] hover:text-brand-green underline underline-offset-4">VIEW ALL PRODUCTS</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container/50">
+<th class="px-10 py-5 font-label-caps text-[10px] text-on-surface-variant tracking-wider uppercase">Product Name</th>
+<th class="px-6 py-5 font-label-caps text-[10px] text-on-surface-variant tracking-wider uppercase">Category</th>
+<th class="px-6 py-5 font-label-caps text-[10px] text-on-surface-variant tracking-wider uppercase">Sales</th>
+<th class="px-6 py-5 font-label-caps text-[10px] text-on-surface-variant tracking-wider uppercase">Growth</th>
+<th class="px-6 py-5 font-label-caps text-[10px] text-on-surface-variant tracking-wider uppercase">Revenue</th>
+<th class="px-10 py-5 font-label-caps text-[10px] text-on-surface-variant tracking-wider uppercase text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<tr class="hover:bg-surface-container/30 transition-colors">
+<td class="px-10 py-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-15 bg-surface-container overflow-hidden rounded-sm">
+<img alt="Essential Glow Oil" class="w-full h-full object-cover grayscale-[0.2]" data-alt="A premium glass apothecary bottle containing a golden botanical oil, placed on a rough stone texture in soft natural sunlight. The image is part of a high-end, minimalist cosmetic brand campaign with clean whitespace and organic shadows. Professional studio lighting highlights the clarity of the oil and the texture of the labels." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKsn6vRwTcySjs2_kBQZ5th58CZN1onFh82W74q2YZ7KKkz4jxPw1zQ1ACaEc1UpeJOC_ffcBWAZmXiiFKHaCfCneol_wwXbyF29Rly-9fLqbG9UIy-T5LU9T9-nHea17a2AmDxLyjkRJO3O2j2i9xhwF1TUG81vUpo_h66cIsccmpNEPV6dHDSdRX5HPWd-F6lC9b6pU6kb2NmUOI8jsHafaWWkBCadesudK622aCBz1WqApTpirlMVTcK7zAr_i3GNohi-p1G5__"/>
+</div>
+<div>
+<p class="font-body-md font-bold text-on-surface">Midnight Bloom Elixir</p>
+<p class="text-[10px] text-on-surface-variant opacity-60">SKU: BOT-291-MB</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-6 font-body-md text-on-surface-variant">Serum &amp; Oils</td>
+<td class="px-6 py-6 font-body-md text-on-surface">1,248 Units</td>
+<td class="px-6 py-6">
+<span class="text-status-sale text-[11px] font-bold">+24%</span>
+</td>
+<td class="px-6 py-6 font-price-tag text-price-tag font-bold">₹4,36,800</td>
+<td class="px-10 py-6 text-right">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-brand-green">more_horiz</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container/30 transition-colors">
+<td class="px-10 py-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-15 bg-surface-container overflow-hidden rounded-sm">
+<img alt="Verdant Mist" class="w-full h-full object-cover grayscale-[0.2]" data-alt="A minimalist spray bottle of botanical toner surrounded by fresh green sage leaves and dewdrops. The background is a soft cream, creating a calm, healing atmosphere suited for a high-end wellness brand. The lighting is diffused and ethereal, emphasizing the purity of the natural ingredients." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJ_hVPJnLbfjT8nnOqkimFLHkz2d7g1WADOdPiyNLFq6R3gG8PEJw-PUs3_rs6ZrbSg4HirkFUbuFtE9gPuXM-sU_oCyjbaa_bb6flgtyWI2NyhAMPyKRF8fmYlANL7uBGyWbUxAArjZlYOQE6W587BqrqzlsTCJAnDRtgU_7qVsk9FRNNaERrcUazbrcElhAmBTdE4p8C-TdLR7xYZZQGAA0wOxyqwMFfPT27FEbmV1nDgdyzW6zzrziZ1p6rZBITAlShu6o_Ruj5"/>
+</div>
+<div>
+<p class="font-body-md font-bold text-on-surface">Verdant Forest Mist</p>
+<p class="text-[10px] text-on-surface-variant opacity-60">SKU: BOT-104-VF</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-6 font-body-md text-on-surface-variant">Facial Mists</td>
+<td class="px-6 py-6 font-body-md text-on-surface">942 Units</td>
+<td class="px-6 py-6">
+<span class="text-status-sale text-[11px] font-bold">+18%</span>
+</td>
+<td class="px-6 py-6 font-price-tag text-price-tag font-bold">₹2,16,660</td>
+<td class="px-10 py-6 text-right">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-brand-green">more_horiz</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container/30 transition-colors">
+<td class="px-10 py-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-15 bg-surface-container overflow-hidden rounded-sm">
+<img alt="Clay Mask" class="w-full h-full object-cover grayscale-[0.2]" data-alt="A dark ceramic jar filled with a textured green clay mask, with a wooden spatula resting on the side. The scene is styled in a Japanese wabi-sabi aesthetic, using earthy tones and natural materials. High-key lighting highlights the rich texture of the mask and the matte finish of the pottery." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6mFPwK-7mU1VnsB_GzRzW0a8ycpRV2kcMp5Qk8WVKG4dC4_kKvDQPNExDoRzBKHTr0bMRT46wWO5TuZK1g2qtbo3UGoQclouSXJfAWDCSkNSzKBBUdKuiaztIoCNLiQLHiCWvDm2V07K2zRX4CUnD7hSLyluJgsB0BxMzjMxy8x8ZwHIjDLdvgeZYNzMyfQb2zK1UKPbJTksmzlYLB-O3ZDegSPyIJ9KwRJ0KE7A8NM1QRtXqdbjArH99jA_cRTfC65ZN0kM4C04d"/>
+</div>
+<div>
+<p class="font-body-md font-bold text-on-surface">Sacred Clay Mask</p>
+<p class="text-[10px] text-on-surface-variant opacity-60">SKU: BOT-402-SC</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-6 font-body-md text-on-surface-variant">Face Masks</td>
+<td class="px-6 py-6 font-body-md text-on-surface">812 Units</td>
+<td class="px-6 py-6">
+<span class="text-error text-[11px] font-bold">-4%</span>
+</td>
+<td class="px-6 py-6 font-price-tag text-price-tag font-bold">₹3,49,160</td>
+<td class="px-10 py-6 text-right">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-brand-green">more_horiz</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- FOOTER / SIGNATURE -->
+<footer class="px-10 py-10 flex justify-between items-center opacity-40">
+<p class="font-label-caps text-[9px] tracking-widest">EST. 1894 • BOTANICAL APOTHECARY ANALYTICS ENGINE</p>
+<div class="flex gap-6">
+<a class="font-label-caps text-[9px] hover:text-brand-green transition-colors" href="#">PRIVACY</a>
+<a class="font-label-caps text-[9px] hover:text-brand-green transition-colors" href="#">SYSTEM STATUS: OPTIMAL</a>
+</div>
+</footer>
+</main>
+<!-- FLOATING ACTION (Only for Dashboard context) -->
+<button class="fixed bottom-10 right-10 bg-brand-green text-surface w-14 h-14 rounded-full shadow-2xl flex items-center justify-center group hover:scale-110 transition-transform z-50">
+<span class="material-symbols-outlined transition-transform group-hover:rotate-90">add</span>
+</button>
+<script>
+        // Micro-interactions for table rows
+        document.querySelectorAll('tbody tr').forEach(row => {
+            row.addEventListener('mouseenter', () => {
+                row.style.transform = 'translateX(5px)';
+                row.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+            });
+            row.addEventListener('mouseleave', () => {
+                row.style.transform = 'translateX(0)';
+            });
+        });
+
+        // Simple Dashboard Tab Switch logic (Simulation)
+        const navLinks = document.querySelectorAll('aside nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                navLinks.forEach(l => {
+                    l.classList.remove('bg-on-primary-fixed-variant', 'text-primary-fixed');
+                    l.classList.add('text-on-primary-container');
+                });
+                link.classList.add('bg-on-primary-fixed-variant', 'text-primary-fixed');
+                link.classList.remove('text-on-primary-container');
+            });
+        });
+    </script>
+</body></html>

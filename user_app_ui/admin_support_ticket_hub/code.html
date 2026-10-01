@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Apothecary Management Portal | Support Sanctuary</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #d4e6e1;
+            border-radius: 10px;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(15, 31, 28, 0.05);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "status-sale": "#0f1f1c",
+                      "primary": "#000101",
+                      "text-muted": "rgba(15, 31, 28, 0.6)",
+                      "secondary": "#5f5e59",
+                      "on-tertiary-container": "#7f8682",
+                      "tertiary-fixed-dim": "#c1c8c3",
+                      "primary-fixed": "#d4e6e1",
+                      "outline-variant": "#c2c8c5",
+                      "surface-card": "#ffffff",
+                      "secondary-fixed-dim": "#c9c6c0",
+                      "on-secondary": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "on-surface": "#1b1c1b",
+                      "outline": "#727876",
+                      "inverse-primary": "#b8cac5",
+                      "surface-container-lowest": "#ffffff",
+                      "on-surface-variant": "#424846",
+                      "error": "#ba1a1a",
+                      "primary-container": "#0f1f1c",
+                      "brand-green": "#1a2e29",
+                      "border-subtle": "rgba(255, 255, 255, 0.1)",
+                      "on-error": "#ffffff",
+                      "on-secondary-container": "#65645f",
+                      "surface-dim": "#dbdad8",
+                      "secondary-container": "#e5e2db",
+                      "on-background": "#1b1c1b",
+                      "secondary-fixed": "#e5e2db",
+                      "on-error-container": "#93000a",
+                      "primary-fixed-dim": "#b8cac5",
+                      "background": "#fbf9f8",
+                      "on-primary-fixed": "#0e1e1b",
+                      "surface-bright": "#fbf9f8",
+                      "on-tertiary-fixed": "#161d1a",
+                      "tertiary-fixed": "#dde4df",
+                      "inverse-on-surface": "#f2f0ef",
+                      "on-secondary-fixed": "#1c1c18",
+                      "surface-container-high": "#eae8e6",
+                      "surface-container": "#efedec",
+                      "on-tertiary-fixed-variant": "#414845",
+                      "inverse-surface": "#303030",
+                      "on-primary-container": "#778884",
+                      "surface-container-low": "#f5f3f2",
+                      "tertiary-container": "#171e1b",
+                      "surface-variant": "#e4e2e1",
+                      "on-tertiary": "#ffffff",
+                      "tertiary": "#000201",
+                      "on-secondary-fixed-variant": "#474742",
+                      "surface-tint": "#51625e",
+                      "surface-container-highest": "#e4e2e1",
+                      "error-container": "#ffdad6",
+                      "on-primary-fixed-variant": "#3a4a46",
+                      "surface": "#fbf9f8"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "container-margin": "1.5rem",
+                      "element-gap": "0.5rem",
+                      "section-gap-sm": "2.5rem",
+                      "grid-gutter": "1rem",
+                      "section-gap-lg": "5rem"
+              },
+              "fontFamily": {
+                      "headline-md": ["Playfair Display"],
+                      "label-caps": ["Noto Sans"],
+                      "display-lg": ["Playfair Display"],
+                      "price-tag": ["Noto Sans"],
+                      "body-md": ["Noto Sans"],
+                      "headline-lg": ["Playfair Display"]
+              },
+              "fontSize": {
+                      "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                      "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                      "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                      "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                      "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex overflow-hidden">
+<!-- SideNavBar (Shared Component) -->
+<aside class="fixed left-0 top-0 h-screen w-64 bg-brand-green flex flex-col h-full py-8 z-50">
+<div class="px-6 mb-12">
+<h1 class="font-headline-lg text-headline-lg text-on-primary">Apothecary</h1>
+<p class="font-label-caps text-label-caps text-on-tertiary-container mt-1">Management Portal</p>
+</div>
+<nav class="flex-1 space-y-2">
+<!-- Navigation Items Mapping -->
+<div class="cursor-pointer active:scale-95 transition-transform text-on-tertiary-container hover:text-on-primary p-3 mx-2 flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-caps text-label-caps">Dashboard</span>
+</div>
+<div class="cursor-pointer active:scale-95 transition-transform text-on-tertiary-container hover:text-on-primary p-3 mx-2 flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="potted_plant">potted_plant</span>
+<span class="font-label-caps text-label-caps">Inventory</span>
+</div>
+<div class="cursor-pointer active:scale-95 transition-transform text-on-tertiary-container hover:text-on-primary p-3 mx-2 flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+<span class="font-label-caps text-label-caps">Orders</span>
+</div>
+<div class="cursor-pointer active:scale-95 transition-transform text-on-tertiary-container hover:text-on-primary p-3 mx-2 flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-caps text-label-caps">Customers</span>
+</div>
+<div class="cursor-pointer active:scale-95 transition-transform text-on-tertiary-container hover:text-on-primary p-3 mx-2 flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="leaderboard">leaderboard</span>
+<span class="font-label-caps text-label-caps">Analytics</span>
+</div>
+<div class="cursor-pointer active:scale-95 transition-transform bg-on-primary-container text-on-primary rounded-lg p-3 mx-2 flex items-center gap-3 shadow-sm">
+<span class="material-symbols-outlined" data-icon="support_agent">support_agent</span>
+<span class="font-label-caps text-label-caps">Support</span>
+</div>
+</nav>
+<div class="mt-auto border-t border-border-subtle pt-6 space-y-2">
+<div class="cursor-pointer active:scale-95 transition-transform text-on-tertiary-container hover:text-on-primary p-3 mx-2 flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+<span class="font-label-caps text-label-caps">Support</span>
+</div>
+<div class="cursor-pointer active:scale-95 transition-transform text-on-tertiary-container hover:text-on-primary p-3 mx-2 flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-label-caps text-label-caps">Log Out</span>
+</div>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="ml-64 flex-1 flex flex-col h-screen overflow-hidden">
+<!-- TopNavBar (Shared Component) -->
+<header class="bg-background w-full h-20 flex items-center justify-between px-container-margin border-b border-outline-variant">
+<div class="flex items-center gap-8 flex-1">
+<h2 class="font-headline-md text-headline-md text-primary">Botanical Admin</h2>
+<div class="relative w-96 max-w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-lg pl-10 pr-4 py-2 text-body-md focus:ring-1 focus:ring-primary" placeholder="Search inquiries..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex gap-4">
+<button class="material-symbols-outlined text-primary cursor-pointer active:opacity-80 transition-opacity" data-icon="notifications">notifications</button>
+<button class="material-symbols-outlined text-primary cursor-pointer active:opacity-80 transition-opacity" data-icon="settings">settings</button>
+</div>
+<div class="flex items-center gap-3 border-l border-outline-variant pl-6">
+<img alt="Administrator profile photo" class="w-10 h-10 rounded-full object-cover grayscale brightness-90 border border-outline-variant" data-alt="A professional headshot of a seasoned male administrator in a minimalist modern office. He wears a dark charcoal linen shirt, reflecting a premium artisan aesthetic. The lighting is soft and natural, emphasizing a calm and focused demeanor against a background of white walls and subtle botanical greenery." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBuIAN6yBhINeITlE-uATKWeOJkAnNhgKi3s2hDpZnG90b3-eWBCXAK8xHd3K8AeZotT1B0IbQ7ObZLN8fHtPIHEM2G7EbE9TuW6rnOQ7ckiFtYvxsZBiBmCsbJaBl1cnFbz4lCnRtdYqzEUdH3v3og4pKZGUGSOoU93gNYRRheWyHj-Z-3-1nqxeP8oKYXwZgcgoQqxOVjsKjNFll0f2Su_42h8owU-fMYLX9WoIYE1VykQ8JP2huZZdc4fWVx1TsdO53OnvNc-41"/>
+<div class="hidden lg:block text-right">
+<p class="font-label-caps text-[10px] text-primary font-bold">ALCHEMIST PRIME</p>
+<p class="font-body-md text-[12px] text-on-surface-variant">Shift Lead</p>
+</div>
+</div>
+</div>
+</header>
+<!-- Support Canvas Content -->
+<div class="flex-1 flex overflow-hidden">
+<!-- Ticket Queue (Bento Grid Style) -->
+<section class="flex-1 p-8 overflow-y-auto custom-scrollbar">
+<div class="mb-8 flex items-end justify-between">
+<div>
+<span class="font-label-caps text-label-caps text-secondary">SANCTUARY OVERVIEW</span>
+<h3 class="font-headline-lg text-headline-lg text-primary mt-1">Support Queue</h3>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 border border-outline text-label-caps font-bold hover:bg-surface-container transition-colors uppercase">Filter</button>
+<button class="px-4 py-2 bg-primary text-on-primary text-label-caps font-bold hover:opacity-90 transition-opacity uppercase">Export Report</button>
+</div>
+</div>
+<!-- Metrics Bento -->
+<div class="grid grid-cols-4 gap-6 mb-10">
+<div class="p-6 bg-surface-container-low border border-outline-variant rounded-none flex flex-col justify-between h-32">
+<span class="font-label-caps text-[10px] text-secondary">ACTIVE TICKETS</span>
+<span class="font-headline-lg text-4xl text-primary">24</span>
+</div>
+<div class="p-6 bg-primary text-on-primary rounded-none flex flex-col justify-between h-32">
+<span class="font-label-caps text-[10px] text-on-primary-container">AVG RESOLUTION</span>
+<span class="font-headline-lg text-4xl">4.2<small class="text-sm ml-1 font-body-md">HRS</small></span>
+</div>
+<div class="p-6 bg-secondary-container border border-outline-variant rounded-none flex flex-col justify-between h-32">
+<span class="font-label-caps text-[10px] text-on-secondary-container">SATISFACTION</span>
+<span class="font-headline-lg text-4xl">98%</span>
+</div>
+<div class="p-6 bg-surface-container-low border border-outline-variant rounded-none flex flex-col justify-between h-32">
+<span class="font-label-caps text-[10px] text-secondary">BOTANICAL ALERTS</span>
+<span class="font-headline-lg text-4xl text-error">02</span>
+</div>
+</div>
+<!-- Custom Table -->
+<div class="w-full">
+<div class="grid grid-cols-12 px-4 py-3 border-b border-outline-variant bg-surface-container-lowest font-label-caps text-[10px] text-secondary tracking-widest uppercase">
+<div class="col-span-1">ID</div>
+<div class="col-span-3">Customer</div>
+<div class="col-span-3">Subject</div>
+<div class="col-span-2">Priority</div>
+<div class="col-span-2">Status</div>
+<div class="col-span-1 text-right">Action</div>
+</div>
+<div class="space-y-1 mt-2">
+<!-- Row 1 -->
+<div class="grid grid-cols-12 px-4 py-6 items-center bg-white hover:bg-surface-container-low transition-colors group cursor-pointer border border-transparent hover:border-outline-variant">
+<div class="col-span-1 font-price-tag text-secondary">#7721</div>
+<div class="col-span-3 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-[10px] font-bold">EM</div>
+<span class="font-body-md font-medium">Eleanor Thorne</span>
+</div>
+<div class="col-span-3">
+<span class="font-body-md block text-primary truncate pr-4">Delayed Moonlight Elixir Ritual</span>
+<span class="font-label-caps text-[9px] text-text-muted">DELIVERY ISSUE</span>
+</div>
+<div class="col-span-2">
+<span class="px-2 py-1 bg-error-container text-on-error-container text-[10px] font-bold tracking-tighter uppercase">High</span>
+</div>
+<div class="col-span-2">
+<span class="flex items-center gap-2 font-label-caps text-[10px] text-status-sale">
+<span class="w-1.5 h-1.5 rounded-full bg-status-sale animate-pulse"></span> Open
+                                </span>
+</div>
+<div class="col-span-1 text-right opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="material-symbols-outlined text-primary">chevron_right</button>
+</div>
+</div>
+<!-- Row 2 -->
+<div class="grid grid-cols-12 px-4 py-6 items-center bg-white hover:bg-surface-container-low transition-colors group cursor-pointer border border-transparent hover:border-outline-variant shadow-sm border-l-4 border-l-primary">
+<div class="col-span-1 font-price-tag text-secondary">#7688</div>
+<div class="col-span-3 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed flex items-center justify-center text-[10px] font-bold">JD</div>
+<span class="font-body-md font-medium">Julian De Santis</span>
+</div>
+<div class="col-span-3">
+<span class="font-body-md block text-primary truncate pr-4">Sage Cleansing Guidance</span>
+<span class="font-label-caps text-[9px] text-text-muted">RITUAL GUIDANCE</span>
+</div>
+<div class="col-span-2">
+<span class="px-2 py-1 bg-surface-container-high text-on-surface-variant text-[10px] font-bold tracking-tighter uppercase">Medium</span>
+</div>
+<div class="col-span-2">
+<span class="flex items-center gap-2 font-label-caps text-[10px] text-secondary">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> In Progress
+                                </span>
+</div>
+<div class="col-span-1 text-right opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="material-symbols-outlined text-primary">chevron_right</button>
+</div>
+</div>
+<!-- Row 3 -->
+<div class="grid grid-cols-12 px-4 py-6 items-center bg-white hover:bg-surface-container-low transition-colors group cursor-pointer border border-transparent hover:border-outline-variant">
+<div class="col-span-1 font-price-tag text-secondary">#7650</div>
+<div class="col-span-3 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-tertiary-fixed flex items-center justify-center text-[10px] font-bold">AH</div>
+<span class="font-body-md font-medium">Aria Hale</span>
+</div>
+<div class="col-span-3">
+<span class="font-body-md block text-primary truncate pr-4">Subscription Modification</span>
+<span class="font-label-caps text-[9px] text-text-muted">ACCOUNT</span>
+</div>
+<div class="col-span-2">
+<span class="px-2 py-1 bg-surface-container-high text-on-surface-variant text-[10px] font-bold tracking-tighter uppercase">Low</span>
+</div>
+<div class="col-span-2">
+<span class="flex items-center gap-2 font-label-caps text-[10px] text-on-tertiary-container">
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span> Resolved
+                                </span>
+</div>
+<div class="col-span-1 text-right opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="material-symbols-outlined text-primary">chevron_right</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Quick Reply Interface (Right Sidebar) -->
+<aside class="w-[450px] bg-surface-container-low border-l border-outline-variant flex flex-col p-8 overflow-y-auto">
+<div class="mb-8">
+<span class="font-label-caps text-[10px] text-secondary">ACTIVE INQUIRY</span>
+<h4 class="font-headline-md text-headline-md text-primary mt-1">#7688 Detail</h4>
+</div>
+<!-- Chat Log -->
+<div class="flex-1 space-y-6 mb-6">
+<!-- Customer Message -->
+<div class="flex flex-col items-start max-w-[85%]">
+<div class="bg-white p-4 border border-outline-variant shadow-sm mb-2">
+<p class="font-body-md text-primary italic">"I received my White Sage bundle but I am unsure of the specific moon cycle ritual for cleansing my workspace. Could you provide guidance on the botanical alignment?"</p>
+</div>
+<span class="font-label-caps text-[9px] text-text-muted uppercase">Julian De Santis • 10:24 AM</span>
+</div>
+<!-- Admin Note (Internal) -->
+<div class="flex flex-col items-center">
+<div class="w-full border-t border-dotted border-outline-variant relative my-4">
+<span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-3 bg-surface-container-low font-label-caps text-[8px] text-secondary">INTERNAL NOTE</span>
+</div>
+<p class="font-body-md text-[12px] text-secondary italic text-center px-4">Customer is a Platinum Flora Member. Priority handling requested.</p>
+</div>
+<!-- Previous Admin Reply -->
+<div class="flex flex-col items-end self-end max-w-[85%]">
+<div class="bg-primary p-4 shadow-sm mb-2">
+<p class="font-body-md text-on-primary">"Greetings Julian, an Alchemist will be with you shortly to provide the specific Ritual Guidance document."</p>
+</div>
+<span class="font-label-caps text-[9px] text-text-muted uppercase">Alchemist Prime • 10:30 AM</span>
+</div>
+</div>
+<!-- Reply Area -->
+<div class="mt-auto pt-6 border-t border-outline-variant space-y-4">
+<div class="flex justify-between items-center">
+<div class="flex gap-2">
+<button class="material-symbols-outlined p-2 hover:bg-surface-container transition-colors text-primary" data-icon="attachment">attachment</button>
+<button class="material-symbols-outlined p-2 hover:bg-surface-container transition-colors text-primary" data-icon="auto_awesome">auto_awesome</button>
+</div>
+<select class="bg-transparent border-none font-label-caps text-[10px] text-secondary focus:ring-0 uppercase cursor-pointer">
+<option>Saved Rituals (Macros)</option>
+<option>Shipping Delay Script</option>
+<option>Welcome New Alchemist</option>
+</select>
+</div>
+<textarea class="w-full min-h-[120px] bg-white border border-outline-variant p-4 font-body-md focus:ring-1 focus:ring-primary focus:border-primary resize-none placeholder:italic" placeholder="Compose your alchemical wisdom..."></textarea>
+<div class="flex gap-3 pt-2">
+<button class="flex-1 px-4 py-3 bg-primary text-on-primary font-label-caps text-[11px] font-bold tracking-widest hover:opacity-90 transition-opacity uppercase">Dispatch Reply</button>
+<button class="px-4 py-3 border border-outline text-secondary hover:bg-white transition-colors">
+<span class="material-symbols-outlined" data-icon="archive">archive</span>
+</button>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- FAB for New Inquiry (Contextual) -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-brand-green text-on-primary rounded-full shadow-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-all z-40">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+</button>
+<script>
+        // Micro-interaction for table rows
+        document.querySelectorAll('.group').forEach(row => {
+            row.addEventListener('click', function() {
+                // Visual feedback for row selection
+                document.querySelectorAll('.group').forEach(r => r.classList.remove('border-primary', 'shadow-md', 'bg-surface-container-low'));
+                this.classList.add('border-primary', 'shadow-md', 'bg-surface-container-low');
+            });
+        });
+
+        // Simple mock search functionality
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('.grid.grid-cols-12.px-4.py-6');
+            
+            rows.forEach(row => {
+                const text = row.innerText.toLowerCase();
+                if (text.includes(term)) {
+                    row.style.display = 'grid';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body></html>

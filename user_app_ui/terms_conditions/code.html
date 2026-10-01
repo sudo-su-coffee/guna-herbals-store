@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-container": "#778884",
+                        "inverse-primary": "#b8cac5",
+                        "surface-container-low": "#f5f3f2",
+                        "on-surface": "#1b1c1b",
+                        "tertiary-fixed": "#dde4df",
+                        "primary": "#000101",
+                        "secondary-fixed": "#e5e2db",
+                        "surface-dim": "#dbdad8",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#474742",
+                        "background": "#fbf9f8",
+                        "tertiary-container": "#171e1b",
+                        "tertiary-fixed-dim": "#c1c8c3",
+                        "inverse-on-surface": "#f2f0ef",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#eae8e6",
+                        "on-primary-fixed": "#0e1e1b",
+                        "surface-tint": "#51625e",
+                        "brand-green": "#1a2e29",
+                        "secondary": "#5f5e59",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#b8cac5",
+                        "primary-fixed": "#d4e6e1",
+                        "text-muted": "rgba(15, 31, 28, 0.6)",
+                        "status-sale": "#0f1f1c",
+                        "surface-card": "#ffffff",
+                        "secondary-fixed-dim": "#c9c6c0",
+                        "on-secondary": "#ffffff",
+                        "on-background": "#1b1c1b",
+                        "on-tertiary-fixed-variant": "#414845",
+                        "on-error-container": "#93000a",
+                        "secondary-container": "#e5e2db",
+                        "on-surface-variant": "#424846",
+                        "tertiary": "#000201",
+                        "outline": "#727876",
+                        "surface": "#fbf9f8",
+                        "surface-container-highest": "#e4e2e1",
+                        "surface-container": "#efedec",
+                        "on-secondary-fixed": "#1c1c18",
+                        "surface-bright": "#fbf9f8",
+                        "surface-variant": "#e4e2e1",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed-variant": "#3a4a46",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#7f8682",
+                        "primary-container": "#0f1f1c",
+                        "inverse-surface": "#303030",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed": "#161d1a",
+                        "on-secondary-container": "#65645f",
+                        "outline-variant": "#c2c8c5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "grid-gutter": "1rem",
+                        "container-margin": "1.5rem",
+                        "section-gap-lg": "5rem",
+                        "element-gap": "0.5rem",
+                        "section-gap-sm": "2.5rem"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "body-md": ["Noto Sans"],
+                        "label-caps": ["Noto Sans"],
+                        "headline-md": ["Playfair Display"],
+                        "price-tag": ["Noto Sans"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                        "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                        "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #fbf9f8;
+            color: #1b1c1b;
+        }
+        .legal-content p {
+            margin-bottom: 1.5rem;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-body-md text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-container-margin h-16 bg-surface dark:bg-primary-container">
+<button class="text-primary dark:text-primary-fixed-dim hover:opacity-70 transition-opacity active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-primary dark:text-primary-fixed-dim uppercase tracking-widest">
+            Nature's Alchemist
+        </h1>
+<button class="text-primary dark:text-primary-fixed-dim hover:opacity-70 transition-opacity active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+</button>
+</header>
+<main class="pt-32 pb-section-gap-lg">
+<div class="max-w-[800px] mx-auto px-container-margin">
+<!-- Hero Header for T&C -->
+<div class="text-center mb-section-gap-sm">
+<span class="font-label-caps text-label-caps text-secondary mb-4 block">POLICIES &amp; GOVERNANCE</span>
+<h2 class="font-display-lg text-display-lg text-primary mb-8">Terms &amp; Conditions</h2>
+<div class="h-[1px] w-24 bg-outline-variant/30 mx-auto"></div>
+</div>
+<!-- Content Canvas -->
+<div class="legal-content font-headline-md italic text-on-surface-variant leading-relaxed">
+<!-- Introduction Section -->
+<section class="mb-section-gap-sm">
+<h3 class="font-headline-md text-headline-md text-primary not-italic mb-6">Introduction</h3>
+<p class="font-body-md text-body-md text-on-surface not-italic">
+                        Welcome to Nature's Alchemist. These Terms &amp; Conditions govern your use of our artisanal apothecary services and the purchase of our handcrafted botanical products. By accessing our platform, you acknowledge that you have read, understood, and agreed to be bound by these refined standards of engagement.
+                    </p>
+<p class="font-body-md text-body-md text-on-surface not-italic">
+                        Our commitment is to provide purity and authenticity in every essence. We reserve the right to update these terms as our brand evolves, ensuring that our legal framework remains as sophisticated as our alchemy.
+                    </p>
+</section>
+<!-- Visual Break -->
+<div class="my-section-gap-sm relative h-96 overflow-hidden">
+<img alt="Botanical Ingredients" class="w-full h-full object-cover grayscale opacity-80" data-alt="A high-end, minimalist close-up of dried botanical herbs and amber glass apothecary jars arranged on a cream-toned stone surface. The lighting is soft and ethereal, emphasizing the textures of the organic materials. The color palette is composed of muted earthy tones, deep blacks, and soft whites, creating a grounded, artisanal atmosphere consistent with a premium wellness brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAoznA5EfGCIw6npgO9omb2edcpaEORRQAjugtQQ6JA7fPdxoQNRWYaL54SSEeRugCoBmz1o2JwBiQcD6IrV9ccZ7dcdgLEXOn9Y8Tg5tizA1gMc6GgwihZ7u5tD-ozI3tsgACSkXXjtooAG0gYRBNWiwKp_z42B39Cqokk93HhcNL_J92YEw4C8Y9wHWuWfw-FRbdcS2ZiqJghXw8FOS1R7FsugAiqPqfN1AFmsK6fh3_BkN34PSfBdOqH5-X2QLAooHsNXix84vd"/>
+<div class="absolute inset-0 bg-primary/5 flex items-center justify-center p-12">
+<div class="border border-white/20 p-8 backdrop-blur-sm bg-white/5 text-center">
+<span class="font-label-caps text-label-caps text-white">THE ART OF BOTANY</span>
+</div>
+</div>
+</div>
+<!-- User Conduct Section -->
+<section class="mb-section-gap-sm">
+<h3 class="font-headline-md text-headline-md text-primary not-italic mb-6">User Conduct</h3>
+<p class="font-body-md text-body-md text-on-surface not-italic">
+                        Interaction with the Nature's Alchemist community requires a standard of respect and mindfulness. Users are prohibited from using our digital space for any unlawful activities or from infringing upon the intellectual property of our unique formulas and designs.
+                    </p>
+<p class="font-body-md text-body-md text-on-surface not-italic">
+                        Any attempt to disrupt the integrity of our platform or scrape data for commercial gain will result in immediate termination of access. We curate this space for those who appreciate the slower, more intentional pace of botanical ritual.
+                    </p>
+</section>
+<!-- Shipping Policy Section -->
+<section class="mb-section-gap-sm p-10 bg-surface-container-low border border-outline-variant/10">
+<h3 class="font-headline-md text-headline-md text-primary not-italic mb-6">Shipping Policy</h3>
+<p class="font-body-md text-body-md text-on-surface-variant not-italic">
+                        Each order is treated as a bespoke commission. We ship our botanical creations worldwide using carbon-neutral logistics partners. Please allow 3-5 business days for our alchemists to prepare your selection with the care it deserves.
+                    </p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+<div>
+<span class="font-label-caps text-label-caps text-primary block mb-2">DOMESTIC</span>
+<p class="font-body-md text-body-md not-italic opacity-70">Complimentary shipping on all orders over $150. Standard delivery in 5-7 days.</p>
+</div>
+<div>
+<span class="font-label-caps text-label-caps text-primary block mb-2">INTERNATIONAL</span>
+<p class="font-body-md text-body-md not-italic opacity-70">Flat rate global shipping available. Duties and taxes are calculated at checkout.</p>
+</div>
+</div>
+</section>
+<!-- Liability Section -->
+<section class="mb-section-gap-sm">
+<h3 class="font-headline-md text-headline-md text-primary not-italic mb-6">Liability</h3>
+<p class="font-body-md text-body-md text-on-surface not-italic">
+                        Nature's Alchemist provides botanical products for wellness and ritual purposes. While we strive for absolute purity, we are not responsible for any adverse reactions resulting from individual sensitivities. We recommend a patch test for all topical applications.
+                    </p>
+<p class="font-body-md text-body-md text-on-surface-variant italic border-l-2 border-primary pl-6 py-2 my-8">
+                        "Nature provides the ingredients, but the body is its own temple. We act only as the facilitators of this ancient alchemy."
+                    </p>
+<p class="font-body-md text-body-md text-on-surface not-italic">
+                        Our maximum liability for any purchase made through this platform is limited strictly to the purchase price of the product in question. We shall not be liable for any indirect, incidental, or consequential damages.
+                    </p>
+</section>
+<!-- Final Notice -->
+<div class="mt-section-gap-lg pt-12 border-t border-outline-variant/20 text-center">
+<p class="font-label-caps text-label-caps text-outline mb-4">LAST UPDATED: OCTOBER 2023</p>
+<button class="px-8 py-3 bg-primary text-surface font-label-caps text-label-caps tracking-widest hover:opacity-90 transition-opacity active:scale-95 duration-200">
+                        ACCEPT &amp; CONTINUE
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Suppressing Bottom Navigation as this is a focused legal document (Task-Focused "Close/Back" intent) -->
+<!-- But if the system mandates high-level destination, we would include it. Given it's a top-level branded page, we include the shell footer -->
+<footer class="bg-primary text-surface-variant py-section-gap-sm mt-section-gap-lg">
+<div class="max-w-[1200px] mx-auto px-container-margin">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+<div class="md:col-span-2">
+<h2 class="font-headline-md text-headline-md text-white mb-6 uppercase tracking-widest">Nature's Alchemist</h2>
+<p class="font-body-md text-body-md text-on-primary-container max-w-sm">
+                        Curating the finest botanical essences through traditional alchemy and modern minimal design. Crafted for the conscious spirit.
+                    </p>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps text-white mb-6">EXPLORE</h4>
+<ul class="space-y-3 font-body-md text-body-md text-on-primary-container">
+<li><a class="hover:text-white transition-colors" href="#">Our Story</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Apothecary</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Journal</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Contact</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps text-white mb-6">SOCIAL</h4>
+<ul class="space-y-3 font-body-md text-body-md text-on-primary-container">
+<li><a class="hover:text-white transition-colors" href="#">Instagram</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Pinterest</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Newsletter</a></li>
+</ul>
+</div>
+</div>
+<div class="mt-20 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-label-caps text-label-caps opacity-40">© 2023 NATURE'S ALCHEMIST. ALL RIGHTS RESERVED.</p>
+<div class="flex gap-6 font-label-caps text-label-caps opacity-40">
+<a href="#">PRIVACY</a>
+<a href="#">TERMS</a>
+<a href="#">COOKIES</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

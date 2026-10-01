@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nature's Alchemist | Botanical Apothecary</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slow-zoom {
+            animation: slowZoom 20s linear infinite alternate;
+        }
+
+        @keyframes slowZoom {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
+
+        .overlay-gradient {
+            background: linear-gradient(to bottom, rgba(26, 46, 41, 0.4) 0%, rgba(26, 46, 41, 0.2) 50%, rgba(26, 46, 41, 0.6) 100%);
+        }
+        
+        /* Custom smooth transition for the "Sanctuary" effect */
+        .reveal-sanctuary {
+            transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-container": "#7f8682",
+                    "on-error-container": "#93000a",
+                    "surface-container-low": "#f5f3f2",
+                    "text-muted": "rgba(15, 31, 28, 0.6)",
+                    "tertiary-fixed": "#dde4df",
+                    "secondary-fixed-dim": "#c9c6c0",
+                    "inverse-on-surface": "#f2f0ef",
+                    "primary-fixed-dim": "#b8cac5",
+                    "on-secondary-fixed-variant": "#474742",
+                    "on-primary-fixed": "#0e1e1b",
+                    "surface-bright": "#fbf9f8",
+                    "surface-container-high": "#eae8e6",
+                    "tertiary-container": "#171e1b",
+                    "on-primary-container": "#778884",
+                    "on-secondary-fixed": "#1c1c18",
+                    "background": "#fbf9f8",
+                    "error-container": "#ffdad6",
+                    "surface-dim": "#dbdad8",
+                    "on-error": "#ffffff",
+                    "tertiary": "#000201",
+                    "on-secondary-container": "#65645f",
+                    "on-primary": "#ffffff",
+                    "surface-container": "#efedec",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed": "#161d1a",
+                    "brand-green": "#1a2e29",
+                    "tertiary-fixed-dim": "#c1c8c3",
+                    "surface-container-highest": "#e4e2e1",
+                    "secondary-fixed": "#e5e2db",
+                    "surface-card": "#ffffff",
+                    "on-surface": "#1b1c1b",
+                    "outline": "#727876",
+                    "outline-variant": "#c2c8c5",
+                    "primary-fixed": "#d4e6e1",
+                    "secondary-container": "#e5e2db",
+                    "surface": "#fbf9f8",
+                    "error": "#ba1a1a",
+                    "surface-container-lowest": "#ffffff",
+                    "primary": "#000101",
+                    "on-surface-variant": "#424846",
+                    "on-background": "#1b1c1b",
+                    "inverse-primary": "#b8cac5",
+                    "inverse-surface": "#303030",
+                    "on-tertiary": "#ffffff",
+                    "surface-tint": "#51625e",
+                    "primary-container": "#0f1f1c",
+                    "secondary": "#5f5e59",
+                    "surface-variant": "#e4e2e1",
+                    "on-tertiary-fixed-variant": "#414845",
+                    "status-sale": "#0f1f1c",
+                    "on-primary-fixed-variant": "#3a4a46",
+                    "border-subtle": "rgba(255, 255, 255, 0.1)"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "section-gap-sm": "2.5rem",
+                    "container-margin": "1.5rem",
+                    "grid-gutter": "1rem",
+                    "element-gap": "0.5rem",
+                    "section-gap-lg": "5rem"
+            },
+            "fontFamily": {
+                    "label-caps": ["Noto Sans"],
+                    "display-lg": ["Playfair Display"],
+                    "price-tag": ["Noto Sans"],
+                    "headline-md": ["Playfair Display"],
+                    "headline-lg": ["Playfair Display"],
+                    "body-md": ["Noto Sans"]
+            },
+            "fontSize": {
+                    "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                    "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                    "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-hidden">
+<!-- Splash Screen Entry -->
+<main class="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden transition-opacity duration-[2000ms]" id="splash-container">
+<!-- Cinematic Background -->
+<div class="absolute inset-0 z-0 bg-brand-green overflow-hidden">
+<img class="w-full h-full object-cover opacity-60 slow-zoom" data-alt="A lush, hyper-realistic macro shot of ancient botanical herbs and deep green moss in a misty, enchanted forest at dawn. The lighting is ethereal and soft, with delicate dewdrops clinging to dark, textured leaves, creating a mood of mystery and purity. The overall color palette is dominated by deep forest greens and organic earthy tones, maintaining a high-end minimalist apothecary aesthetic with high contrast and tactile detail." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBod7INDPtUdvgepRW-uC_YHdYlmOTLS5zzBQsrcgbc-b3wsYZF3olfD9UOxSxAuHfTuH7jyc6Fbjc1m2KGDlZTeCil9g-a01ZXSLJAfqO7XpT6C2xSptI4SDxPE1NUIWuE6aHVseQTF0LjEoy8qewXkVm6QtSmvtDDgJ_Gv0IzqUY1Q7Wvx_KRTI_LrvEvp1TXd3Zp8Tarmb8TzpQnGdPIlREJ_CZkC3x2HIrkdzmgE0WHdqhjcnfnPkDD8HKdxbZzrktuYaEP0URE"/>
+<div class="absolute inset-0 overlay-gradient"></div>
+</div>
+<!-- Branding & CTA Content -->
+<div class="relative z-10 flex flex-col items-center text-center px-6">
+<!-- Minimal Branding -->
+<div class="mb-12 opacity-0 fade-in-up" style="animation-delay: 0.3s;">
+<span class="text-on-primary font-label-caps text-label-caps uppercase tracking-[0.4em] block mb-4">Established in Heritage</span>
+<h1 class="text-on-primary font-display-lg text-display-lg md:text-[80px] leading-none">
+                    Nature's Alchemist
+                </h1>
+</div>
+<!-- Descriptive Text -->
+<div class="max-w-xl mb-10 opacity-0 fade-in-up" style="animation-delay: 0.7s;">
+<p class="text-on-primary/80 font-body-md text-body-md italic tracking-wide leading-relaxed">
+                    A sanctuary where ancient herbal wisdom meets contemporary refinement. <br class="hidden md:block"/>
+                    Harnessing the raw potency of the botanical world for the modern conscious soul.
+                </p>
+</div>
+<!-- Primary Action -->
+<div class="opacity-0 fade-in-up" style="animation-delay: 1.1s;">
+<button class="group relative overflow-hidden px-10 py-5 bg-on-primary text-brand-green font-label-caps text-label-caps uppercase border border-transparent hover:bg-transparent hover:text-on-primary hover:border-on-primary transition-all duration-500 active:scale-95" onclick="enterSanctuary()">
+<span class="relative z-10">Enter the Sanctuary</span>
+<div class="absolute inset-0 bg-primary-fixed transform translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
+</button>
+</div>
+<!-- Decorative Element -->
+<div class="mt-20 opacity-0 fade-in-up" style="animation-delay: 1.5s;">
+<div class="w-[1px] h-24 bg-gradient-to-b from-on-primary/60 to-transparent mx-auto"></div>
+</div>
+</div>
+<!-- Bottom Status -->
+<div class="absolute bottom-8 left-12 right-12 flex justify-between items-center text-on-primary/50 opacity-0 fade-in-up" style="animation-delay: 1.8s;">
+<div class="flex items-center gap-4">
+<span class="font-label-caps text-[9px] tracking-widest uppercase">Pure Ingredients</span>
+<span class="w-1.5 h-1.5 rounded-full bg-on-primary/20"></span>
+<span class="font-label-caps text-[9px] tracking-widest uppercase">Ethical Sourcing</span>
+</div>
+<div class="hidden md:block">
+<span class="font-label-caps text-[9px] tracking-widest uppercase">2024 Botanical Archive</span>
+</div>
+</div>
+</main>
+<!-- Post-Entry Sanctuary Canvas (Initially Hidden) -->
+<section class="hidden opacity-0 fixed inset-0 z-50 bg-background overflow-y-auto reveal-sanctuary" id="main-content">
+<!-- This area would be populated in subsequent phases, 
+             for now it acts as the destination of the "Enter" action -->
+<div class="min-h-screen flex items-center justify-center p-container-margin">
+<div class="text-center">
+<h2 class="font-display-lg text-headline-lg text-brand-green mb-4">Welcome to the Apothecary</h2>
+<p class="font-body-md text-on-surface-variant max-w-md mx-auto">The essence of Nature's Alchemist is unfolding before you...</p>
+<button class="mt-8 text-brand-green font-label-caps text-label-caps uppercase underline underline-offset-8 decoration-1" onclick="location.reload()">Return to Threshold</button>
+</div>
+</div>
+</section>
+<!-- Micro-interactions Script -->
+<script>
+        function enterSanctuary() {
+            const splash = document.getElementById('splash-container');
+            const main = document.getElementById('main-content');
+            
+            // Fade out splash
+            splash.style.opacity = '0';
+            splash.style.transform = 'scale(1.05)';
+            
+            setTimeout(() => {
+                splash.classList.add('hidden');
+                main.classList.remove('hidden');
+                
+                // Allow layout to calculate before fade-in
+                requestAnimationFrame(() => {
+                    main.style.opacity = '1';
+                });
+                
+                // Change body overflow to allow scrolling in main content
+                document.body.classList.remove('overflow-hidden');
+            }, 1500);
+        }
+
+        // Mouse move parallax effect for background
+        document.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX - window.innerWidth / 2) / 100;
+            const moveY = (e.clientY - window.innerHeight / 2) / 100;
+            const img = document.querySelector('.slow-zoom');
+            if (img) {
+                img.style.transform = `scale(1.1) translate(${moveX}px, ${moveY}px)`;
+            }
+        });
+    </script>
+</body></html>

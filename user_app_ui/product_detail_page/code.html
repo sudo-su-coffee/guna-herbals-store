@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Herbal Store - Product Detail</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#14b84b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#112116",
+                        "surface-dark": "#1a2c22", 
+                        "text-beige": "#e3eadd",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "2xl": "2rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar hiding */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display overflow-hidden">
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-hidden max-w-md mx-auto shadow-2xl">
+<!-- Main Scrollable Content -->
+<main class="flex-1 overflow-y-auto no-scrollbar pb-[160px] relative z-0">
+<!-- Hero Section with Absolute Header -->
+<div class="relative w-full h-[420px] bg-surface-dark">
+<div class="absolute inset-0 w-full h-full bg-cover bg-center" data-alt="Close up of dried organic green tea leaves in a wooden bowl" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBoFdx7cbT4Gd8E9gys05rP1Ppk4GJveHbvVYPA9CobYQdRH79n_bD-7lkv6cmKpe9rzlubhX61o5NbCBxFqwOFAPzKidTFgQDgY9KIuPzZlySiiFMFH_EVNpqW4HsOf0AMNqNmecZ3psEkz6RuwXv5JcGDfbFrbgHKLwq0EbEMjBh54Vic3lFaDhPQMbgBR7JkcJLO7JQyPftiBE8BSST_nycMMbL1PgbgqQ3VDQgQjJgMWeo4S1rFSCMO5tDGryx35rDxXR0r-kqz");'>
+</div>
+<!-- Gradient Overlay for text readability at top -->
+<div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-transparent h-32"></div>
+<!-- Floating Header -->
+<div class="absolute top-0 left-0 right-0 flex items-center justify-between p-4 pt-6 z-20">
+<button class="flex items-center justify-center size-10 rounded-full bg-black/20 backdrop-blur-md text-white hover:bg-black/30 transition-colors">
+<span class="material-symbols-outlined text-[24px]">arrow_back</span>
+</button>
+<div class="flex gap-3">
+<button class="flex items-center justify-center size-10 rounded-full bg-black/20 backdrop-blur-md text-white hover:bg-black/30 transition-colors">
+<span class="material-symbols-outlined text-[24px]">share</span>
+</button>
+<button class="flex items-center justify-center size-10 rounded-full bg-black/20 backdrop-blur-md text-white hover:bg-black/30 transition-colors">
+<span class="material-symbols-outlined text-[24px]">favorite</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Details Sheet -->
+<div class="relative -mt-10 rounded-t-[2rem] bg-background-light dark:bg-background-dark px-6 pt-8 pb-4 border-t border-white/5 shadow-[0_-10px_40px_rgba(0,0,0,0.2)]">
+<!-- Title & Price -->
+<div class="flex justify-between items-start mb-2">
+<h1 class="text-3xl font-bold leading-tight text-slate-900 dark:text-white flex-1 pr-4">Organic Peppermint Tea</h1>
+<div class="flex flex-col items-end">
+<span class="text-2xl font-bold text-primary">$18.50</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">100g pack</span>
+</div>
+</div>
+<!-- Rating Summary (Compact) -->
+<div class="flex items-center gap-2 mb-6 cursor-pointer">
+<div class="flex gap-0.5 text-primary">
+<span class="material-symbols-outlined text-[18px] fill-current">star</span>
+<span class="material-symbols-outlined text-[18px] fill-current">star</span>
+<span class="material-symbols-outlined text-[18px] fill-current">star</span>
+<span class="material-symbols-outlined text-[18px] fill-current">star</span>
+<span class="material-symbols-outlined text-[18px] fill-current">star_half</span>
+</div>
+<span class="text-sm font-semibold text-slate-900 dark:text-white">4.8</span>
+<span class="text-sm text-slate-500 dark:text-slate-400 underline decoration-slate-500/50 underline-offset-4">(120 Reviews)</span>
+</div>
+<!-- Description -->
+<div class="mb-8">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Description</h3>
+<p class="text-slate-600 dark:text-text-beige/80 text-base leading-relaxed font-body">
+                        Sourced from the foothills of the Himalayas, our organic peppermint leaves provide a refreshing, caffeine-free boost. Perfectly hand-picked to ensure the highest quality aroma and taste.
+                    </p>
+<button class="mt-2 text-primary text-sm font-bold flex items-center gap-1">
+                        Read more <span class="material-symbols-outlined text-[16px]">expand_more</span>
+</button>
+</div>
+<!-- Quantity & Weight Selector -->
+<div class="grid grid-cols-2 gap-4 mb-8">
+<!-- Quantity -->
+<div class="flex flex-col gap-2">
+<span class="text-sm font-medium text-slate-500 dark:text-slate-400">Quantity</span>
+<div class="flex items-center bg-white dark:bg-surface-dark rounded-xl p-1 w-fit border border-slate-200 dark:border-white/5">
+<button class="size-10 flex items-center justify-center rounded-lg hover:bg-slate-100 dark:hover:bg-white/5 text-slate-600 dark:text-white transition-colors">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<span class="w-8 text-center font-bold text-slate-900 dark:text-white">1</span>
+<button class="size-10 flex items-center justify-center rounded-lg bg-primary text-white shadow-md">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+<!-- Weight Dropdown -->
+<div class="flex flex-col gap-2">
+<span class="text-sm font-medium text-slate-500 dark:text-slate-400">Weight</span>
+<button class="h-[48px] w-full flex items-center justify-between px-4 bg-white dark:bg-surface-dark rounded-xl border border-slate-200 dark:border-white/5 text-slate-900 dark:text-white">
+<span class="font-semibold">100g</span>
+<span class="material-symbols-outlined">keyboard_arrow_down</span>
+</button>
+</div>
+</div>
+<!-- Reviews Snapshot -->
+<div class="mb-8">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Reviews</h3>
+<a class="text-primary text-sm font-bold" href="#">See All</a>
+</div>
+<!-- Single Review Card -->
+<div class="p-4 rounded-xl bg-white dark:bg-surface-dark border border-slate-200 dark:border-white/5">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-slate-200 dark:bg-white/10 overflow-hidden bg-cover bg-center" data-alt="Portrait of a smiling woman" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB6K9Gqr-3b3Cny9QdgPyvdFChd3eECfyxzVvycN2oZY7Dj_ovOuosEJjLP9xKi6LqNHJqjD_RJ1PL2zF23f3_4WURuMyON55e3xDsSjO7VYf2F-yui6Ook8bedmv_XhEbiKW1uEZOMQvb-oGQGf8A5tNliEzFJ-psewJLimaq2btka0qneiHG2W2q3cOdFmMM3HQ0q8pFslwi729tst3e0ht_ISzoZ8qi4x0v_xLZl1iQz8BJsQ5VpraZjGTOtCze7lQZ_Z9cApe8H");'></div>
+<span class="text-sm font-bold text-slate-900 dark:text-white">Sarah M.</span>
+</div>
+<span class="text-xs text-slate-400">2 days ago</span>
+</div>
+<div class="flex gap-0.5 text-primary mb-2 text-xs">
+<span class="material-symbols-outlined text-[14px] fill-current">star</span>
+<span class="material-symbols-outlined text-[14px] fill-current">star</span>
+<span class="material-symbols-outlined text-[14px] fill-current">star</span>
+<span class="material-symbols-outlined text-[14px] fill-current">star</span>
+<span class="material-symbols-outlined text-[14px] fill-current">star</span>
+</div>
+<p class="text-sm text-slate-600 dark:text-text-beige/80">Absolutely love this tea! It's so fresh and calming.</p>
+</div>
+</div>
+<!-- Related Products -->
+<div class="mb-4">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">You might also like</h3>
+<div class="flex overflow-x-auto no-scrollbar gap-4 pb-4 -mx-6 px-6">
+<!-- Product 1 -->
+<div class="min-w-[160px] flex flex-col gap-3">
+<div class="aspect-[4/5] w-full rounded-2xl bg-surface-dark overflow-hidden relative group">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Jar of Chamomile flowers" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC0oS4J5cd9Mrby7_mtzD5VjYLDUn_YPL_ysBtaeO2U2q7JwKCymBUSwCo_VnolmWW3RFcMwyeYOgfmIIRQ57Fljt-7vHzKgWzAa_wUBLIRZZEwd2iE7rj0_wugyMohbm1SjiRVO3JNM29LwSIs9pz2txL9fN-wZxIyNFuEK8kscTj9rKBV9doUmCRVIEI6o46TeMqzJf5iIorspEBWc3pnQvnmOFHcFxMLMSH4UYQaHjJVnZYjCePSHFjeBZYmjyt2dLrBU1fm7AUA");'></div>
+<div class="absolute top-2 right-2 p-1.5 bg-black/40 backdrop-blur-sm rounded-full text-white">
+<span class="material-symbols-outlined text-[16px] block">favorite</span>
+</div>
+</div>
+<div>
+<h4 class="text-slate-900 dark:text-white font-semibold truncate">Chamomile Flower</h4>
+<p class="text-slate-500 dark:text-slate-400 text-sm">$12.00</p>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="min-w-[160px] flex flex-col gap-3">
+<div class="aspect-[4/5] w-full rounded-2xl bg-surface-dark overflow-hidden relative group">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Ashwagandha root powder in a bowl" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCm7paiHAcQIUNoKmHwBgW9ghFLTipl06ie_oxjcSRcGH5cAoVYC-dcwQR0L3m7d4e5aTdtQbBQkH_sVxGj96EKEHNqpThP1zvx4_3u_exTRyfmMfFr-YCYlIroPN_qgpvygWQpZ-_C1FwkLTIjcGyBjRSwmigAxYvSGZZ1y6W0eJ1poXKNWSOH3iKXb2-nmDkR6wd_53xbx4-bBhef_JV9VwoEbCKwfpZI1lRDxnD8ka0Z1Nrf_lDNvHrdJantd_QRur2WaO3IdtNm");'></div>
+<div class="absolute top-2 right-2 p-1.5 bg-black/40 backdrop-blur-sm rounded-full text-white">
+<span class="material-symbols-outlined text-[16px] block">favorite</span>
+</div>
+</div>
+<div>
+<h4 class="text-slate-900 dark:text-white font-semibold truncate">Ashwagandha Root</h4>
+<p class="text-slate-500 dark:text-slate-400 text-sm">$22.50</p>
+</div>
+</div>
+<!-- Product 3 -->
+<div class="min-w-[160px] flex flex-col gap-3">
+<div class="aspect-[4/5] w-full rounded-2xl bg-surface-dark overflow-hidden relative group">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Lemon balm tea leaves" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBJ6zEH7ZijtQS3cIRrUnk9YGDAL4N_ywp5GN8aL8wcr4Yv5z2i_HbjvLUb-f_PUHWoVtXRp2IgP7L1_KOKpMXIXYayZdW1_ZD6deBUBbAVKlBLacnlbtxiXOFtgrkjqw1jENX16b1Hk6zZZ7ah4RmCvRaCMomoC44D2ET74LBIOneggT6rhCtgmoTINTgnMFuUbwoSz8Np3FYCiWSw5wGk0joZc5FLde3wdD1IVw5NRniX9tJIxEwJzNvRCDpY_hZg_Sq7Hq23_gyt");'></div>
+<div class="absolute top-2 right-2 p-1.5 bg-black/40 backdrop-blur-sm rounded-full text-white">
+<span class="material-symbols-outlined text-[16px] block">favorite</span>
+</div>
+</div>
+<div>
+<h4 class="text-slate-900 dark:text-white font-semibold truncate">Lemon Balm</h4>
+<p class="text-slate-500 dark:text-slate-400 text-sm">$15.00</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Fixed Action Bar (Add to Cart) -->
+<div class="fixed bottom-[80px] left-0 right-0 p-4 pt-0 bg-gradient-to-t from-background-light via-background-light to-transparent dark:from-background-dark dark:via-background-dark dark:to-transparent z-20 pointer-events-none flex justify-center max-w-md mx-auto">
+<div class="w-full pointer-events-auto shadow-2xl shadow-black/50 rounded-2xl">
+<button class="flex items-center justify-between w-full p-1 pl-6 pr-2 bg-primary rounded-2xl h-[64px] group active:scale-[0.98] transition-transform">
+<div class="flex flex-col items-start">
+<span class="text-[10px] font-bold uppercase tracking-wider text-white/80">Total Price</span>
+<span class="text-xl font-bold text-white">$18.50</span>
+</div>
+<div class="flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm rounded-xl px-6 h-12">
+<span class="text-white font-bold tracking-wide">Add to Cart</span>
+<span class="material-symbols-outlined text-white">shopping_bag</span>
+</div>
+</button>
+</div>
+</div>
+<!-- Fixed Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 right-0 bg-white dark:bg-[#0c1610] border-t border-slate-200 dark:border-white/5 px-6 h-[80px] flex items-center justify-between z-30 max-w-md mx-auto">
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined text-[24px] group-hover:-translate-y-0.5 transition-transform">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined text-[24px] fill-current">grid_view</span>
+<span class="text-[10px] font-bold">Categories</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-primary transition-colors group relative" href="#">
+<div class="relative">
+<span class="material-symbols-outlined text-[24px] group-hover:-translate-y-0.5 transition-transform">shopping_cart</span>
+<span class="absolute -top-1 -right-1 flex size-3 items-center justify-center rounded-full bg-primary text-[8px] font-bold text-white">2</span>
+</div>
+<span class="text-[10px] font-medium">Cart</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined text-[24px] group-hover:-translate-y-0.5 transition-transform">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</a>
+</nav>
+</div>
+</body></html>

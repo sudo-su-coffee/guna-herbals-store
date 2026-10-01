@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Apothecary Categories</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&amp;family=Noto+Sans:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#11d442",
+                        "background": "#fbf9f8",
+                        "surface": "#f5f3f2",
+                        "text-primary": "#0f1f1c",
+                        "text-secondary": "#4a5d58",
+                        "text-muted": "#7a8a85",
+                        "border-light": "#e8e5e3",
+                    },
+                    fontFamily: {
+                        "display": ["Epilogue", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for horizontal scrolling */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-background text-text-primary font-display overflow-x-hidden antialiased selection:bg-primary selection:text-white">
+<div class="relative flex h-auto min-h-screen w-full flex-col max-w-md mx-auto shadow-2xl overflow-hidden bg-background">
+<!-- Header Section -->
+<header class="sticky top-0 z-20 bg-background/95 backdrop-blur-md pt-safe-top">
+<div class="flex items-center justify-between p-4 pb-2">
+<!-- Back Button -->
+<button class="flex size-10 items-center justify-center rounded-full hover:bg-black/5 transition-colors">
+<span class="material-symbols-outlined text-text-primary" style="font-size: 24px;">arrow_back</span>
+</button>
+<h2 class="text-text-primary text-lg font-bold leading-tight tracking-tight flex-1 text-center">Browse Apothecary</h2>
+<!-- Notification -->
+<button class="flex size-10 items-center justify-center rounded-full hover:bg-black/5 transition-colors relative">
+<span class="material-symbols-outlined text-text-primary" style="font-size: 24px;">notifications</span>
+<span class="absolute top-2.5 right-2.5 size-2 bg-primary rounded-full border-2 border-background"></span>
+</button>
+</div>
+<!-- Search Bar -->
+<div class="px-4 pb-4">
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-text-muted transition-colors group-focus-within:text-primary" style="font-size: 24px;">search</span>
+</div>
+<input class="block w-full pl-12 pr-4 py-3.5 bg-surface border-none rounded-full text-sm font-medium text-text-primary placeholder-text-muted focus:ring-2 focus:ring-primary focus:outline-none transition-all shadow-sm" placeholder="Find your remedy..." type="text"/>
+</div>
+</div>
+<!-- Quick Filters -->
+<div class="flex gap-2 px-4 pb-4 overflow-x-auto hide-scrollbar snap-x">
+<button class="snap-start shrink-0 h-9 px-5 rounded-full bg-text-primary text-white text-sm font-bold shadow-sm">
+                    All
+                </button>
+<button class="snap-start shrink-0 h-9 px-5 rounded-full bg-white border border-border-light text-text-secondary text-sm font-medium whitespace-nowrap hover:border-primary transition-colors">
+                    Oils
+                </button>
+<button class="snap-start shrink-0 h-9 px-5 rounded-full bg-white border border-border-light text-text-secondary text-sm font-medium whitespace-nowrap hover:border-primary transition-colors">
+                    Teas
+                </button>
+<button class="snap-start shrink-0 h-9 px-5 rounded-full bg-white border border-border-light text-text-secondary text-sm font-medium whitespace-nowrap hover:border-primary transition-colors">
+                    Supplements
+                </button>
+<button class="snap-start shrink-0 h-9 px-5 rounded-full bg-white border border-border-light text-text-secondary text-sm font-medium whitespace-nowrap hover:border-primary transition-colors">
+                    Dried Herbs
+                </button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 px-4 pb-24">
+<!-- Featured Category -->
+<div class="mb-6 relative overflow-hidden rounded-2xl h-48 group cursor-pointer shadow-sm">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Dark green leafy vegetables and herbs arrangement" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD6xQWwPg3o8Mxv8TTSWu83jLcT2EWqHHD9ZY7IBoNYlTWvJ3SZbLL3n52FtEsxXimF5RLH9LnnHjBYh79ZcduJ5M2PRwBZTRP4wn_eHxv5i3NB6G4judE18BmR3l5eq3h79_XaGi-PIoX7VmVOOZa1vBWb9ezQulRoH44fu58AiH6krh0M_iMsqt_K0ZxLT85Npla5Uj_zgHHkXkg3lEdEQRzNV4V86nHxeaxpVxSH56FHSXeu6ntm6sma7DCBxk83QLg4TOF8bODi');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-text-primary/80 via-text-primary/10 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-5 w-full flex justify-between items-end">
+<div>
+<span class="inline-block px-2 py-0.5 mb-2 rounded text-[10px] font-bold uppercase tracking-wider bg-primary text-white">Trending</span>
+<h3 class="text-2xl font-bold text-white mb-0.5">Seasonal Detox</h3>
+<p class="text-white/80 text-sm line-clamp-1">Cleansing herbs for a fresh start</p>
+</div>
+<div class="size-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all text-white border border-white/20">
+<span class="material-symbols-outlined" style="font-size: 20px;">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Categories Grid -->
+<h3 class="text-text-primary font-bold text-lg mb-4">Shop by Category</h3>
+<div class="grid grid-cols-2 gap-4">
+<!-- Category Item 1: Wellness -->
+<a class="group relative flex flex-col gap-3 rounded-2xl bg-surface border border-border-light p-3 transition-all hover:shadow-md hover:border-primary/30 active:scale-[0.98]" href="#">
+<div class="relative w-full aspect-square rounded-xl overflow-hidden bg-white">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Bottles of essential oils with soft lighting" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBPuLmwzviz7E--oeRuOlJ6tUPf3-WfKkdoUqYWpg3vAFpZOE1HHCOxRz_rsk7bMSgl4Rxpe-WDWZ80YFpLpSeNFRdFMlsxkwJV9YByB2OfAZcF1SHNzAB9W0UP-2d3TiSu18zXSTJnIIJ4qYJX2nkrENggK5IIK6CWx9er_PxLKraqiqF9_46ThxmQBPUJekzcZnHbvEATpIv7im_CIk4jBcdCVONWBg_ZZ_tz2WCBjFbsGGFYTXsyZi7RDu4bqnBPmxqdz_8Ht3yi');"></div>
+<div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors"></div>
+</div>
+<div class="flex items-start justify-between px-1">
+<div>
+<p class="text-text-primary text-base font-bold leading-tight">Wellness</p>
+<p class="text-text-secondary text-xs font-normal mt-0.5">Immunity support</p>
+</div>
+</div>
+</a>
+<!-- Category Item 2: Digestion -->
+<a class="group relative flex flex-col gap-3 rounded-2xl bg-surface border border-border-light p-3 transition-all hover:shadow-md hover:border-primary/30 active:scale-[0.98]" href="#">
+<div class="relative w-full aspect-square rounded-xl overflow-hidden bg-white">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Ginger roots and turmeric on wooden table" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuASaisIOxnkjsFQyvHPGTzzXIZt9UBgL4C85zGF8jh-TU2qcZpKPYOXwcal44WTlSufOeisjCd59NE4HgmyX9NT-I444EW0Qy2faVNMpm54x3Zjos1ItK1TnHGEuZAYoxG-AVLfDe0RuLYfscEZmoMp2fZ5Lf-vaMbhUBQxwE9C6ALClUWFeLMuSag_3cGrdLPsNdhMqXJn1bV3U_AWR_Q-KQqjrX9NTYRlP019jGqkZcAPUDYqDpwuqJlOtc1HiaiQMlkjCfVRBPVC');"></div>
+<div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors"></div>
+</div>
+<div class="flex items-start justify-between px-1">
+<div>
+<p class="text-text-primary text-base font-bold leading-tight">Digestion</p>
+<p class="text-text-secondary text-xs font-normal mt-0.5">Gut health roots</p>
+</div>
+</div>
+</a>
+<!-- Category Item 3: Relaxation -->
+<a class="group relative flex flex-col gap-3 rounded-2xl bg-surface border border-border-light p-3 transition-all hover:shadow-md hover:border-primary/30 active:scale-[0.98]" href="#">
+<div class="relative w-full aspect-square rounded-xl overflow-hidden bg-white">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Dried lavender bundle on rustic surface" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAQc3ZxPOlpXcbecWEUvvy3bqGM1dagFaiWfbml3j2LDsOptRiyOw-XHpJGWXtIm0bRKEGff1JifeWs16Ocbq-S3GkNMioKbFRJyxZU_s1AdKKRLYlchMeRENrosxVKwbkkTqIfN_UFHP-UPXD4zg_wDpYcJJv5-SM0sU-nYA3AxFrgFIfc1bLGiuqqM0HSrd3Yg7rmSEMHiPee7uiS4lRx3w2JVgVr5BvGYV03upr6PwZRYZui3uD9qJ9Z5O5_1s3G14fxvsVTTG9r');"></div>
+<div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors"></div>
+</div>
+<div class="flex items-start justify-between px-1">
+<div>
+<p class="text-text-primary text-base font-bold leading-tight">Relaxation</p>
+<p class="text-text-secondary text-xs font-normal mt-0.5">Stress relief</p>
+</div>
+</div>
+</a>
+<!-- Category Item 4: Apothecary -->
+<a class="group relative flex flex-col gap-3 rounded-2xl bg-surface border border-border-light p-3 transition-all hover:shadow-md hover:border-primary/30 active:scale-[0.98]" href="#">
+<div class="relative w-full aspect-square rounded-xl overflow-hidden bg-white">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Vintage glass tincture bottles on shelf" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDeIWubZfEAU82amU_c_p2Mv6CM2vehdlclq6G-18E51rB8FkPgxlB4OKh4DV0Must9Iu-ibfJ1068MHGfQDCarwnuhtnWN1DJC3NQFIZmbvG3QMVDz4ArAjJBQX-C6LhfcZhbPYtjqYS9ypV7Mttx7J5zkNaJ6AiQKHdush6AQcSrkUZS_YNFrOU7qt8O3wJk1THAzNLndI_bPTz-kdO97ntljFLaW1PiXGnwf1BxFVQFjLM-zHnebHUL8jQH91uh56h4Wk2Z3V35M');"></div>
+<div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors"></div>
+</div>
+<div class="flex items-start justify-between px-1">
+<div>
+<p class="text-text-primary text-base font-bold leading-tight">Apothecary</p>
+<p class="text-text-secondary text-xs font-normal mt-0.5">Tinctures &amp; more</p>
+</div>
+</div>
+</a>
+<!-- Category Item 5: Essentials -->
+<a class="group relative flex flex-col gap-3 rounded-2xl bg-surface border border-border-light p-3 transition-all hover:shadow-md hover:border-primary/30 active:scale-[0.98]" href="#">
+<div class="relative w-full aspect-square rounded-xl overflow-hidden bg-white">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Assortment of daily vitamins and pills" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBNajwdL5B3SNV7P4k2oMNZpnuWVDNCFJjN2BbsM7gsYG-a7hFcNInV0OY7Kv4bV-mXFX6NtVEgoj2mOCbsfPmznd7MOkTUs80diFgDVLM2_OTSnizcqth9Pwi1fx6pvZXYGeq3hU66yfjQ2NOCaEaiZZY0vrxhC_xnw3q9ueIeC8RJ2gvJ6FfyRxTIrlhRCxNvnLidJ59x172pwhxAeo_dTUl9art2TjETAkhSqhjk9gBNS0hjcwMyrBjDYb21qsHeSbzB0ug8dL2v');"></div>
+<div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors"></div>
+</div>
+<div class="flex items-start justify-between px-1">
+<div>
+<p class="text-text-primary text-base font-bold leading-tight">Essentials</p>
+<p class="text-text-secondary text-xs font-normal mt-0.5">Daily vitamins</p>
+</div>
+</div>
+</a>
+<!-- Category Item 6: Carrier Oils -->
+<a class="group relative flex flex-col gap-3 rounded-2xl bg-surface border border-border-light p-3 transition-all hover:shadow-md hover:border-primary/30 active:scale-[0.98]" href="#">
+<div class="relative w-full aspect-square rounded-xl overflow-hidden bg-white">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Golden oil drop macro photography" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBqx_iz-BX9rP7dQlCLHRdzmrNeIt8x9uCeUNjoulgXQNGri_t1BucE0VNvd2M3Y5gKqxt2S4jDgSUb5hC-koTwVEVN2mF1xqiYlbm1yaQOcFPad68TYMWWidm1egYiwpipr51LkwwvX2RMoll6L9F6c2v9zIfg5ySAeLR-AWzsFF2csAgv_S-Q8wVileUMxzH64bP1EFkfzHfleTB0mzrO4gwokABur3ad7ic8FIYb18eie4op2k7pzGLewJPVLj3i4Uqd4hELOHIe');"></div>
+<div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors"></div>
+</div>
+<div class="flex items-start justify-between px-1">
+<div>
+<p class="text-text-primary text-base font-bold leading-tight">Carrier Oils</p>
+<p class="text-text-secondary text-xs font-normal mt-0.5">Base oils</p>
+</div>
+</div>
+</a>
+<!-- Category Item 7: Herbal Powders -->
+<a class="group relative flex flex-col gap-3 rounded-2xl bg-surface border border-border-light p-3 transition-all hover:shadow-md hover:border-primary/30 active:scale-[0.98]" href="#">
+<div class="relative w-full aspect-square rounded-xl overflow-hidden bg-white">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Matcha and turmeric powder spoons" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBfYxSVXQaANebfpBiB88N6wZ5D8w16qcTgzd6Be-5K_8-x6t9lW-11D34BcXfUzNRXDbDU0EijhUBkwWlMN5UYz63qj2WRQ8SifV-9bEoDqpiQzF5XxsoJXaITbCpSbiLN-uJdxboBQUBTpkW5sNU6BqMw2i_AbturV-7Uv7nmH27RAy64_07tXa9jCifGscRfm7X1WUxi7KB1hdANZy83D04WQnlVVmPbdRJDgyd5OPPwI_1_YSpkBxJOHGV2ZHq4bV-w1vOhh34z');"></div>
+<div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors"></div>
+</div>
+<div class="flex items-start justify-between px-1">
+<div>
+<p class="text-text-primary text-base font-bold leading-tight">Herbal Powders</p>
+<p class="text-text-secondary text-xs font-normal mt-0.5">Potent blends</p>
+</div>
+</div>
+</a>
+<!-- Category Item 8: Teas -->
+<a class="group relative flex flex-col gap-3 rounded-2xl bg-surface border border-border-light p-3 transition-all hover:shadow-md hover:border-primary/30 active:scale-[0.98]" href="#">
+<div class="relative w-full aspect-square rounded-xl overflow-hidden bg-white">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Loose leaf tea texture close up" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBEkNKk_qLTz-5OnxAl4gTnSdz2MSz5iTHSU4ZemNJBKLC-_he9RzL77D-XfKLO0ZXmk56d1KJ2QJGvukJc5snn30bXND3KguU0JL8NpuXJFJs4iUqbsa8YXAYgrwy1TpbJyvGXyljMQUyZMln6FMEahNsHrUUvmWsPutvKmxeyknSd4FdPFUZWAhA5dvp8EiFmQLu_Q-oifm9i5tso9vTdS9Jl_qWQtxmyC9NCHG8y1fPvcOgzYwsURQU8g7c3gWXFjW4VPU3L4_4H');"></div>
+<div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors"></div>
+</div>
+<div class="flex items-start justify-between px-1">
+<div>
+<p class="text-text-primary text-base font-bold leading-tight">Teas</p>
+<p class="text-text-secondary text-xs font-normal mt-0.5">Organic blends</p>
+</div>
+</div>
+</a>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 z-30 w-full max-w-md bg-background/95 border-t border-border-light backdrop-blur-lg pb-safe-bottom">
+<div class="flex items-center justify-around h-[72px] px-2">
+<!-- Home -->
+<a class="flex flex-col items-center justify-center w-full h-full gap-1 group" href="#">
+<span class="material-symbols-outlined text-text-muted group-hover:text-primary transition-colors" style="font-size: 24px;">home</span>
+<span class="text-[10px] font-medium text-text-muted group-hover:text-primary transition-colors">Home</span>
+</a>
+<!-- Categories (Active) -->
+<a class="flex flex-col items-center justify-center w-full h-full gap-1 group" href="#">
+<div class="bg-primary/10 px-4 py-1 rounded-full flex flex-col items-center">
+<span class="material-symbols-outlined text-primary" style="font-size: 24px; font-variation-settings: 'FILL' 1;">category</span>
+</div>
+<span class="text-[10px] font-bold text-primary">Categories</span>
+</a>
+<!-- Cart -->
+<a class="flex flex-col items-center justify-center w-full h-full gap-1 group relative" href="#">
+<div class="relative">
+<span class="material-symbols-outlined text-text-muted group-hover:text-primary transition-colors" style="font-size: 24px;">shopping_cart</span>
+<span class="absolute -top-0.5 -right-0.5 size-2 bg-primary rounded-full border-2 border-background"></span>
+</div>
+<span class="text-[10px] font-medium text-text-muted group-hover:text-primary transition-colors">Cart</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center w-full h-full gap-1 group" href="#">
+<span class="material-symbols-outlined text-text-muted group-hover:text-primary transition-colors" style="font-size: 24px;">person</span>
+<span class="text-[10px] font-medium text-text-muted group-hover:text-primary transition-colors">Profile</span>
+</a>
+</div>
+</nav>
+<!-- Safe area spacer for scroll -->
+<div class="h-4"></div>
+</div>
+</body></html>

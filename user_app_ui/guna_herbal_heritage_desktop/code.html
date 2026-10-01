@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nature's Alchemist | Guna Herbal Heritage</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Shared Components JSON Logic applied via Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "surface": "#fbf9f8",
+                "on-secondary-fixed-variant": "#474742",
+                "on-secondary": "#ffffff",
+                "secondary": "#5f5e59",
+                "tertiary": "#000201",
+                "surface-container-high": "#eae8e6",
+                "outline-variant": "#c2c8c5",
+                "surface-container": "#efedec",
+                "on-primary-fixed-variant": "#3a4a46",
+                "inverse-primary": "#b8cac5",
+                "surface-variant": "#e4e2e1",
+                "secondary-container": "#e5e2db",
+                "on-tertiary-container": "#7f8682",
+                "surface-container-low": "#f5f3f2",
+                "on-primary-fixed": "#0e1e1b",
+                "on-tertiary-fixed-variant": "#414845",
+                "outline": "#727876",
+                "secondary-fixed-dim": "#c9c6c0",
+                "primary": "#000101",
+                "tertiary-fixed": "#dde4df",
+                "tertiary-fixed-dim": "#c1c8c3",
+                "secondary-fixed": "#e5e2db",
+                "inverse-surface": "#303030",
+                "on-secondary-fixed": "#1c1c18",
+                "surface-dim": "#dbdad8",
+                "surface-container-lowest": "#ffffff",
+                "surface-bright": "#fbf9f8",
+                "error": "#ba1a1a",
+                "on-primary-container": "#778884",
+                "surface-card": "#ffffff",
+                "on-tertiary-fixed": "#161d1a",
+                "on-error": "#ffffff",
+                "on-error-container": "#93000a",
+                "on-secondary-container": "#65645f",
+                "inverse-on-surface": "#f2f0ef",
+                "on-surface": "#1b1c1b",
+                "on-surface-variant": "#424846",
+                "text-muted": "rgba(15, 31, 28, 0.6)",
+                "background": "#fbf9f8",
+                "status-sale": "#0f1f1c",
+                "primary-container": "#0f1f1c",
+                "on-tertiary": "#ffffff",
+                "primary-fixed-dim": "#b8cac5",
+                "on-background": "#1b1c1b",
+                "error-container": "#ffdad6",
+                "brand-green": "#1a2e29",
+                "surface-tint": "#51625e",
+                "tertiary-container": "#171e1b",
+                "primary-fixed": "#d4e6e1",
+                "on-primary": "#ffffff",
+                "surface-container-highest": "#e4e2e1",
+                "border-subtle": "rgba(255, 255, 255, 0.1)"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+            },
+            "spacing": {
+                "section-gap-sm": "2.5rem",
+                "element-gap": "0.5rem",
+                "container-margin": "1.5rem",
+                "grid-gutter": "1rem",
+                "section-gap-lg": "5rem"
+            },
+            "fontFamily": {
+                "price-tag": ["Noto Sans"],
+                "headline-md": ["Playfair Display"],
+                "headline-lg": ["Playfair Display"],
+                "label-caps": ["Noto Sans"],
+                "display-lg": ["Playfair Display"],
+                "body-md": ["Noto Sans"]
+            },
+            "fontSize": {
+                "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+      }
+      .perspective-1000 { perspective: 1000px; }
+      .rotate-y-12 { transform: rotateY(12deg); }
+      .glass-effect {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+      }
+      .mask-vignette {
+        mask-image: radial-gradient(circle, black 50%, transparent 100%);
+      }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-container-margin py-4 bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container">
+<div class="font-headline-md text-headline-md text-on-primary dark:text-on-primary-container uppercase tracking-widest">
+            Nature's Alchemist
+        </div>
+<nav class="hidden md:flex gap-8 items-center font-body-md text-body-md">
+<a class="text-on-primary-container/80 dark:text-on-primary-container/70 hover:text-on-primary transition-colors duration-300" href="#">Shop All</a>
+<a class="text-on-primary border-b border-on-primary pb-1 transition-colors duration-300" href="#">Rituals</a>
+<a class="text-on-primary-container/80 dark:text-on-primary-container/70 hover:text-on-primary transition-colors duration-300" href="#">Heritage</a>
+<a class="text-on-primary-container/80 dark:text-on-primary-container/70 hover:text-on-primary transition-colors duration-300" href="#">Sourcing</a>
+</nav>
+<div class="flex gap-6 items-center">
+<span class="material-symbols-outlined cursor-pointer hover:opacity-80 transition-all" data-icon="person">person</span>
+<span class="material-symbols-outlined cursor-pointer hover:opacity-80 transition-all" data-icon="shopping_cart">shopping_cart</span>
+</div>
+</header>
+<main class="pt-20">
+<!-- Hero Section: The Guna Spirit -->
+<section class="relative h-[921px] flex items-center justify-center overflow-hidden bg-primary">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-60" data-alt="A moody, high-contrast photograph of lush, mist-covered mountains in Tenkasi, Southern India. The atmosphere is serene and ancient, with deep greens and earthy browns dominating the landscape. Soft, diffused morning light breaks through heavy clouds, highlighting the texture of the tropical foliage and distant waterfalls. The image conveys a sense of deep heritage and the raw purity of botanical sourcing." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZY--aljsXddQgF4tUDU--DpCxCe0M1fX1sOv0HG2wXr1hts0-0EdfXV5IKx0xrIROhgGhVNkHLg1ho98YXhrJpZ3snTcSSjnF7kCqvOS3PykI4d5U1proP3XN8Sn6g0cmvDd-1KKY6TBwJB6S8LRqQdZ6TC1L1hFzb0AAWQu9KUs3N9XBVrLcsllGMBulPnyvu3NYHc-56qBNvodmrTkfkkkj6OOIiq4VDSp9CBhQxaQs1v1KVPGbFhN403wtRX_UHo5StI-RLZIX"/>
+<div class="absolute inset-0 bg-gradient-to-b from-transparent to-primary/80"></div>
+</div>
+<div class="relative z-10 text-center px-container-margin max-w-4xl">
+<span class="font-label-caps text-label-caps text-primary-fixed tracking-[0.3em] uppercase block mb-6">The Soul of Tenkasi</span>
+<h1 class="font-display-lg text-display-lg text-on-primary leading-tight mb-8">Guna Herbal Heritage</h1>
+<p class="font-body-md text-body-md text-on-primary/80 max-w-2xl mx-auto mb-10 italic">
+                    "From the red soil of our ancestors to the glass bottles on your shelf, every infusion carries the heartbeat of the Western Ghats."
+                </p>
+<button class="bg-surface text-primary px-10 py-4 font-label-caps text-label-caps tracking-widest hover:bg-surface-variant transition-all duration-300">
+                    EXPLORE THE ARCHIVE
+                </button>
+</div>
+</section>
+<div class="flex">
+<!-- Side Navigation Anchor -->
+<aside class="hidden lg:flex flex-col h-screen sticky top-20 pt-10 px-8 w-64 bg-surface-container-low border-r border-outline-variant">
+<div class="mb-12">
+<h2 class="font-headline-md text-headline-md text-primary mb-1">Collections</h2>
+<p class="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-tighter">Pure. Potent. Proven.</p>
+</div>
+<nav class="flex flex-col gap-6">
+<a class="flex items-center gap-3 text-primary font-bold border-l-2 border-primary pl-4 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="spa">spa</span>
+<span class="font-label-caps text-label-caps">APOTHECARY</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant pl-4 hover:bg-surface-variant/20 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="face">face</span>
+<span class="font-label-caps text-label-caps">SKINCARE</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant pl-4 hover:bg-surface-variant/20 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="pill">pill</span>
+<span class="font-label-caps text-label-caps">SUPPLEMENTS</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant pl-4 hover:bg-surface-variant/20 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="potted_plant">potted_plant</span>
+<span class="font-label-caps text-label-caps">HOME FRAGRANCE</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant pl-4 hover:bg-surface-variant/20 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="redeem">redeem</span>
+<span class="font-label-caps text-label-caps">GIFTS</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Canvas -->
+<div class="flex-1 px-container-margin py-20 bg-surface">
+<!-- Storytelling Section: Bento Grid -->
+<section class="max-w-6xl mx-auto mb-section-gap-lg">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Founder's Story -->
+<div class="md:col-span-7 bg-surface-container-high p-12 flex flex-col justify-center relative overflow-hidden group">
+<div class="relative z-10">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-4 block">THE MAKERS</span>
+<h3 class="font-headline-lg text-headline-lg mb-6">The Custodian: Guna</h3>
+<p class="text-on-surface-variant mb-8 leading-relaxed">
+                                    For three generations, Guna’s family has tended to the rare herbs surrounding the Courtallam Falls. Our process isn't measured in hours, but in seasons. Every root is hand-cleansed in mountain stream water, preserving the volatile oils that modern industrial processes destroy.
+                                </p>
+<a class="text-primary font-bold border-b border-primary pb-1 inline-block" href="#">Read the Full Heritage Letter</a>
+</div>
+<div class="absolute -right-10 bottom-0 opacity-10 group-hover:opacity-20 transition-opacity duration-700">
+<span class="material-symbols-outlined text-[20rem]" data-icon="nature">nature</span>
+</div>
+</div>
+<!-- Process Visual -->
+<div class="md:col-span-5 h-[400px] md:h-auto">
+<img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="A close-up, tactile photograph of hands rhythmically grinding dried botanicals in a heavy stone mortar and pestle. The setting is a warm, sunlit artisan workshop with dust motes dancing in the light. The scene is grounded in a minimalist aesthetic with a soft cream background and dark wood textures. The photograph emphasizes the handcrafted, heritage quality of the herbal medicine-making process." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDj74NqxKkPbU2-Dn_kjljC5Ha-FfIYyROECchybOj9yuj-80W-5A2T4uinQpL1U1WNGtu_Pu1zaDfTBKij8mSXJe2YCYUeAt7iwkIEMzJ-spjHkCWk20Dr0-yO0fIGMtfpenMyKH02En_uOUiYA4cRW-XVXMy_6Xi7uUrGoUHElOqg-lEnrH-JYqZKjwW5MbZU7U6IxbIGJv65QYgihQFzg6xaICHB662QBCz6pQaXU4rDBH28xTmGqN96f0jvYx0VOVYWC1z7o6fs"/>
+</div>
+<!-- Sourcing Stats -->
+<div class="md:col-span-4 bg-primary text-on-primary p-10 flex flex-col items-center text-center justify-center">
+<div class="text-[4rem] font-headline-lg mb-2">100%</div>
+<p class="font-label-caps text-label-caps tracking-widest">Ethical Wildcrafting</p>
+</div>
+<!-- Product Spotlight 1 -->
+<div class="md:col-span-8 relative group cursor-pointer overflow-hidden">
+<img class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000" data-alt="A premium lifestyle shot of a dark glass tincture bottle placed on a rough, weathered stone plinth. The lighting is dramatic, high-key side lighting that casts long, elegant shadows against a warm cream backdrop. The bottle features a minimalist white label with fine black serif typography. The overall mood is one of sophisticated apothecary luxury and natural purity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHops1IuOb62Ib5xbWd1_1azKf83zgHbJG8x-MA1-T3AbX4gcpzV_u0HIc_Z9spEcsfVyHYI935kHGGrEHzT1NAo9hmpJvSLPM_RsRXZJRM0fTQhcmc1xpEA7Q97kAAeA0dzwG6RAyny77fLC9Tc6_5E3Cbpg5FRNgh0RNgfdR246L_a9MJcGXtC6EjkDHuEy38128Ym4kQQSReyYwHAE9IqGebd0pSNpBwH-mVLdtS0cr4vmiHqRRSMfkZswqVkD7HC9LfsyVPfuv"/>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
+<div class="absolute bottom-10 left-10 text-on-primary">
+<h4 class="font-headline-md text-headline-md mb-2">Brahmi Neural Oil</h4>
+<p class="font-label-caps text-label-caps">FOR MENTAL CLARITY &amp; COGNITION</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Product Catalog: Asymmetric Grid -->
+<section class="max-w-6xl mx-auto mb-section-gap-lg">
+<div class="flex justify-between items-end mb-12">
+<div>
+<span class="font-label-caps text-label-caps text-on-surface-variant block mb-2">CURATED SELECTION</span>
+<h2 class="font-headline-lg text-headline-lg">Guna’s Personal Recommendations</h2>
+</div>
+<button class="font-label-caps text-label-caps text-primary border border-outline px-6 py-2 hover:bg-primary hover:text-on-primary transition-all">VIEW ALL PRODUCTS</button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-grid-gutter">
+<!-- Product Card 1 -->
+<div class="group bg-surface-card flex flex-col p-4 shadow-sm border border-outline-variant/30">
+<div class="relative aspect-[4/5] overflow-hidden mb-6">
+<div class="absolute top-0 left-0 bg-status-sale text-on-primary px-3 py-1 font-label-caps text-[9px] z-10">NEW ARRIVAL</div>
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A minimalist product shot of a high-end organic facial serum in a frosted glass bottle. The bottle rests on a clean, light-colored wooden surface surrounded by dried sage and lavender sprigs. The background is a soft, out-of-focus cream wall, creating a serene and luxurious wellness atmosphere. The lighting is soft and natural, emphasizing the product's purity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDInjbkguh6WdsRQRqmiGYNog4DhFNTuTLTlmmwR5aP21OLjm927108GApNKDHVUMTPzeUQDHCkTssg1wDvt5bRh-uTVsY_RBg_Tikeit6Q1XoZsLxUR43yUcW_SDh71fuI9Z7U8X6063ZZNgd--ZHUdTt6irikMS_cpLsv4OZYvC6rGQNaDjQJC2tmW2_s0SDLG0cEo0noBhWOWBtbh-akQg44QpBlz8wRZsmnFsCPbYMUoO4r5CMWpl2P-f_II03DKiwjbJBdUYeB"/>
+<button class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-surface text-primary w-[80%] py-3 font-label-caps text-label-caps opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg translate-y-4 group-hover:translate-y-0">ADD TO CART</button>
+</div>
+<div class="px-2">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1 uppercase">Sourcing: Tenkasi Hills</p>
+<h3 class="font-headline-md text-headline-md mb-2">Wild Turmeric Radiance Mask</h3>
+<div class="font-price-tag text-price-tag text-primary">$58.00</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="group bg-surface-card flex flex-col p-4 shadow-sm border border-outline-variant/30">
+<div class="relative aspect-[4/5] overflow-hidden mb-6">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A luxury botanical hair oil presented in a sleek, dark amber bottle with a dropper. It is artfully staged in a minimalist spa setting with smooth river stones and a single green leaf. The palette is dominated by rich earth tones and soft whites. The lighting is dramatic and moody, highlighting the liquid's amber glow and the elegant typography of the brand label." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSjC8QB2q7ZosPRTZrBjwGU07gIApB76yJyAscPgyKFBhewrScH4yPNLzJ40OVIovGQltPXpP4xYLy1Xe1iZ-cqEvYl_5OASCwYo5u_Clcf73cCDoYHGlsMd8lx1IpZeByJADxq_w_Pj8FoV10dbQZvwyv99YuQcRDmjYxwV8Fb3hQDBZLr_2W8UjiZvtvj2d_lKjVnlLYSPucXowIU_wwJ8BA0vc4fu9QUnAgIQxS-wp9KIDEOqIyX8UvyISFL40FiF_Xa26IZIJw"/>
+<button class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-surface text-primary w-[80%] py-3 font-label-caps text-label-caps opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg translate-y-4 group-hover:translate-y-0">ADD TO CART</button>
+</div>
+<div class="px-2">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1 uppercase">The Alchemist’s Choice</p>
+<h3 class="font-headline-md text-headline-md mb-2">Hibiscus &amp; Amla Scalp Nectar</h3>
+<div class="font-price-tag text-price-tag text-primary">$42.00</div>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="group bg-surface-card flex flex-col p-4 shadow-sm border border-outline-variant/30">
+<div class="relative aspect-[4/5] overflow-hidden mb-6">
+<div class="absolute top-0 left-0 bg-primary text-on-primary px-3 py-1 font-label-caps text-[9px] z-10">HERITAGE PIECE</div>
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A group of handcrafted wooden apothecary jars and mortars arranged on a rustic wooden table in a sun-drenched Indian garden. The background is a soft-focus greenery that emphasizes the natural origins of the ingredients. The photography is clean, bright, and airy, using a minimalist-tactile aesthetic with highlights of warm wood and deep greens." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCboPpRD1IicbuZsGlslj2GYfdQW_ee5auOCrCVS6eFEz2WaVQMZQ3__jKdT7Tzk9LC3p8wWcQ4eUWWtyewHxsTk0OgGStwHFedrscL0_ytY2Z0QUFSLq_Z4K7--xkkWl5crAsIUl2wlNsSud6gJ1j7SA9JTyABCdcd8RsqQ7bY-Je-XB3mPEPaQwfsrKyAZCA6uSu3gzGPDu49TQMe9FjVHoKs0xPC3In4J65dCG0MfU3gvEfgE2MjmKXy_8aiDCuK5AMKL3VQ-0Ma"/>
+<button class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-surface text-primary w-[80%] py-3 font-label-caps text-label-caps opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg translate-y-4 group-hover:translate-y-0">ADD TO CART</button>
+</div>
+<div class="px-2">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1 uppercase">Limited Harvest</p>
+<h3 class="font-headline-md text-headline-md mb-2">Sacred Vetiver Root Infusion</h3>
+<div class="font-price-tag text-price-tag text-primary">$74.00</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Testimonial Section -->
+<section class="max-w-4xl mx-auto py-section-gap-sm bg-surface-container-low text-center px-10">
+<span class="material-symbols-outlined text-on-primary-container text-4xl mb-6" data-icon="format_quote">format_quote</span>
+<h3 class="font-headline-lg text-headline-lg italic leading-relaxed mb-8">
+                        "There is a visible reverence in Guna’s work. You can smell the earth and the rain in every drop. This isn't just skincare; it's a bridge to a world we almost forgot."
+                    </h3>
+<p class="font-label-caps text-label-caps tracking-widest text-on-surface-variant">— DR. AMARA RAO, BOTANICAL RESEARCHER</p>
+</section>
+<!-- Feature Icons Section -->
+<section class="max-w-6xl mx-auto py-section-gap-lg border-t border-outline-variant mt-section-gap-lg">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-10">
+<div class="flex flex-col items-center text-center">
+<div class="w-16 h-16 rounded-full border border-outline-variant flex items-center justify-center mb-4 text-primary">
+<span class="material-symbols-outlined text-3xl" data-icon="energy_savings_leaf">energy_savings_leaf</span>
+</div>
+<h4 class="font-label-caps text-label-caps mb-2">BIODYNAMIC</h4>
+<p class="text-[12px] text-on-surface-variant">Aligned with moon cycles</p>
+</div>
+<div class="flex flex-col items-center text-center">
+<div class="w-16 h-16 rounded-full border border-outline-variant flex items-center justify-center mb-4 text-primary">
+<span class="material-symbols-outlined text-3xl" data-icon="handyman">handyman</span>
+</div>
+<h4 class="font-label-caps text-label-caps mb-2">HAND-PROCESSED</h4>
+<p class="text-[12px] text-on-surface-variant">No industrial heat extraction</p>
+</div>
+<div class="flex flex-col items-center text-center">
+<div class="w-16 h-16 rounded-full border border-outline-variant flex items-center justify-center mb-4 text-primary">
+<span class="material-symbols-outlined text-3xl" data-icon="recycling">recycling</span>
+</div>
+<h4 class="font-label-caps text-label-caps mb-2">CIRCULAR</h4>
+<p class="text-[12px] text-on-surface-variant">100% Compostable packaging</p>
+</div>
+<div class="flex flex-col items-center text-center">
+<div class="w-16 h-16 rounded-full border border-outline-variant flex items-center justify-center mb-4 text-primary">
+<span class="material-symbols-outlined text-3xl" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<h4 class="font-label-caps text-label-caps mb-2">POTENCY</h4>
+<p class="text-[12px] text-on-surface-variant">Single-origin concentrates</p>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Call to Action Footer Section -->
+<section class="bg-primary-container text-on-primary-container py-24 text-center px-container-margin overflow-hidden relative">
+
+<div class="relative z-10 max-w-2xl mx-auto">
+<h2 class="font-display-lg text-[48px] mb-8">Join the Heritage Archive</h2>
+<p class="font-body-md text-body-md mb-10 text-on-primary-container/70">Receive seasonal reports on rare botanical availability and insights into our traditional extraction methods.</p>
+<form class="flex flex-col md:flex-row gap-4">
+<input class="flex-1 bg-transparent border-b border-on-primary-container py-3 focus:outline-none focus:border-on-primary text-on-primary font-body-md" placeholder="Your botanical journal email..." type="email"/>
+<button class="bg-surface text-primary px-8 py-3 font-label-caps text-label-caps uppercase tracking-widest hover:opacity-90 transition-all">SUBSCRIBE</button>
+</form>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-highest dark:bg-tertiary-container text-on-surface dark:text-on-tertiary-container w-full py-section-gap-sm border-t border-outline-variant">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-grid-gutter px-container-margin max-w-7xl mx-auto">
+<div>
+<div class="font-headline-lg text-headline-lg text-primary dark:text-tertiary-fixed mb-4">Nature's Alchemist</div>
+<p class="font-body-md text-body-md max-w-xs opacity-70">Preserving ancient botanical wisdom through modern, ethical design. Rooted in Tenkasi, serving the world.</p>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col gap-2">
+<a class="text-on-surface-variant hover:text-primary dark:hover:text-tertiary-fixed transition-opacity duration-200" href="#">Sourcing Ethics</a>
+<a class="text-on-surface-variant hover:text-primary dark:hover:text-tertiary-fixed transition-opacity duration-200" href="#">Wholesale</a>
+<a class="text-on-surface-variant hover:text-primary dark:hover:text-tertiary-fixed transition-opacity duration-200" href="#">Shipping &amp; Returns</a>
+</div>
+<div class="flex flex-col gap-2">
+<a class="text-on-surface-variant hover:text-primary dark:hover:text-tertiary-fixed transition-opacity duration-200" href="#">Sustainability Report</a>
+<a class="text-on-surface-variant hover:text-primary dark:hover:text-tertiary-fixed transition-opacity duration-200" href="#">Our Story</a>
+<a class="text-on-surface-variant hover:text-primary dark:hover:text-tertiary-fixed transition-opacity duration-200" href="#">Contact</a>
+</div>
+</div>
+<div class="flex flex-col items-end justify-between">
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-2xl cursor-pointer" data-icon="public">public</span>
+<span class="material-symbols-outlined text-2xl cursor-pointer" data-icon="chat_bubble">chat_bubble</span>
+</div>
+<p class="font-body-md text-body-md opacity-60 text-right mt-10">© 2024 Nature's Alchemist. Ethical Sourcing &amp; Botanical Integrity.</p>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions and effects
+        document.addEventListener('DOMContentLoaded', () => {
+            // Smooth reveal for sections
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('opacity-100', 'translate-y-0');
+                        entry.target.classList.remove('opacity-0', 'translate-y-10');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+                observer.observe(section);
+            });
+
+            // Parallax effect on Hero Image
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const heroImage = document.querySelector('section img');
+                if (heroImage) {
+                    heroImage.style.transform = `translateY(${scrolled * 0.4}px)`;
+                }
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container": "#efedec",
+                      "tertiary-fixed": "#dde4df",
+                      "surface-variant": "#e4e2e1",
+                      "surface-container-highest": "#e4e2e1",
+                      "on-tertiary": "#ffffff",
+                      "outline": "#727876",
+                      "on-secondary": "#ffffff",
+                      "on-tertiary-fixed-variant": "#414845",
+                      "on-primary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "tertiary-fixed-dim": "#c1c8c3",
+                      "on-background": "#1b1c1b",
+                      "on-secondary-container": "#65645f",
+                      "surface-container-low": "#f5f3f2",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-card": "#ffffff",
+                      "on-surface": "#1b1c1b",
+                      "secondary-container": "#e5e2db",
+                      "on-primary-fixed-variant": "#3a4a46",
+                      "primary-fixed-dim": "#b8cac5",
+                      "surface-dim": "#dbdad8",
+                      "secondary-fixed-dim": "#c9c6c0",
+                      "status-sale": "#0f1f1c",
+                      "text-muted": "rgba(15, 31, 28, 0.6)",
+                      "inverse-on-surface": "#f2f0ef",
+                      "tertiary": "#000201",
+                      "surface": "#fbf9f8",
+                      "on-secondary-fixed": "#1c1c18",
+                      "primary-container": "#0f1f1c",
+                      "tertiary-container": "#171e1b",
+                      "on-secondary-fixed-variant": "#474742",
+                      "on-error-container": "#93000a",
+                      "error": "#ba1a1a",
+                      "on-primary-fixed": "#0e1e1b",
+                      "on-tertiary-fixed": "#161d1a",
+                      "surface-container-high": "#eae8e6",
+                      "inverse-surface": "#303030",
+                      "surface-bright": "#fbf9f8",
+                      "secondary": "#5f5e59",
+                      "primary-fixed": "#d4e6e1",
+                      "on-tertiary-container": "#7f8682",
+                      "error-container": "#ffdad6",
+                      "brand-green": "#1a2e29",
+                      "secondary-fixed": "#e5e2db",
+                      "border-subtle": "rgba(255, 255, 255, 0.1)",
+                      "inverse-primary": "#b8cac5",
+                      "outline-variant": "#c2c8c5",
+                      "primary": "#000101",
+                      "background": "#fbf9f8",
+                      "on-surface-variant": "#424846",
+                      "surface-tint": "#51625e",
+                      "on-primary-container": "#778884"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "container-margin": "1.5rem",
+                      "section-gap-lg": "5rem",
+                      "grid-gutter": "1rem",
+                      "element-gap": "0.5rem",
+                      "section-gap-sm": "2.5rem"
+              },
+              "fontFamily": {
+                      "body-md": ["Noto Sans"],
+                      "headline-lg": ["Playfair Display"],
+                      "display-lg": ["Playfair Display"],
+                      "price-tag": ["Noto Sans"],
+                      "headline-md": ["Playfair Display"],
+                      "label-caps": ["Noto Sans"]
+              },
+              "fontSize": {
+                      "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                      "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                      "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                      "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                      "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+      </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-container-margin h-16 bg-brand-green">
+<div class="flex items-center">
+<span class="material-symbols-outlined text-on-primary hover:opacity-80 transition-opacity cursor-pointer">menu</span>
+</div>
+<h1 class="font-headline-md text-headline-md text-on-primary tracking-widest uppercase">NATURE'S ALCHEMIST</h1>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-on-primary hover:opacity-80 transition-opacity cursor-pointer">shopping_bag</span>
+</div>
+</header>
+<main class="pt-24 pb-32 px-container-margin max-w-4xl mx-auto bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')]">
+<!-- Section Header -->
+<div class="text-center mb-section-gap-sm">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-2">Ritual Basket</h2>
+<p class="font-body-md text-on-surface-variant italic">3 items in your ritual basket</p>
+</div>
+<!-- Cart Items List -->
+<div class="space-y-grid-gutter">
+<div class="flex bg-surface-container-lowest border-b border-outline-variant/30 py-6 items-start group last:border-0">
+<div class="w-28 aspect-[4/5] overflow-hidden flex-shrink-0">
+<img alt="Product Image" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUUhcGxgiWubxyQOPpEzIEHMqkOivTuvjCLERmuzS4U5IwNh4rCqQXVsYad6ejm9x3s8k42AQ81-vb__JGQXRaiqVS52vGgWozfsC5vJnpfmg7J-jaXn_wThs-VaZ1h8C4U3WzBpfRIwe6iqY4JslLIhKQk72gfZVGvQJSYYW2AnU-oHOh-HFx5S9mkz-4CTfGG27AMvT2r0fl2H-7OIBj8UPvMp3IegcNSLBbobxPcfkZk8d8N5Fvsunl_NVXLGGtivfM8obfrIH5"/>
+</div>
+<div class="flex-grow pl-6 flex flex-col h-full">
+<div class="flex justify-between items-start">
+<div>
+<span class="font-label-caps text-label-caps text-secondary uppercase mb-2 block">Tincture</span>
+<h3 class="font-headline-md text-headline-md text-primary leading-tight font-headline-lg">Astral Serenity Elixir</h3>
+</div>
+<button class="text-outline hover:text-error transition-colors">
+<span class="material-symbols-outlined font-light">close</span>
+</button>
+</div>
+<div class="flex justify-between items-end mt-auto pt-6">
+<div class="flex items-center border border-outline-variant/50 rounded-full px-3 py-1">
+<button class="material-symbols-outlined text-sm px-1 hover:text-brand-green">remove</button>
+<span class="px-4 font-body-md">1</span>
+<button class="material-symbols-outlined text-sm px-1 hover:text-brand-green">add</button>
+</div>
+<span class="font-price-tag text-price-tag text-primary font-bold">$48.00</span>
+</div>
+</div>
+</div>
+<div class="flex bg-surface-container-lowest border-b border-outline-variant/30 py-6 items-start group last:border-0">
+<div class="w-28 aspect-[4/5] overflow-hidden flex-shrink-0">
+<img alt="Product Image" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9KzZi5rMa2HdbXo7mjVRYRY29GDl7SnxSinXNrz997-pRp8gfoyLHh6QGtOBGSveGIN9wvtLvz8U0lvwlEPNGQeqEN8899ps0BgWsM1FXgUZYNzlO4d7OiGiKpY9RMXey4A_078QhIKtdCPxDExkpoNCvm-cOVBBdJF_rbOLUYxTWuI1PEPyHGyGiy2nm4XVQ4l8j4347dKOMqrphFzrcTxzRpNk1cxtVV0NKqKeVQcq_0eJhYsvw6yolRF3ohoakae35dsQx9imD"/>
+</div>
+<div class="flex-grow pl-6 flex flex-col h-full">
+<div class="flex justify-between items-start">
+<div>
+<span class="font-label-caps text-label-caps text-secondary uppercase mb-2 block">Skin Ritual</span>
+<h3 class="font-headline-md text-headline-md text-primary leading-tight font-headline-lg">Velvet Sage Balm</h3>
+</div>
+<button class="text-outline hover:text-error transition-colors">
+<span class="material-symbols-outlined font-light">close</span>
+</button>
+</div>
+<div class="flex justify-between items-end mt-auto pt-6">
+<div class="flex items-center border border-outline-variant/50 rounded-full px-3 py-1">
+<button class="material-symbols-outlined text-sm px-1 hover:text-brand-green">remove</button>
+<span class="px-4 font-body-md">2</span>
+<button class="material-symbols-outlined text-sm px-1 hover:text-brand-green">add</button>
+</div>
+<span class="font-price-tag text-price-tag text-primary font-bold">$72.00</span>
+</div>
+</div>
+</div>
+<div class="flex bg-surface-container-lowest border-b border-outline-variant/30 py-6 items-start group last:border-0">
+<div class="w-28 aspect-[4/5] overflow-hidden flex-shrink-0">
+<img alt="Product Image" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCk-KDYvoVnaL2zJ5qigr7TPewp_5FPUAupqjOG2YKbeDu99Na3sLfJQ0lgicKisaxqMddXrgwQrIMMdZOCZBORxp6YvtXjJ0cQljtKUqHcyE9lcxTPqBAJVbHsBpo5VzsFuF55bpQkzcwTS7zz08IbdQlVKonKtXyGlMXGiykmUmjsVprtpKyutpLv8a3PbocmQkz07XaPRs7vdw3FCoV1d5Npz8FisKGNmR4oT_-p-N9riIOwRxNAErjBeAvotRLZmNaVqy9j_T48"/>
+</div>
+<div class="flex-grow pl-6 flex flex-col h-full">
+<div class="flex justify-between items-start">
+<div>
+<span class="font-label-caps text-label-caps text-secondary uppercase mb-2 block">Infusion</span>
+<h3 class="font-headline-md text-headline-md text-primary leading-tight font-headline-lg">Winter Solstice Tea</h3>
+</div>
+<button class="text-outline hover:text-error transition-colors">
+<span class="material-symbols-outlined font-light">close</span>
+</button>
+</div>
+<div class="flex justify-between items-end mt-auto pt-6">
+<div class="flex items-center border border-outline-variant/50 rounded-full px-3 py-1">
+<button class="material-symbols-outlined text-sm px-1 hover:text-brand-green">remove</button>
+<span class="px-4 font-body-md">1</span>
+<button class="material-symbols-outlined text-sm px-1 hover:text-brand-green">add</button>
+</div>
+<span class="font-price-tag text-price-tag text-primary font-bold">$24.00</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Order Summary Section -->
+<div class="mt-section-gap-sm border-t border-outline-variant pt-8">
+<div class="bg-surface-container p-6 space-y-4">
+<div class="flex justify-between">
+<span class="font-label-caps text-label-caps text-on-surface-variant">SUBTOTAL</span>
+<span class="font-price-tag text-price-tag">$144.00</span>
+</div>
+<div class="flex justify-between">
+<span class="font-label-caps text-label-caps text-on-surface-variant">SHIPPING</span>
+<span class="font-label-caps text-label-caps text-secondary">CALCULATED AT CHECKOUT</span>
+</div>
+<div class="border-t border-outline-variant pt-4 flex justify-between items-center">
+<span class="font-headline-md text-headline-md text-primary">Total Est.</span>
+<span class="font-headline-md text-headline-md text-primary">$144.00</span>
+</div>
+</div>
+<div class="mt-8 flex flex-col space-y-4">
+<button class="w-full text-surface py-5 font-label-caps text-label-caps tracking-[0.2em] hover:bg-brand-green transition-all active:scale-95 bg-brand-green">
+                    PROCEED TO CHECKOUT
+                </button>
+<button class="w-full border border-primary text-primary py-5 font-label-caps text-label-caps tracking-[0.2em] hover:bg-primary hover:text-surface transition-all">
+                    CONTINUE SHOPPING
+                </button>
+</div>
+</div>
+<!-- Related Items (Bento Style) -->
+<div class="mt-section-gap-lg">
+<h3 class="font-label-caps text-label-caps text-secondary mb-6 text-center">ENHANCE YOUR RITUAL</h3>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="col-span-2 row-span-1 relative bg-surface-container overflow-hidden group">
+<img class="w-full h-48 object-cover opacity-80 group-hover:scale-105 transition-transform" data-alt="An ethereal scene of steam rising from a dark, handmade ceramic mug filled with dark herbal tea. The background is a moody, softly lit wooden table scattered with loose herbs. The visual style is minimalist-tactile, with high contrast between the dark mug and the light-mode cream background of the UI, emphasizing a sense of calm and artisanal quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxBB_-yPr9fOK8uLPBBFVrjptZJ8SAlEM8nCElNwqTc4kRVC5QzweJyiMxiPVL_s8WmyOZJ3Bu-GfAlMh5AYVdAuKCd4H0lJNHgNdIDUK6ueTdX6RqtHwC9zz40V1dCkjp7OcdtH6UgbNlyU2O6CuvD9Jnxpz8sKAtyCge2QYDHHctNJUnh_vBY5M1RLw20iFFxN_uRCjnnxvNYywC2RWz3kCsJcVMgwmXljI3dwDKRtfA0H--gmw0BCxGwIkiARwWydbSJDz1EGJ_"/>
+<div class="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-brand-green/40 to-transparent">
+<span class="text-on-primary font-label-caps text-label-caps">CRAFTED BLENDS</span>
+</div>
+</div>
+<div class="col-span-1 bg-surface-card border border-outline-variant p-4 flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-brand-green mb-2" style="font-variation-settings: 'opsz' 48;">eco</span>
+<span class="font-label-caps text-label-caps">PUREST ORIGIN</span>
+</div>
+<div class="col-span-1 bg-surface-card border border-outline-variant p-4 flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-brand-green mb-2" style="font-variation-settings: 'opsz' 48;">auto_awesome</span>
+<span class="font-label-caps text-label-caps">HAND PRESSED</span>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 bg-surface shadow-sm border-t border-outline-variant">
+<a class="flex flex-col items-center justify-center text-secondary hover:text-primary transition-colors active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps text-label-caps mt-1">HOME</span>
+</a>
+<a class="flex flex-col items-center justify-center text-brand-green font-bold active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">Bed</span>
+<span class="font-label-caps text-label-caps mt-1">SHOP</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary hover:text-primary transition-colors active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-caps text-label-caps mt-1">SEARCH</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary hover:text-primary transition-colors active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">favorite</span>
+<span class="font-label-caps text-label-caps mt-1">WISHLIST</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary hover:text-primary transition-colors active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-label-caps mt-1">PROFILE</span>
+</a>
+</nav>
+</body></html>

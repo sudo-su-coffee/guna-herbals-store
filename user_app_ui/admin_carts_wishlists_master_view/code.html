@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Apothecary Admin | Customer Carts &amp; Wishlists</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            background-color: #fbf9f8;
+            color: #1b1c1b;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c2c8c5;
+        }
+        .bento-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .bento-card:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed-dim": "#c1c8c3",
+                      "on-tertiary-fixed-variant": "#414845",
+                      "on-secondary": "#ffffff",
+                      "surface-container-highest": "#e4e2e1",
+                      "status-sale": "#0f1f1c",
+                      "secondary-fixed-dim": "#c9c6c0",
+                      "secondary": "#5f5e59",
+                      "on-tertiary-container": "#7f8682",
+                      "outline-variant": "#c2c8c5",
+                      "surface": "#fbf9f8",
+                      "on-surface-variant": "#424846",
+                      "tertiary": "#000201",
+                      "error-container": "#ffdad6",
+                      "primary-fixed-dim": "#b8cac5",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "surface-container": "#efedec",
+                      "primary-fixed": "#d4e6e1",
+                      "on-secondary-fixed": "#1c1c18",
+                      "brand-green": "#1a2e29",
+                      "on-primary-container": "#778884",
+                      "on-primary-fixed": "#0e1e1b",
+                      "surface-container-high": "#eae8e6",
+                      "on-secondary-fixed-variant": "#474742",
+                      "border-subtle": "rgba(255, 255, 255, 0.1)",
+                      "on-tertiary-fixed": "#161d1a",
+                      "surface-bright": "#fbf9f8",
+                      "secondary-fixed": "#e5e2db",
+                      "on-primary-fixed-variant": "#3a4a46",
+                      "error": "#ba1a1a",
+                      "on-error-container": "#93000a",
+                      "on-background": "#1b1c1b",
+                      "background": "#fbf9f8",
+                      "secondary-container": "#e5e2db",
+                      "tertiary-container": "#171e1b",
+                      "outline": "#727876",
+                      "inverse-primary": "#b8cac5",
+                      "surface-tint": "#51625e",
+                      "text-muted": "rgba(15, 31, 28, 0.6)",
+                      "inverse-surface": "#303030",
+                      "on-surface": "#1b1c1b",
+                      "tertiary-fixed": "#dde4df",
+                      "on-secondary-container": "#65645f",
+                      "surface-dim": "#dbdad8",
+                      "surface-container-low": "#f5f3f2",
+                      "primary-container": "#0f1f1c",
+                      "inverse-on-surface": "#f2f0ef",
+                      "on-error": "#ffffff",
+                      "surface-card": "#ffffff",
+                      "primary": "#000101",
+                      "surface-variant": "#e4e2e1"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "container-margin": "1.5rem",
+                      "element-gap": "0.5rem",
+                      "section-gap-sm": "2.5rem",
+                      "grid-gutter": "1rem",
+                      "section-gap-lg": "5rem"
+              },
+              "fontFamily": {
+                      "headline-md": ["Playfair Display"],
+                      "display-lg": ["Playfair Display"],
+                      "headline-lg": ["Playfair Display"],
+                      "body-md": ["Noto Sans"],
+                      "price-tag": ["Noto Sans"],
+                      "label-caps": ["Noto Sans"]
+              },
+              "fontSize": {
+                      "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                      "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                      "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                      "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+      </script>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<!-- SIDE NAVIGATION BAR -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-brand-green dark:bg-brand-green flex flex-col py-8 px-4 z-50">
+<div class="mb-12 px-2">
+<h1 class="font-headline-md text-headline-md text-secondary-fixed tracking-tight">Apothecary Admin</h1>
+<p class="font-label-caps text-label-caps text-primary-fixed/60 mt-1 uppercase">Premium Botanical</p>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-on-primary-fixed-variant/50 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined text-primary-fixed-dim">dashboard</span>
+<span class="font-label-caps text-label-caps text-primary-fixed/80">Overview</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-on-primary-fixed-variant/50 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined text-primary-fixed-dim">inventory_2</span>
+<span class="font-label-caps text-label-caps text-primary-fixed/80">Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-on-primary-fixed-variant/50 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined text-primary-fixed-dim">shopping_bag</span>
+<span class="font-label-caps text-label-caps text-primary-fixed/80">Orders</span>
+</a>
+<!-- ACTIVE TAB: Customers -->
+<a class="flex items-center gap-3 px-4 py-3 bg-on-primary-fixed-variant text-primary-fixed rounded-lg scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="font-label-caps text-label-caps">Customers</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-on-primary-fixed-variant/50 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined text-primary-fixed-dim">auto_stories</span>
+<span class="font-label-caps text-label-caps text-primary-fixed/80">Rituals</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-on-primary-fixed-variant/50 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined text-primary-fixed-dim">settings</span>
+<span class="font-label-caps text-label-caps text-primary-fixed/80">Settings</span>
+</a>
+</nav>
+<div class="mt-auto px-2 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-primary-fixed/20">
+<img alt="Administrator Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a mature administrator with a calm expression, wearing a refined charcoal grey suit. The lighting is soft and directional, typical of a high-end botanical studio environment. The background is a clean, minimalist off-white office setting with a single green leaf visible in the periphery." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkKHBF3E8ObSLWrquIjWBroqQcLmJtZ8VvplQX87eVSP4Yx5LcDNLOSjIZzbz6JmX54rVAcGN95xI7LigApqtLRIsfidvTqYK0rzpbn53Pit7AAqbvUUA9w6tNXY8ECFmBzvkMYinqxkphEKetHR3eu16qiIvTJks8nooeZu7yAuwQ39kwNR7GLy8GTuBjM2KxcdCIjRe60AdSQ_85f-8xpgfI0I5wHAS5V19f55BDXBBML9zNhRJHEyckcExSycfiuhltrgE37VHT"/>
+</div>
+<div>
+<p class="text-[12px] font-bold text-primary-fixed">Admin User</p>
+<p class="text-[10px] text-primary-fixed/60 uppercase">Senior Manager</p>
+</div>
+</div>
+</aside>
+<!-- TOP NAVIGATION BAR -->
+<header class="h-20 w-[calc(100%-16rem)] fixed right-0 top-0 bg-surface dark:bg-surface border-b border-outline-variant flex justify-between items-center px-10 z-40">
+<div class="flex items-center gap-6">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="bg-surface-container-low border-none rounded-lg pl-10 pr-4 py-2 w-80 text-body-md focus:ring-1 focus:ring-brand-green transition-all" placeholder="Search customers or carts..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-on-surface-variant hover:text-brand-green transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute -top-1 -right-1 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="text-on-surface-variant hover:text-brand-green transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant mx-2"></div>
+<p class="font-headline-md text-headline-md text-brand-green">Botanical Admin</p>
+</div>
+</header>
+<!-- MAIN CONTENT AREA -->
+<main class="ml-64 pt-20 min-h-screen bg-surface">
+<div class="p-10 max-w-7xl mx-auto">
+<!-- HEADER SECTION -->
+<div class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest mb-2 block">Customer Engagement</span>
+<h2 class="font-display-lg text-headline-lg text-brand-green">Carts &amp; Wishlists</h2>
+<p class="text-on-surface-variant mt-2 max-w-lg">Monitor active purchase intent and identify abandonment marketing opportunities through real-time basket analysis.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-6 py-2.5 bg-brand-green text-surface-container-lowest font-label-caps text-label-caps uppercase tracking-widest hover:bg-opacity-90 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+                        Bulk Campaign
+                    </button>
+<button class="px-6 py-2.5 border border-outline text-brand-green font-label-caps text-label-caps uppercase tracking-widest hover:bg-surface-container transition-all">
+                        Export CSV
+                    </button>
+</div>
+</div>
+<!-- ANALYTICS SUMMARY (BENTO STYLE) -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-10">
+<div class="bg-surface-card p-6 border border-outline-variant bento-card">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-4">ACTIVE CARTS</p>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-headline-md text-brand-green">142</span>
+<span class="text-[12px] text-brand-green font-bold flex items-center">+12% <span class="material-symbols-outlined text-[14px]">trending_up</span></span>
+</div>
+<div class="mt-4 h-1 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-brand-green w-3/4"></div>
+</div>
+</div>
+<div class="bg-surface-card p-6 border border-outline-variant bento-card">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-4">POTENTIAL REVENUE</p>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-headline-md text-brand-green">$12,480</span>
+</div>
+<p class="text-[11px] text-on-surface-variant mt-4">Across all baskets</p>
+</div>
+<div class="bg-surface-card p-6 border border-outline-variant bento-card">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-4">WISHLIST ITEMS</p>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-headline-md text-brand-green">892</span>
+</div>
+<p class="text-[11px] text-on-surface-variant mt-4">Highest: Sage &amp; Cedar Candle</p>
+</div>
+<div class="bg-surface-card p-6 border border-outline-variant bento-card">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-4">ABANDON RATE</p>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-headline-md text-brand-green">24.5%</span>
+</div>
+<p class="text-[11px] text-error font-bold mt-4">-2% improvement</p>
+</div>
+</div>
+<!-- FILTERS BAR -->
+<div class="bg-surface-container-low p-4 flex flex-wrap items-center justify-between gap-4 border border-outline-variant mb-6">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="font-label-caps text-[10px] text-on-surface-variant uppercase">Min Value</span>
+<select class="bg-transparent border-none text-body-md font-bold focus:ring-0 cursor-pointer">
+<option>$0</option>
+<option>$50</option>
+<option>$100</option>
+<option>$500</option>
+</select>
+</div>
+<div class="h-4 w-[1px] bg-outline-variant"></div>
+<div class="flex items-center gap-2">
+<span class="font-label-caps text-[10px] text-on-surface-variant uppercase">Last Active</span>
+<select class="bg-transparent border-none text-body-md font-bold focus:ring-0 cursor-pointer">
+<option>Anytime</option>
+<option>Last 24h</option>
+<option>Last 7 days</option>
+<option>Over 30 days</option>
+</select>
+</div>
+<div class="h-4 w-[1px] bg-outline-variant"></div>
+<div class="flex items-center gap-2">
+<span class="font-label-caps text-[10px] text-on-surface-variant uppercase">Type</span>
+<div class="flex gap-1">
+<button class="px-3 py-1 bg-brand-green text-surface-container-lowest text-[10px] font-bold rounded-sm">BOTH</button>
+<button class="px-3 py-1 text-brand-green text-[10px] font-bold hover:bg-surface-container rounded-sm">CART</button>
+<button class="px-3 py-1 text-brand-green text-[10px] font-bold hover:bg-surface-container rounded-sm">WISHLIST</button>
+</div>
+</div>
+</div>
+<button class="flex items-center gap-2 text-brand-green font-label-caps text-label-caps uppercase hover:underline">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+                    Advanced Filters
+                </button>
+</div>
+<!-- MAIN TABLE -->
+<div class="bg-surface-card border border-outline-variant overflow-hidden shadow-sm">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="px-6 py-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Customer</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Contents</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Value</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Last Updated</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Status</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-bold text-[12px]">EM</div>
+<div>
+<p class="font-bold text-brand-green">Elena Montgomery</p>
+<p class="text-[12px] text-on-surface-variant">elena.m@botanical.com</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<span class="px-2 py-1 bg-primary-fixed text-on-primary-fixed text-[11px] font-bold rounded">4 Items in Cart</span>
+<span class="text-on-surface-variant text-[11px]">2 Wishlist</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<p class="font-headline-md text-brand-green text-[18px]">$284.00</p>
+</td>
+<td class="px-6 py-5">
+<p class="text-on-surface-variant text-[13px]">14 minutes ago</p>
+</td>
+<td class="px-6 py-5">
+<span class="flex items-center gap-1.5 text-brand-green font-bold text-[11px] uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-brand-green animate-pulse"></span> Active
+                                </span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="p-2 text-on-surface-variant hover:text-brand-green transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed font-bold text-[12px]">JS</div>
+<div>
+<p class="font-bold text-brand-green">Julian Sterling</p>
+<p class="text-[12px] text-on-surface-variant">j.sterling@design.co</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<span class="px-2 py-1 bg-surface-container-high text-on-surface-variant text-[11px] font-bold rounded">0 Items in Cart</span>
+<span class="px-2 py-1 bg-secondary-fixed text-on-secondary-fixed text-[11px] font-bold rounded">12 Wishlist</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<p class="font-headline-md text-brand-green text-[18px]">$1,150.00</p>
+</td>
+<td class="px-6 py-5">
+<p class="text-on-surface-variant text-[13px]">3 hours ago</p>
+</td>
+<td class="px-6 py-5">
+<span class="text-on-surface-variant font-bold text-[11px] uppercase">Dormant</span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="p-2 text-on-surface-variant hover:text-brand-green transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed font-bold text-[12px]">AW</div>
+<div>
+<p class="font-bold text-brand-green">Amara Wu</p>
+<p class="text-[12px] text-on-surface-variant">amara@wellness.io</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<span class="px-2 py-1 bg-primary-fixed text-on-primary-fixed text-[11px] font-bold rounded">1 Item in Cart</span>
+<span class="text-on-surface-variant text-[11px]">0 Wishlist</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<p class="font-headline-md text-brand-green text-[18px]">$42.00</p>
+</td>
+<td class="px-6 py-5">
+<p class="text-on-surface-variant text-[13px]">Yesterday, 4:20 PM</p>
+</td>
+<td class="px-6 py-5">
+<span class="flex items-center gap-1.5 text-error font-bold text-[11px] uppercase">
+                                    Abandoned
+                                </span>
+</td>
+<td class="px-6 py-5 text-right flex justify-end gap-2">
+<button class="px-3 py-1 text-[10px] border border-brand-green font-bold text-brand-green hover:bg-brand-green hover:text-white transition-colors">SEND OFFER</button>
+<button class="p-2 text-on-surface-variant hover:text-brand-green transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed-dim flex items-center justify-center text-on-secondary-fixed font-bold text-[12px]">BK</div>
+<div>
+<p class="font-bold text-brand-green">Beatrice Kincaid</p>
+<p class="text-[12px] text-on-surface-variant">bkincaid@hey.com</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<span class="px-2 py-1 bg-primary-fixed text-on-primary-fixed text-[11px] font-bold rounded">7 Items in Cart</span>
+<span class="px-2 py-1 bg-secondary-fixed text-on-secondary-fixed text-[11px] font-bold rounded">3 Wishlist</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<p class="font-headline-md text-brand-green text-[18px]">$512.50</p>
+</td>
+<td class="px-6 py-5">
+<p class="text-on-surface-variant text-[13px]">Just now</p>
+</td>
+<td class="px-6 py-5">
+<span class="flex items-center gap-1.5 text-brand-green font-bold text-[11px] uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-brand-green animate-pulse"></span> Active
+                                </span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="p-2 text-on-surface-variant hover:text-brand-green transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- PAGINATION -->
+<div class="px-6 py-4 bg-surface-container-lowest flex items-center justify-between">
+<p class="text-[12px] text-on-surface-variant">Showing 1 to 4 of 142 results</p>
+<div class="flex gap-2">
+<button class="p-2 border border-outline-variant disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center bg-brand-green text-white text-[12px] font-bold">1</button>
+<button class="w-8 h-8 flex items-center justify-center hover:bg-surface-container text-on-surface text-[12px]">2</button>
+<button class="w-8 h-8 flex items-center justify-center hover:bg-surface-container text-on-surface text-[12px]">3</button>
+<button class="p-2 border border-outline-variant">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- FEATURED INSIGHT SECTION -->
+<div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="md:col-span-2 relative h-64 overflow-hidden bg-brand-green flex items-center px-10">
+<img alt="Botanical Still Life" class="absolute inset-0 w-full h-full object-cover opacity-40" data-alt="A moody and elegant botanical still life featuring dried lavender stems and dark amber glass apothecary bottles on a textured linen surface. The lighting is low-key, emphasizing deep shadows and rich textures. The color palette is composed of muted greens, warm ambers, and soft creams, creating a sophisticated and calming brand atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmrnEYGQs9b6lSv7VGUMYQL2I7zYHH3arZjugM6W2uokwl_WcBFI53GWu81fvmVJbQFyKi9spyyFGk1uC64U04XpXeyfQqOwaMBmhfYXufqrhs6aLreLiNfwrcpcth3tPfgQjP6oIWFXJdWB8BbPBa1U1EL8oL65QgUgXIwZhjhcKAuWkSUeR67mz3sJf-P5JYOi8zykKtdRU6Dvz8VARU0C3VQP1xpeHRS6NxtL7amufZZEAWUyHZcYIgIau0-o0cytdgNnD8FCz2"/>
+<div class="relative z-10">
+<h3 class="font-headline-md text-headline-md text-secondary-fixed mb-2 italic">Recovered Revenue Insight</h3>
+<p class="text-primary-fixed/80 max-w-md">Personalized recovery emails for carts over $200 have a 34% higher conversion rate this month.</p>
+<button class="mt-6 px-6 py-2 border border-secondary-fixed text-secondary-fixed font-label-caps text-label-caps uppercase tracking-widest hover:bg-white/10 transition-colors">View Report</button>
+</div>
+</div>
+<div class="bg-surface-container p-8 flex flex-col justify-center">
+<span class="material-symbols-outlined text-brand-green text-4xl mb-4">auto_awesome</span>
+<h4 class="font-headline-md text-brand-green mb-2">Smart Suggest</h4>
+<p class="text-on-surface-variant text-[13px] mb-6 italic">"Consider offering a free 'Discovery Sample' to the 12 customers with 'Lavender Sleep Mist' in their wishlists to nudge conversion."</p>
+<a class="text-brand-green font-bold text-[12px] uppercase flex items-center gap-2 group" href="#">
+                        Apply Suggestion
+                        <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</main>
+<!-- FLOATING ACTION FOR QUICK CAMPAIGN (Hidden on table view usually, but placed here for relevance) -->
+<div class="fixed bottom-8 right-8 z-50">
+<button class="w-14 h-14 bg-brand-green text-surface-container-lowest rounded-full flex items-center justify-center shadow-lg hover:scale-105 transition-transform group">
+<span class="material-symbols-outlined group-hover:rotate-12 transition-transform" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</button>
+</div>
+<script>
+        // Simple micro-interaction for table rows
+        document.querySelectorAll('tr').forEach(row => {
+            row.addEventListener('mouseenter', () => {
+                row.style.transition = 'all 0.2s ease';
+            });
+        });
+    </script>
+</body></html>

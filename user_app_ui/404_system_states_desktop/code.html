@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nature's Alchemist | Path Not Found</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .mega-menu-enter {
+            opacity: 0;
+            transform: translateY(-10px);
+            pointer-events: none;
+        }
+        .group:hover .mega-menu-enter {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+        .toast-slide-in {
+            animation: slideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#fbf9f8",
+                    "on-secondary-fixed-variant": "#474742",
+                    "on-secondary": "#ffffff",
+                    "secondary": "#5f5e59",
+                    "tertiary": "#000201",
+                    "surface-container-high": "#eae8e6",
+                    "outline-variant": "#c2c8c5",
+                    "surface-container": "#efedec",
+                    "on-primary-fixed-variant": "#3a4a46",
+                    "inverse-primary": "#b8cac5",
+                    "surface-variant": "#e4e2e1",
+                    "secondary-container": "#e5e2db",
+                    "on-tertiary-container": "#7f8682",
+                    "surface-container-low": "#f5f3f2",
+                    "on-primary-fixed": "#0e1e1b",
+                    "on-tertiary-fixed-variant": "#414845",
+                    "outline": "#727876",
+                    "secondary-fixed-dim": "#c9c6c0",
+                    "primary": "#000101",
+                    "tertiary-fixed": "#dde4df",
+                    "tertiary-fixed-dim": "#c1c8c3",
+                    "secondary-fixed": "#e5e2db",
+                    "inverse-surface": "#303030",
+                    "on-secondary-fixed": "#1c1c18",
+                    "surface-dim": "#dbdad8",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-bright": "#fbf9f8",
+                    "error": "#ba1a1a",
+                    "on-primary-container": "#778884",
+                    "surface-card": "#ffffff",
+                    "on-tertiary-fixed": "#161d1a",
+                    "on-error": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-secondary-container": "#65645f",
+                    "inverse-on-surface": "#f2f0ef",
+                    "on-surface": "#1b1c1b",
+                    "on-surface-variant": "#424846",
+                    "text-muted": "rgba(15, 31, 28, 0.6)",
+                    "background": "#fbf9f8",
+                    "status-sale": "#0f1f1c",
+                    "primary-container": "#0f1f1c",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed-dim": "#b8cac5",
+                    "on-background": "#1b1c1b",
+                    "error-container": "#ffdad6",
+                    "brand-green": "#1a2e29",
+                    "surface-tint": "#51625e",
+                    "tertiary-container": "#171e1b",
+                    "primary-fixed": "#d4e6e1",
+                    "on-primary": "#ffffff",
+                    "surface-container-highest": "#e4e2e1",
+                    "border-subtle": "rgba(255, 255, 255, 0.1)"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "section-gap-sm": "2.5rem",
+                    "element-gap": "0.5rem",
+                    "container-margin": "1.5rem",
+                    "grid-gutter": "1rem",
+                    "section-gap-lg": "5rem"
+            },
+            "fontFamily": {
+                    "price-tag": ["Noto Sans"],
+                    "headline-md": ["Playfair Display"],
+                    "headline-lg": ["Playfair Display"],
+                    "label-caps": ["Noto Sans"],
+                    "display-lg": ["Playfair Display"],
+                    "body-md": ["Noto Sans"]
+            },
+            "fontSize": {
+                    "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                    "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                    "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden">
+<!-- Top Navigation (Shared Component Integration) -->
+<header class="fixed top-0 w-full z-50 bg-primary dark:bg-primary-container flex justify-between items-center px-container-margin py-4 w-full z-50">
+<div class="font-headline-md text-headline-md text-on-primary dark:text-on-primary-container uppercase tracking-widest">
+            Nature's Alchemist
+        </div>
+<nav class="hidden md:flex space-x-8">
+<div class="group relative py-1">
+<a class="font-body-md text-body-md text-on-primary-container/80 dark:text-on-primary-container/70 hover:text-on-primary transition-colors duration-300" href="#">Shop All</a>
+<!-- Mega Menu Example -->
+<div class="mega-menu-enter absolute top-full left-0 mt-4 w-[600px] bg-surface-container-lowest shadow-xl p-8 grid grid-cols-3 gap-8 transition-all duration-300">
+<div class="col-span-1 border-r border-outline-variant pr-8">
+<span class="font-label-caps text-label-caps text-primary mb-4 block">CATEGORIES</span>
+<ul class="space-y-3">
+<li><a class="hover:text-primary transition-colors" href="#">Tinctures</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Botanical Serums</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Adaptogens</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Dried Herbs</a></li>
+</ul>
+</div>
+<div class="col-span-2">
+<span class="font-label-caps text-label-caps text-primary mb-4 block">FEATURED RITUAL</span>
+<div class="aspect-[16/9] bg-surface-container mb-4 overflow-hidden">
+<img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="A moody, high-contrast photograph of a person's hands mixing dried lavender and chamomile in a stone mortar. The lighting is low-key and dramatic, highlighting the tactile texture of the herbs against the dark stone. This image captures the essence of a traditional apothecary ritual in a modern, luxury minimalist setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGpZRFaORStedKr1OdLTLF_p_Bwp5XK7mCX5Z5DgWnkYUx_59l8QWdhROHcsURBq5Ud0GX1PZtfIc8Skm6BRKqPbueMm7rJ2nasouLsv2q6L-udyMwylYxIZN2b8-5rRACwuG172BNXk6dkm2F2ND_3fd4vb3vLi2Y_QKK14CB5gT5i6nzzX_4VORebAsvH8mXx3fjYNYQIJzaZoUetWffBCaQIYSrOBHa0fDw1OirjVk4yk_O4lB2-Cvd3rVCYOA1t6jkKmU-A0k4"/>
+</div>
+<p class="font-headline-md text-headline-md text-primary">The Evening Unwind</p>
+<a class="text-xs uppercase tracking-widest border-b border-primary mt-2 inline-block" href="#">Explore Guide</a>
+</div>
+</div>
+</div>
+<a class="font-body-md text-body-md text-on-primary-container/80 dark:text-on-primary-container/70 hover:text-on-primary transition-colors duration-300" href="#">Rituals</a>
+<a class="font-body-md text-body-md text-on-primary-container/80 dark:text-on-primary-container/70 hover:text-on-primary transition-colors duration-300" href="#">Heritage</a>
+<a class="font-body-md text-body-md text-on-primary-container/80 dark:text-on-primary-container/70 hover:text-on-primary transition-colors duration-300" href="#">Sourcing</a>
+</nav>
+<div class="flex items-center space-x-6 text-on-primary">
+<span class="material-symbols-outlined cursor-pointer hover:opacity-70 transition-opacity">person</span>
+<span class="material-symbols-outlined cursor-pointer hover:opacity-70 transition-opacity" data-weight="fill">shopping_cart</span>
+</div>
+</header>
+<!-- 404 Main Canvas -->
+<main class="min-h-screen pt-20 flex flex-col items-center justify-center relative px-container-margin overflow-hidden">
+<!-- Subtle Atmospheric Background Shader (Mocked via CSS/Overlay) -->
+<div class="absolute inset-0 z-0 opacity-10 pointer-events-none">
+
+</div>
+<div class="max-w-4xl w-full grid grid-cols-1 lg:grid-cols-12 gap-section-gap-sm items-center relative z-10">
+<!-- Illustration Column -->
+<div class="lg:col-span-5 flex justify-center lg:justify-end">
+<div class="relative w-72 h-96 lg:w-80 lg:h-[480px]">
+<!-- Geometric Frame -->
+<div class="absolute inset-0 border border-outline-variant transform translate-x-4 translate-y-4"></div>
+<!-- Main Image (Botanical/Error State) -->
+<div class="relative h-full w-full bg-surface-container-high overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A macro botanical photograph of a withered but beautiful dried botanical specimen, such as a Protea, set against a stark, high-key cream background. The image is minimalist and high-contrast, with sharp focus on the intricate textures of the dried petals. Soft daylight filters from the side, creating long, delicate shadows that emphasize the feeling of a quiet, forgotten sanctuary." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRK_7aGfyjl9oMiIai_e75fTujx864xptoXEot3zwz90UcKsxTNeOhIA9YzvikD6PDFZ5nNh77V5a_rwVhxF2YTZ6BLG-JnVBaLj3e15rQHOum4f1Ae3EVAZhYOx19UP6wtyfG8KyKl8CZHwqoqcrg3S5pWwAdI8GijMlkoC8olPyAFiwE4f0neQWh6NGxEHCaZC1WEB8ivgJVH002WfRgQjOPMdfE2McsrEcfo0vgfRyvGzKrZ8XjrM13WSCiHXcHsOmD9dYemJvB"/>
+<!-- 404 Badge -->
+<div class="absolute top-0 left-0 bg-primary text-on-primary px-4 py-2 font-label-caps text-label-caps uppercase">
+                            Error 404
+                        </div>
+</div>
+</div>
+</div>
+<!-- Content Column -->
+<div class="lg:col-span-7 space-y-element-gap text-center lg:text-left">
+<div class="space-y-4">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-[0.3em]">Lost in the Wild</span>
+<h1 class="font-display-lg text-display-lg text-primary leading-none">The path is obscured.</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md mx-auto lg:mx-0 leading-relaxed italic">
+                        Like a root that has lost its way through the stone, this page seems to have withered away. Perhaps it never grew here at all.
+                    </p>
+</div>
+<div class="pt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+<a class="bg-primary text-on-primary px-10 py-4 font-label-caps text-label-caps uppercase tracking-widest hover:bg-on-primary-container transition-all duration-300" href="#">
+                        Return to Sanctuary
+                    </a>
+<button class="border border-outline px-10 py-4 font-label-caps text-label-caps uppercase tracking-widest hover:bg-surface-container transition-all duration-300" onclick="showSearchToast()">
+                        Consult the Archives
+                    </button>
+</div>
+<div class="pt-12">
+<p class="font-label-caps text-label-caps text-outline uppercase mb-4">Suggested Roots</p>
+<div class="flex flex-wrap justify-center lg:justify-start gap-6">
+<a class="group flex items-center space-x-2 text-primary" href="#">
+<span class="material-symbols-outlined text-[18px]">spa</span>
+<span class="font-body-md text-body-md border-b border-transparent group-hover:border-primary transition-all">Apothecary</span>
+</a>
+<a class="group flex items-center space-x-2 text-primary" href="#">
+<span class="material-symbols-outlined text-[18px]">pill</span>
+<span class="font-body-md text-body-md border-b border-transparent group-hover:border-primary transition-all">Daily Potions</span>
+</a>
+<a class="group flex items-center space-x-2 text-primary" href="#">
+<span class="material-symbols-outlined text-[18px]">menu_book</span>
+<span class="font-body-md text-body-md border-b border-transparent group-hover:border-primary transition-all">Our Heritage</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer (Shared Component Integration) -->
+<footer class="bg-surface-container-highest dark:bg-tertiary-container w-full py-section-gap-sm border-t border-outline-variant">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-grid-gutter px-container-margin max-w-7xl mx-auto">
+<div class="space-y-6">
+<div class="font-headline-lg text-headline-lg text-primary dark:text-tertiary-fixed">Nature's Alchemist</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs">Crafting purity through the lens of heritage and botanical science since 1924.</p>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-2 flex flex-col">
+<span class="font-label-caps text-label-caps text-primary mb-2">SHOP</span>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary dark:hover:text-tertiary-fixed underline transition-opacity duration-200" href="#">Sourcing Ethics</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary dark:hover:text-tertiary-fixed underline transition-opacity duration-200" href="#">Wholesale</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary dark:hover:text-tertiary-fixed underline transition-opacity duration-200" href="#">Shipping &amp; Returns</a>
+</div>
+<div class="space-y-2 flex flex-col">
+<span class="font-label-caps text-label-caps text-primary mb-2">COMPANY</span>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary dark:hover:text-tertiary-fixed underline transition-opacity duration-200" href="#">Sustainability Report</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary dark:hover:text-tertiary-fixed underline transition-opacity duration-200" href="#">Our Story</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary dark:hover:text-tertiary-fixed underline transition-opacity duration-200" href="#">Contact</a>
+</div>
+</div>
+<div class="flex flex-col justify-between">
+<div class="space-y-4">
+<span class="font-label-caps text-label-caps text-primary">NEWSLETTER</span>
+<div class="flex border-b border-primary py-2">
+<input class="bg-transparent border-none focus:ring-0 w-full placeholder:text-on-surface-variant/50 text-body-md" placeholder="Your essence (email)" type="email"/>
+<button class="material-symbols-outlined text-primary">arrow_forward</button>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-8 md:mt-0">
+                    © 2024 Nature's Alchemist. Ethical Sourcing &amp; Botanical Integrity.
+                </p>
+</div>
+</div>
+</footer>
+<!-- Toast Notification System (Interactive) -->
+<div class="fixed bottom-8 right-8 z-[100] flex flex-col space-y-4" id="toast-container">
+<!-- Toast Example (Hidden by default, triggered by JS) -->
+</div>
+<script>
+        function showSearchToast() {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = "toast-slide-in flex items-center bg-primary text-on-primary p-4 shadow-xl border-l-4 border-inverse-primary min-w-[320px]";
+            toast.innerHTML = `
+                <span class="material-symbols-outlined mr-3">search</span>
+                <div class="flex-grow">
+                    <p class="font-label-caps text-label-caps">Search Activated</p>
+                    <p class="text-xs opacity-70">Focusing our botanical archives...</p>
+                </div>
+                <button onclick="this.parentElement.remove()" class="material-symbols-outlined text-sm ml-4 opacity-50 hover:opacity-100">close</button>
+            `;
+            container.appendChild(toast);
+            
+            // Auto-dismiss
+            setTimeout(() => {
+                if(toast.parentElement) toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 500);
+            }, 4000);
+        }
+
+        // Interaction for the 'Return to Sanctuary' button to feel responsive
+        document.querySelectorAll('a, button').forEach(el => {
+            el.addEventListener('mousedown', () => {
+                el.style.transform = 'scale(0.98)';
+            });
+            el.addEventListener('mouseup', () => {
+                el.style.transform = 'scale(1)';
+            });
+            el.addEventListener('mouseleave', () => {
+                el.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body></html>

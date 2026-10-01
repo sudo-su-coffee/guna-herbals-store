@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Apothecary Dashboard - Rituals &amp; Guides</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#727876",
+                        "inverse-surface": "#303030",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed-variant": "#414845",
+                        "on-secondary-fixed": "#1c1c18",
+                        "on-secondary-fixed-variant": "#474742",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#0f1f1c",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#51625e",
+                        "on-tertiary-fixed": "#161d1a",
+                        "primary": "#000101",
+                        "inverse-primary": "#b8cac5",
+                        "tertiary-container": "#171e1b",
+                        "outline-variant": "#c2c8c5",
+                        "on-surface": "#1b1c1b",
+                        "background": "#fbf9f8",
+                        "on-secondary-container": "#65645f",
+                        "primary-fixed-dim": "#b8cac5",
+                        "secondary-fixed-dim": "#c9c6c0",
+                        "border-subtle": "rgba(255, 255, 255, 0.1)",
+                        "error-container": "#ffdad6",
+                        "surface-card": "#ffffff",
+                        "surface-variant": "#e4e2e1",
+                        "secondary": "#5f5e59",
+                        "surface-container-highest": "#e4e2e1",
+                        "brand-green": "#1a2e29",
+                        "on-primary-fixed-variant": "#3a4a46",
+                        "surface": "#fbf9f8",
+                        "on-surface-variant": "#424846",
+                        "secondary-container": "#e5e2db",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#f2f0ef",
+                        "tertiary-fixed-dim": "#c1c8c3",
+                        "tertiary-fixed": "#dde4df",
+                        "primary-fixed": "#d4e6e1",
+                        "surface-container": "#efedec",
+                        "surface-container-low": "#f5f3f2",
+                        "on-primary-container": "#778884",
+                        "text-muted": "rgba(15, 31, 28, 0.6)",
+                        "on-tertiary-container": "#7f8682",
+                        "secondary-fixed": "#e5e2db",
+                        "tertiary": "#000201",
+                        "on-primary-fixed": "#0e1e1b",
+                        "surface-container-high": "#eae8e6",
+                        "on-background": "#1b1c1b",
+                        "status-sale": "#0f1f1c",
+                        "surface-bright": "#fbf9f8",
+                        "surface-dim": "#dbdad8",
+                        "on-tertiary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "container-margin": "1.5rem",
+                        "section-gap-sm": "2.5rem",
+                        "element-gap": "0.5rem",
+                        "section-gap-lg": "5rem",
+                        "grid-gutter": "1rem"
+                    },
+                    "fontFamily": {
+                        "price-tag": ["Noto Sans"],
+                        "headline-md": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "body-md": ["Noto Sans"],
+                        "label-caps": ["Noto Sans"],
+                        "display-lg": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                        "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #fbf9f8;
+            color: #1b1c1b;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .ritual-card-hover:hover .card-actions {
+            opacity: 1;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #1a2e29;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-hidden">
+<!-- Sidebar Navigation Shell -->
+<aside class="flex flex-col h-screen py-6 bg-brand-green dark:bg-primary-container text-on-primary dark:text-on-primary-container h-full w-64 fixed left-0 top-0 border-r border-outline-variant dark:border-border-subtle z-50">
+<div class="px-6 mb-10">
+<h1 class="font-headline-md text-headline-md text-on-primary tracking-tight">Herbal Admin</h1>
+<p class="text-[10px] uppercase tracking-widest opacity-60">Modern Apothecary</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="text-on-primary/70 hover:text-on-primary mx-2 px-4 py-3 flex items-center gap-3 transition-colors hover:bg-on-primary-fixed-variant/50" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Overview</span>
+</a>
+<a class="text-on-primary/70 hover:text-on-primary mx-2 px-4 py-3 flex items-center gap-3 transition-colors hover:bg-on-primary-fixed-variant/50" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-body-md text-body-md">Inventory</span>
+</a>
+<a class="text-on-primary/70 hover:text-on-primary mx-2 px-4 py-3 flex items-center gap-3 transition-colors hover:bg-on-primary-fixed-variant/50" href="#">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="font-body-md text-body-md">Orders</span>
+</a>
+<a class="text-on-primary/70 hover:text-on-primary mx-2 px-4 py-3 flex items-center gap-3 transition-colors hover:bg-on-primary-fixed-variant/50" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-body-md text-body-md">Customers</span>
+</a>
+<!-- Active Tab: Rituals -->
+<a class="bg-on-primary-fixed-variant text-on-primary rounded-lg mx-2 px-4 py-3 flex items-center gap-3" href="#">
+<span class="material-symbols-outlined">auto_stories</span>
+<span class="font-body-md text-body-md">Rituals</span>
+</a>
+<a class="text-on-primary/70 hover:text-on-primary mx-2 px-4 py-3 flex items-center gap-3 transition-colors hover:bg-on-primary-fixed-variant/50" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</nav>
+<div class="px-6 mt-auto">
+<button class="w-full py-3 border border-on-primary/20 text-on-primary font-label-caps text-label-caps uppercase hover:bg-on-primary/10 transition-all">
+                View Storefront
+            </button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen bg-surface flex flex-col">
+<!-- Top Bar Navigation Shell -->
+<header class="flex justify-between items-center w-full h-16 px-6 sticky top-0 bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-border-subtle z-40">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-low border-none focus:ring-1 focus:ring-primary py-2 pl-10 pr-4 text-body-md placeholder:text-on-surface-variant/50" placeholder="Search guides, herbs, rituals..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer scale-95 active:scale-90 transition-transform">notifications</span>
+<div class="flex items-center gap-3 group cursor-pointer">
+<span class="material-symbols-outlined text-on-surface-variant scale-95 active:scale-90 transition-transform">account_circle</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant group-hover:text-primary uppercase">Admin</span>
+</div>
+</div>
+</header>
+<!-- Canvas Area -->
+<div class="flex-1 p-8 grid grid-cols-12 gap-8 overflow-y-auto h-[calc(100vh-4rem)]">
+<!-- Rituals Management Section -->
+<div class="col-span-12 lg:col-span-8 flex flex-col gap-8">
+<div class="flex justify-between items-end">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary">Rituals &amp; Guides</h2>
+<p class="text-on-surface-variant mt-1">Manage the narrative soul of your apothecary brand.</p>
+</div>
+<button class="bg-primary text-on-primary px-6 py-3 font-label-caps text-label-caps uppercase hover:bg-brand-green transition-colors">
+                        Create New Guide
+                    </button>
+</div>
+<!-- Articles Bento Grid / List -->
+<div class="space-y-4">
+<!-- Article Item -->
+<div class="bg-surface-card p-6 border border-outline-variant flex items-center gap-6 group transition-all hover:shadow-sm">
+<div class="w-24 h-24 flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="A top-down view of a rustic wooden table featuring dried lavender sprigs, a vintage glass apothecary jar filled with green tea leaves, and a ceramic bowl of dark earth. The lighting is soft and natural, emphasizing textures of the organic materials against the warm wood. The aesthetic is clean and artisanal, reflecting the purity of herbal rituals in a minimal, high-end light-mode setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBW0dKVyXBHFLDoNCgkTQPIA0lYx8H6MurhoWrxXQplZlvgmQHgDb7TlG8AT0R7uH_wxP2F4YpO6dIDSJ-_n2cscE2s0h_epq1AUvkp0srGMX6GXyuAuUpYlHlvPI6VTP1CwOqc4gy-H6mFF4QMXo4L8Ap6Yh7Bwvc594PoED_9hg54foJAiSz0b-gnfAViofqL0oRjozuG1yjsRlc1VsFTozGm0u5GVVWowfRtZJllg-TOOI9sfe6yK93Zv-9DGKd6xjIPBeF90G0I"/>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-1">
+<span class="bg-primary text-on-primary px-2 py-0.5 text-[9px] font-bold uppercase">Featured</span>
+<span class="text-label-caps text-on-surface-variant/60">Equinox Harmony</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-1">Ritual for the Autumnal Equinox</h3>
+<p class="text-body-md text-on-surface-variant line-clamp-1">A curated guide for grounding energy and preparing the body for cooler months with root infusions.</p>
+</div>
+<div class="flex gap-2">
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant hover:bg-error/10 hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Article Item -->
+<div class="bg-surface-card p-6 border border-outline-variant flex items-center gap-6 group transition-all hover:shadow-sm">
+<div class="w-24 h-24 flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Close-up of a person's hands delicately measuring bright yellow turmeric powder with a small silver spoon into a white mortar. The background is a clean, bright apothecary workspace with sprigs of rosemary and small corked bottles. The lighting is crisp and bright, highlighting the vibrant pigment of the spices and the sterile yet organic environment, fitting the modern apothecary design system perfectly." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPwREQB5Qs7AXe1l6OuJO_rz5y1CMmuPBBhn-XzwtJ4fpSBjF_1KhXPDetUcusrPhdLbhml3dK_2RU0YGJOcgiDog9xdzezKqowSk8Ifeij5jrUoDYlrEEkaqTnDFnMnY3qSHWXJtjqfahwPfwnUo04IaZbYRPNRdnt1X09SXubADma73a-FTL8ko5Zo68vUs75cPUebuk_4zYss1UHWRklLTrOVs7zHcAhfY1p_kccJhYnLeho4VYhmlIH2mATNenWdFIRb8B5mGf"/>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-1">
+<span class="text-label-caps text-on-surface-variant/60">Herbal Wisdom</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-1">The Golden Root: Turmeric Lore</h3>
+<p class="text-body-md text-on-surface-variant line-clamp-1">Exploring the historical and pharmacological significance of Curcuma longa in ancient and modern medicine.</p>
+</div>
+<div class="flex gap-2">
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant hover:bg-error/10 hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Article Item -->
+<div class="bg-surface-card p-6 border border-outline-variant flex items-center gap-6 group transition-all hover:shadow-sm opacity-60 hover:opacity-100">
+<div class="w-24 h-24 flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover grayscale transition-all duration-500" data-alt="A tranquil outdoor morning scene with a single ceramic mug of steaming tea sitting on a weathered stone ledge. The background shows a hazy, lush garden with soft, out-of-focus morning sunlight filtering through trees. The atmosphere is peaceful and contemplative, with a color palette of muted greens, soft greys, and warm cream tones, embodying the essence of a serene morning ritual." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQIArl_emm1aXiQk2UQ6aTW-CVC4cw9-jfzFTnzAooySXZh18ViFUXkg3bM_kKoXgO-w7r4a7FR1dIkuIdAa9vuLiZSLB1f4t82Y1XuigKgGoKepYlihf8OFLjq5su6Uc3RmSXf7JNT94Cw2mphnegMNRuNnzRYEsFYZx6sAdmTGmzje3UrKoS68TpBVGVnS-qp69Gc57SwLqPFfLEjSGMx-BOp58-LhbwXjB_bPCAKOc9cP1CdelPXDOiiYtmZH_IzJiZ0-AwIHVI"/>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-1">
+<span class="bg-on-surface-variant text-surface px-2 py-0.5 text-[9px] font-bold uppercase">Draft</span>
+<span class="text-label-caps text-on-surface-variant/60">Mindfulness</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-1">Tea as a Meditation Practice</h3>
+<p class="text-body-md text-on-surface-variant line-clamp-1">Step-by-step guidance on transforming your daily tea consumption into a 15-minute grounding ceremony.</p>
+</div>
+<div class="flex gap-2">
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant hover:bg-error/10 hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Mobile App Preview Section -->
+<div class="col-span-12 lg:col-span-4 border-l border-outline-variant pl-8 flex flex-col items-center">
+<div class="sticky top-24 w-full">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant/60 uppercase mb-4 text-center">Mobile Preview</h3>
+<!-- Phone Frame -->
+<div class="relative mx-auto border-[8px] border-primary-container rounded-[2.5rem] w-[280px] h-[560px] shadow-2xl overflow-hidden bg-background">
+<!-- Phone Notch -->
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-primary-container rounded-b-2xl z-20"></div>
+<!-- Content Scroll Area -->
+<div class="h-full overflow-y-auto custom-scrollbar pt-10 px-4 pb-6">
+<!-- Mobile Header -->
+<div class="flex justify-between items-center mb-6">
+<span class="material-symbols-outlined text-primary">menu</span>
+<span class="font-headline-md text-body-md font-bold tracking-tight">APOTHECARY</span>
+<span class="material-symbols-outlined text-primary">shopping_bag</span>
+</div>
+<!-- Featured Guide Preview -->
+<div class="mb-8">
+<div class="relative w-full aspect-[4/5] mb-4 overflow-hidden">
+<div class="absolute top-4 left-0 bg-primary text-on-primary px-3 py-1 font-label-caps text-[9px] uppercase z-10">Featured Ritual</div>
+<img class="w-full h-full object-cover" data-alt="Detailed close-up of a dried lavender bundle and herbal tea leaves being poured into a delicate white porcelain teapot. The scene is lit by warm, golden hour sunlight, creating long shadows and highlighting the fine dust of herbs in the air. The overall mood is luxurious, organic, and deeply calming, aligning with high-end apothecary branding and a tactile-minimalist aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUH4KFVg9rkPFBFlxz5mdy80Vm4PGot-RD5be8dVRgx5A-e7-3E4ph_iWHNDTnAmnJ3Ho5hC4uPG1ExCfsTZgwI2nxZTZSsCMOVlvLVCpS9-0vFPz1_Zd5DMeAZXdSSF40p8BEk_ZyXzWAW_pXfrWagHwQj5pmv1UlvcbPJD6En248gSJnGPM-LOjsDMiHK5RLV43Y7IFKU6QBIO86X9IEshDteT6BK0HmJeUI-eV0CWt_1AIAHb-7An48aA34We6cagi6j67cQ6li"/>
+</div>
+<h4 class="font-headline-lg text-headline-md text-primary leading-tight">Ritual for the Autumnal Equinox</h4>
+<p class="text-body-md text-on-surface-variant mt-2 text-[12px] leading-relaxed">Prepare your space and spirit for the turning of the wheel. Discover root medicines and warming spices to ground your energy as the days grow shorter.</p>
+<button class="mt-4 w-full py-3 bg-primary text-on-primary font-label-caps text-[10px] uppercase tracking-widest">Read Full Guide</button>
+</div>
+<!-- Suggested Content Section -->
+<div class="pt-6 border-t border-outline-variant/30">
+<h5 class="font-label-caps text-[10px] uppercase mb-4">Related Knowledge</h5>
+<div class="grid grid-cols-2 gap-3">
+<div class="space-y-2">
+<div class="aspect-square bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Abstract macro photography of vibrant yellow turmeric root textures and powder." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0HLFlabDmi5qkjjYOhXvFTcSxY07bIbG0k4VujvAZrkqon4De6f9v5geul7dLfme6nYRRUcYhe6Z6RFG62M7-XKYHi6q7RAk7wmb0dYDhnXRreAs26p97MUQCFDc-q3I3JvSrAQn9QkspYfMVPcZ_vtJRMSjwDZZV85q37CaP8oHad8A4OOIGDwANA_1Fpfp9AuyTk0VNmXuQGutVpo5JuhMfB64M0hTiur68C9SRMFOFqe2HF16f-o5eVgVAUiUubENVTxqTESVA"/>
+</div>
+<p class="text-[10px] font-bold leading-tight">Turmeric: Ancient Healing</p>
+</div>
+<div class="space-y-2">
+<div class="aspect-square bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Zen morning tea ritual detail." src="https://lh3.googleusercontent.com/aida-public/AB6AXuClsBFVxV1DVnuV5KVgCKojt0ZQP2TK-_TJqmpkpAqW5xKKt-2fZ2pigkeMtJ1oJi_xrmEsMd5lJgFU8v_XvFJqnyUipjAyveUK1ZdRyHqYBcQIVHJTgPhWTzSAssxggfn-kd4Qsyk9emXfqKeBPa7xr_GEbUvWok2uii4DYXaMBzXe8pHxMMFfp8-Z4Psos-K3af76fo_5O7acXz9y6UgOP5jpBQmEysJYgzf4bJoZh99FeA2l15U3-cXY-EAsK4Zw5KGHhWOwF6OW"/>
+</div>
+<p class="text-[10px] font-bold leading-tight">Morning Tea Meditation</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Mobile Bottom Nav -->
+<div class="absolute bottom-0 w-full h-14 bg-surface border-t border-outline-variant flex justify-around items-center px-4">
+<span class="material-symbols-outlined text-on-surface-variant/50">home</span>
+<span class="material-symbols-outlined text-on-surface-variant/50">spa</span>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">auto_stories</span>
+<span class="material-symbols-outlined text-on-surface-variant/50">person</span>
+</div>
+</div>
+<div class="mt-6 flex flex-col gap-2 max-w-[280px] mx-auto">
+<div class="flex items-center gap-2 p-3 bg-primary-container/5 rounded-lg border border-primary-container/10">
+<span class="material-symbols-outlined text-primary text-[18px]">info</span>
+<p class="text-[11px] text-on-primary-container">Previewing version 1.4.2 of the Apothecary Consumer App.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Interactive Layer / Tooltip Logic -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Logic for micro-interactions
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach(btn => {
+                btn.addEventListener('mousedown', () => {
+                    btn.classList.add('scale-95');
+                });
+                btn.addEventListener('mouseup', () => {
+                    btn.classList.remove('scale-95');
+                });
+            });
+
+            // Smooth content fade in
+            const mainContent = document.querySelector('main');
+            mainContent.style.opacity = '0';
+            mainContent.style.transition = 'opacity 0.8s ease-out';
+            setTimeout(() => {
+                mainContent.style.opacity = '1';
+            }, 50);
+        });
+    </script>
+</body></html>

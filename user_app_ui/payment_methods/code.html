@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nature's Alchemist | Payment</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#fbf9f8",
+                        "outline": "#727876",
+                        "tertiary": "#000201",
+                        "surface-container": "#efedec",
+                        "on-secondary-fixed": "#1c1c18",
+                        "surface-container-highest": "#e4e2e1",
+                        "on-tertiary-fixed-variant": "#414845",
+                        "on-error-container": "#93000a",
+                        "on-background": "#1b1c1b",
+                        "on-secondary": "#ffffff",
+                        "on-surface-variant": "#424846",
+                        "secondary-container": "#e5e2db",
+                        "on-tertiary-fixed": "#161d1a",
+                        "error": "#ba1a1a",
+                        "inverse-surface": "#303030",
+                        "primary-container": "#0f1f1c",
+                        "on-tertiary-container": "#7f8682",
+                        "outline-variant": "#c2c8c5",
+                        "on-secondary-container": "#65645f",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#e4e2e1",
+                        "surface-bright": "#fbf9f8",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed-variant": "#3a4a46",
+                        "tertiary-fixed-dim": "#c1c8c3",
+                        "tertiary-container": "#171e1b",
+                        "background": "#fbf9f8",
+                        "surface-dim": "#dbdad8",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#474742",
+                        "inverse-on-surface": "#f2f0ef",
+                        "on-surface": "#1b1c1b",
+                        "surface-container-low": "#f5f3f2",
+                        "on-primary-container": "#778884",
+                        "inverse-primary": "#b8cac5",
+                        "secondary-fixed": "#e5e2db",
+                        "primary": "#000101",
+                        "tertiary-fixed": "#dde4df",
+                        "text-muted": "rgba(15, 31, 28, 0.6)",
+                        "primary-fixed": "#d4e6e1",
+                        "primary-fixed-dim": "#b8cac5",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#c9c6c0",
+                        "surface-card": "#ffffff",
+                        "status-sale": "#0f1f1c",
+                        "surface-container-high": "#eae8e6",
+                        "on-primary-fixed": "#0e1e1b",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#5f5e59",
+                        "border-subtle": "rgba(255, 255, 255, 0.1)",
+                        "brand-green": "#1a2e29",
+                        "surface-tint": "#51625e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "container-margin": "1.5rem",
+                        "grid-gutter": "1rem",
+                        "section-gap-sm": "2.5rem",
+                        "section-gap-lg": "5rem",
+                        "element-gap": "0.5rem"
+                    },
+                    "fontFamily": {
+                        "price-tag": ["Noto Sans"],
+                        "headline-md": ["Playfair Display"],
+                        "label-caps": ["Noto Sans"],
+                        "headline-lg": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "body-md": ["Noto Sans"]
+                    },
+                    "fontSize": {
+                        "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                        "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                        "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen">
+<!-- Top Navigation (Shell Implementation) -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-container-margin h-16 bg-surface dark:bg-primary-container">
+<div class="flex items-center space-x-4">
+<button class="active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim">arrow_back</span>
+</button>
+</div>
+<h1 class="font-headline-md text-[20px] text-primary dark:text-primary-fixed-dim uppercase tracking-widest">NATURE'S ALCHEMIST</h1>
+<div class="w-6"></div> <!-- Spacer for balance -->
+</header>
+<main class="pt-24 pb-32 px-container-margin max-w-lg mx-auto">
+<!-- Order Summary Section -->
+<section class="mb-section-gap-sm text-center">
+<span class="font-label-caps text-label-caps text-on-secondary-container mb-2 block">SECURE CHECKOUT</span>
+<h2 class="font-headline-lg text-headline-lg mb-1">Total Amount</h2>
+<p class="font-display-lg text-[40px] text-primary">₹4,250.00</p>
+<div class="mt-4 flex items-center justify-center space-x-2 text-on-tertiary-container">
+<span class="material-symbols-outlined text-sm">lock</span>
+<span class="font-body-md text-body-md">SSL Encrypted Transaction</span>
+</div>
+</section>
+<!-- Payment Methods Accordion/List -->
+<div class="space-y-4">
+<!-- UPI Section -->
+<div class="bg-surface-card border border-outline-variant/30 p-5 shadow-sm rounded">
+<div class="flex justify-between items-center mb-6">
+<div class="flex items-center space-x-3">
+<span class="material-symbols-outlined text-brand-green">account_balance_wallet</span>
+<span class="font-headline-md text-headline-md">UPI Payment</span>
+</div>
+<span class="font-label-caps text-[9px] bg-primary text-on-primary px-2 py-1">POPULAR</span>
+</div>
+<div class="grid grid-cols-2 gap-3 mb-6">
+<!-- Google Pay -->
+<button class="flex flex-col items-center justify-center p-4 border border-outline-variant/50 hover:border-primary transition-colors bg-surface-container-lowest">
+<span class="material-symbols-outlined text-primary mb-2" style="font-variation-settings: 'FILL' 1;">GoogleLogo</span>
+<span class="font-label-caps text-[11px]">GOOGLE PAY</span>
+</button>
+<!-- PhonePe -->
+<button class="flex flex-col items-center justify-center p-4 border border-outline-variant/50 hover:border-primary transition-colors bg-surface-container-lowest">
+<span class="material-symbols-outlined text-primary mb-2">currency_rupee</span>
+<span class="font-label-caps text-[11px]">PHONEPE</span>
+</button>
+</div>
+<div class="relative">
+<input class="w-full bg-surface-container border-none p-4 font-body-md text-body-md focus:ring-1 focus:ring-primary outline-none" placeholder="Enter UPI ID (e.g. user@bank)" type="text"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-primary font-label-caps text-label-caps px-2 py-1">VERIFY</button>
+</div>
+</div>
+<!-- Razorpay Credit/Debit Section -->
+<div class="bg-surface-card border border-outline-variant/30 p-5 shadow-sm rounded">
+<div class="flex items-center space-x-3 mb-6">
+<span class="material-symbols-outlined text-brand-green">credit_card</span>
+<span class="font-headline-md text-headline-md">Cards via Razorpay</span>
+</div>
+<div class="space-y-4">
+<div class="relative">
+<label class="font-label-caps text-[9px] text-on-secondary-container absolute -top-2 left-3 bg-surface-card px-1">CARD NUMBER</label>
+<input class="w-full border border-outline-variant/50 p-4 font-body-md text-body-md focus:border-primary outline-none bg-transparent" placeholder="0000 0000 0000 0000" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="relative">
+<label class="font-label-caps text-[9px] text-on-secondary-container absolute -top-2 left-3 bg-surface-card px-1">EXPIRY</label>
+<input class="w-full border border-outline-variant/50 p-4 font-body-md text-body-md focus:border-primary outline-none bg-transparent" placeholder="MM / YY" type="text"/>
+</div>
+<div class="relative">
+<label class="font-label-caps text-[9px] text-on-secondary-container absolute -top-2 left-3 bg-surface-card px-1">CVV</label>
+<input class="w-full border border-outline-variant/50 p-4 font-body-md text-body-md focus:border-primary outline-none bg-transparent" placeholder="***" type="password"/>
+</div>
+</div>
+</div>
+<div class="mt-4 flex items-center justify-between">
+<div class="flex space-x-2">
+<img alt="Visa" class="h-3 opacity-40 grayscale" data-alt="A clean, minimalist close-up shot of the Visa payment logo displayed on a textured cream paper background. The lighting is soft and high-key, maintaining the premium apothecary aesthetic of the brand with muted tones and elegant simplicity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmp_UHpY5hPQuzWj2KarhG1DoKGNJr48qEiSNVsRr8i-17LGaB9w0aZ2snwc58A10sxecDgYIKWtmjHSvh_x-Jmbf_BCt3dbz36usDUyUjoBLoDgxmFy6m326jwFTvAry0UgYuI7dB-90el1cXA5DXtnreqaAzeCnquJ_hA8vz5k4u5QbUrfekUUTzXIJbmr917FZ3ycFnFV_6aDBEbg3aGuh1_9P4uoPKPHEhYvZH3I5ZX94SjLbeAif8STVeubR9px0u05QWc9Qy"/>
+<img alt="Mastercard" class="h-3 opacity-40 grayscale" data-alt="A sophisticated macro shot of the Mastercard logo on a minimalist white surface with soft directional lighting. The composition is clean and modern, following the apothecary-style design language with neutral colors and a sense of calm reliability." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmk-hX-TjQ76piW-FHoD2RMxATr5TkEK_ftPiuYgrHdQOf_pJroELGY2KXZnYYIXqE-va3nYikUkHK7yO1vDPaHsnY7bjSeTLEzsjUCLrgCozPQeiTM3HNd5gCBEJxBpgglknbfNNNZ6Mk3dFZQnVrdRR2qtp13TF07Y3r7Td5iDoTmzcK-GbT-Sz2mD934EC4QSb7f1Qq4rZALk3lzCk-SAtoBdUTLSCszjf4_ohSEm8TkkD1A3arr8mXKRNeju-m7SRDuETDxZiI"/>
+</div>
+<span class="font-label-caps text-[9px] text-on-tertiary-container flex items-center">
+<span class="material-symbols-outlined text-[12px] mr-1">verified_user</span>
+                        SECURED BY RAZORPAY
+                    </span>
+</div>
+</div>
+<!-- Net Banking -->
+<button class="w-full flex items-center justify-between p-5 bg-surface-card border border-outline-variant/30 shadow-sm rounded hover:bg-surface-container-low transition-colors">
+<div class="flex items-center space-x-3">
+<span class="material-symbols-outlined text-brand-green">account_balance</span>
+<span class="font-headline-md text-headline-md">Net Banking</span>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</button>
+</div>
+<!-- Botanical Visual Element -->
+<div class="mt-12 flex justify-center opacity-10">
+<span class="material-symbols-outlined text-[120px] font-thin">spa</span>
+</div>
+<!-- Action Button -->
+<div class="fixed bottom-0 left-0 w-full bg-surface p-container-margin border-t border-outline-variant/10">
+<div class="max-w-lg mx-auto">
+<button class="w-full bg-primary text-on-primary py-5 font-label-caps text-price-tag tracking-widest active:scale-[0.98] transition-transform">
+                    PAY ₹4,250.00 NOW
+                </button>
+</div>
+</div>
+</main>
+<!-- Bottom Nav (Hidden on Checkout but maintaining shell logic from JSON) -->
+<!-- Suppressed due to Destination Rule: Checkout is a Transactional task -->
+</body></html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#fbf9f8",
+                    "outline": "#727876",
+                    "tertiary": "#000201",
+                    "surface-container": "#efedec",
+                    "on-secondary-fixed": "#1c1c18",
+                    "surface-container-highest": "#e4e2e1",
+                    "on-tertiary-fixed-variant": "#414845",
+                    "on-error-container": "#93000a",
+                    "on-background": "#1b1c1b",
+                    "on-secondary": "#ffffff",
+                    "on-surface-variant": "#424846",
+                    "secondary-container": "#e5e2db",
+                    "on-tertiary-fixed": "#161d1a",
+                    "error": "#ba1a1a",
+                    "inverse-surface": "#303030",
+                    "primary-container": "#0f1f1c",
+                    "on-tertiary-container": "#7f8682",
+                    "outline-variant": "#c2c8c5",
+                    "on-secondary-container": "#65645f",
+                    "on-primary": "#ffffff",
+                    "surface-variant": "#e4e2e1",
+                    "surface-bright": "#fbf9f8",
+                    "on-error": "#ffffff",
+                    "on-primary-fixed-variant": "#3a4a46",
+                    "tertiary-fixed-dim": "#c1c8c3",
+                    "tertiary-container": "#171e1b",
+                    "background": "#fbf9f8",
+                    "surface-dim": "#dbdad8",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed-variant": "#474742",
+                    "inverse-on-surface": "#f2f0ef",
+                    "on-surface": "#1b1c1b",
+                    "surface-container-low": "#f5f3f2",
+                    "on-primary-container": "#778884",
+                    "inverse-primary": "#b8cac5",
+                    "secondary-fixed": "#e5e2db",
+                    "primary": "#000101",
+                    "tertiary-fixed": "#dde4df",
+                    "text-muted": "rgba(15, 31, 28, 0.6)",
+                    "primary-fixed": "#d4e6e1",
+                    "primary-fixed-dim": "#b8cac5",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed-dim": "#c9c6c0",
+                    "surface-card": "#ffffff",
+                    "status-sale": "#0f1f1c",
+                    "surface-container-high": "#eae8e6",
+                    "on-primary-fixed": "#0e1e1b",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary": "#5f5e59",
+                    "border-subtle": "rgba(255, 255, 255, 0.1)",
+                    "brand-green": "#1a2e29",
+                    "surface-tint": "#51625e"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "container-margin": "1.5rem",
+                    "grid-gutter": "1rem",
+                    "section-gap-sm": "2.5rem",
+                    "section-gap-lg": "5rem",
+                    "element-gap": "0.5rem"
+            },
+            "fontFamily": {
+                    "price-tag": ["Noto Sans"],
+                    "headline-md": ["Playfair Display"],
+                    "label-caps": ["Noto Sans"],
+                    "headline-lg": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"],
+                    "body-md": ["Noto Sans"]
+            },
+            "fontSize": {
+                    "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                    "headline-md-mobile": ["20px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                    "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                    "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #fbf9f8;
+            color: #1b1c1b;
+        }
+        .tracking-line::before {
+            content: '';
+            position: absolute;
+            top: 0.75rem;
+            bottom: 0;
+            left: 0.5rem;
+            width: 1px;
+            background-color: #c2c8c5;
+        }
+        .tracking-line:last-child::before {
+            display: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-body-md antialiased pb-32">
+<!-- Top AppBar (JSON Component Implementation) -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-container-margin h-16 bg-surface dark:bg-primary-container">
+<div class="flex items-center gap-4">
+<button class="hover:opacity-70 transition-opacity active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim">arrow_back</span>
+</button>
+</div>
+<h1 class="font-headline-md text-headline-md-mobile text-primary dark:text-primary-fixed-dim uppercase tracking-widest">Nature's Alchemist</h1>
+<div class="flex items-center">
+<button class="hover:opacity-70 transition-opacity active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim">shopping_bag</span>
+</button>
+</div>
+</header>
+<main class="mt-20 px-container-margin max-w-2xl mx-auto">
+<!-- Order Identification -->
+<section class="mb-section-gap-sm">
+<p class="font-label-caps text-label-caps text-outline mb-1 uppercase">ORDER RECORD</p>
+<div class="flex justify-between items-end">
+<div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">#ALC-8829104</h2>
+<p class="text-on-surface-variant font-body-md">Purchased on September 14, 2023</p>
+</div>
+<span class="bg-primary text-surface px-3 py-1 text-[9px] font-bold tracking-widest uppercase">DELIVERED</span>
+</div>
+</section>
+<!-- Tracking Timeline -->
+<section class="mb-section-gap-sm bg-surface-container-low p-6">
+<h3 class="font-label-caps text-label-caps text-primary mb-6">SHIPPING STATUS</h3>
+<div class="space-y-0">
+<div class="relative pl-8 pb-8 tracking-line">
+<div class="absolute left-0 top-1 w-4 h-4 rounded-full bg-brand-green border-4 border-surface-container-low"></div>
+<div>
+<p class="font-bold text-primary font-body-md">Delivered</p>
+<p class="text-on-surface-variant text-sm">Sept 18, 11:24 AM • Doorstep</p>
+</div>
+</div>
+<div class="relative pl-8 pb-8 tracking-line">
+<div class="absolute left-0 top-1 w-4 h-4 rounded-full bg-brand-green border-4 border-surface-container-low"></div>
+<div>
+<p class="font-bold text-primary font-body-md">Out for Delivery</p>
+<p class="text-on-surface-variant text-sm">Sept 18, 08:15 AM</p>
+</div>
+</div>
+<div class="relative pl-8 pb-8 tracking-line">
+<div class="absolute left-0 top-1 w-4 h-4 rounded-full bg-brand-green border-4 border-surface-container-low"></div>
+<div>
+<p class="font-bold text-primary font-body-md">Shipped</p>
+<p class="text-on-surface-variant text-sm">Sept 16, 04:30 PM • Tracking: NY88291A</p>
+</div>
+</div>
+<div class="relative pl-8 tracking-line">
+<div class="absolute left-0 top-1 w-4 h-4 rounded-full bg-brand-green border-4 border-surface-container-low"></div>
+<div>
+<p class="font-bold text-primary font-body-md">Order Placed</p>
+<p class="text-on-surface-variant text-sm">Sept 14, 09:12 AM</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Items List -->
+<section class="mb-section-gap-sm">
+<h3 class="font-label-caps text-label-caps text-primary mb-4">PURCHASED BOTANICALS</h3>
+<div class="divide-y divide-outline-variant/30">
+<!-- Item 1 -->
+<div class="py-4 flex gap-4">
+<div class="w-20 h-24 bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A minimalist aesthetic photo of a dark glass apothecary bottle with a minimalist cream label. The bottle contains a golden botanical oil and is placed on a rough stone surface against a soft cream background. The lighting is bright and natural, reflecting a luxury wellness brand aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFK3_SKfZApDAQEP8D9_b2QWHojs0ZLPCfm1wW1yleo4tbjA90CR-wkBO2jJR0kfpV3qh315j19NEhsSOjr4_qtuhF5X9b8u8i5reQsTMxl4dCQQ4MXjRQliTpzmZBHEEKnpCaHa_cqKbDjiqAFUs07vvSEvXwupEJ6bquneggNgVg616Hce8gukm0Gx2FX-nmDNwUvGdHh2OpNX1atnnuuK2Cwo3e3F4lYcbX7hzIePcd8ZxxERATKaoecrjqfItxC5DmSK5zmPQ_"/>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<h4 class="font-headline-md-mobile text-headline-md-mobile text-primary">Sacred Forest Elixir</h4>
+<p class="text-on-surface-variant text-sm">50ml • Herbal Tincture</p>
+</div>
+<div class="flex justify-between items-baseline">
+<p class="text-sm">Qty: 1</p>
+<p class="font-price-tag text-price-tag text-primary">$48.00</p>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="py-4 flex gap-4">
+<div class="w-20 h-24 bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A stack of handcrafted artisan soaps in muted sage green and charcoal tones. The soaps are wrapped in recycled textured paper with a delicate botanical stamp. The setting is a bright, clean modern apothecary shop with natural wood textures and soft daylight." src="https://lh3.googleusercontent.com/aida-public/AB6AXuARCrsbEQNn2nIwtbXgx2UpgQN1zfJfnoCrEt6FyeRXjjdIePKmjt2pG-TJ-mjizbxUsN4h8uR81a8VMBjTDP6ca6zqnA7lSFF2ScoV6wJgUQVW4BcxROgQyy9jlq8JTu6HGFoChKAa3e1ynGdqaQs6rhltOx64Gv-BTIAPlhdCbL7on57fY0tiWndyzIVwMi3DpaCmCuAhIloTxfabu_kLc-hbL3yEGF9-YpczzdkFdCehLusa6KAvRfbLIIo3dcUaPHHiFUFs2dGA"/>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<h4 class="font-headline-md-mobile text-headline-md-mobile text-primary">Midnight Ash Soap</h4>
+<p class="text-on-surface-variant text-sm">Single Bar • Cold Pressed</p>
+</div>
+<div class="flex justify-between items-baseline">
+<p class="text-sm">Qty: 2</p>
+<p class="font-price-tag text-price-tag text-primary">$24.00</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Cost Breakdown -->
+<section class="bg-surface-container-low p-6 space-y-3 mb-section-gap-sm">
+<div class="flex justify-between items-center text-sm">
+<span class="text-on-surface-variant">Subtotal</span>
+<span class="text-primary">$72.00</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-on-surface-variant">Shipping (Eco-Standard)</span>
+<span class="text-primary">$0.00</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-on-surface-variant">Estimated Tax</span>
+<span class="text-primary">$6.12</span>
+</div>
+<div class="pt-3 border-t border-outline-variant/30 flex justify-between items-center">
+<span class="font-label-caps text-label-caps text-primary">TOTAL</span>
+<span class="font-headline-md text-headline-md text-primary">$78.12</span>
+</div>
+</section>
+<!-- Shipping & Payment Info (Bento Style) -->
+<section class="grid grid-cols-2 gap-grid-gutter mb-section-gap-lg">
+<div class="p-4 border border-outline-variant/30">
+<h3 class="font-label-caps text-[9px] text-outline mb-2 uppercase">Shipping To</h3>
+<p class="text-sm text-primary font-medium">Julianna Thorne</p>
+<p class="text-xs text-on-surface-variant leading-relaxed">
+                    1242 Evergreen Terrace<br/>
+                    Brooklyn, NY 11211<br/>
+                    United States
+                </p>
+</div>
+<div class="p-4 border border-outline-variant/30">
+<h3 class="font-label-caps text-[9px] text-outline mb-2 uppercase">Payment</h3>
+<p class="text-sm text-primary font-medium">Mastercard •••• 4492</p>
+<p class="text-xs text-on-surface-variant mt-1 italic font-serif">
+                    "Rooted in nature, paid with ease."
+                </p>
+</div>
+</section>
+</main>
+<!-- Bottom Action Bar -->
+<div class="fixed bottom-0 left-0 w-full bg-surface border-t border-outline-variant/10 px-container-margin py-6 flex flex-col gap-4">
+<button class="w-full bg-primary text-surface h-14 font-label-caps text-label-caps tracking-[0.25em] flex items-center justify-center gap-2 hover:opacity-90 active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined text-[18px]">replay</span>
+            REORDER ALL ITEMS
+        </button>
+</div>
+<!-- Hidden Bottom Nav Mock for Hierarchy adherence (Suppressed due to transactional nature) -->
+<!-- Navigation is suppressed per "Destination Rule" for linear transactional sub-pages -->
+</body></html>

@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Apothecary OS | Packer Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c2c8c5;
+            border-radius: 10px;
+        }
+        @keyframes pulse-subtle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .animate-scan-line {
+            height: 2px;
+            background: #51625e;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            animation: scan 2s linear infinite;
+        }
+        @keyframes scan {
+            from { top: 0; }
+            to { top: 100%; }
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-error-container": "#93000a",
+                      "tertiary-container": "#171e1b",
+                      "error": "#ba1a1a",
+                      "surface-container-high": "#eae8e6",
+                      "on-tertiary-fixed-variant": "#414845",
+                      "secondary-fixed": "#e5e2db",
+                      "surface-variant": "#e4e2e1",
+                      "tertiary-fixed-dim": "#c1c8c3",
+                      "on-tertiary-container": "#7f8682",
+                      "outline-variant": "#c2c8c5",
+                      "on-primary-fixed-variant": "#3a4a46",
+                      "surface-card": "#ffffff",
+                      "surface-container": "#efedec",
+                      "on-secondary-fixed-variant": "#474742",
+                      "secondary": "#5f5e59",
+                      "tertiary": "#000201",
+                      "on-primary-container": "#778884",
+                      "text-muted": "rgba(15, 31, 28, 0.6)",
+                      "inverse-surface": "#303030",
+                      "surface-bright": "#fbf9f8",
+                      "outline": "#727876",
+                      "surface-container-highest": "#e4e2e1",
+                      "on-secondary": "#ffffff",
+                      "on-tertiary-fixed": "#161d1a",
+                      "on-secondary-container": "#65645f",
+                      "primary-fixed": "#d4e6e1",
+                      "surface-container-low": "#f5f3f2",
+                      "inverse-on-surface": "#f2f0ef",
+                      "surface-dim": "#dbdad8",
+                      "on-error": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "border-subtle": "rgba(255, 255, 255, 0.1)",
+                      "surface-tint": "#51625e",
+                      "secondary-fixed-dim": "#c9c6c0",
+                      "secondary-container": "#e5e2db",
+                      "on-secondary-fixed": "#1c1c18",
+                      "primary-fixed-dim": "#b8cac5",
+                      "inverse-primary": "#b8cac5",
+                      "surface-container-lowest": "#ffffff",
+                      "status-sale": "#0f1f1c",
+                      "error-container": "#ffdad6",
+                      "on-primary-fixed": "#0e1e1b",
+                      "primary-container": "#0f1f1c",
+                      "primary": "#000101",
+                      "on-tertiary": "#ffffff",
+                      "tertiary-fixed": "#dde4df",
+                      "background": "#fbf9f8",
+                      "on-surface": "#1b1c1b",
+                      "brand-green": "#1a2e29",
+                      "surface": "#fbf9f8",
+                      "on-surface-variant": "#424846",
+                      "on-background": "#1b1c1b"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "grid-gutter": "1rem",
+                      "section-gap-lg": "5rem",
+                      "element-gap": "0.5rem",
+                      "container-margin": "1.5rem",
+                      "section-gap-sm": "2.5rem"
+              },
+              "fontFamily": {
+                      "label-caps": ["Noto Sans"],
+                      "body-md": ["Noto Sans"],
+                      "headline-lg": ["Playfair Display"],
+                      "display-lg": ["Playfair Display"],
+                      "price-tag": ["Noto Sans"],
+                      "headline-md": ["Playfair Display"]
+              },
+              "fontSize": {
+                      "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                      "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                      "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                      "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                      "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-hidden flex h-screen">
+<!-- Sidebar: Apothecary Lab Navigation -->
+<aside class="h-screen sticky left-0 top-0 w-64 bg-brand-green border-r border-outline-variant/20 flex flex-col py-6">
+<div class="px-6 mb-8">
+<h1 class="font-headline-md text-headline-md text-primary-fixed tracking-tight">Apothecary Lab</h1>
+<p class="font-label-caps text-label-caps text-on-primary-container uppercase mt-1">Lead Alchemist</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim hover:text-secondary-fixed transition-colors mx-2" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-caps text-label-caps">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim hover:text-secondary-fixed transition-colors mx-2" href="#">
+<span class="material-symbols-outlined">potted_plant</span>
+<span class="font-label-caps text-label-caps">Inventory</span>
+</a>
+<!-- Active State: Orders -->
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container rounded-lg mx-2 transition-colors scale-95" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">package_2</span>
+<span class="font-label-caps text-label-caps">Orders</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim hover:text-secondary-fixed transition-colors mx-2" href="#">
+<span class="material-symbols-outlined">leaderboard</span>
+<span class="font-label-caps text-label-caps">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim hover:text-secondary-fixed transition-colors mx-2" href="#">
+<span class="material-symbols-outlined">local_shipping</span>
+<span class="font-label-caps text-label-caps">Suppliers</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim hover:text-secondary-fixed transition-colors mx-2" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-caps text-label-caps">Settings</span>
+</a>
+</nav>
+<div class="px-2 mt-auto">
+<button class="w-full mb-4 px-4 py-3 bg-primary-fixed text-on-primary-fixed font-label-caps text-label-caps rounded-lg flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">add</span> New Entry
+            </button>
+<div class="border-t border-outline-variant/10 pt-4">
+<a class="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim hover:text-secondary-fixed transition-colors" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-caps text-label-caps">Support</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim hover:text-secondary-fixed transition-colors" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-caps text-label-caps">Log Out</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Workspace -->
+<main class="flex-1 flex flex-col overflow-hidden">
+<!-- Top Nav -->
+<header class="flex justify-between items-center px-6 h-16 w-full bg-surface-bright border-b border-outline-variant/30 sticky top-0 z-40">
+<div class="flex items-center gap-4">
+<h2 class="font-headline-md text-headline-md text-on-surface">Order Fulfillment</h2>
+<div class="flex items-center gap-2 bg-surface-container-low px-3 py-1 rounded-full border border-outline-variant/20">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+<span class="text-[11px] font-bold uppercase tracking-widest text-on-surface-variant">Station 04 Online</span>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative group">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline">search</span>
+<input class="bg-surface-container-low border-none rounded-full pl-10 pr-4 py-1.5 text-body-md focus:ring-1 focus:ring-primary/20 w-64 transition-all" placeholder="Search Order ID or SKU..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:bg-surface-container-high p-2 rounded-full transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border border-surface-bright"></span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container-high p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined">history</span>
+</button>
+<div class="flex items-center gap-2 pl-2 border-l border-outline-variant/30">
+<div class="text-right">
+<p class="font-label-caps text-label-caps leading-none">Packer 219</p>
+<p class="text-[10px] text-outline">M. Vance</p>
+</div>
+<span class="material-symbols-outlined text-3xl">account_circle</span>
+</div>
+</div>
+</div>
+</header>
+<div class="flex-1 flex overflow-hidden p-6 gap-6">
+<!-- Left Column: Active Packing Queue -->
+<section class="w-1/3 flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-md text-headline-md">Active Queue</h3>
+<span class="bg-primary-container text-on-primary-container px-2 py-0.5 font-label-caps text-label-caps rounded">12 ORDERS</span>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar flex flex-col gap-3">
+<!-- Priority Order Card -->
+<div class="bg-surface-card border-l-4 border-error p-4 shadow-sm hover:shadow-md transition-shadow cursor-pointer border border-outline-variant/30">
+<div class="flex justify-between items-start mb-2">
+<span class="bg-error text-white font-label-caps text-[9px] px-2 py-0.5 rounded">EXPRESS</span>
+<span class="text-outline font-label-caps text-[10px]">#AP-9402</span>
+</div>
+<h4 class="font-bold text-on-surface mb-1">Ethereal Oil Collection (Large)</h4>
+<p class="text-on-surface-variant text-xs mb-3">4 items • Scheduled for 14:00 Pickup</p>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-outline">local_shipping</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">DHL Next Day</span>
+</div>
+</div>
+<!-- Standard Order Card -->
+<div class="bg-surface-card border-l-4 border-primary-container p-4 shadow-sm hover:shadow-md transition-shadow cursor-pointer border border-outline-variant/30 ring-1 ring-primary">
+<div class="flex justify-between items-start mb-2">
+<span class="bg-primary-container text-on-primary-container font-label-caps text-[9px] px-2 py-0.5 rounded">ACTIVE</span>
+<span class="text-outline font-label-caps text-[10px]">#AP-9415</span>
+</div>
+<h4 class="font-bold text-on-surface mb-1">Botanical Restorative Set</h4>
+<p class="text-on-surface-variant text-xs mb-3">2 items • Standard Shipping</p>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-outline">local_shipping</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Ground Economy</span>
+</div>
+</div>
+<!-- Fragile Order Card -->
+<div class="bg-surface-card border-l-4 border-outline-variant p-4 shadow-sm hover:shadow-md transition-shadow cursor-pointer border border-outline-variant/30">
+<div class="flex justify-between items-start mb-2">
+<span class="bg-surface-container-high text-on-surface-variant font-label-caps text-[9px] px-2 py-0.5 rounded">FRAGILE</span>
+<span class="text-outline font-label-caps text-[10px]">#AP-9418</span>
+</div>
+<h4 class="font-bold text-on-surface mb-1">Amber Glass Vials (Bulk)</h4>
+<p class="text-on-surface-variant text-xs mb-3">24 items • Standard Shipping</p>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-outline">local_shipping</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Ground Economy</span>
+</div>
+</div>
+<!-- More Cards... -->
+<div class="bg-surface-card border-l-4 border-outline-variant p-4 shadow-sm opacity-60 border border-outline-variant/30">
+<div class="flex justify-between items-start mb-2">
+<span class="text-outline font-label-caps text-[10px]">#AP-9421</span>
+</div>
+<h4 class="font-bold text-on-surface mb-1">Saffron Extract (Rare)</h4>
+<p class="text-on-surface-variant text-xs mb-3">1 item • High Value</p>
+</div>
+</div>
+<!-- Station Metrics -->
+<div class="bg-surface-container-low p-4 rounded-xl border border-outline-variant/20">
+<h5 class="font-label-caps text-label-caps text-outline mb-3 uppercase">Shift Efficiency</h5>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<p class="text-2xl font-bold font-headline-md">24</p>
+<p class="text-[10px] text-on-surface-variant uppercase font-bold tracking-tighter">Orders Packed</p>
+</div>
+<div>
+<p class="text-2xl font-bold font-headline-md">2.4<span class="text-sm font-sans">m</span></p>
+<p class="text-[10px] text-on-surface-variant uppercase font-bold tracking-tighter">Avg Lead Time</p>
+</div>
+</div>
+<div class="mt-4 bg-outline-variant/30 h-1 rounded-full overflow-hidden">
+<div class="bg-brand-green h-full w-[85%]"></div>
+</div>
+<p class="text-[9px] text-right mt-1 text-brand-green font-bold">85% of Daily Goal</p>
+</div>
+</section>
+<!-- Right Column: Detailed Packing View -->
+<section class="flex-1 flex flex-col bg-surface-card border border-outline-variant/30 shadow-sm overflow-hidden relative">
+<!-- Barcode Scanning Overlay Emulation (Subtle) -->
+<div class="absolute inset-0 pointer-events-none border-[12px] border-primary/5"></div>
+<!-- Order Header -->
+<div class="p-6 border-b border-outline-variant/20 flex justify-between items-center bg-surface-bright">
+<div>
+<div class="flex items-center gap-3">
+<h3 class="font-headline-lg text-headline-lg">Order #AP-9415</h3>
+<span class="material-symbols-outlined text-status-sale">verified</span>
+</div>
+<p class="text-on-surface-variant italic font-serif">Customer: Julianne Thorne — Portland, OR</p>
+</div>
+<div class="text-right">
+<p class="font-label-caps text-label-caps text-outline uppercase">Priority</p>
+<p class="font-bold text-on-surface">Standard Protocol</p>
+</div>
+</div>
+<!-- Item Verification & Barcode Area -->
+<div class="p-6 flex-1 overflow-y-auto custom-scrollbar">
+<!-- Scan Notification -->
+<div class="bg-surface-container-high mb-6 p-4 border border-outline-variant/40 flex items-center gap-4 group">
+<div class="w-16 h-16 bg-white flex items-center justify-center relative overflow-hidden">
+<span class="material-symbols-outlined text-4xl text-outline">barcode_scanner</span>
+<div class="animate-scan-line"></div>
+</div>
+<div class="flex-1">
+<p class="font-label-caps text-label-caps text-on-surface-variant">READY TO SCAN</p>
+<input class="w-full bg-transparent border-none p-0 font-headline-md text-headline-md focus:ring-0 placeholder:text-outline/40" placeholder="Scan Item Barcode..." type="text"/>
+</div>
+<span class="material-symbols-outlined text-outline/30 text-4xl group-hover:text-primary transition-colors cursor-pointer">keyboard_return</span>
+</div>
+<!-- Checklist -->
+<h4 class="font-label-caps text-label-caps text-outline mb-4 uppercase tracking-widest">Packing Checklist (2 Items)</h4>
+<div class="space-y-4">
+<!-- Item 1: Verified -->
+<div class="flex items-center gap-6 p-4 border border-green-200 bg-green-50/30 rounded-lg">
+<div class="w-20 h-20 bg-white border border-outline-variant/20 shrink-0 relative">
+<img class="w-full h-full object-cover grayscale-[0.2]" data-alt="A premium apothecary glass bottle containing a dark green herbal tincture, set against a clean cream background with soft natural lighting and elegant serif labeling. The scene is minimalist and professional, highlighting the artisanal quality of the medicine." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5uyjjG1DfV96qadO1h8CPEQxfGEF1SNxMw6CdhOfr_z2RuoADyeQCrX2_Wjn58z4A4iV6OuYEj2yMwbsDHEkzkMmk6ztCk1dLhwQDylpOEC7neX3M56wLlvjufArNdZ4UgMZS-0eYZBXPUsY6zjnnIbGPJocHBJu7AUnK9bKTuuufZFB5e-hpp3vxwq5kc422qX_5X1N1lR3-wcu8TYqfH6Hf0UMWZQVJWJxTdguuSA1iYX7CMTAHP_MBQkl0q0yG3vGE__BBFJUs"/>
+<div class="absolute inset-0 flex items-center justify-center bg-green-500/20">
+<span class="material-symbols-outlined text-white text-3xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-1">
+<h5 class="font-bold text-on-surface">Rosemary &amp; Peppermint Tincture</h5>
+<span class="text-xs bg-surface-container px-2 py-0.5 rounded text-outline">100ml</span>
+</div>
+<p class="text-xs text-on-surface-variant mb-2">SKU: APO-TINC-022 • Location: A-12-4</p>
+<div class="flex items-center gap-4">
+<span class="text-[11px] font-bold uppercase text-green-700">Verified by Scanner</span>
+<span class="text-xs text-outline">Qty: 1</span>
+</div>
+</div>
+</div>
+<!-- Item 2: Pending -->
+<div class="flex items-center gap-6 p-4 border border-outline-variant/30 bg-surface-bright rounded-lg ring-1 ring-primary ring-offset-2">
+<div class="w-20 h-20 bg-white border border-outline-variant/20 shrink-0 p-1">
+<img class="w-full h-full object-cover" data-alt="A collection of handmade artisan soap bars with botanical inclusions like lavender sprigs, wrapped in textured craft paper. The image is captured in a high-contrast minimalist style with deep shadows and warm highlights on a neutral cream surface, evoking a sense of heritage and purity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBusDOJuvVLUKpC7b8ZwvXKC8wWlt2MJr2VEHy0k7QjNRFvlVQCBNVWAw-f3p1uIFs9bmkBXzAaZQ-3Dp4bcFCVdap-sk5dOUDvUB3QlnKqnPxbtqYf9sMNUAdsvDtNpUWSA4ieOMLQpMZ-F21eKUyxXIl8eXVdnw8Mrkcw0XxuTam1aepd5PwVKl_Dk0wpo2JhI884csqALKXJ7khI4orEoDN_Cntx8X8f5XEQ6W-jvsTXN38x8vHyZvJSL4V5W8wvkKCdvjxdDCQ"/>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-1">
+<h5 class="font-bold text-on-surface">Hand-Pressed Cedar Soap Block</h5>
+<span class="text-xs bg-surface-container px-2 py-0.5 rounded text-outline">150g</span>
+</div>
+<p class="text-xs text-on-surface-variant mb-2">SKU: APO-SOAP-009 • Location: B-04-1</p>
+<div class="flex items-center gap-4">
+<span class="text-[11px] font-bold uppercase text-error flex items-center gap-1 animate-pulse">
+<span class="material-symbols-outlined text-sm">warning</span> Awaiting Scan
+                                    </span>
+<span class="text-xs text-outline">Qty: 1</span>
+</div>
+</div>
+<div class="px-4 border-l border-outline-variant/20">
+<span class="bg-status-sale text-white font-label-caps text-[9px] px-2 py-0.5 rounded block text-center mb-1">FRAGILE</span>
+<span class="text-[10px] text-outline text-center block uppercase font-bold">Cold Pack</span>
+</div>
+</div>
+</div>
+<!-- Alerts & Notes -->
+<div class="mt-8 grid grid-cols-2 gap-4">
+<div class="p-4 bg-tertiary-fixed border border-outline-variant/20 rounded-lg">
+<div class="flex items-center gap-2 mb-2 text-brand-green">
+<span class="material-symbols-outlined">info</span>
+<span class="font-label-caps text-label-caps uppercase">Packing Note</span>
+</div>
+<p class="text-xs italic font-serif text-on-tertiary-fixed-variant">"Please include a sample of the new 'Moonlight Balsam' balm if available."</p>
+</div>
+<div class="p-4 bg-error-container/30 border border-error/10 rounded-lg">
+<div class="flex items-center gap-2 mb-2 text-on-error-container">
+<span class="material-symbols-outlined">gavel</span>
+<span class="font-label-caps text-label-caps uppercase">Compliance</span>
+</div>
+<p class="text-xs text-on-error-container/80">Hazardous Material: Class 3 Flammable Liquid (Essential Oils). Apply appropriate safety labeling.</p>
+</div>
+</div>
+</div>
+<!-- One-Click Actions Footer -->
+<div class="p-6 bg-surface-container-low border-t border-outline-variant/30 flex justify-between items-center">
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-6 py-3 border border-primary text-primary font-label-caps text-label-caps hover:bg-primary/5 transition-colors">
+<span class="material-symbols-outlined">print</span> Print Labels
+                        </button>
+<button class="flex items-center gap-2 px-6 py-3 border border-primary text-primary font-label-caps text-label-caps hover:bg-primary/5 transition-colors">
+<span class="material-symbols-outlined">article</span> Purity Cert
+                        </button>
+</div>
+<button class="flex items-center gap-3 px-10 py-3 bg-primary text-white font-label-caps text-label-caps opacity-50 cursor-not-allowed" id="complete-packing">
+<span class="material-symbols-outlined">inventory_2</span> Complete &amp; Seal
+                    </button>
+</div>
+</section>
+</div>
+</main>
+<script>
+        // Micro-interactions for simulation
+        const scanInput = document.querySelector('input[placeholder="Scan Item Barcode..."]');
+        const completeBtn = document.getElementById('complete-packing');
+        const awaitingScan = document.querySelector('.animate-pulse');
+
+        scanInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const val = scanInput.value.trim();
+                if (val.length > 5) {
+                    // Simulate verification
+                    awaitingScan.parentElement.innerHTML = '<span class="text-[11px] font-bold uppercase text-green-700">Verified by Scanner</span>';
+                    completeBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                    completeBtn.classList.add('hover:bg-primary/90');
+                    scanInput.value = '';
+                    
+                    // Visual feedback
+                    const card = document.querySelector('.ring-1.ring-primary');
+                    card.classList.add('bg-green-50/30', 'border-green-200');
+                    card.classList.remove('bg-surface-bright');
+                }
+            }
+        });
+
+        completeBtn.addEventListener('click', () => {
+            if (!completeBtn.classList.contains('cursor-not-allowed')) {
+                alert('Order #AP-9415 Sealed and Dispatched to Station Exit.');
+                location.reload(); // Reset for demo
+            }
+        });
+    </script>
+</body></html>

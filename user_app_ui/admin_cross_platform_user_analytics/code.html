@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nature's Alchemist Admin | User Analytics</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "status-sale": "#0f1f1c",
+                    "primary": "#000101",
+                    "text-muted": "rgba(15, 31, 28, 0.6)",
+                    "secondary": "#5f5e59",
+                    "on-tertiary-container": "#7f8682",
+                    "tertiary-fixed-dim": "#c1c8c3",
+                    "primary-fixed": "#d4e6e1",
+                    "outline-variant": "#c2c8c5",
+                    "surface-card": "#ffffff",
+                    "secondary-fixed-dim": "#c9c6c0",
+                    "on-secondary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#1b1c1b",
+                    "outline": "#727876",
+                    "inverse-primary": "#b8cac5",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface-variant": "#424846",
+                    "error": "#ba1a1a",
+                    "primary-container": "#0f1f1c",
+                    "brand-green": "#1a2e29",
+                    "border-subtle": "rgba(255, 255, 255, 0.1)",
+                    "on-error": "#ffffff",
+                    "on-secondary-container": "#65645f",
+                    "surface-dim": "#dbdad8",
+                    "secondary-container": "#e5e2db",
+                    "on-background": "#1b1c1b",
+                    "secondary-fixed": "#e5e2db",
+                    "on-error-container": "#93000a",
+                    "primary-fixed-dim": "#b8cac5",
+                    "background": "#fbf9f8",
+                    "on-primary-fixed": "#0e1e1b",
+                    "surface-bright": "#fbf9f8",
+                    "on-tertiary-fixed": "#161d1a",
+                    "tertiary-fixed": "#dde4df",
+                    "inverse-on-surface": "#f2f0ef",
+                    "on-secondary-fixed": "#1c1c18",
+                    "surface-container-high": "#eae8e6",
+                    "surface-container": "#efedec",
+                    "on-tertiary-fixed-variant": "#414845",
+                    "inverse-surface": "#303030",
+                    "on-primary-container": "#778884",
+                    "surface-container-low": "#f5f3f2",
+                    "tertiary-container": "#171e1b",
+                    "surface-variant": "#e4e2e1",
+                    "on-tertiary": "#ffffff",
+                    "tertiary": "#000201",
+                    "on-secondary-fixed-variant": "#474742",
+                    "surface-tint": "#51625e",
+                    "surface-container-highest": "#e4e2e1",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#3a4a46",
+                    "surface": "#fbf9f8"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "container-margin": "1.5rem",
+                    "element-gap": "0.5rem",
+                    "section-gap-sm": "2.5rem",
+                    "grid-gutter": "1rem",
+                    "section-gap-lg": "5rem"
+            },
+            "fontFamily": {
+                    "headline-md": ["Playfair Display"],
+                    "label-caps": ["Noto Sans"],
+                    "display-lg": ["Playfair Display"],
+                    "price-tag": ["Noto Sans"],
+                    "body-md": ["Noto Sans"],
+                    "headline-lg": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                    "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                    "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                    "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                    "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #fbf9f8; }
+        ::-webkit-scrollbar-thumb { background: #d4e6e1; border-radius: 10px; }
+        .glass-card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); }
+        .funnel-step { clip-path: polygon(0 0, 95% 0, 100% 50%, 95% 100%, 0 100%, 5% 50%); }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary-fixed selection:text-primary">
+<!-- SideNavBar (Shared Component) -->
+<aside class="fixed left-0 top-0 h-screen w-64 bg-brand-green dark:bg-status-sale flex flex-col py-8 z-50">
+<div class="px-6 mb-12">
+<h1 class="font-headline-lg text-headline-lg text-on-primary dark:text-on-primary-fixed">Apothecary</h1>
+<p class="font-label-caps text-label-caps text-on-primary/60 mt-1 uppercase tracking-widest">Management Portal</p>
+</div>
+<nav class="flex-1 space-y-2">
+<!-- Analytics is active -->
+<a class="flex items-center text-on-tertiary-container hover:text-on-primary p-3 mx-2 cursor-pointer active:scale-95 transition-transform font-label-caps text-label-caps uppercase" href="#">
+<span class="material-symbols-outlined mr-3">dashboard</span> Dashboard
+            </a>
+<a class="flex items-center text-on-tertiary-container hover:text-on-primary p-3 mx-2 cursor-pointer active:scale-95 transition-transform font-label-caps text-label-caps uppercase" href="#">
+<span class="material-symbols-outlined mr-3">potted_plant</span> Inventory
+            </a>
+<a class="flex items-center text-on-tertiary-container hover:text-on-primary p-3 mx-2 cursor-pointer active:scale-95 transition-transform font-label-caps text-label-caps uppercase" href="#">
+<span class="material-symbols-outlined mr-3">shopping_bag</span> Orders
+            </a>
+<a class="flex items-center text-on-tertiary-container hover:text-on-primary p-3 mx-2 cursor-pointer active:scale-95 transition-transform font-label-caps text-label-caps uppercase" href="#">
+<span class="material-symbols-outlined mr-3">group</span> Customers
+            </a>
+<a class="flex items-center bg-on-primary-container text-on-primary rounded-lg p-3 mx-2 cursor-pointer active:scale-95 transition-transform font-label-caps text-label-caps uppercase" href="#">
+<span class="material-symbols-outlined mr-3">leaderboard</span> Analytics
+            </a>
+<a class="flex items-center text-on-tertiary-container hover:text-on-primary p-3 mx-2 cursor-pointer active:scale-95 transition-transform font-label-caps text-label-caps uppercase" href="#">
+<span class="material-symbols-outlined mr-3">local_shipping</span> Suppliers
+            </a>
+</nav>
+<div class="mt-auto space-y-2 border-t border-border-subtle pt-6">
+<a class="flex items-center text-on-tertiary-container hover:text-on-primary p-3 mx-2 font-label-caps text-label-caps uppercase" href="#">
+<span class="material-symbols-outlined mr-3">help_outline</span> Support
+            </a>
+<a class="flex items-center text-on-tertiary-container hover:text-on-primary p-3 mx-2 font-label-caps text-label-caps uppercase" href="#">
+<span class="material-symbols-outlined mr-3">logout</span> Log Out
+            </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen">
+<!-- TopNavBar (Shared Component) -->
+<header class="bg-background dark:bg-background border-b border-outline-variant dark:border-border-subtle flex items-center justify-between px-container-margin w-full h-20 sticky top-0 z-40">
+<div class="flex items-center gap-8">
+<span class="font-headline-md text-headline-md text-primary dark:text-primary-fixed">Botanical Admin</span>
+<div class="relative w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-low border-none focus:ring-1 focus:ring-primary py-2 pl-10 pr-4 text-body-md rounded-lg" placeholder="Search analytics data..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">settings</span>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant">
+<img alt="Administrator profile photo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNngERpR_c11pJL6oNPPhDVMQU88_xtL_a3ResKx8w_iqdtrCOpICa0_hYltxFk9Z0FF-gffDX0Dg-0tdQHjD6piNmKv0drmMnnOzk0XxPOowyFZQqFLHeH7ZHqBACvXsj1lrUco_AEjvl1QE4JANeXWJS4fWM5UwckXOsgY-ke67d1pm7SruFYvXeb4w0ZU6wSkBAfE2AU7-_OsV6NkT131FFf5RO0x6kLCXpruBLrYppG-kByThtoudgD2tDUKrx5VWW4X6nJk4u"/>
+</div>
+</div>
+</header>
+<section class="p-container-margin max-w-7xl mx-auto">
+<!-- Page Header -->
+<div class="flex justify-between items-end mb-12">
+<div>
+<h2 class="font-headline-lg text-headline-lg mb-2">User Behavior Insights</h2>
+<p class="text-text-muted">A comprehensive analysis of customer journeys, conversion flows, and ritual engagements.</p>
+</div>
+<div class="flex gap-3">
+<button class="bg-surface-card border border-outline-variant px-4 py-2 text-label-caps uppercase hover:bg-surface-container transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span> Last 30 Days
+                    </button>
+<button class="bg-primary text-on-primary px-6 py-2 text-label-caps uppercase hover:bg-primary-container transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">download</span> Export Report
+                    </button>
+</div>
+</div>
+<!-- Bento Grid - Primary Metrics -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-grid-gutter mb-section-gap-sm">
+<!-- Main Conversion Chart -->
+<div class="md:col-span-8 bg-surface-card border border-outline-variant p-8 flex flex-col shadow-sm">
+<div class="flex justify-between items-start mb-8">
+<div>
+<h3 class="font-headline-md text-headline-md mb-1">Platform Conversion Rate</h3>
+<p class="text-text-muted text-body-md">Comparative analysis between Web and Mobile App journeys.</p>
+</div>
+<div class="flex gap-4">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 bg-brand-green rounded-full"></span>
+<span class="text-label-caps uppercase">Web Portal</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 bg-primary-fixed-dim rounded-full"></span>
+<span class="text-label-caps uppercase">Mobile App</span>
+</div>
+</div>
+</div>
+<div class="relative h-64 w-full flex items-end gap-2 border-l border-b border-outline-variant/30 pb-4 pl-4">
+<!-- Mock Waveform/Chart -->
+<div class="flex-1 bg-brand-green h-[65%] rounded-t-sm relative group cursor-help">
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-primary text-on-primary text-[10px] px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">4.2% CR</div>
+</div>
+<div class="flex-1 bg-primary-fixed-dim h-[82%] rounded-t-sm relative group cursor-help">
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-primary text-on-primary text-[10px] px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">5.8% CR</div>
+</div>
+<div class="flex-1 bg-brand-green h-[55%] rounded-t-sm"></div>
+<div class="flex-1 bg-primary-fixed-dim h-[70%] rounded-t-sm"></div>
+<div class="flex-1 bg-brand-green h-[68%] rounded-t-sm"></div>
+<div class="flex-1 bg-primary-fixed-dim h-[90%] rounded-t-sm"></div>
+<div class="flex-1 bg-brand-green h-[45%] rounded-t-sm"></div>
+<div class="flex-1 bg-primary-fixed-dim h-[65%] rounded-t-sm"></div>
+</div>
+<div class="flex justify-between mt-4 text-label-caps uppercase text-text-muted">
+<span>Week 1</span>
+<span>Week 2</span>
+<span>Week 3</span>
+<span>Week 4</span>
+</div>
+</div>
+<!-- Session Duration Card -->
+<div class="md:col-span-4 bg-brand-green text-on-primary p-8 flex flex-col justify-between shadow-sm">
+<div>
+<span class="material-symbols-outlined text-[48px] text-primary-fixed-dim mb-4">timer</span>
+<h3 class="font-headline-md text-headline-md mb-2">Avg. Session Duration</h3>
+<p class="text-on-primary/60 text-body-md mb-8">Users are spending more time exploring botanical pairings this month.</p>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-display-lg text-display-lg text-primary-fixed">08:42</span>
+<span class="text-status-sale bg-primary-fixed px-2 py-1 text-label-caps rounded-full">+12%</span>
+</div>
+</div>
+<!-- Top Rituals Card -->
+<div class="md:col-span-4 bg-secondary-container p-8 flex flex-col shadow-sm">
+<h3 class="font-headline-md text-headline-md mb-6">Top Rituals Viewed</h3>
+<ul class="space-y-6">
+<li class="flex items-center justify-between border-b border-outline-variant pb-2">
+<div class="flex items-center gap-3">
+<span class="font-label-caps text-primary/40">01</span>
+<span class="font-body-md font-bold uppercase">Midnight Sage Cleanse</span>
+</div>
+<span class="text-label-caps text-text-muted">1.2k views</span>
+</li>
+<li class="flex items-center justify-between border-b border-outline-variant pb-2">
+<div class="flex items-center gap-3">
+<span class="font-label-caps text-primary/40">02</span>
+<span class="font-body-md font-bold uppercase">Solar Bloom Infusion</span>
+</div>
+<span class="text-label-caps text-text-muted">942 views</span>
+</li>
+<li class="flex items-center justify-between border-b border-outline-variant pb-2">
+<div class="flex items-center gap-3">
+<span class="font-label-caps text-primary/40">03</span>
+<span class="font-body-md font-bold uppercase">Deep Roots Meditation</span>
+</div>
+<span class="text-label-caps text-text-muted">810 views</span>
+</li>
+</ul>
+<button class="mt-auto text-primary font-label-caps uppercase underline underline-offset-4 text-left">View Full Ritual Analytics</button>
+</div>
+<!-- Checkout Funnel Visualization -->
+<div class="md:col-span-8 bg-surface-card border border-outline-variant p-8 shadow-sm">
+<div class="flex justify-between items-center mb-10">
+<h3 class="font-headline-md text-headline-md">Checkout Funnel Performance</h3>
+<span class="bg-error-container text-on-error-container px-3 py-1 text-label-caps rounded-full flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px]">warning</span> Friction Point Detected
+                        </span>
+</div>
+<div class="flex items-stretch h-48 gap-1">
+<!-- Step 1 -->
+<div class="flex-1 bg-brand-green/20 funnel-step flex flex-col items-center justify-center relative">
+<div class="text-brand-green font-bold text-xl">100%</div>
+<div class="text-label-caps uppercase text-brand-green mt-1">Cart</div>
+<div class="absolute -bottom-8 text-[10px] text-text-muted uppercase">12,400 Users</div>
+</div>
+<!-- Step 2 -->
+<div class="flex-1 bg-brand-green/40 funnel-step flex flex-col items-center justify-center relative">
+<div class="text-brand-green font-bold text-xl">72%</div>
+<div class="text-label-caps uppercase text-brand-green mt-1">Shipping</div>
+<div class="absolute -bottom-8 text-[10px] text-text-muted uppercase">8,928 Users</div>
+<div class="absolute -top-6 right-0 text-error font-label-caps">-28% Drop</div>
+</div>
+<!-- Step 3 -->
+<div class="flex-1 bg-brand-green/60 funnel-step flex flex-col items-center justify-center relative">
+<div class="text-on-primary font-bold text-xl">45%</div>
+<div class="text-label-caps uppercase text-on-primary mt-1">Payment</div>
+<div class="absolute -bottom-8 text-[10px] text-text-muted uppercase">4,017 Users</div>
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-error text-on-error px-2 py-1 text-[10px] whitespace-nowrap shadow-lg rounded animate-pulse">Checkout Friction</div>
+</div>
+<!-- Step 4 -->
+<div class="flex-1 bg-brand-green funnel-step flex flex-col items-center justify-center relative">
+<div class="text-on-primary font-bold text-xl">38%</div>
+<div class="text-label-caps uppercase text-on-primary mt-1">Order</div>
+<div class="absolute -bottom-8 text-[10px] text-text-muted uppercase">3,394 Success</div>
+</div>
+</div>
+<div class="mt-16 grid grid-cols-3 gap-8">
+<div class="p-4 bg-background border-l-4 border-brand-green">
+<div class="text-label-caps uppercase text-text-muted mb-1">Total Sessions</div>
+<div class="text-headline-md font-headline-md">158,290</div>
+</div>
+<div class="p-4 bg-background border-l-4 border-primary-fixed-dim">
+<div class="text-label-caps uppercase text-text-muted mb-1">Bounce Rate</div>
+<div class="text-headline-md font-headline-md">24.5%</div>
+</div>
+<div class="p-4 bg-background border-l-4 border-error">
+<div class="text-label-caps uppercase text-text-muted mb-1">Abandoned Cart Val.</div>
+<div class="text-headline-md font-headline-md">$12,480</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Heat-Map Styled Activity Grid -->
+<div class="bg-surface-card border border-outline-variant p-8 shadow-sm">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h3 class="font-headline-md text-headline-md mb-1">Global Engagement Heatmap</h3>
+<p class="text-text-muted text-body-md">User activity density across 24-hour botanical preparation cycles.</p>
+</div>
+<div class="flex items-center gap-4 border border-outline-variant p-2 px-4 rounded-lg">
+<span class="text-label-caps uppercase text-text-muted">Density</span>
+<div class="flex h-3 w-32 bg-gradient-to-r from-background to-brand-green border border-outline-variant rounded-full"></div>
+<span class="text-label-caps uppercase text-text-muted">High</span>
+</div>
+</div>
+<div class="grid grid-cols-24 gap-1 h-32 overflow-hidden">
+<!-- Generating a fake heatmap grid -->
+<script>
+                        const gridContainer = document.currentScript.parentElement;
+                        for(let i=0; i<168; i++) {
+                            const div = document.createElement('div');
+                            const opacities = [10, 20, 40, 60, 80, 100];
+                            const randomOpacity = opacities[Math.floor(Math.random() * opacities.length)];
+                            div.className = `bg-brand-green rounded-sm transition-all hover:scale-110 cursor-pointer h-full w-full`;
+                            div.style.opacity = randomOpacity / 100;
+                            gridContainer.appendChild(div);
+                        }
+                    </script>
+</div>
+<div class="flex justify-between mt-4 text-label-caps uppercase text-text-muted">
+<span>Mon</span>
+<span>Tue</span>
+<span>Wed</span>
+<span>Thu</span>
+<span>Fri</span>
+<span>Sat</span>
+<span>Sun</span>
+</div>
+</div>
+<!-- User Journey Friction Points Table -->
+<div class="mt-section-gap-sm mb-section-gap-lg">
+<h3 class="font-headline-md text-headline-md mb-6">Identified Friction Points</h3>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-primary uppercase text-label-caps">
+<th class="py-4 px-2">Journey Stage</th>
+<th class="py-4 px-2">Friction Score</th>
+<th class="py-4 px-2">Avg. Latency</th>
+<th class="py-4 px-2">Impact Level</th>
+<th class="py-4 px-2 text-right">Action</th>
+</tr>
+</thead>
+<tbody class="text-body-md">
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors group">
+<td class="py-6 px-2 font-bold uppercase">Ritual Configurator</td>
+<td class="py-6 px-2">
+<div class="w-full bg-secondary-container h-1.5 rounded-full overflow-hidden w-24">
+<div class="bg-error h-full" style="width: 85%;"></div>
+</div>
+</td>
+<td class="py-6 px-2">12.4s</td>
+<td class="py-6 px-2">
+<span class="text-error font-bold uppercase text-[10px]">High / Urgent</span>
+</td>
+<td class="py-6 px-2 text-right">
+<button class="text-primary font-label-caps uppercase border border-primary px-3 py-1 group-hover:bg-primary group-hover:text-on-primary transition-all">Optimize</button>
+</td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors group">
+<td class="py-6 px-2 font-bold uppercase">Payment Gateway (Mobile)</td>
+<td class="py-6 px-2">
+<div class="w-full bg-secondary-container h-1.5 rounded-full overflow-hidden w-24">
+<div class="bg-status-sale h-full" style="width: 42%;"></div>
+</div>
+</td>
+<td class="py-6 px-2">4.1s</td>
+<td class="py-6 px-2">
+<span class="text-secondary font-bold uppercase text-[10px]">Medium</span>
+</td>
+<td class="py-6 px-2 text-right">
+<button class="text-primary font-label-caps uppercase border border-primary px-3 py-1 group-hover:bg-primary group-hover:text-on-primary transition-all">Optimize</button>
+</td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors group">
+<td class="py-6 px-2 font-bold uppercase">Address Autocomplete</td>
+<td class="py-6 px-2">
+<div class="w-full bg-secondary-container h-1.5 rounded-full overflow-hidden w-24">
+<div class="bg-brand-green h-full" style="width: 15%;"></div>
+</div>
+</td>
+<td class="py-6 px-2">0.8s</td>
+<td class="py-6 px-2">
+<span class="text-on-tertiary-container font-bold uppercase text-[10px]">Low</span>
+</td>
+<td class="py-6 px-2 text-right">
+<button class="text-primary font-label-caps uppercase border border-primary px-3 py-1 group-hover:bg-primary group-hover:text-on-primary transition-all">Optimize</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- Footer / Global Stats Summary -->
+<footer class="bg-brand-green text-on-primary py-12 px-container-margin mt-12">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="text-center md:text-left">
+<h4 class="font-headline-md text-headline-md text-primary-fixed">Network Status: Optimal</h4>
+<p class="text-on-primary/60 text-body-md mt-2">Last data sync: 4 minutes ago. Global server latency: 42ms.</p>
+</div>
+<div class="flex gap-12">
+<div class="text-center">
+<div class="text-display-lg font-display-lg text-primary-fixed opacity-50">99.9<span class="text-body-md uppercase">%</span></div>
+<div class="text-label-caps uppercase tracking-widest text-on-primary/60">Uptime</div>
+</div>
+<div class="text-center border-l border-on-primary/10 pl-12">
+<div class="text-display-lg font-display-lg text-primary-fixed opacity-50">2.4<span class="text-body-md uppercase">k</span></div>
+<div class="text-label-caps uppercase tracking-widest text-on-primary/60">Active Sessions</div>
+</div>
+</div>
+</div>
+</footer>
+</main>
+<script>
+        // Micro-interactions for heatmap and charts
+        document.addEventListener('DOMContentLoaded', () => {
+            const heatmapBlocks = document.querySelectorAll('.bg-brand-green.rounded-sm');
+            heatmapBlocks.forEach(block => {
+                block.addEventListener('mouseenter', () => {
+                    block.style.boxShadow = '0 0 10px rgba(212, 230, 225, 0.5)';
+                });
+                block.addEventListener('mouseleave', () => {
+                    block.style.boxShadow = 'none';
+                });
+            });
+        });
+    </script>
+</body></html>

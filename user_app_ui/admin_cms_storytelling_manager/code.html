@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Botanical Admin | Content Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary": "#ffffff",
+                    "surface-dim": "#dbdad8",
+                    "tertiary-container": "#171e1b",
+                    "tertiary-fixed-dim": "#c1c8c3",
+                    "border-subtle": "rgba(255, 255, 255, 0.1)",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-low": "#f5f3f2",
+                    "inverse-surface": "#303030",
+                    "on-secondary-fixed": "#1c1c18",
+                    "on-primary-fixed-variant": "#3a4a46",
+                    "on-primary-container": "#778884",
+                    "surface-container-highest": "#e4e2e1",
+                    "surface-tint": "#51625e",
+                    "tertiary-fixed": "#dde4df",
+                    "background": "#fbf9f8",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed-variant": "#474742",
+                    "primary-container": "#0f1f1c",
+                    "surface-variant": "#e4e2e1",
+                    "secondary-fixed": "#e5e2db",
+                    "text-muted": "rgba(15, 31, 28, 0.6)",
+                    "surface": "#fbf9f8",
+                    "on-primary-fixed": "#0e1e1b",
+                    "primary-fixed": "#d4e6e1",
+                    "on-error": "#ffffff",
+                    "primary": "#000101",
+                    "brand-green": "#1a2e29",
+                    "outline": "#727876",
+                    "primary-fixed-dim": "#b8cac5",
+                    "on-background": "#1b1c1b",
+                    "surface-card": "#ffffff",
+                    "outline-variant": "#c2c8c5",
+                    "on-tertiary-fixed-variant": "#414845",
+                    "on-secondary-container": "#65645f",
+                    "on-tertiary-container": "#7f8682",
+                    "on-surface": "#1b1c1b",
+                    "surface-bright": "#fbf9f8",
+                    "on-tertiary-fixed": "#161d1a",
+                    "error": "#ba1a1a",
+                    "surface-container-high": "#eae8e6",
+                    "inverse-primary": "#b8cac5",
+                    "on-surface-variant": "#424846",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#e5e2db",
+                    "secondary-fixed-dim": "#c9c6c0",
+                    "secondary": "#5f5e59",
+                    "status-sale": "#0f1f1c",
+                    "error-container": "#ffdad6",
+                    "inverse-on-surface": "#f2f0ef",
+                    "tertiary": "#000201",
+                    "surface-container": "#efedec",
+                    "on-error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "section-gap-sm": "2.5rem",
+                    "grid-gutter": "1rem",
+                    "container-margin": "1.5rem",
+                    "section-gap-lg": "5rem",
+                    "element-gap": "0.5rem"
+            },
+            "fontFamily": {
+                    "label-caps": ["Noto Sans"],
+                    "headline-lg": ["Playfair Display"],
+                    "headline-md": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"],
+                    "price-tag": ["Noto Sans"],
+                    "body-md": ["Noto Sans"]
+            },
+            "fontSize": {
+                    "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                    "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                    "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                    "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #fbf9f8;
+            color: #1b1c1b;
+        }
+        .content-canvas {
+            margin-left: 16rem; /* Matches SideNavBar w-64 */
+        }
+        @media (max-width: 768px) {
+            .content-canvas {
+                margin-left: 0;
+            }
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #1a2e29;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-screen w-64 bg-brand-green dark:bg-status-sale flex flex-col h-full py-8 z-50 hidden md:flex">
+<div class="px-6 mb-12">
+<h1 class="font-headline-lg text-headline-lg text-on-primary dark:text-on-primary-fixed">Apothecary</h1>
+<p class="font-label-caps text-label-caps text-on-tertiary-container uppercase mt-1">Management Portal</p>
+</div>
+<div class="flex-1 space-y-2">
+<a class="flex items-center text-on-tertiary-container hover:text-on-primary p-3 mx-2 transition-all duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="dashboard">dashboard</span>
+<span class="font-label-caps text-label-caps">Dashboard</span>
+</a>
+<!-- Active State: Inventory (mapped to Content/CMS intent) -->
+<a class="flex items-center bg-on-primary-container text-on-primary rounded-lg p-3 mx-2 transition-all duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="potted_plant">potted_plant</span>
+<span class="font-label-caps text-label-caps">Inventory</span>
+</a>
+<a class="flex items-center text-on-tertiary-container hover:text-on-primary p-3 mx-2 transition-all duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="shopping_bag">shopping_bag</span>
+<span class="font-label-caps text-label-caps">Orders</span>
+</a>
+<a class="flex items-center text-on-tertiary-container hover:text-on-primary p-3 mx-2 transition-all duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="group">group</span>
+<span class="font-label-caps text-label-caps">Customers</span>
+</a>
+<a class="flex items-center text-on-tertiary-container hover:text-on-primary p-3 mx-2 transition-all duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="leaderboard">leaderboard</span>
+<span class="font-label-caps text-label-caps">Analytics</span>
+</a>
+<a class="flex items-center text-on-tertiary-container hover:text-on-primary p-3 mx-2 transition-all duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="local_shipping">local_shipping</span>
+<span class="font-label-caps text-label-caps">Suppliers</span>
+</a>
+</div>
+<div class="mt-auto pt-8 border-t border-on-primary-fixed-variant mx-4 space-y-2">
+<a class="flex items-center text-on-tertiary-container hover:text-on-primary p-3 mx-2 transition-all duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="help_outline">help_outline</span>
+<span class="font-label-caps text-label-caps">Support</span>
+</a>
+<a class="flex items-center text-on-tertiary-container hover:text-on-primary p-3 mx-2 transition-all duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="logout">logout</span>
+<span class="font-label-caps text-label-caps">Log Out</span>
+</a>
+</div>
+</nav>
+<div class="content-canvas min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="w-full h-20 bg-background dark:bg-background border-b border-outline-variant dark:border-border-subtle flex items-center justify-between px-container-margin ml-auto sticky top-0 z-40">
+<div class="flex items-center space-x-8">
+<span class="font-headline-md text-headline-md text-primary dark:text-primary-fixed">Botanical Admin</span>
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container border-none rounded-full w-64 focus:ring-1 focus:ring-brand-green text-body-md outline-none" placeholder="Search wisdom &amp; sources..." type="text"/>
+</div>
+</div>
+<div class="flex items-center space-x-6">
+<div class="hidden md:flex space-x-6">
+<a class="text-primary dark:text-primary-fixed font-bold border-b-2 border-primary cursor-pointer transition-opacity font-body-md text-body-md" href="#">Content</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer font-body-md text-body-md" href="#">Media</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer font-body-md text-body-md" href="#">SEO</a>
+</div>
+<div class="flex items-center space-x-4">
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors" data-icon="settings">settings</span>
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden border border-outline-variant">
+<img alt="Administrator profile photo" class="w-full h-full object-cover" data-alt="A professional headshot of a sophisticated botanical expert in their late 40s. The lighting is soft and natural, coming from a large side window. They are wearing a charcoal-colored linen shirt, standing against a backdrop of organized glass apothecary jars and dried herbs. The overall mood is clinical yet warm, with a shallow depth of field highlighting their calm and trustworthy expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtWpc_YTo1u7ylKXFIMjCGKIDdOmwdEgsQCpw2DachKvSHOTGPEPetRrsE_XI2h4N198z6GFa4TTDGhyYPKWyVAxAIP6aTzr2otnxjtazHMd0m2drj0e5-nUfee41n374s1vnzDss8VM7WVIHGkxj1GzbXA3shAk_oO-0ZnxZMwJ_VpVqOU8ubrBuTjJVCh2W8HD7fuktwSjQ8ZdIHuTXREw9BOpkAQrti05pEleSLrCwkT29TjsJSPiHURT-UZbBFJAQaXEmfv-AH"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 p-6 lg:p-10">
+<!-- Header Section -->
+<section class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-2">The Source &amp; Herbal Wisdom</h2>
+<p class="text-on-surface-variant max-w-2xl font-body-md">Manage your digital botanical library. From traditional infusion recipes to deep-dives into plant biology, control every petal of content here.</p>
+</div>
+<div class="flex space-x-3">
+<button class="px-6 py-3 border border-primary text-primary font-label-caps text-label-caps hover:bg-surface-container transition-colors uppercase">Bulk Export</button>
+<button class="px-6 py-3 bg-primary text-on-primary font-label-caps text-label-caps hover:opacity-90 transition-opacity uppercase flex items-center">
+<span class="material-symbols-outlined text-[18px] mr-2" data-icon="add">add</span>
+                        New Entry
+                    </button>
+</div>
+</section>
+<!-- Bento Layout Content -->
+<div class="bento-grid">
+<!-- Left Column: Content Cards Grid -->
+<div class="col-span-12 xl:col-span-8 space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Card 1: Published -->
+<div class="bg-surface-card border border-outline-variant hover:shadow-sm transition-all group overflow-hidden">
+<div class="relative aspect-[16/9] overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A macro photograph of fresh peppermint leaves covered in morning dew. The lighting is crisp morning sun, creating brilliant highlights on the water droplets. The color palette is dominated by vibrant sage greens and deep forest shadows. The composition is artistic and minimalist, reflecting a premium organic skincare brand aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAm-drribftsoa8x7LkOpP2iny8FdOZ7_9_ua59Tdtv62JAxOiQnN9ghmyzDTAIzbW3NrVtCHE2vzgQ7fde-E05jF3NeOXOA-qyn5inXibV77MMcjEwUw9t1sUfsbGBW0xFZce1OETBz-E0JoZ2gmHxLJ4ChlCsdkBX3fDnskqOB_Vm7NFCJIbO3ZkZJjnnpI60AhPkBlZFD0vVjiasRXw37u7RXEb6UAOW9UVrWKT25YpCJaFAYOEjIrN-LOUazbLPAjKmPgfd_i17"/>
+<div class="absolute top-4 left-4 bg-primary text-on-primary px-3 py-1 font-label-caps text-[9px] tracking-[0.2em] uppercase">Published</div>
+</div>
+<div class="p-6">
+<span class="font-label-caps text-[10px] text-on-surface-variant uppercase mb-2 block">Herbal Wisdom • Articles</span>
+<h3 class="font-headline-md text-headline-md mb-3 text-primary">The Ritual of Peppermint Infusions</h3>
+<p class="text-on-surface-variant line-clamp-2 mb-6">Explore the cooling properties and historical significance of Mentha piperita in traditional wellness practices.</p>
+<div class="flex items-center justify-between border-t border-outline-variant pt-4">
+<span class="font-label-caps text-[10px] text-on-tertiary-container">EDITED 2H AGO</span>
+<div class="flex space-x-2">
+<button class="p-2 hover:bg-surface-container rounded-full transition-colors"><span class="material-symbols-outlined text-[20px]" data-icon="edit">edit</span></button>
+<button class="p-2 hover:bg-surface-container rounded-full transition-colors"><span class="material-symbols-outlined text-[20px]" data-icon="visibility">visibility</span></button>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2: Draft -->
+<div class="bg-surface-card border border-outline-variant hover:shadow-sm transition-all group overflow-hidden">
+<div class="relative aspect-[16/9] overflow-hidden bg-surface-container flex items-center justify-center">
+<img class="w-full h-full object-cover opacity-60 grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="An atmospheric indoor shot of an apothecary workbench with antique brown glass bottles, bundles of dried lavender, and a mortar and pestle. Soft, moody candlelight illuminates the scene, casting long artistic shadows. The color scheme focuses on warm ambers and earthy browns, suggesting a heritage-rich, traditional medicine background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA72cCuGtHbbqCVPXeULsqfHygIJRZJQgAXOEnIQZTSkX-BAhapWGbNgEnATm9moTFzx3OG1VUiGFnDy99zcrvah8BphT2eToB6Jdhd14vk3sOGP2pHxhaVzN9JVmAAPphCJ54vw0H8_Yo8TwDXfQWYMdH2YI4XUuouGd61P-bx2FhAW5uZuMkaMzEHCmI3tq9iBqKYhBhqWNZxgOVbiJrFlHLVIBZKmSEge0vERbPzclXg_KnMinowAcwYmi1INyLKsp3EX9oIOL0E"/>
+<div class="absolute top-4 left-4 bg-surface-dim text-on-surface px-3 py-1 font-label-caps text-[9px] tracking-[0.2em] uppercase">Draft</div>
+</div>
+<div class="p-6">
+<span class="font-label-caps text-[10px] text-on-surface-variant uppercase mb-2 block">The Source • Inventory</span>
+<h3 class="font-headline-md text-headline-md mb-3 text-primary">Ancestral Tincture Methods</h3>
+<p class="text-on-surface-variant line-clamp-2 mb-6">A deep dive into the slow-maceration techniques used by 17th-century herbalists in Northern Europe.</p>
+<div class="flex items-center justify-between border-t border-outline-variant pt-4">
+<span class="font-label-caps text-[10px] text-on-tertiary-container">LAST SAVED 1D AGO</span>
+<div class="flex space-x-2">
+<button class="p-2 hover:bg-surface-container rounded-full transition-colors"><span class="material-symbols-outlined text-[20px]" data-icon="edit">edit</span></button>
+<button class="p-2 hover:bg-surface-container rounded-full transition-colors"><span class="material-symbols-outlined text-[20px]" data-icon="more_vert">more_vert</span></button>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 3: Scheduled -->
+<div class="bg-surface-card border border-outline-variant hover:shadow-sm transition-all group overflow-hidden">
+<div class="relative aspect-[16/9] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A minimalist composition of a ceramic tea bowl resting on a clean white surface next to a single flowering chamomile stem. The lighting is high-key and airy, typical of a modern wellness studio. The palette is dominated by pure whites, soft creams, and the delicate yellow-white of the flower. The mood is peaceful, serene, and deeply calming." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqEROsnhgTVvbQzkO23jALoVKrp2VdBQha6i3hc8OewE0P3gykOVocHsT_kFkAusGFzmWNdGxDXkRX4JRNiD-T9uQeji5BHGSPfrAkO_osZZTP55P9c_YJJSoTeNKX86JFlXUj931PuEbk3Fhbk79hoqYZFJ2I5m5Mo-r2FGQDKZauJZDpYQne-tvB3MNT0ozBRoxS9BrKPWdVE9dVPmBtv-ieLeb0hGogE99XOvBQ4eoTcCl5nL6uusHA3Wa-8yy7TF3z0Zp8v5UF"/>
+<div class="absolute top-4 left-4 bg-brand-green text-on-primary px-3 py-1 font-label-caps text-[9px] tracking-[0.2em] uppercase">Scheduled</div>
+</div>
+<div class="p-6">
+<span class="font-label-caps text-[10px] text-on-surface-variant uppercase mb-2 block">Herbal Wisdom • Guide</span>
+<h3 class="font-headline-md text-headline-md mb-3 text-primary">Chamomile: Beyond Sleep</h3>
+<p class="text-on-surface-variant line-clamp-2 mb-6">Discovering the anti-inflammatory and digestive benefits of the humble German Chamomile flower.</p>
+<div class="flex items-center justify-between border-t border-outline-variant pt-4">
+<span class="font-label-caps text-[10px] text-on-tertiary-container">POSTS IN 4 DAYS</span>
+<div class="flex space-x-2">
+<button class="p-2 hover:bg-surface-container rounded-full transition-colors"><span class="material-symbols-outlined text-[20px]" data-icon="calendar_today">calendar_today</span></button>
+<button class="p-2 hover:bg-surface-container rounded-full transition-colors"><span class="material-symbols-outlined text-[20px]" data-icon="edit">edit</span></button>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 4: Published -->
+<div class="bg-surface-card border border-outline-variant hover:shadow-sm transition-all group overflow-hidden">
+<div class="relative aspect-[16/9] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Rows of lush green lavender plants in a vast field under a purple-hued twilight sky. The lighting is cinematic, with the last rays of the sun catching the tops of the plants. The overall style is romantic and lush, with a palette of deep purples, twilight blues, and silver-greens. The image evokes a sense of vastness and pure botanical origin." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAo34r3_ex4PFcsZJfbhrvcoz2M3LR8jaE28pRz1leeWBMesgNDmbDboiMBcFG2HhmEF9CJtdWgkNW7oVn-CDR41KwqsO4t8C2auwRDnTZeUoZgN92YQW06qBYBESUg7HdxFgIb_0zHuL7kyeF61S893dk6nJCenDF1anhCBK1-Q48uveYZLZb8Aoq2WWcMWWE0CiyjwFerIcVh_XaW3FOAbnG3M4j2r8A3E6id-9fQDC3yXqlXWFtDCE9kwTjMTGst_RvLqJZSLvTW"/>
+<div class="absolute top-4 left-4 bg-primary text-on-primary px-3 py-1 font-label-caps text-[9px] tracking-[0.2em] uppercase">Published</div>
+</div>
+<div class="p-6">
+<span class="font-label-caps text-[10px] text-on-surface-variant uppercase mb-2 block">The Source • Archive</span>
+<h3 class="font-headline-md text-headline-md mb-3 text-primary">Lavender Harvesting Cycles</h3>
+<p class="text-on-surface-variant line-clamp-2 mb-6">Optimal timing and atmospheric conditions for maximizing essential oil yields during harvest.</p>
+<div class="flex items-center justify-between border-t border-outline-variant pt-4">
+<span class="font-label-caps text-[10px] text-on-tertiary-container">EDITED 3D AGO</span>
+<div class="flex space-x-2">
+<button class="p-2 hover:bg-surface-container rounded-full transition-colors"><span class="material-symbols-outlined text-[20px]" data-icon="edit">edit</span></button>
+<button class="p-2 hover:bg-surface-container rounded-full transition-colors"><span class="material-symbols-outlined text-[20px]" data-icon="visibility">visibility</span></button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Rich Text Preview & SEO -->
+<div class="col-span-12 xl:col-span-4 space-y-6">
+<!-- Editor Preview -->
+<div class="bg-surface-container p-6 border border-outline-variant sticky top-24">
+<div class="flex items-center justify-between mb-6">
+<h4 class="font-label-caps text-label-caps uppercase">Quick Editor Preview</h4>
+<span class="material-symbols-outlined text-brand-green" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<div class="space-y-6">
+<div>
+<label class="font-label-caps text-[10px] text-on-surface-variant uppercase block mb-2">Headline</label>
+<input class="w-full bg-white border border-outline-variant p-3 font-headline-md text-headline-md focus:ring-1 focus:ring-brand-green outline-none" type="text" value="The Ritual of Peppermint Infusions"/>
+</div>
+<div>
+<label class="font-label-caps text-[10px] text-on-surface-variant uppercase block mb-2">Body Content (Summary)</label>
+<div class="w-full bg-white border border-outline-variant p-4 min-h-[200px] text-body-md custom-scrollbar overflow-y-auto">
+<p class="mb-4">Steeping peppermint is more than just a culinary step; it is an act of mindfulness that spans centuries. In the early morning light, the steam carries mentholated vapors that clear the senses and ground the spirit.</p>
+<p class="italic text-on-surface-variant border-l-2 border-brand-green pl-4 mb-4">"The cooling nature of the leaf provides a stark contrast to the warmth of the water, a duality that mirrors the balance of health itself."</p>
+<p>When preparing your infusion, ensure the water has just come off the boil—approximately 95°C—to avoid scorching the delicate oils...</p>
+</div>
+</div>
+<!-- SEO Meta -->
+<div class="bg-white p-4 border border-outline-variant space-y-4">
+<h5 class="font-label-caps text-[10px] uppercase flex items-center">
+<span class="material-symbols-outlined text-[14px] mr-2" data-icon="search">search</span>
+                                    SEO &amp; Metadata
+                                </h5>
+<div>
+<label class="font-label-caps text-[9px] text-on-surface-variant uppercase block mb-1">Slug</label>
+<input class="w-full border-none bg-surface-container px-2 py-1 text-[12px] font-mono outline-none" type="text" value="wisdom/ritual-peppermint-infusions"/>
+</div>
+<div>
+<label class="font-label-caps text-[9px] text-on-surface-variant uppercase block mb-1">Meta Description</label>
+<textarea class="w-full border-none bg-surface-container px-2 py-1 text-[12px] h-16 resize-none outline-none">Master the art of the perfect peppermint tea. A guide to historical brewing rituals and modern wellness benefits of Mentha piperita.</textarea>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="bg-surface-container text-[9px] px-2 py-1 font-label-caps">PEARMINT</span>
+<span class="bg-surface-container text-[9px] px-2 py-1 font-label-caps">HERBAL RITUALS</span>
+<span class="bg-surface-container text-[9px] px-2 py-1 font-label-caps">WELLNESS</span>
+<button class="text-brand-green text-[9px] font-label-caps underline">+ ADD TAG</button>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary py-4 font-label-caps text-label-caps uppercase hover:opacity-90 transition-opacity">Save Changes</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Credits -->
+<footer class="p-container-margin border-t border-outline-variant text-center md:text-left">
+<p class="text-on-surface-variant font-label-caps text-[10px] uppercase opacity-60">© 2024 Apothecary Systems • Botanical Admin CMS v4.2.0</p>
+</footer>
+</div>
+<!-- Mobile Bottom NavBar (Visible only on mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-brand-green flex items-center justify-around z-50 px-4">
+<a class="flex flex-col items-center text-on-primary" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-[8px] font-label-caps uppercase mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center text-on-primary border-t-2 border-white pt-1" href="#">
+<span class="material-symbols-outlined" data-icon="potted_plant">potted_plant</span>
+<span class="text-[8px] font-label-caps uppercase mt-1">Content</span>
+</a>
+<a class="flex flex-col items-center text-on-tertiary-container" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="text-[8px] font-label-caps uppercase mt-1">Data</span>
+</a>
+<a class="flex flex-col items-center text-on-tertiary-container" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-[8px] font-label-caps uppercase mt-1">Admin</span>
+</a>
+</nav>
+<script>
+        // Micro-interactions for admin interface
+        document.querySelectorAll('button, a').forEach(el => {
+            el.addEventListener('mousedown', () => {
+                el.style.transform = 'scale(0.98)';
+            });
+            el.addEventListener('mouseup', () => {
+                el.style.transform = 'scale(1)';
+            });
+        });
+
+        // Simple tab switching logic simulation
+        const navLinks = document.querySelectorAll('header nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                navLinks.forEach(l => {
+                    l.classList.remove('text-primary', 'font-bold', 'border-b-2', 'border-primary');
+                    l.classList.add('text-on-surface-variant');
+                });
+                link.classList.remove('text-on-surface-variant');
+                link.classList.add('text-primary', 'font-bold', 'border-b-2', 'border-primary');
+            });
+        });
+    </script>
+</body></html>

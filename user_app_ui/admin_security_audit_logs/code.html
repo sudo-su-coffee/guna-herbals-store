@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Security &amp; Audit Logs | Apothecary Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed": "#1c1c18",
+                    "inverse-surface": "#303030",
+                    "surface-container-high": "#eae8e6",
+                    "surface-container": "#efedec",
+                    "secondary-fixed": "#e5e2db",
+                    "on-error-container": "#93000a",
+                    "tertiary-container": "#171e1b",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-card": "#ffffff",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#c9c6c0",
+                    "on-tertiary": "#ffffff",
+                    "primary-container": "#0f1f1c",
+                    "outline-variant": "#c2c8c5",
+                    "on-background": "#1b1c1b",
+                    "surface": "#fbf9f8",
+                    "surface-bright": "#fbf9f8",
+                    "on-primary-fixed-variant": "#3a4a46",
+                    "inverse-primary": "#b8cac5",
+                    "secondary": "#5f5e59",
+                    "on-tertiary-container": "#7f8682",
+                    "background": "#fbf9f8",
+                    "on-primary-container": "#778884",
+                    "on-error": "#ffffff",
+                    "on-secondary-fixed-variant": "#474742",
+                    "outline": "#727876",
+                    "on-tertiary-fixed": "#161d1a",
+                    "on-tertiary-fixed-variant": "#414845",
+                    "surface-container-highest": "#e4e2e1",
+                    "tertiary": "#000201",
+                    "surface-dim": "#dbdad8",
+                    "primary-fixed": "#d4e6e1",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed": "#dde4df",
+                    "brand-green": "#1a2e29",
+                    "secondary-container": "#e5e2db",
+                    "on-secondary-container": "#65645f",
+                    "primary-fixed-dim": "#b8cac5",
+                    "on-secondary": "#ffffff",
+                    "text-muted": "rgba(15, 31, 28, 0.6)",
+                    "border-subtle": "rgba(255, 255, 255, 0.1)",
+                    "on-primary": "#ffffff",
+                    "surface-variant": "#e4e2e1",
+                    "primary": "#000101",
+                    "on-surface": "#1b1c1b",
+                    "surface-tint": "#51625e",
+                    "tertiary-fixed-dim": "#c1c8c3",
+                    "on-primary-fixed": "#0e1e1b",
+                    "inverse-on-surface": "#f2f0ef",
+                    "status-sale": "#0f1f1c",
+                    "on-surface-variant": "#424846",
+                    "surface-container-low": "#f5f3f2"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "section-gap-sm": "2.5rem",
+                    "element-gap": "0.5rem",
+                    "grid-gutter": "1rem",
+                    "section-gap-lg": "5rem",
+                    "container-margin": "1.5rem"
+            },
+            "fontFamily": {
+                    "price-tag": ["Noto Sans"],
+                    "label-caps": ["Noto Sans"],
+                    "headline-lg": ["Playfair Display"],
+                    "body-md": ["Noto Sans"],
+                    "headline-md": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                    "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                    "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            background-color: #fbf9f8;
+            color: #1b1c1b;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #efedec;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #1a2e29;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-brand-green dark:bg-primary-container flex flex-col py-8 z-50">
+<div class="px-6 mb-10">
+<h1 class="font-headline-md text-headline-md text-surface-bright">Apothecary Admin</h1>
+<p class="font-label-caps text-label-caps text-on-primary-container/70 mt-1">Premium Botanical</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center text-on-primary-container/70 dark:text-on-primary-container/50 hover:text-surface-bright pl-5 py-3 hover:bg-primary-container/50 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center text-on-primary-container/70 dark:text-on-primary-container/50 hover:text-surface-bright pl-5 py-3 hover:bg-primary-container/50 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="herbal_medicine">kebab_dining</span>
+<span>Inventory</span>
+</a>
+<a class="flex items-center text-on-primary-container/70 dark:text-on-primary-container/50 hover:text-surface-bright pl-5 py-3 hover:bg-primary-container/50 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="shopping_bag">shopping_bag</span>
+<span>Orders</span>
+</a>
+<a class="flex items-center text-on-primary-container/70 dark:text-on-primary-container/50 hover:text-surface-bright pl-5 py-3 hover:bg-primary-container/50 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="group">group</span>
+<span>Customers</span>
+</a>
+<a class="flex items-center text-on-primary-container/70 dark:text-on-primary-container/50 hover:text-surface-bright pl-5 py-3 hover:bg-primary-container/50 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="leaderboard">leaderboard</span>
+<span>Analytics</span>
+</a>
+<a class="flex items-center text-surface-bright font-bold border-l-4 border-surface-bright pl-4 py-3 bg-primary-container/50 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<div class="px-6 mb-8">
+<button class="w-full bg-surface-bright text-brand-green py-3 px-4 font-label-caps text-label-caps hover:bg-white transition-all active:opacity-90">
+                New Formulation
+            </button>
+</div>
+<div class="mt-auto border-t border-white/10 pt-4 space-y-1">
+<a class="flex items-center text-on-primary-container/70 hover:text-surface-bright pl-5 py-2 transition-colors" href="#">
+<span class="material-symbols-outlined mr-3 text-[18px]" data-icon="help_outline">help_outline</span>
+<span class="text-xs">Support</span>
+</a>
+<a class="flex items-center text-on-primary-container/70 hover:text-surface-bright pl-5 py-2 transition-colors" href="#">
+<span class="material-symbols-outlined mr-3 text-[18px]" data-icon="logout">logout</span>
+<span class="text-xs">Sign Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center px-container-margin py-4 w-full sticky top-0 bg-surface-bright border-b border-outline-variant/30 z-40">
+<div class="flex items-center space-x-8">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container border-none text-body-md focus:ring-1 focus:ring-brand-green w-64 transition-all" placeholder="Search system actions..." type="text"/>
+</div>
+<nav class="hidden lg:flex space-x-6">
+<a class="font-label-caps text-label-caps text-text-muted hover:text-primary transition-all" href="#">Direct Ship</a>
+<a class="font-label-caps text-label-caps text-text-muted hover:text-primary transition-all" href="#">Wholesale</a>
+<a class="font-label-caps text-label-caps text-primary font-bold border-b-2 border-primary pb-1" href="#">Archive</a>
+</nav>
+</div>
+<div class="flex items-center space-x-4">
+<button class="bg-brand-green text-surface-bright px-6 py-2 font-label-caps text-label-caps hover:bg-primary-container transition-all active:scale-[0.98]">
+                    Create Report
+                </button>
+<div class="flex items-center space-x-3 text-primary">
+<button class="relative hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<div class="p-8 max-w-7xl mx-auto w-full">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-2">Security &amp; Audit Logs</h2>
+<p class="text-text-muted max-w-2xl">A chronological record of system-level operations. Use these logs to monitor sensitive changes, track user access, and maintain the integrity of the botanical supply chain.</p>
+</div>
+<div class="flex space-x-3">
+<button class="flex items-center space-x-2 border border-outline-variant/50 px-4 py-2 hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="file_download">file_download</span>
+<span class="font-label-caps text-label-caps">Export CSV</span>
+</button>
+<button class="flex items-center space-x-2 border border-outline-variant/50 px-4 py-2 hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="filter_list">filter_list</span>
+<span class="font-label-caps text-label-caps">Filters</span>
+</button>
+</div>
+</div>
+<!-- Dashboard Stats Grid (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+<div class="bg-surface-card p-6 border border-outline-variant/20 shadow-sm col-span-1">
+<p class="font-label-caps text-label-caps text-text-muted mb-2">Total Events (24h)</p>
+<p class="font-headline-md text-headline-md">1,284</p>
+<div class="mt-4 flex items-center text-xs text-brand-green">
+<span class="material-symbols-outlined text-xs mr-1" data-icon="trending_up">trending_up</span>
+<span>12% increase from yesterday</span>
+</div>
+</div>
+<div class="bg-surface-card p-6 border border-outline-variant/20 shadow-sm col-span-1">
+<p class="font-label-caps text-label-caps text-text-muted mb-2">Failed Logins</p>
+<p class="font-headline-md text-headline-md text-error">42</p>
+<div class="mt-4 flex items-center text-xs text-error">
+<span class="material-symbols-outlined text-xs mr-1" data-icon="warning">warning</span>
+<span>Requires immediate review</span>
+</div>
+</div>
+<div class="bg-brand-green p-6 text-surface-bright col-span-1 md:col-span-2 relative overflow-hidden">
+<div class="relative z-10">
+<p class="font-label-caps text-label-caps opacity-70 mb-2">Security Status</p>
+<p class="font-headline-md text-headline-md">System Secured</p>
+<p class="text-xs mt-2 opacity-80">Last comprehensive audit completed 3 hours ago. All node integrity checks passed.</p>
+</div>
+<div class="absolute -right-8 -bottom-8 opacity-10">
+<span class="material-symbols-outlined text-[120px]" data-icon="verified_user">verified_user</span>
+</div>
+</div>
+</div>
+<!-- Filter Bar -->
+<div class="bg-surface-container-low p-4 mb-6 flex flex-wrap items-center gap-4 border border-outline-variant/30">
+<div class="flex items-center space-x-2">
+<label class="font-label-caps text-[9px] uppercase text-text-muted">Date Range</label>
+<select class="bg-transparent border-none font-body-md text-xs focus:ring-0 cursor-pointer">
+<option>Last 24 Hours</option>
+<option>Last 7 Days</option>
+<option>Last 30 Days</option>
+<option>Custom Range</option>
+</select>
+</div>
+<div class="h-4 w-px bg-outline-variant/50"></div>
+<div class="flex items-center space-x-2">
+<label class="font-label-caps text-[9px] uppercase text-text-muted">Event Type</label>
+<select class="bg-transparent border-none font-body-md text-xs focus:ring-0 cursor-pointer">
+<option>All Activities</option>
+<option>Role Changes</option>
+<option>Price Updates</option>
+<option>Bulk Exports</option>
+<option>Login Attempts</option>
+</select>
+</div>
+<div class="h-4 w-px bg-outline-variant/50"></div>
+<div class="flex items-center space-x-2">
+<label class="font-label-caps text-[9px] uppercase text-text-muted">Admin</label>
+<select class="bg-transparent border-none font-body-md text-xs focus:ring-0 cursor-pointer">
+<option>All Users</option>
+<option>Eleanor Vance</option>
+<option>Julian Thorne</option>
+<option>Marcus Aurelius</option>
+</select>
+</div>
+</div>
+<!-- Audit Logs Table -->
+<div class="bg-surface-card border border-outline-variant/20 overflow-hidden shadow-sm">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-highest/30 border-b border-outline-variant/30">
+<th class="px-6 py-4 font-label-caps text-label-caps text-text-muted">Timestamp</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-text-muted">Admin User</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-text-muted">Action / Entity</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-text-muted">Details</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-text-muted">IP Address</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-text-muted">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<!-- Log Entry 1 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-primary font-medium">Oct 24, 2023</span>
+<span class="text-xs text-text-muted">14:22:08 GMT</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center">
+<div class="w-8 h-8 bg-brand-green text-white rounded-full flex items-center justify-center text-[10px] mr-3 font-bold">EV</div>
+<span class="text-primary">Eleanor Vance</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center">
+<span class="material-symbols-outlined text-[18px] mr-2 text-brand-green" data-icon="swap_horiz">swap_horiz</span>
+<span>Role Update</span>
+</div>
+</td>
+<td class="px-6 py-4 max-w-xs">
+<p class="truncate text-xs text-text-muted">Changed <span class="text-primary font-medium">Julian Thorne</span> from 'Analyst' to 'Senior Manager'</p>
+</td>
+<td class="px-6 py-4 font-price-tag text-price-tag text-text-muted">
+                                192.168.1.45
+                            </td>
+<td class="px-6 py-4">
+<span class="bg-brand-green/10 text-brand-green px-2 py-1 text-[9px] font-bold uppercase tracking-wider">Success</span>
+</td>
+</tr>
+<!-- Log Entry 2 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-primary font-medium">Oct 24, 2023</span>
+<span class="text-xs text-text-muted">13:45:12 GMT</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center">
+<div class="w-8 h-8 bg-secondary text-white rounded-full flex items-center justify-center text-[10px] mr-3 font-bold">JT</div>
+<span class="text-primary">Julian Thorne</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center">
+<span class="material-symbols-outlined text-[18px] mr-2 text-brand-green" data-icon="payments">payments</span>
+<span>Price Update</span>
+</div>
+</td>
+<td class="px-6 py-4 max-w-xs">
+<p class="truncate text-xs text-text-muted">Bulk update: increased <span class="text-primary font-medium">Rose Hip Oil</span> SKU by +15%</p>
+</td>
+<td class="px-6 py-4 font-price-tag text-price-tag text-text-muted">
+                                45.223.10.19
+                            </td>
+<td class="px-6 py-4">
+<span class="bg-brand-green/10 text-brand-green px-2 py-1 text-[9px] font-bold uppercase tracking-wider">Success</span>
+</td>
+</tr>
+<!-- Log Entry 3 (Warning/Critical) -->
+<tr class="hover:bg-surface-container-low transition-colors group bg-error-container/5">
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-primary font-medium">Oct 24, 2023</span>
+<span class="text-xs text-text-muted">12:10:44 GMT</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center">
+<div class="w-8 h-8 bg-error text-white rounded-full flex items-center justify-center text-[10px] mr-3 font-bold">?</div>
+<span class="text-primary italic">Unauthorized</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center">
+<span class="material-symbols-outlined text-[18px] mr-2 text-error" data-icon="login">login</span>
+<span>Login Attempt</span>
+</div>
+</td>
+<td class="px-6 py-4 max-w-xs">
+<p class="truncate text-xs text-error font-medium">Multiple failed attempts on root account</p>
+</td>
+<td class="px-6 py-4 font-price-tag text-price-tag text-error">
+                                201.55.91.204
+                            </td>
+<td class="px-6 py-4">
+<span class="bg-error/10 text-error px-2 py-1 text-[9px] font-bold uppercase tracking-wider">Blocked</span>
+</td>
+</tr>
+<!-- Log Entry 4 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-primary font-medium">Oct 24, 2023</span>
+<span class="text-xs text-text-muted">09:30:00 GMT</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center">
+<div class="w-8 h-8 bg-brand-green text-white rounded-full flex items-center justify-center text-[10px] mr-3 font-bold">MA</div>
+<span class="text-primary">Marcus Aurelius</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center">
+<span class="material-symbols-outlined text-[18px] mr-2 text-brand-green" data-icon="cloud_download">cloud_download</span>
+<span>Bulk Export</span>
+</div>
+</td>
+<td class="px-6 py-4 max-w-xs">
+<p class="truncate text-xs text-text-muted">Exported <span class="text-primary font-medium">'Active Customer Database'</span> (CSV, 45k rows)</p>
+</td>
+<td class="px-6 py-4 font-price-tag text-price-tag text-text-muted">
+                                88.12.99.102
+                            </td>
+<td class="px-6 py-4">
+<span class="bg-brand-green/10 text-brand-green px-2 py-1 text-[9px] font-bold uppercase tracking-wider">Success</span>
+</td>
+</tr>
+<!-- Log Entry 5 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-primary font-medium">Oct 24, 2023</span>
+<span class="text-xs text-text-muted">08:15:33 GMT</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center">
+<div class="w-8 h-8 bg-brand-green text-white rounded-full flex items-center justify-center text-[10px] mr-3 font-bold">EV</div>
+<span class="text-primary">Eleanor Vance</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center">
+<span class="material-symbols-outlined text-[18px] mr-2 text-brand-green" data-icon="edit_calendar">edit_calendar</span>
+<span>Schedule Change</span>
+</div>
+</td>
+<td class="px-6 py-4 max-w-xs">
+<p class="truncate text-xs text-text-muted">Modified harvest schedule for <span class="text-primary font-medium">Lavender Highland</span></p>
+</td>
+<td class="px-6 py-4 font-price-tag text-price-tag text-text-muted">
+                                192.168.1.45
+                            </td>
+<td class="px-6 py-4">
+<span class="bg-brand-green/10 text-brand-green px-2 py-1 text-[9px] font-bold uppercase tracking-wider">Success</span>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Pagination -->
+<div class="flex items-center justify-between px-6 py-4 bg-surface-container-low border-t border-outline-variant/30">
+<span class="text-xs text-text-muted">Showing 1 to 5 of 1,284 results</span>
+<div class="flex space-x-2">
+<button class="p-2 border border-outline-variant/50 hover:bg-surface-container transition-colors disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined text-[18px]" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="px-3 py-1 border border-brand-green bg-brand-green text-surface-bright text-xs font-bold">1</button>
+<button class="px-3 py-1 border border-outline-variant/50 hover:bg-surface-container transition-colors text-xs">2</button>
+<button class="px-3 py-1 border border-outline-variant/50 hover:bg-surface-container transition-colors text-xs">3</button>
+<span class="px-2 self-center">...</span>
+<button class="px-3 py-1 border border-outline-variant/50 hover:bg-surface-container transition-colors text-xs">128</button>
+<button class="p-2 border border-outline-variant/50 hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Contextual Documentation/Help -->
+<section class="mt-section-gap-sm grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="p-8 bg-surface-container-high relative overflow-hidden">
+<h4 class="font-headline-md text-headline-md mb-4 relative z-10">Data Retention Policy</h4>
+<p class="text-body-md text-text-muted mb-6 relative z-10">All audit logs are retained for a minimum of 365 days to comply with botanical safety standards and corporate governance. Logs older than 1 year are automatically compressed and moved to the cold storage archive.</p>
+<a class="font-label-caps text-label-caps text-brand-green hover:underline relative z-10" href="#">Read Policy Details →</a>
+<div class="absolute -right-4 -bottom-4 opacity-5">
+<span class="material-symbols-outlined text-[100px]" data-icon="history">history</span>
+</div>
+</div>
+<div class="p-8 border border-brand-green/20 bg-white shadow-sm flex flex-col justify-between">
+<div>
+<h4 class="font-headline-md text-headline-md mb-4">Security Insights</h4>
+<p class="text-body-md text-text-muted">Our AI system monitors for unusual patterns. Currently, there are no anomalous behaviors detected in the last 72 hours across admin accounts.</p>
+</div>
+<div class="mt-6 flex items-center space-x-4">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-white bg-slate-200" title="Eleanor Vance"></div>
+<div class="w-8 h-8 rounded-full border-2 border-white bg-slate-300" title="Julian Thorne"></div>
+<div class="w-8 h-8 rounded-full border-2 border-white bg-slate-400" title="Marcus Aurelius"></div>
+</div>
+<span class="text-xs text-text-muted">3 Security Admins Active</span>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer -->
+<footer class="mt-auto py-8 px-container-margin border-t border-outline-variant/20 flex flex-col md:flex-row justify-between items-center text-text-muted">
+<p class="text-xs">© 2023 Apothecary Admin System. All rights reserved.</p>
+<div class="flex space-x-6 mt-4 md:mt-0 font-label-caps text-[9px] uppercase tracking-widest">
+<a class="hover:text-primary" href="#">Compliance</a>
+<a class="hover:text-primary" href="#">System Status</a>
+<a class="hover:text-primary" href="#">Contact Security</a>
+</div>
+</footer>
+</main>
+<script>
+        // Simple micro-interaction for active row highlight or table search
+        document.querySelector('input[type="text"]').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('tbody tr');
+            
+            rows.forEach(row => {
+                const text = row.innerText.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+
+        // Toggle filters dropdown (Visual only for prototype)
+        document.querySelectorAll('select').forEach(select => {
+            select.addEventListener('change', (e) => {
+                console.log(`Filter changed: ${e.target.value}`);
+            });
+        });
+    </script>
+</body></html>

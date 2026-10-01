@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nature's Alchemist | User Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "surface": "#fbf9f8",
+                "on-secondary-fixed-variant": "#474742",
+                "on-secondary": "#ffffff",
+                "secondary": "#5f5e59",
+                "tertiary": "#000201",
+                "surface-container-high": "#eae8e6",
+                "outline-variant": "#c2c8c5",
+                "surface-container": "#efedec",
+                "on-primary-fixed-variant": "#3a4a46",
+                "inverse-primary": "#b8cac5",
+                "surface-variant": "#e4e2e1",
+                "secondary-container": "#e5e2db",
+                "on-tertiary-container": "#7f8682",
+                "surface-container-low": "#f5f3f2",
+                "on-primary-fixed": "#0e1e1b",
+                "on-tertiary-fixed-variant": "#414845",
+                "outline": "#727876",
+                "secondary-fixed-dim": "#c9c6c0",
+                "primary": "#000101",
+                "tertiary-fixed": "#dde4df",
+                "tertiary-fixed-dim": "#c1c8c3",
+                "secondary-fixed": "#e5e2db",
+                "inverse-surface": "#303030",
+                "on-secondary-fixed": "#1c1c18",
+                "surface-dim": "#dbdad8",
+                "surface-container-lowest": "#ffffff",
+                "surface-bright": "#fbf9f8",
+                "error": "#ba1a1a",
+                "on-primary-container": "#778884",
+                "surface-card": "#ffffff",
+                "on-tertiary-fixed": "#161d1a",
+                "on-error": "#ffffff",
+                "on-error-container": "#93000a",
+                "on-secondary-container": "#65645f",
+                "inverse-on-surface": "#f2f0ef",
+                "on-surface": "#1b1c1b",
+                "on-surface-variant": "#424846",
+                "text-muted": "rgba(15, 31, 28, 0.6)",
+                "background": "#fbf9f8",
+                "status-sale": "#0f1f1c",
+                "primary-container": "#0f1f1c",
+                "on-tertiary": "#ffffff",
+                "primary-fixed-dim": "#b8cac5",
+                "on-background": "#1b1c1b",
+                "error-container": "#ffdad6",
+                "brand-green": "#1a2e29",
+                "surface-tint": "#51625e",
+                "tertiary-container": "#171e1b",
+                "primary-fixed": "#d4e6e1",
+                "on-primary": "#ffffff",
+                "surface-container-highest": "#e4e2e1",
+                "border-subtle": "rgba(255, 255, 255, 0.1)"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+            },
+            "spacing": {
+                "section-gap-sm": "2.5rem",
+                "element-gap": "0.5rem",
+                "container-margin": "1.5rem",
+                "grid-gutter": "1rem",
+                "section-gap-lg": "5rem"
+            },
+            "fontFamily": {
+                "price-tag": ["Noto Sans"],
+                "headline-md": ["Playfair Display"],
+                "headline-lg": ["Playfair Display"],
+                "label-caps": ["Noto Sans"],
+                "display-lg": ["Playfair Display"],
+                "body-md": ["Noto Sans"]
+            },
+            "fontSize": {
+                "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+        }
+        body {
+            background-color: #fbf9f8;
+            color: #1b1c1b;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md bg-surface">
+<!-- TopNavBar (Shared Component) -->
+<header class="fixed top-0 w-full bg-primary z-50 flex justify-between items-center px-container-margin py-4">
+<div class="font-headline-md text-headline-md text-on-primary uppercase tracking-widest">Nature's Alchemist</div>
+<nav class="hidden md:flex gap-8">
+<a class="text-on-primary-container/80 hover:text-on-primary transition-colors duration-300 font-body-md text-body-md" href="#">Shop All</a>
+<a class="text-on-primary-container/80 hover:text-on-primary transition-colors duration-300 font-body-md text-body-md" href="#">Rituals</a>
+<a class="text-on-primary-container/80 hover:text-on-primary transition-colors duration-300 font-body-md text-body-md" href="#">Heritage</a>
+<a class="text-on-primary-container/80 hover:text-on-primary transition-colors duration-300 font-body-md text-body-md" href="#">Sourcing</a>
+</nav>
+<div class="flex gap-4 items-center"><div class="flex items-center gap-2 mr-2"><div class="w-8 h-8 rounded-full overflow-hidden border border-white/20"><img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvbDwAvWIIUbDsbKzsKNcLWv2HDicgKoRvw3xr2QKKjeU03HtPYXpyOtx3YONN-uNX-ZX3ry8wLMXdB2Y02GCKf_D1v8Ga7PxW3msxovfY8aw2dqoQBgSDG1rFzI5y0r6jF7npFHDKZWV1GUVf5RPNwyJ72lILLdtM-X8m11iFi86hn_5mGFkOpRlEE6Ki01eMhLODdnJDvev4Qi51vM61umHDF_-yR9QKGJRu75vtvGxhFW12M8sIn89faTUabeFtZ1XFgCC_vsPg"/></div><span class="text-on-primary text-xs font-bold hidden sm:block">Elena</span></div>
+<div class="relative cursor-pointer group/notif">
+<span class="material-symbols-outlined text-on-primary">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full"></span>
+<!-- Notification Dropdown -->
+<div class="absolute right-0 mt-4 w-72 bg-surface-card border border-outline-variant shadow-2xl opacity-0 invisible group-hover/notif:opacity-100 group-hover/notif:visible transition-all duration-300 z-50">
+<div class="p-4 border-b border-outline-variant">
+<h4 class="font-headline-md text-sm">Recent Updates</h4>
+</div>
+<div class="max-h-64 overflow-y-auto">
+<div class="p-4 border-b border-outline-variant/30 hover:bg-surface-container transition-colors">
+<p class="text-xs font-bold">Order Shipped</p>
+<p class="text-[10px] text-on-surface-variant">Your lavender oil has shipped and is on its way.</p>
+</div>
+<div class="p-4 border-b border-outline-variant/30 hover:bg-surface-container transition-colors">
+<p class="text-xs font-bold">New Ritual</p>
+<p class="text-[10px] text-on-surface-variant">New seasonal ritual 'Winter Solstice' is now available.</p>
+</div>
+</div>
+<div class="p-2 text-center">
+<a class="text-[10px] font-label-caps text-primary underline" href="#">View All Alerts</a>
+</div>
+</div>
+</div><span class="material-symbols-outlined text-on-primary cursor-pointer">person</span>
+<span class="material-symbols-outlined text-on-primary cursor-pointer">shopping_cart</span>
+</div>
+</header>
+<div class="flex pt-16 min-h-screen"><aside class="hidden md:flex flex-col items-center w-16 bg-brand-green py-8 gap-8 sticky top-16 h-[calc(100vh-64px)] z-40">
+<a class="text-white hover:opacity-100 transition-opacity opacity-100" href="#" title="Dashboard">
+<span class="material-symbols-outlined text-2xl">dashboard</span>
+</a>
+<a class="text-white/60 hover:text-white transition-colors" href="#" title="Orders">
+<span class="material-symbols-outlined text-2xl">package_2</span>
+</a>
+<a class="text-white/60 hover:text-white transition-colors" href="#" title="Wishlist">
+<span class="material-symbols-outlined text-2xl">favorite</span>
+</a>
+<a class="text-white/60 hover:text-white transition-colors" href="#" title="Settings">
+<span class="material-symbols-outlined text-2xl">settings</span>
+</a>
+</aside>
+<!-- SideNavBar (Shared Component) -->
+<!-- Main Dashboard Canvas -->
+<main class="flex-1 px-container-margin py-8 md:py-12 bg-surface max-w-7xl mx-auto md:pl-8">
+<!-- Header Greeting -->
+<div class="mb-12 text-center flex flex-col items-center">
+<h1 class="font-display-lg text-headline-lg md:text-display-lg mb-2">Welcome back, Elena.</h1>
+<p class="text-on-surface-variant max-w-xl">Your current ritual status is optimal. We've curated today's selections based on your heritage of botanical integrity.</p>
+</div>
+<!-- Bento Grid Dashboard -->
+<div class="bento-grid">
+<!-- Loyalty Points / Membership (4 cols) -->
+<div class="col-span-12 md:col-span-4 bg-brand-green text-on-primary p-8 flex flex-col justify-between min-h-[280px]">
+<div>
+<span class="font-label-caps text-label-caps opacity-60">ALCHEMIST REWARDS</span>
+<h2 class="font-headline-lg text-headline-lg mt-4">1,420 <span class="text-sm font-normal opacity-70">Essences</span></h2>
+</div>
+<div>
+<p class="text-sm mb-4 opacity-80">You are 80 essences away from your next complimentary Ritual Oil.</p>
+<div class="h-1 bg-white/10 w-full relative">
+<div class="h-1 bg-white w-4/5"></div>
+</div>
+<button class="mt-6 w-full py-3 bg-white text-primary font-label-caps text-label-caps hover:opacity-90 transition-opacity">REDEEM NOW</button>
+</div>
+</div>
+<!-- Recent Orders (8 cols) -->
+<div class="col-span-12 md:col-span-8 bg-surface-card border border-outline-variant p-8 shadow-sm">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-md text-headline-md">Recent Orders</h3>
+<a class="font-label-caps text-label-caps text-primary underline" href="#">VIEW ALL HISTORY</a>
+</div>
+<div class="space-y-6">
+<div class="flex justify-between items-center border-b border-surface-container-high pb-4">
+<div class="flex gap-4 items-center">
+<div class="w-12 h-12 bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">package_2</span>
+</div>
+<div>
+<p class="font-bold">Order #NA-90210</p>
+<p class="text-xs text-on-surface-variant">Shipped Oct 12, 2023</p>
+</div>
+</div>
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container text-xs font-bold uppercase tracking-widest">In Transit</span>
+</div>
+<div class="flex justify-between items-center border-b border-surface-container-high pb-4">
+<div class="flex gap-4 items-center">
+<div class="w-12 h-12 bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">local_shipping</span>
+</div>
+<div>
+<p class="font-bold">Order #NA-89115</p>
+<p class="text-xs text-on-surface-variant">Delivered Oct 05, 2023</p>
+</div>
+</div>
+<span class="px-3 py-1 bg-surface-container-high text-on-surface-variant text-xs font-bold uppercase tracking-widest">Delivered</span>
+</div>
+</div>
+</div>
+<!-- Curated Recommendations Section (Full Width Header) -->
+<div class="col-span-12 mt-8">
+<div class="flex items-center gap-4 mb-8 justify-center">
+<h3 class="font-headline-lg text-headline-lg">Ritual Recommendations</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-grid-gutter">
+<!-- Product Card 1 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[4/5] overflow-hidden mb-4 bg-surface-container-high">
+<div class="absolute top-0 left-0 bg-primary text-white font-label-caps text-[9px] px-2 py-1 z-10">CURATED</div>
+<img alt="Moonlight Recovery Oil" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A minimalist and high-end studio photograph of a dark glass apothecary bottle with a white textured label, resting on a rough-hewn stone block. The scene is bathed in soft, dramatic side-lighting that highlights the texture of the stone and the glossy finish of the glass. The color palette is composed of deep charcoals, earthy greys, and crisp whites, evoking a sense of ancient wisdom meeting modern luxury." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtau5eVPLhlpmMYJHdPN6iDgp0osXULuydik2OSweBn9szOhlZq8qpJF8ymVQuZYZeQ1dmSR26E_dZrmIVvmBzqOj4AP9yqmUZRL2jXg-_J0CgBNt1FvIUUXGwpneor5AY9wqHNZAQKnQ9wzO3Oisd4w2zINKCWohKSX_aO7pj9OpHnBmC8hthyfnsvm07Znum0erMePTupZadeu1r1A_4udXYvNTSaqDi6u4CQR8b-0oKDoxhCKNbFb2KhVEhrhXePwvS-Zu6N_VT"/>
+<div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<button class="bg-white px-6 py-3 font-label-caps text-label-caps text-primary shadow-sm">ADD TO RITUAL</button>
+</div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-headline-md text-lg leading-tight">Moonlight Recovery Oil</h4>
+<p class="text-xs text-on-surface-variant mt-1">Nourish &amp; Restore</p>
+</div>
+<span class="font-price-tag text-price-tag text-primary">$85.00</span>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[4/5] overflow-hidden mb-4 bg-surface-container-high">
+<img alt="Botanical Steep" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A premium close-up shot of dried botanical herbs and flowers like chamomile and lavender, arranged artfully in a handcrafted ceramic bowl. The lighting is bright and airy, a high-key light mode aesthetic that emphasizes the natural, organic textures and soft muted colors of the plants. The background is a clean, off-white plaster wall, creating a serene and therapeutic atmosphere consistent with artisanal herbalism." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDrKhH4eS_5AlBjRA41S8JSo3vAnXdREDf8LHc_V6_ICwZc5lXWeRa0lJEpVYgA9JoSIVT98FNtUec2gY6noWNEvsnwzEVTKuepqaNF9bwdrbwehIzr1vQRJGfNjHylYUfKZcoveYmBlzGyc1ejXbEdcIMPD4QjF0yYhjma5HSMWT61Gzh45QLINECzUpvMEmm4BsxymNw2ouBaYk-ex_fWJmBF3Fliu1Tf3jxIQ4If-gVcwDiy72UmXkR07bZGB4GROMmkfYBsB8I"/>
+<div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<button class="bg-white px-6 py-3 font-label-caps text-label-caps text-primary shadow-sm">ADD TO RITUAL</button>
+</div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-headline-md text-lg leading-tight">Heritage Botanical Steep</h4>
+<p class="text-xs text-on-surface-variant mt-1">Internal Balance</p>
+</div>
+<span class="font-price-tag text-price-tag text-primary">$42.00</span>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[4/5] overflow-hidden mb-4 bg-surface-container-high">
+<div class="absolute top-0 left-0 bg-status-sale text-white font-label-caps text-[9px] px-2 py-1 z-10">MEMBER PRICE</div>
+<img alt="Sanctum Candle" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A luxury candle in a heavy, matte black ceramic vessel sitting on a polished dark wood table. A single thin plume of white smoke rises from the wick against a shadowy, atmospheric background. The lighting is warm and candle-lit, casting soft glows on the textures of the ceramic and wood. The overall mood is sophisticated, calm, and deeply relaxing, fitting for a curated evening ritual." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDO4QfGncn_D4QdN8pnRJBe-nNMnpwtuM8VexAkeNWjaClft7VNWIgy_567zKgpWMe6lIk8Iy7F-QKGNvlNXg82wx-ngviuG-aOdJn1QcWTrKfoRxbsq9ZnR7W54L6ilEuOQahf4fPJ5LsFXdFDso251mTSQw2bwhs11UY6_ve2BDmrMzqSJ0qI5S838bvykLE7i3KP0Ou9WEfTbDoJ_u1p7dYsi2_aBjmMnCDSokXm1OqQhULKBswmGgkUli7-5CPCrQA8uAVNtyaT"/>
+<div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<button class="bg-white px-6 py-3 font-label-caps text-label-caps text-primary shadow-sm">ADD TO RITUAL</button>
+</div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-headline-md text-lg leading-tight">Sanctum Essence Candle</h4>
+<p class="text-xs text-on-surface-variant mt-1">Sensory Grounding</p>
+</div>
+<span class="font-price-tag text-price-tag text-primary">$56.00</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Personal Ritual Progress (Bento card) -->
+<div class="col-span-12 md:col-span-6 bg-surface-container-low border border-outline-variant p-8 relative overflow-hidden">
+<div class="relative z-10">
+<h3 class="font-headline-md text-headline-md mb-2">Heritage Tracker</h3>
+<p class="text-sm text-on-surface-variant mb-6">Your consistency over the last 30 days.</p>
+<div class="flex items-end gap-2 h-32">
+<div class="w-full bg-primary/10 h-1/2"></div>
+<div class="w-full bg-primary/20 h-2/3"></div>
+<div class="w-full bg-primary/40 h-3/4"></div>
+<div class="w-full bg-primary/60 h-full"></div>
+<div class="w-full bg-primary h-5/6"></div>
+<div class="w-full bg-primary/80 h-3/4"></div>
+<div class="w-full bg-primary/40 h-1/2"></div>
+</div>
+<div class="flex justify-between mt-2 text-[10px] font-bold text-on-surface-variant opacity-60">
+<span class="">WK 1</span>
+<span class="">WK 2</span>
+<span class="">WK 3</span>
+<span class="">WK 4</span>
+</div>
+</div>
+<!-- Decorative Element -->
+<span class="material-symbols-outlined absolute -bottom-8 -right-8 text-9xl text-primary/5 select-none">history_edu</span>
+</div>
+<!-- Account Support (Bento card) -->
+<div class="col-span-12 md:col-span-6 bg-white border border-outline-variant p-8 flex flex-col justify-center items-center text-center">
+<div class="w-16 h-16 rounded-full border border-primary/20 flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-3xl text-primary">chat_bubble</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-2">Concierge Access</h3>
+<p class="text-sm text-on-surface-variant max-w-xs mb-6">Speak with an Alchemist about adjusting your ritual or exploring new botanical lineages.</p>
+<button class="px-8 py-3 border border-primary font-label-caps text-label-caps text-primary hover:bg-primary hover:text-white transition-all duration-300">START CONVERSATION</button>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer (Shared Component) -->
+<footer class="w-full py-section-gap-sm bg-surface-container-highest border-t border-outline-variant">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-grid-gutter px-container-margin max-w-7xl mx-auto">
+<div>
+<div class="font-headline-lg text-headline-lg text-primary mb-4">Nature's Alchemist</div>
+<p class="text-on-surface-variant text-sm pr-12">Synthesizing ancestral wisdom with modern science to elevate the human experience through pure botanical integrity.</p>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col gap-2">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary underline transition-opacity duration-200" href="#">Sourcing Ethics</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary underline transition-opacity duration-200" href="#">Wholesale</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary underline transition-opacity duration-200" href="#">Shipping &amp; Returns</a>
+</div>
+<div class="flex flex-col gap-2">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary underline transition-opacity duration-200" href="#">Sustainability Report</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary underline transition-opacity duration-200" href="#">Our Story</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary underline transition-opacity duration-200" href="#">Contact</a>
+</div>
+</div>
+<div class="flex flex-col justify-end items-start md:items-end">
+<div class="font-body-md text-body-md text-on-surface-variant opacity-60">© 2024 Nature's Alchemist. Ethical Sourcing &amp; Botanical Integrity.</div>
+</div>
+</div>
+</footer>
+<!-- Mobile Nav Anchor -->
+<div class="md:hidden fixed bottom-0 left-0 w-full bg-surface-container-highest flex justify-around items-center py-4 z-50 border-t border-outline-variant/30 shadow-2xl">
+<span class="material-symbols-outlined text-on-surface-variant">home</span>
+<span class="material-symbols-outlined text-primary font-bold">person</span>
+<span class="material-symbols-outlined text-on-surface-variant">search</span>
+<span class="material-symbols-outlined text-on-surface-variant">shopping_bag</span>
+</div>
+</body></html>

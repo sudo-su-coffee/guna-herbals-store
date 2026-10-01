@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Apothecary Admin - Product Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Noto+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-nav-item {
+            transform: scale(0.98);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c2c8c5;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#c1c8c3",
+                        "on-tertiary-fixed-variant": "#414845",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#e4e2e1",
+                        "status-sale": "#0f1f1c",
+                        "secondary-fixed-dim": "#c9c6c0",
+                        "secondary": "#5f5e59",
+                        "on-tertiary-container": "#7f8682",
+                        "outline-variant": "#c2c8c5",
+                        "surface": "#fbf9f8",
+                        "on-surface-variant": "#424846",
+                        "tertiary": "#000201",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#b8cac5",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#efedec",
+                        "primary-fixed": "#d4e6e1",
+                        "on-secondary-fixed": "#1c1c18",
+                        "brand-green": "#1a2e29",
+                        "on-primary-container": "#778884",
+                        "on-primary-fixed": "#0e1e1b",
+                        "surface-container-high": "#eae8e6",
+                        "on-secondary-fixed-variant": "#474742",
+                        "border-subtle": "rgba(255, 255, 255, 0.1)",
+                        "on-tertiary-fixed": "#161d1a",
+                        "surface-bright": "#fbf9f8",
+                        "secondary-fixed": "#e5e2db",
+                        "on-primary-fixed-variant": "#3a4a46",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "on-background": "#1b1c1b",
+                        "background": "#fbf9f8",
+                        "secondary-container": "#e5e2db",
+                        "tertiary-container": "#171e1b",
+                        "outline": "#727876",
+                        "inverse-primary": "#b8cac5",
+                        "surface-tint": "#51625e",
+                        "text-muted": "rgba(15, 31, 28, 0.6)",
+                        "inverse-surface": "#303030",
+                        "on-surface": "#1b1c1b",
+                        "tertiary-fixed": "#dde4df",
+                        "on-secondary-container": "#65645f",
+                        "surface-dim": "#dbdad8",
+                        "surface-container-low": "#f5f3f2",
+                        "primary-container": "#0f1f1c",
+                        "inverse-on-surface": "#f2f0ef",
+                        "on-error": "#ffffff",
+                        "surface-card": "#ffffff",
+                        "primary": "#000101",
+                        "surface-variant": "#e4e2e1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "body-md": ["Noto Sans"],
+                        "price-tag": ["Noto Sans"],
+                        "label-caps": ["Noto Sans"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                        "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                        "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface font-body-md text-on-surface custom-scrollbar">
+<!-- Sidebar Navigation Shell -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-brand-green flex flex-col py-8 px-4 z-50">
+<div class="mb-12 px-4">
+<h1 class="font-headline-md text-headline-md text-secondary-fixed tracking-tight">Apothecary Admin</h1>
+<p class="font-label-caps text-label-caps text-on-primary-fixed-variant opacity-80 mt-1">Premium Botanical</p>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-on-primary-fixed-variant/50 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined text-secondary-fixed">dashboard</span>
+<span class="font-label-caps text-label-caps text-secondary-fixed">Overview</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-on-primary-fixed-variant text-primary-fixed rounded-lg active-nav-item" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-caps text-label-caps">Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-on-primary-fixed-variant/50 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined text-secondary-fixed">shopping_bag</span>
+<span class="font-label-caps text-label-caps text-secondary-fixed">Orders</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-on-primary-fixed-variant/50 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined text-secondary-fixed">group</span>
+<span class="font-label-caps text-label-caps text-secondary-fixed">Customers</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-on-primary-fixed-variant/50 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined text-secondary-fixed">auto_stories</span>
+<span class="font-label-caps text-label-caps text-secondary-fixed">Rituals</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-on-primary-fixed-variant/50 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined text-secondary-fixed">settings</span>
+<span class="font-label-caps text-label-caps text-secondary-fixed">Settings</span>
+</a>
+</nav>
+<div class="mt-auto px-4 pt-6 border-t border-on-primary-fixed-variant/20 flex items-center gap-3">
+<div class="w-10 h-10 bg-secondary-fixed rounded-full overflow-hidden">
+<img alt="Administrator Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a boutique manager with a refined, sophisticated look. The lighting is soft and warm, complementing the botanical apothecary brand's aesthetic. The background is a clean, neutral cream tone, emphasizing a minimalist and trustworthy presence for a premium wellness brand leader." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA93LMNLFMtKs6ZFDVqB5NQEneIkYB_hx16QmWdXXmN4PSTs41giMZ_6e5Mad-X6beBvlxP0nkBbJm89QoYylL0wQOoGLRCXVtvu2DvVFg4uAIXItm4fHoHgx2UmLESyTW76F9hrzgasbN92hGsHXEirf3UqhInbLxWX0SYMPcPPgstZyBQ2dRazSkVMFavGBymRML2L7qnonlwojfhn10Ykkq77A8x7TYbihEWExjUn3B8R-P00G_yfnVVHpssYlt1n_EpBLoUsXnJ"/>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-primary-fixed">ADMIN</p>
+<p class="text-[10px] text-on-primary-fixed-variant">Julian Thorne</p>
+</div>
+</div>
+</aside>
+<!-- Top Navigation Bar -->
+<header class="h-20 w-[calc(100%-16rem)] fixed right-0 top-0 bg-surface flex justify-between items-center px-10 border-b border-outline-variant z-40">
+<div class="flex items-center gap-6">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-on-surface-variant text-[20px]">search</span>
+<input class="bg-surface-container-low border-none rounded-lg pl-10 pr-4 py-2 text-body-md w-96 focus:ring-1 focus:ring-brand-green/30" placeholder="Search product database..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="relative hover:text-brand-green transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute -top-1 -right-1 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="hover:text-brand-green transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant"></div>
+<div class="flex items-center gap-2">
+<span class="font-label-caps text-label-caps">LAST SYNC: 14:02 PM</span>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-20 p-10 bg-surface min-h-screen">
+<div class="max-w-6xl mx-auto">
+<!-- Breadcrumbs and Actions -->
+<div class="flex justify-between items-end mb-10">
+<div>
+<nav class="flex gap-2 text-on-surface-variant font-label-caps text-[9px] mb-2">
+<a class="hover:text-brand-green transition-colors" href="#">INVENTORY</a>
+<span>/</span>
+<a class="hover:text-brand-green transition-colors" href="#">BOTANICAL TINCTURES</a>
+<span>/</span>
+<span class="text-on-surface">EDIT PRODUCT</span>
+</nav>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Ashwagandha Vitality Elixir</h2>
+</div>
+<div class="flex gap-4">
+<button class="px-6 py-3 border border-outline text-on-surface font-label-caps text-label-caps hover:bg-surface-container transition-colors tracking-widest">
+                        DELETE PRODUCT
+                    </button>
+<button class="px-8 py-3 bg-brand-green text-surface font-label-caps text-label-caps hover:opacity-90 transition-opacity tracking-widest">
+                        SAVE CHANGES
+                    </button>
+</div>
+</div>
+<!-- Bento Grid Layout for Product Details -->
+<div class="grid grid-cols-12 gap-6">
+<!-- Basic Information Section -->
+<section class="col-span-8 space-y-6">
+<div class="bg-surface-card border border-outline-variant p-8 shadow-sm">
+<h3 class="font-headline-md text-headline-md mb-6 border-b border-surface-container pb-4">Core Specifications</h3>
+<div class="grid grid-cols-2 gap-6">
+<div class="space-y-1">
+<label class="font-label-caps text-[10px] text-on-surface-variant block">PRODUCT NAME</label>
+<input class="w-full border-b border-outline-variant focus:border-brand-green bg-transparent py-2 text-body-md outline-none" type="text" value="Ashwagandha Vitality Elixir"/>
+</div>
+<div class="space-y-1">
+<label class="font-label-caps text-[10px] text-on-surface-variant block">SKU IDENTIFIER</label>
+<input class="w-full border-b border-outline-variant focus:border-brand-green bg-transparent py-2 text-body-md outline-none uppercase" type="text" value="GUNA-ASH-001"/>
+</div>
+<div class="space-y-1">
+<label class="font-label-caps text-[10px] text-on-surface-variant block">PRIMARY CATEGORY</label>
+<select class="w-full border-b border-outline-variant focus:border-brand-green bg-transparent py-2 text-body-md outline-none appearance-none">
+<option>Adaptogens &amp; Vitality</option>
+<option>Immune Support</option>
+<option>Nervine Sedatives</option>
+<option>Digestive Bitters</option>
+</select>
+</div>
+<div class="space-y-1">
+<label class="font-label-caps text-[10px] text-on-surface-variant block">STOCK LEVEL (UNITS)</label>
+<div class="flex items-center gap-4">
+<input class="w-full border-b border-outline-variant focus:border-brand-green bg-transparent py-2 text-body-md outline-none" type="number" value="142"/>
+<span class="px-2 py-1 bg-primary-fixed text-on-primary-fixed font-label-caps text-[8px] whitespace-nowrap">IN STOCK</span>
+</div>
+</div>
+</div>
+<div class="mt-8 space-y-1">
+<label class="font-label-caps text-[10px] text-on-surface-variant block">BOTANICAL DESCRIPTION</label>
+<textarea class="w-full border border-outline-variant focus:border-brand-green bg-surface-container-lowest p-4 text-body-md outline-none resize-none leading-relaxed" rows="5">A concentrated hydro-ethanolic extract of organic Withania somnifera roots. Sourced from the high-altitude plains of central India, this elixir is aged for three moon cycles to ensure maximum potency of withanolides. Designed to harmonize the HPA axis, it offers profound support for modern stress management and metabolic vitality.</textarea>
+</div>
+</div>
+<!-- Pricing Tier Section -->
+<div class="bg-surface-card border border-outline-variant p-8 shadow-sm">
+<h3 class="font-headline-md text-headline-md mb-6 border-b border-surface-container pb-4">Commercial Valuation</h3>
+<div class="grid grid-cols-3 gap-8">
+<div class="space-y-1">
+<label class="font-label-caps text-[10px] text-on-surface-variant block">RETAIL PRICE (USD)</label>
+<div class="relative">
+<span class="absolute left-0 top-2 text-on-surface-variant font-price-tag">$</span>
+<input class="w-full border-b border-outline-variant focus:border-brand-green bg-transparent py-2 pl-4 text-body-md outline-none font-price-tag" type="text" value="48.00"/>
+</div>
+</div>
+<div class="space-y-1">
+<label class="font-label-caps text-[10px] text-on-surface-variant block">M.R.P. (USD)</label>
+<div class="relative">
+<span class="absolute left-0 top-2 text-on-surface-variant font-price-tag">$</span>
+<input class="w-full border-b border-outline-variant focus:border-brand-green bg-transparent py-2 pl-4 text-body-md outline-none font-price-tag" type="text" value="55.00"/>
+</div>
+</div>
+<div class="space-y-1">
+<label class="font-label-caps text-[10px] text-on-surface-variant block">TAX CLASS</label>
+<select class="w-full border-b border-outline-variant focus:border-brand-green bg-transparent py-2 text-body-md outline-none appearance-none">
+<option>Standard (12%)</option>
+<option>Reduced (5%)</option>
+<option>Exempt (0%)</option>
+</select>
+</div>
+</div>
+</div>
+</section>
+<!-- Media and Meta Sidebar -->
+<aside class="col-span-4 space-y-6">
+<!-- Image Upload Component -->
+<div class="bg-surface-card border border-outline-variant p-6 shadow-sm">
+<h4 class="font-label-caps text-label-caps mb-4 tracking-widest text-on-surface">PRODUCT IMAGERY</h4>
+<div class="aspect-[4/5] relative bg-surface-container flex flex-col items-center justify-center border-2 border-dashed border-outline-variant group cursor-pointer overflow-hidden mb-4">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A premium amber glass apothecary bottle containing a golden-brown tincture, placed on a rough-hewn stone surface. Soft morning sunlight filters through nearby botanical leaves, creating organic shadows. The overall aesthetic is minimalist, earthy, and luxurious, adhering to the Modern Apothecary brand identity with natural textures and a soft cream palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtpeM6qj18jPaIFaH6LrD5bgKUytZwmldfwO23qrX4PdGLYMWrqxsYcnGAFffrhXzBHDs33mHUBkAW6AKwWcqUC9Kx33sUG3h6jZYF25eKbWiwyZps8pKTY3_HqRvw9yWWAtUZOKxUjaekSU2_8aVzzG_6p9wUk-HxVdBpf049Gm6gKvgzAdZOEfEg3tE3gkyY54xpFgfgZkTDQ54vbtsgs15jgb-SiNqoV8-kWjNxTDz1CMgY5h8NoXZZAlVjwBDiLzpUTk_MHm8Z"/>
+<div class="absolute inset-0 bg-brand-green/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<div class="bg-surface px-4 py-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">upload</span>
+<span class="font-label-caps text-[10px]">REPLACE IMAGE</span>
+</div>
+</div>
+</div>
+<p class="text-[11px] text-on-surface-variant text-center leading-tight">Recommended: 1200x1500px, PNG or JPG with organic textures.</p>
+</div>
+<!-- Meta & Inventory Stats -->
+<div class="bg-brand-green text-surface p-6 shadow-lg">
+<h4 class="font-label-caps text-label-caps mb-6 tracking-widest text-secondary-fixed">ANALYTICS PREVIEW</h4>
+<div class="space-y-4">
+<div class="flex justify-between items-center border-b border-on-primary-fixed-variant/30 pb-2">
+<span class="text-[11px] font-label-caps opacity-70">30-DAY SALES</span>
+<span class="font-headline-md text-headline-md text-secondary-fixed">84</span>
+</div>
+<div class="flex justify-between items-center border-b border-on-primary-fixed-variant/30 pb-2">
+<span class="text-[11px] font-label-caps opacity-70">REVENUE (EST)</span>
+<span class="font-headline-md text-headline-md text-secondary-fixed">$4,032</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-[11px] font-label-caps opacity-70">RESTOCK ALERT</span>
+<span class="px-2 py-0.5 bg-secondary-fixed text-brand-green font-label-caps text-[8px]">STABLE</span>
+</div>
+</div>
+</div>
+<!-- Tags / Attributes -->
+<div class="bg-surface-card border border-outline-variant p-6 shadow-sm">
+<h4 class="font-label-caps text-label-caps mb-4 tracking-widest text-on-surface">HERBAL PROPERTIES</h4>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant font-label-caps text-[9px] border border-outline-variant/30">ORGANIC</span>
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant font-label-caps text-[9px] border border-outline-variant/30">WILD CRAFTED</span>
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant font-label-caps text-[9px] border border-outline-variant/30">ADAPTOGEN</span>
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant font-label-caps text-[9px] border border-outline-variant/30">MOON-INFUSED</span>
+<button class="px-3 py-1 border border-dashed border-outline-variant text-on-surface-variant font-label-caps text-[9px] hover:border-brand-green transition-colors">+ ADD TAG</button>
+</div>
+</div>
+</aside>
+</div>
+<!-- Audit Log / Footer Info -->
+<footer class="mt-12 flex justify-between items-center text-on-surface-variant border-t border-outline-variant pt-6">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[18px]">history</span>
+<p class="font-label-caps text-[9px]">LAST MODIFIED BY <span class="text-on-surface font-bold">REBECCA M.</span> — OCTOBER 24, 2023 AT 09:15 AM</p>
+</div>
+<div class="flex items-center gap-6">
+<a class="font-label-caps text-[10px] hover:text-brand-green underline decoration-outline-variant underline-offset-4" href="#">VIEW AUDIT HISTORY</a>
+<a class="font-label-caps text-[10px] hover:text-brand-green underline decoration-outline-variant underline-offset-4" href="#">PRODUCT PREVIEW PAGE</a>
+</div>
+</footer>
+</div>
+</main>
+<!-- Simple Notification Toast (Hidden by default) -->
+<div class="fixed bottom-10 right-10 bg-on-background text-surface px-6 py-4 flex items-center gap-3 shadow-2xl translate-y-20 opacity-0 transition-all duration-300 pointer-events-none" id="save-toast">
+<span class="material-symbols-outlined text-primary-fixed">check_circle</span>
+<span class="font-label-caps text-label-caps tracking-widest">PRODUCT CHANGES PERSISTED SUCCESSFULLY</span>
+</div>
+<script>
+        // Micro-interactions for button feedback
+        const saveBtn = document.querySelector('button.bg-brand-green');
+        const toast = document.getElementById('save-toast');
+
+        saveBtn.addEventListener('click', () => {
+            saveBtn.innerHTML = 'SAVING...';
+            saveBtn.style.opacity = '0.7';
+            
+            setTimeout(() => {
+                saveBtn.innerHTML = 'SAVE CHANGES';
+                saveBtn.style.opacity = '1';
+                
+                // Show toast
+                toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+                toast.classList.add('translate-y-0', 'opacity-100');
+                
+                setTimeout(() => {
+                    toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+                    toast.classList.remove('translate-y-0', 'opacity-100');
+                }, 3000);
+            }, 800);
+        });
+
+        // Hover effect for nav items
+        document.querySelectorAll('nav a').forEach(item => {
+            item.addEventListener('click', (e) => {
+                if(!item.classList.contains('active-nav-item')) {
+                    document.querySelectorAll('nav a').forEach(i => {
+                        i.classList.remove('bg-on-primary-fixed-variant', 'text-primary-fixed', 'active-nav-item');
+                        i.classList.add('text-on-primary-container');
+                        const icon = i.querySelector('.material-symbols-outlined');
+                        if(icon) icon.classList.add('text-secondary-fixed');
+                    });
+                    
+                    item.classList.add('bg-on-primary-fixed-variant', 'text-primary-fixed', 'active-nav-item');
+                    item.classList.remove('text-on-primary-container');
+                    const icon = item.querySelector('.material-symbols-outlined');
+                    if(icon) icon.classList.remove('text-secondary-fixed');
+                }
+            });
+        });
+    </script>
+</body></html>

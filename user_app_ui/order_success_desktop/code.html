@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order Success Sanctuary | Nature's Alchemist</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .certificate-border {
+            border: 1px solid rgba(114, 120, 118, 0.2);
+            position: relative;
+        }
+        .certificate-border::before {
+            content: '';
+            position: absolute;
+            inset: 8px;
+            border: 1px solid rgba(114, 120, 118, 0.1);
+            pointer-events: none;
+        }
+        .floral-watermark {
+            opacity: 0.03;
+            pointer-events: none;
+            user-select: none;
+        }
+        @keyframes fade-in-up {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-sanctuary {
+            animation: fade-in-up 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#fbf9f8",
+                        "on-secondary-fixed-variant": "#474742",
+                        "on-secondary": "#ffffff",
+                        "secondary": "#5f5e59",
+                        "tertiary": "#000201",
+                        "surface-container-high": "#eae8e6",
+                        "outline-variant": "#c2c8c5",
+                        "surface-container": "#efedec",
+                        "on-primary-fixed-variant": "#3a4a46",
+                        "inverse-primary": "#b8cac5",
+                        "surface-variant": "#e4e2e1",
+                        "secondary-container": "#e5e2db",
+                        "on-tertiary-container": "#7f8682",
+                        "surface-container-low": "#f5f3f2",
+                        "on-primary-fixed": "#0e1e1b",
+                        "on-tertiary-fixed-variant": "#414845",
+                        "outline": "#727876",
+                        "secondary-fixed-dim": "#c9c6c0",
+                        "primary": "#000101",
+                        "tertiary-fixed": "#dde4df",
+                        "tertiary-fixed-dim": "#c1c8c3",
+                        "secondary-fixed": "#e5e2db",
+                        "inverse-surface": "#303030",
+                        "on-secondary-fixed": "#1c1c18",
+                        "surface-dim": "#dbdad8",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#fbf9f8",
+                        "error": "#ba1a1a",
+                        "on-primary-container": "#778884",
+                        "surface-card": "#ffffff",
+                        "on-tertiary-fixed": "#161d1a",
+                        "on-error": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#65645f",
+                        "inverse-on-surface": "#f2f0ef",
+                        "on-surface": "#1b1c1b",
+                        "on-surface-variant": "#424846",
+                        "text-muted": "rgba(15, 31, 28, 0.6)",
+                        "background": "#fbf9f8",
+                        "status-sale": "#0f1f1c",
+                        "primary-container": "#0f1f1c",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed-dim": "#b8cac5",
+                        "on-background": "#1b1c1b",
+                        "error-container": "#ffdad6",
+                        "brand-green": "#1a2e29",
+                        "surface-tint": "#51625e",
+                        "tertiary-container": "#171e1b",
+                        "primary-fixed": "#d4e6e1",
+                        "on-primary": "#ffffff",
+                        "surface-container-highest": "#e4e2e1",
+                        "border-subtle": "rgba(255, 255, 255, 0.1)"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "section-gap-sm": "2.5rem",
+                        "element-gap": "0.5rem",
+                        "container-margin": "1.5rem",
+                        "grid-gutter": "1rem",
+                        "section-gap-lg": "5rem"
+                    },
+                    "fontFamily": {
+                        "price-tag": ["Noto Sans"],
+                        "headline-md": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "label-caps": ["Noto Sans"],
+                        "display-lg": ["Playfair Display"],
+                        "body-md": ["Noto Sans"]
+                    },
+                    "fontSize": {
+                        "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                        "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                        "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md selection:bg-primary selection:text-on-primary">
+<header class="bg-primary dark:bg-primary-container text-on-primary fixed top-0 w-full z-50 flex justify-between items-center px-container-margin py-4 w-full">
+<div class="font-headline-md text-headline-md text-on-primary dark:text-on-primary-container uppercase tracking-widest">
+            Nature's Alchemist
+        </div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="font-body-md text-body-md text-on-primary-container/80 hover:text-on-primary transition-colors duration-300" href="#">Shop All</a>
+<a class="font-body-md text-body-md text-on-primary-container/80 hover:text-on-primary transition-colors duration-300" href="#">Rituals</a>
+<a class="font-body-md text-body-md text-on-primary-container/80 hover:text-on-primary transition-colors duration-300" href="#">Heritage</a>
+<a class="font-body-md text-body-md text-on-primary-container/80 hover:text-on-primary transition-colors duration-300" href="#">Sourcing</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-primary">person</button>
+<button class="material-symbols-outlined text-on-primary">shopping_cart</button>
+</div>
+</header>
+<main class="pt-32 pb-section-gap-lg px-container-margin min-h-screen flex items-center justify-center relative overflow-hidden">
+<div class="absolute inset-0 floral-watermark flex items-center justify-center z-0">
+<span class="material-symbols-outlined text-[40rem]">spa</span>
+</div>
+<div class="max-w-4xl w-full bg-surface-card certificate-border p-8 md:p-16 relative z-10 animate-sanctuary shadow-sm">
+<div class="text-center mb-12">
+<div class="inline-flex items-center justify-center w-16 h-16 rounded-full border border-outline-variant mb-6">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<p class="font-label-caps text-label-caps text-primary mb-2">CONSIGNMENT CONFIRMED</p>
+<h1 class="font-display-lg text-display-lg mb-4 italic">A Sanctuary of Purity</h1>
+<p class="text-on-surface-variant max-w-md mx-auto italic">Your botanical selection is being meticulously prepared in our apothecary. You have chosen a path of intentional wellness.</p>
+</div>
+<div class="grid md:grid-cols-2 gap-12 border-t border-b border-outline-variant py-10 mb-12">
+<div class="space-y-6">
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-2">ORDER IDENTIFIER</p>
+<p class="font-headline-md text-headline-md">#NA-882941-PC</p>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-2">SHIPPING TO</p>
+<address class="not-italic text-on-surface">
+                            Evelyn Thorne<br/>
+                            124 Heritage Lane, Suite 4B<br/>
+                            Savannah, GA 31401
+                        </address>
+</div>
+</div>
+<div class="space-y-6">
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-2">ESTIMATED ARRIVAL</p>
+<p class="font-headline-md text-headline-md">Oct 24 — Oct 27</p>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-2">METHOD</p>
+<p class="text-on-surface">Climate-Neutral Ground Delivery</p>
+</div>
+</div>
+</div>
+<div class="mb-12">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-6">CURATED SELECTION</p>
+<div class="space-y-4">
+<div class="flex items-center gap-4">
+<div class="w-20 h-24 bg-surface-container overflow-hidden shrink-0">
+<img alt="Apothecary Oil" class="w-full h-full object-cover" data-alt="A macro photograph of a dark glass apothecary bottle with a minimalist label, resting on a textured cream stone surface. Soft, natural morning light creates gentle shadows and highlights the rich amber liquid inside. The scene is clean, sophisticated, and evokes a high-end botanical laboratory aesthetic with a muted color palette of forest green and warm beige." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJfskvfGpovB-QhdHyuwmsC9X7CBbRS_wzsnSKriU0CNTJDKUF-tAvHEJ9oeU_f5TH3M0ITX5BAeA8D0GlULu5Pv6jB8KYJ1ISn-naIELnVL1wV667wHzepia7n0cEuwKaYjj8LEly6ltfhSNKI5vydT5QY9XOXa-z_YRLutHQNQptWs2duhlS2TSvY7sGRlD14KdOgv4O4ctvzaf5PuGGJetwa9TJ5xwr3J4-2b_vziC79C9cQKIN2LFhRkqEVpumVDW2X6wNpPUO"/>
+</div>
+<div class="flex-grow">
+<h4 class="font-body-md font-bold">Midnight Jasmine Sleep Elixir</h4>
+<p class="text-on-surface-variant text-sm italic">Ritual: Evening Calm</p>
+</div>
+<div class="text-right">
+<p class="font-price-tag text-price-tag">$78.00</p>
+<p class="text-on-surface-variant text-xs">Qty: 1</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-20 h-24 bg-surface-container overflow-hidden shrink-0">
+<img alt="Botanical Serum" class="w-full h-full object-cover" data-alt="A close-up shot of a frosted glass bottle containing a pale green botanical serum, positioned next to a fresh sprig of dried lavender. The background is a minimalist, soft-focus cream linen texture. The lighting is ethereal and bright, emphasizing the purity and organic origin of the product. The overall style is modern minimalist-tactile, focusing on premium wellness and heritage ingredients." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC36ic8so6csOR3me_YVTZL6Kevmn4_Mscow3RzlwDug3kaAgoeraL4vOu6KHZg9hCKqKa0uR1GzQgZSzU2eNzCe8HcMkdFveP5HAAy0siId-Z-xB7YRxbxvqAWqw1Zo-JuErMdGqVSnkX0A6Op1M9UjXQbCp7-jfsgIf1MmimGBm1QTNdlHeJMMTR-s_TB5x5t1UZt_0qsSsZ2K2XYHgdzML4bbCxILLVteWgsrxlCWx9kuTQ_mIo9t3fJo5t5gB6I4yiLDVTeeDst"/>
+</div>
+<div class="flex-grow">
+<h4 class="font-body-md font-bold">Ancient Fern Revitalizing Serum</h4>
+<p class="text-on-surface-variant text-sm italic">Ritual: Morning Awakening</p>
+</div>
+<div class="text-right">
+<p class="font-price-tag text-price-tag">$124.00</p>
+<p class="text-on-surface-variant text-xs">Qty: 1</p>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col md:flex-row gap-4 items-center justify-between pt-8 border-t border-outline-variant">
+<button class="w-full md:w-auto bg-primary text-on-primary px-12 py-4 font-label-caps text-label-caps tracking-[0.2em] hover:bg-on-surface-variant transition-colors duration-300">
+                    TRACK JOURNEY
+                </button>
+<a class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-lg">print</span>
+<span class="font-label-caps text-label-caps">DOWNLOAD CERTIFICATE</span>
+</a>
+</div>
+<div class="mt-12 text-center">
+<p class="text-xs text-on-surface-variant uppercase tracking-widest opacity-60">Hand-Packed with Intention in our Vermont Atelier</p>
+</div>
+</div>
+</main>
+<section class="bg-surface-container-low py-section-gap-lg px-container-margin">
+<div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-grid-gutter items-center">
+<div class="text-center md:text-left space-y-4">
+<span class="material-symbols-outlined text-4xl text-primary">eco</span>
+<h3 class="font-headline-md text-headline-md">Sustainably Sealed</h3>
+<p class="text-on-surface-variant italic">Every order arrives in 100% compostable mycelium packaging, infused with wildflower seeds.</p>
+</div>
+<div class="text-center md:text-left space-y-4">
+<span class="material-symbols-outlined text-4xl text-primary">history_edu</span>
+<h3 class="font-headline-md text-headline-md">Heritage Provenance</h3>
+<p class="text-on-surface-variant italic">Scan the QR code on your physical certificate to see the farm and harvest date of your ingredients.</p>
+</div>
+<div class="text-center md:text-left space-y-4">
+<span class="material-symbols-outlined text-4xl text-primary">auto_awesome</span>
+<h3 class="font-headline-md text-headline-md">The Ritual Guild</h3>
+<p class="text-on-surface-variant italic">As a patron, you now have early access to our seasonal Winter Solstice collection.</p>
+</div>
+</div>
+</section>
+<footer class="bg-surface-container-highest dark:bg-tertiary-container w-full py-section-gap-sm border-t border-outline-variant">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-grid-gutter px-container-margin max-w-7xl mx-auto">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary dark:text-tertiary-fixed mb-4">Nature's Alchemist</h2>
+<p class="font-body-md text-body-md text-on-surface-variant italic">Honoring the ancient, crafting the future.</p>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col gap-2">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary dark:hover:text-tertiary-fixed underline transition-opacity duration-200" href="#">Sourcing Ethics</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary dark:hover:text-tertiary-fixed underline transition-opacity duration-200" href="#">Wholesale</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary dark:hover:text-tertiary-fixed underline transition-opacity duration-200" href="#">Shipping &amp; Returns</a>
+</div>
+<div class="flex flex-col gap-2">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary dark:hover:text-tertiary-fixed underline transition-opacity duration-200" href="#">Sustainability Report</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary dark:hover:text-tertiary-fixed underline transition-opacity duration-200" href="#">Our Story</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary dark:hover:text-tertiary-fixed underline transition-opacity duration-200" href="#">Contact</a>
+</div>
+</div>
+<div class="text-right md:text-right flex flex-col justify-end">
+<p class="font-body-md text-body-md text-on-surface-variant">© 2024 Nature's Alchemist. Ethical Sourcing &amp; Botanical Integrity.</p>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions for the certificate hover
+        const certificate = document.querySelector('.certificate-border');
+        if (certificate) {
+            certificate.addEventListener('mousemove', (e) => {
+                const rect = certificate.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 50;
+                const rotateY = (centerX - x) / 50;
+                
+                certificate.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            
+            certificate.addEventListener('mouseleave', () => {
+                certificate.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
+                certificate.style.transition = 'transform 0.6s ease';
+            });
+
+            certificate.addEventListener('mouseenter', () => {
+                certificate.style.transition = 'none';
+            });
+        }
+    </script>
+</body></html>

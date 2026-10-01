@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface": "#1b1c1b",
+                    "surface-tint": "#51625e",
+                    "tertiary-fixed-dim": "#c1c8c3",
+                    "on-primary-fixed": "#0e1e1b",
+                    "inverse-on-surface": "#f2f0ef",
+                    "status-sale": "#0f1f1c",
+                    "on-surface-variant": "#424846",
+                    "surface-container-low": "#f5f3f2",
+                    "on-secondary": "#ffffff",
+                    "text-muted": "rgba(15, 31, 28, 0.6)",
+                    "border-subtle": "rgba(255, 255, 255, 0.1)",
+                    "on-primary": "#ffffff",
+                    "surface-variant": "#e4e2e1",
+                    "primary": "#000101",
+                    "tertiary-fixed": "#dde4df",
+                    "brand-green": "#1a2e29",
+                    "secondary-container": "#e5e2db",
+                    "on-secondary-container": "#65645f",
+                    "primary-fixed-dim": "#b8cac5",
+                    "on-primary-container": "#778884",
+                    "on-error": "#ffffff",
+                    "on-secondary-fixed-variant": "#474742",
+                    "outline": "#727876",
+                    "on-tertiary-fixed": "#161d1a",
+                    "on-tertiary-fixed-variant": "#414845",
+                    "surface-container-highest": "#e4e2e1",
+                    "tertiary": "#000201",
+                    "surface-dim": "#dbdad8",
+                    "primary-fixed": "#d4e6e1",
+                    "error-container": "#ffdad6",
+                    "secondary": "#5f5e59",
+                    "on-tertiary-container": "#7f8682",
+                    "background": "#fbf9f8",
+                    "primary-container": "#0f1f1c",
+                    "outline-variant": "#c2c8c5",
+                    "on-background": "#1b1c1b",
+                    "surface": "#fbf9f8",
+                    "surface-bright": "#fbf9f8",
+                    "on-primary-fixed-variant": "#3a4a46",
+                    "inverse-primary": "#b8cac5",
+                    "tertiary-container": "#171e1b",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-card": "#ffffff",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#c9c6c0",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed": "#1c1c18",
+                    "inverse-surface": "#303030",
+                    "surface-container-high": "#eae8e6",
+                    "surface-container": "#efedec",
+                    "secondary-fixed": "#e5e2db",
+                    "on-error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "grid-gutter": "1rem",
+                    "section-gap-lg": "5rem",
+                    "container-margin": "1.5rem",
+                    "section-gap-sm": "2.5rem",
+                    "element-gap": "0.5rem"
+            },
+            "fontFamily": {
+                    "label-caps": ["Noto Sans"],
+                    "price-tag": ["Noto Sans"],
+                    "headline-lg": ["Playfair Display"],
+                    "body-md": ["Noto Sans"],
+                    "display-lg": ["Playfair Display"],
+                    "headline-md": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                    "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            vertical-align: middle;
+        }
+        .item-row:hover .remove-btn { opacity: 1; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-brand-green border-b border-border-subtle">
+<nav class="flex justify-between items-center px-container-margin py-6 max-w-full mx-auto">
+<div class="flex items-center gap-8">
+<a class="font-headline-md text-headline-md text-on-primary tracking-tight" href="#">Nature's Alchemist</a>
+<div class="hidden md:flex items-center gap-6">
+<a class="font-body-md text-body-md text-on-primary-container opacity-80 hover:opacity-100 hover:text-on-primary transition-all duration-300" href="#">Shop All</a>
+<a class="font-body-md text-body-md text-on-primary-container opacity-80 hover:opacity-100 hover:text-on-primary transition-all duration-300" href="#">The Apothecary</a>
+<a class="font-body-md text-body-md text-on-primary-container opacity-80 hover:opacity-100 hover:text-on-primary transition-all duration-300" href="#">The Source</a>
+<a class="font-body-md text-body-md text-on-primary-container opacity-80 hover:opacity-100 hover:text-on-primary transition-all duration-300" href="#">Herbal Remedies</a>
+<a class="font-body-md text-body-md text-on-primary-container opacity-80 hover:opacity-100 hover:text-on-primary transition-all duration-300" href="#">Rituals</a>
+</div>
+</div>
+<div class="flex items-center gap-4 text-on-primary">
+<button class="cursor-pointer transition-opacity duration-200 hover:opacity-70" data-icon="search">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="cursor-pointer transition-opacity duration-200 hover:opacity-70" data-icon="person">
+<span class="material-symbols-outlined">person</span>
+</button>
+<button class="relative cursor-pointer transition-opacity duration-200 hover:opacity-70" data-icon="shopping_bag">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="absolute -top-1 -right-1 bg-surface-container-highest text-brand-green text-[9px] font-bold px-1 rounded-full">3</span>
+</button>
+</div>
+</nav>
+</header>
+<main class="pt-32 pb-section-gap-lg px-container-margin max-w-7xl mx-auto">
+<!-- Shopping Cart Header -->
+<header class="mb-12 text-center">
+<h1 class="font-headline-lg text-headline-lg mb-2">Ritual Basket</h1>
+<p class="font-body-md text-on-surface-variant italic">3 elements curated for your journey.</p>
+</header>
+<!-- Main Cart Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+<!-- Left Column: Items -->
+<section class="lg:col-span-8">
+<div class="flex flex-col gap-8">
+<!-- Item 1 -->
+<div class="item-row flex gap-6 pb-8 border-b border-surface-variant items-center group">
+<div class="w-32 h-40 bg-surface-container overflow-hidden">
+<img alt="Astral Serenity Elixir" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A high-end apothecary glass bottle filled with a shimmering, ethereal blue liquid, placed on a slab of dark textured stone. Soft sunlight filters through a nearby window, casting delicate leaf shadows. The mood is tranquil and luxury-oriented, with a soft cream background and minimal props like a dried sprig of lavender." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDW__qVYoS0YlnNUBPGUq2fIwsyDrXYMCYxZWKkh0gpKal0ttJCAEAx1qt3AHieczhDa75FaCWKteQWTOqPhgEHYYvkEvrHFApJUgQa0gGIMU7UuOHZSJNHhk6zQ0cMgBWvmh5tCxIekFiSC3EVzoEG69NBA8xBi3mtX1CEzyiXyZteDeFAn_Q_KZHN18aPTYkpSeCGRJkiCjOcXDK6SEMEcbrQyb48YMxcyVhhhm0EGtcqd7antpaPi9wGkDi648otbO-a1nGyVECY"/>
+</div>
+<div class="flex-1 flex flex-col justify-between py-1">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-headline-md">Astral Serenity Elixir</h3>
+<p class="font-price-tag text-price-tag">$48.00</p>
+</div>
+<p class="text-on-surface-variant font-body-md mt-1 italic">Celestial blend for deep rest</p>
+</div>
+<div class="flex justify-between items-end mt-6">
+<div class="flex items-center border border-outline-variant px-2 py-1">
+<button class="px-2 py-1 hover:text-brand-green" onclick="this.parentNode.querySelector('span').innerText = Math.max(1, parseInt(this.parentNode.querySelector('span').innerText) - 1)">−</button>
+<span class="px-4 font-body-md">1</span>
+<button class="px-2 py-1 hover:text-brand-green" onclick="this.parentNode.querySelector('span').innerText = parseInt(this.parentNode.querySelector('span').innerText) + 1">+</button>
+</div>
+<button class="remove-btn opacity-0 text-on-surface-variant hover:text-error transition-all flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">close</span>
+<span class="font-label-caps text-label-caps">Remove</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="item-row flex gap-6 pb-8 border-b border-surface-variant items-center group">
+<div class="w-32 h-40 bg-surface-container overflow-hidden">
+<img alt="Velvet Sage Balm" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A small ceramic jar containing a creamy, pale green herbal balm, its surface smooth and untouched. The jar sits amidst scattered dried sage leaves and a rustic wooden spoon on a warm cream linen tablecloth. Soft, golden-hour lighting creates a tactile, comforting atmosphere, emphasizing organic textures and artisan craftsmanship." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2QH_-I9ce_yJ9q0FLLT9PhxabqsaZIDLWAtc4DYnbIgUetBUfY4wYhR2CKdFUVQWvtkluRX1IJtm3-Lz1gPYDSzFPeUGUDDkRLkdfNo6U7IjveDW3U8g8zC9gtS5dkXKGlPZPJBznsa3GUF2B-5UlrXcnpIVe4wgfHI7yKPaO-Md1hwK82eTEuUfXR-aaryiHskfv5NC_J_GM2yt3BN92Vyu6jg_fPKZh9Rddd3ABrUkpSoe2WnGSeGTX9TqKxMo--4RpmKBtCsNm"/>
+</div>
+<div class="flex-1 flex flex-col justify-between py-1">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-headline-md">Velvet Sage Balm</h3>
+<p class="font-price-tag text-price-tag">$32.00</p>
+</div>
+<p class="text-on-surface-variant font-body-md mt-1 italic">Organic salve for skin restoration</p>
+</div>
+<div class="flex justify-between items-end mt-6">
+<div class="flex items-center border border-outline-variant px-2 py-1">
+<button class="px-2 py-1 hover:text-brand-green" onclick="this.parentNode.querySelector('span').innerText = Math.max(1, parseInt(this.parentNode.querySelector('span').innerText) - 1)">−</button>
+<span class="px-4 font-body-md">1</span>
+<button class="px-2 py-1 hover:text-brand-green" onclick="this.parentNode.querySelector('span').innerText = parseInt(this.parentNode.querySelector('span').innerText) + 1">+</button>
+</div>
+<button class="remove-btn opacity-0 text-on-surface-variant hover:text-error transition-all flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">close</span>
+<span class="font-label-caps text-label-caps">Remove</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="item-row flex gap-6 pb-8 border-b border-surface-variant items-center group">
+<div class="w-32 h-40 bg-surface-container overflow-hidden">
+<img alt="Winter Solstice Tea" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A dark metal tin of loose leaf tea, showing dried orange peels, cinnamon sticks, and dark tea leaves. The tin is open, revealing the rich textures inside, and is placed next to a steaming handmade ceramic mug on a dark wooden surface. The lighting is moody and cozy, highlighting the steam and the organic warmth of a winter sanctuary." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5H-Cib2AXGZ-pVn3rmEUmlEia9yIXFw6oP4TskaDRjSAnzaCuJUgoc91ggtfQejPSYwB1wh4ClHxr1cucKLcn71dqIAOraJleiuunEpWzH_7sLuNqD9X8mQGM8N5ZS0XM4nMAdtPPZvtpqnxKxgfOqXvtO4gE1DN9TTMx7zwTRYJ0_MyqS1VjUh3WP3Rn9hqktV57lTxiIFsOuPRKEdoKL4512WzYSxv5REEWoNA_TE9q_iWX2txIDA44QiQHOI9RT31ZTSU_i6lW"/>
+</div>
+<div class="flex-1 flex flex-col justify-between py-1">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-headline-md">Winter Solstice Tea</h3>
+<p class="font-price-tag text-price-tag">$24.00</p>
+</div>
+<p class="text-on-surface-variant font-body-md mt-1 italic">Warming notes of pine and citrus</p>
+</div>
+<div class="flex justify-between items-end mt-6">
+<div class="flex items-center border border-outline-variant px-2 py-1">
+<button class="px-2 py-1 hover:text-brand-green" onclick="this.parentNode.querySelector('span').innerText = Math.max(1, parseInt(this.parentNode.querySelector('span').innerText) - 1)">−</button>
+<span class="px-4 font-body-md">1</span>
+<button class="px-2 py-1 hover:text-brand-green" onclick="this.parentNode.querySelector('span').innerText = parseInt(this.parentNode.querySelector('span').innerText) + 1">+</button>
+</div>
+<button class="remove-btn opacity-0 text-on-surface-variant hover:text-error transition-all flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">close</span>
+<span class="font-label-caps text-label-caps">Remove</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Column: Summary -->
+<aside class="lg:col-span-4">
+<div class="bg-surface-container-low p-8 sticky top-32 border border-surface-variant">
+<h2 class="font-label-caps text-label-caps mb-8 uppercase tracking-widest border-b border-outline-variant pb-2">Order Summary</h2>
+<div class="flex flex-col gap-4 mb-8">
+<div class="flex justify-between font-body-md">
+<span>Subtotal</span>
+<span>$104.00</span>
+</div>
+<div class="flex justify-between font-body-md">
+<span>Shipping</span>
+<span class="text-on-surface-variant italic">Calculated at checkout</span>
+</div>
+<div class="flex justify-between font-body-md">
+<span>Tax</span>
+<span>$8.32</span>
+</div>
+<div class="flex justify-between font-headline-md pt-4 border-t border-outline-variant mt-2">
+<span>Total Est.</span>
+<span>$112.32</span>
+</div>
+</div>
+<button class="w-full bg-brand-green text-on-primary py-4 font-label-caps text-label-caps uppercase tracking-widest hover:bg-on-surface transition-colors duration-300">
+                        Proceed to Checkout
+                    </button>
+<div class="mt-8 flex flex-col gap-4">
+<div class="flex items-center gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">verified</span>
+<span class="text-[12px] font-body-md">Sustainably Sourced Ingredients</span>
+</div>
+<div class="flex items-center gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">eco</span>
+<span class="text-[12px] font-body-md">Carbon-Neutral Shipping Included</span>
+</div>
+</div>
+</div>
+</aside>
+</div>
+<!-- Cross-sell: Enhance Your Ritual -->
+<section class="mt-section-gap-lg pt-section-gap-sm border-t border-surface-variant">
+<h2 class="font-headline-lg text-headline-lg text-center mb-12">Enhance Your Ritual</h2>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-grid-gutter">
+<!-- Suggestion 1 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[4/5] bg-surface-container mb-4 overflow-hidden">
+<img alt="Handmade Ceramic Bowl" class="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105" data-alt="A minimalist, hand-thrown ceramic tea bowl with a matte, speckled oatmeal glaze. The bowl sits on a piece of dark, weathered driftwood. The background is a soft, out-of-focus cream wall. The lighting is diffused and natural, creating a serene and grounded artisan aesthetic that highlights the tactile quality of the clay." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5g7Z8Gz3-c1IxFxFAemERaHBXXMIZrMcTB9N4CXTLri0gJkh3eBYF9f_XHhIxdBogaR-nT5-ffdH9TYScGveqclSSFKKRbmjREovXLDS-vBK62Riq-MLyIwZkjpSgPWlc6w1fWo6uooDluKZVqobbKat4zTSWzDGppjzbTXCtG7SaHVCU0NoZpRAGJf-uyd1VkHXPAM6wwr0xPKxf5ybRkJbUxft9sXOtj0oAD7pxyhGxZELbiBG_6YKJ2aDbxFqroQu5ywLDfS7U"/>
+<div class="absolute top-0 left-0 bg-brand-green text-on-primary px-3 py-1">
+<span class="font-label-caps text-[9px] uppercase">New</span>
+</div>
+</div>
+<h4 class="font-headline-md text-[18px]">Artisan Smudge Bowl</h4>
+<p class="font-price-tag text-price-tag mt-1">$35.00</p>
+<button class="mt-4 border border-outline py-2 px-4 w-full font-label-caps text-[10px] uppercase tracking-widest hover:bg-brand-green hover:text-on-primary transition-all">Quick Add</button>
+</div>
+<!-- Suggestion 2 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[4/5] bg-surface-container mb-4 overflow-hidden">
+<img alt="Obsidian Scrying Stone" class="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105" data-alt="A polished, jet-black obsidian stone with a mirror-like surface reflecting a soft candle flame. The stone lies on a black silk cloth, surrounded by small crystals. The setting is intimate and mystical, using low-key lighting to emphasize reflections and textures against a warm cream and dark charcoal palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMjNzQ5ebrVCDoZzPwTRIQ2thm2zxW7GqgmuXpzUc5WjfZg4cQdvjbJiJ51GB4ock_HQCYDEr_dMkN7RkQolP3ftcMO9rUifZdgpRG4_6hP1Oj4WzS1zHhWpjuOC_A5aia0tQwlfEjdRz8Pk7QFKIXKT1EFyhpux9riZgnuDaeLIsT8TpPUyYkFm7cgZYl5xfRszPxRg2NZZfKPs7egu66LBcWPJa9L4RY_4Q3ufM41eTbuJGVKZrdZxTUEDhzYbHZTbbqAiCS7lj9"/>
+</div>
+<h4 class="font-headline-md text-[18px]">Moonlit Obsidian Stone</h4>
+<p class="font-price-tag text-price-tag mt-1">$22.00</p>
+<button class="mt-4 border border-outline py-2 px-4 w-full font-label-caps text-[10px] uppercase tracking-widest hover:bg-brand-green hover:text-on-primary transition-all">Quick Add</button>
+</div>
+<!-- Suggestion 3 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[4/5] bg-surface-container mb-4 overflow-hidden">
+<img alt="Brass Incense Holder" class="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105" data-alt="A vintage-inspired solid brass incense holder shaped like a crescent moon, resting on a dark marble base. A thin trail of smoke curls upward into a soft-focus background of cream and sage green. The lighting is sharp and dramatic, highlighting the metallic sheen and the delicate movement of the smoke in a high-end, meditative setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2N-nzzprlBLvRY0WozoDHYItDlUUM3XyYkcxQzJDkFy5MG7f_qKTuow2EMp18UW-rCzuDBNXHCsld2CxkmPQ-40xgy9P6-vc2NgwbBqVLi2F4MPeLfHvhk98YkwDQiJTOF-UC0bpvOP5g11SxFA247EVqvt4oxBJOGP3FEOXNtDCudgYzGl7y5KOApNEqYLrmKFA0_hr7KBLRaHm4M_m9YQn1AluaMQQYfrHufd1Gqb0jQZI9y2ipxDvpn5q0ae2RpFI09TAtEINZ"/>
+</div>
+<h4 class="font-headline-md text-[18px]">Brass Crescent Holder</h4>
+<p class="font-price-tag text-price-tag mt-1">$28.00</p>
+<button class="mt-4 border border-outline py-2 px-4 w-full font-label-caps text-[10px] uppercase tracking-widest hover:bg-brand-green hover:text-on-primary transition-all">Quick Add</button>
+</div>
+<!-- Suggestion 4 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[4/5] bg-surface-container mb-4 overflow-hidden">
+<img alt="Linen Journal" class="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105" data-alt="A thick, hand-bound journal with a rough-textured cream linen cover and a frayed ribbon bookmark. It is placed on a minimalist wooden desk alongside a black fountain pen. The lighting is bright and airy, suggesting a morning ritual of reflection. The overall vibe is intellectual, slow-paced, and deeply grounded in physical materials." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbo2tqZbmpcIFsoKCAoOfvGQzY1fNuUjgyrGurnCTupcXin4NiguRaxdamlB9uggJV6qCGTH6E-VIWYgmbG-xzxz3qCOK1ahfDdtGuzs3TcdQDlIqoW0qhMNhBw8MPEQzknxGD98_5gbcuN4VOxd8piUbMCkciNh1MthVdduiSYaFMh31IhNeL4EQ96j4SnpJmzE7LMunXDJzVkc5jtQNnf4_ysAEl6dWOoHC4NGPAApuhtQMJDOpDU3TEfx5dix_KKL5MphrjC1MA"/>
+</div>
+<h4 class="font-headline-md text-[18px]">Ritual Reflection Journal</h4>
+<p class="font-price-tag text-price-tag mt-1">$40.00</p>
+<button class="mt-4 border border-outline py-2 px-4 w-full font-label-caps text-[10px] uppercase tracking-widest hover:bg-brand-green hover:text-on-primary transition-all">Quick Add</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full pt-section-gap-lg pb-section-gap-sm bg-surface-container-highest">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-grid-gutter px-container-margin max-w-7xl mx-auto">
+<div class="md:col-span-1">
+<h2 class="font-headline-lg text-headline-lg text-brand-green mb-6">Nature's Alchemist</h2>
+<p class="text-on-surface-variant font-body-md max-w-xs italic">Purveyors of rare botanicals and intentional rituals for the modern seeker.</p>
+</div>
+<div>
+<h5 class="font-label-caps text-label-caps uppercase mb-6">Experience</h5>
+<ul class="flex flex-col gap-element-gap">
+<li><a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Sustainability</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Wholesale</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-label-caps text-label-caps uppercase mb-6">Guidance</h5>
+<ul class="flex flex-col gap-element-gap">
+<li><a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Shipping &amp; Returns</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-label-caps text-label-caps uppercase mb-6">Connect</h5>
+<ul class="flex flex-col gap-element-gap">
+<li><a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Contact Us</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Instagram</a></li>
+</ul>
+</div>
+</div>
+<div class="mt-section-gap-sm pt-8 border-t border-surface-variant px-container-margin max-w-7xl mx-auto">
+<p class="text-center text-[11px] font-label-caps text-on-surface-variant opacity-60">© 2024 Nature's Alchemist. Crafted with Intention.</p>
+</div>
+</footer>
+<script>
+        // Simple Micro-interactions
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                // Subtle feedback click animation could go here
+            });
+        });
+
+        // Sticky Nav logic
+        let lastScroll = 0;
+        const nav = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                nav.style.transform = 'translateY(-100%)';
+            } else {
+                nav.style.transform = 'translateY(0)';
+            }
+            nav.style.transition = 'transform 0.4s ease';
+            lastScroll = currentScroll;
+        });
+    </script>
+</body></html>

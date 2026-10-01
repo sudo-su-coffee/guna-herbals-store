@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal-up.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        input:focus {
+            outline: none;
+            box-shadow: none !important;
+        }
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #1a2e29;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease-out;
+            display: none;
+        }
+        @media (min-width: 1024px) {
+            .custom-cursor { display: block; }
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#7f8682",
+                        "on-error-container": "#93000a",
+                        "surface-container-low": "#f5f3f2",
+                        "text-muted": "rgba(15, 31, 28, 0.6)",
+                        "tertiary-fixed": "#dde4df",
+                        "secondary-fixed-dim": "#c9c6c0",
+                        "inverse-on-surface": "#f2f0ef",
+                        "primary-fixed-dim": "#b8cac5",
+                        "on-secondary-fixed-variant": "#474742",
+                        "on-primary-fixed": "#0e1e1b",
+                        "surface-bright": "#fbf9f8",
+                        "surface-container-high": "#eae8e6",
+                        "tertiary-container": "#171e1b",
+                        "on-primary-container": "#778884",
+                        "on-secondary-fixed": "#1c1c18",
+                        "background": "#fbf9f8",
+                        "error-container": "#ffdad6",
+                        "surface-dim": "#dbdad8",
+                        "on-error": "#ffffff",
+                        "tertiary": "#000201",
+                        "on-secondary-container": "#65645f",
+                        "on-primary": "#ffffff",
+                        "surface-container": "#efedec",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed": "#161d1a",
+                        "brand-green": "#1a2e29",
+                        "tertiary-fixed-dim": "#c1c8c3",
+                        "surface-container-highest": "#e4e2e1",
+                        "secondary-fixed": "#e5e2db",
+                        "surface-card": "#ffffff",
+                        "on-surface": "#1b1c1b",
+                        "outline": "#727876",
+                        "outline-variant": "#c2c8c5",
+                        "primary-fixed": "#d4e6e1",
+                        "secondary-container": "#e5e2db",
+                        "surface": "#fbf9f8",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#000101",
+                        "on-surface-variant": "#424846",
+                        "on-background": "#1b1c1b",
+                        "inverse-primary": "#b8cac5",
+                        "inverse-surface": "#303030",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#51625e",
+                        "primary-container": "#0f1f1c",
+                        "secondary": "#5f5e59",
+                        "surface-variant": "#e4e2e1",
+                        "on-tertiary-fixed-variant": "#414845",
+                        "status-sale": "#0f1f1c",
+                        "on-primary-fixed-variant": "#3a4a46",
+                        "border-subtle": "rgba(255, 255, 255, 0.1)"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "section-gap-sm": "2.5rem",
+                        "container-margin": "1.5rem",
+                        "grid-gutter": "1rem",
+                        "element-gap": "0.5rem",
+                        "section-gap-lg": "5rem"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Noto Sans"],
+                        "display-lg": ["Playfair Display"],
+                        "price-tag": ["Noto Sans"],
+                        "headline-md": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "body-md": ["Noto Sans"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                        "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                        "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-brand-green selection:text-on-primary">
+<div class="custom-cursor" id="cursor"></div>
+<!-- TopNavBar -->
+<header class="w-full sticky top-0 bg-brand-green dark:bg-primary-container z-50 shadow-sm">
+<nav class="flex justify-between items-center px-12 py-6 w-full max-w-full mx-auto">
+<div class="font-display-lg text-headline-lg text-on-primary dark:text-on-primary-container">
+                Nature's Alchemist
+            </div>
+<div class="hidden lg:flex items-center space-x-8">
+<a class="font-body-md text-body-md uppercase tracking-widest text-on-primary-container opacity-80 hover:opacity-100 transition-opacity duration-300" href="#">Shop All</a>
+<a class="font-body-md text-body-md uppercase tracking-widest text-on-primary-container opacity-80 hover:opacity-100 transition-opacity duration-300" href="#">Rituals</a>
+<a class="font-body-md text-body-md uppercase tracking-widest text-on-primary-container opacity-80 hover:opacity-100 transition-opacity duration-300" href="#">Heritage</a>
+<a class="font-body-md text-body-md uppercase tracking-widest text-on-primary-container opacity-80 hover:opacity-100 transition-opacity duration-300" href="#">Sustainability</a>
+<a class="font-body-md text-body-md uppercase tracking-widest text-on-primary-container opacity-80 hover:opacity-100 transition-opacity duration-300" href="#">Journal</a>
+<a class="font-body-md text-body-md uppercase tracking-widest text-on-primary-container opacity-80 hover:opacity-100 transition-opacity duration-300" href="#">Stockists</a>
+</div>
+<div class="flex items-center space-x-6 text-on-primary">
+<button class="cursor-pointer transition-transform duration-200 active:scale-95"><span class="material-symbols-outlined">search</span></button>
+<button class="cursor-pointer transition-transform duration-200 active:scale-95"><span class="material-symbols-outlined">shopping_bag</span></button>
+<button class="cursor-pointer transition-transform duration-200 active:scale-95"><span class="material-symbols-outlined">person</span></button>
+</div>
+</nav>
+</header>
+<main class="min-h-screen">
+<!-- Hero Section / Animated Atmosphere -->
+<section class="relative h-[614px] flex items-center justify-center overflow-hidden">
+
+<div class="relative z-10 text-center px-container-margin reveal-up active">
+<h2 class="font-display-lg text-display-lg italic mb-4">Join the Circle</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xl mx-auto tracking-wide uppercase">Ancient wisdom, modern rituals. Delivered monthly.</p>
+</div>
+</section>
+<!-- Newsletter Subscription Content -->
+<section class="px-container-margin py-section-gap-lg max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<!-- Left: Brand Narrative -->
+<div class="lg:col-span-5 reveal-up">
+<div class="border-l border-brand-green pl-8 py-4">
+<span class="font-label-caps text-label-caps text-brand-green mb-6 block">ALCHEMY &amp; INTENTION</span>
+<h3 class="font-headline-lg text-headline-lg mb-8 leading-tight">A correspondence for the conscious seeker.</h3>
+<div class="space-y-6 font-body-md text-body-md text-on-surface-variant">
+<p>Members of the Alchemist Circle receive more than just updates. We share quarterly botanical guides, seasonal herbalist rituals, and exclusive access to our small-batch apothecary releases.</p>
+<p>Our letters are written with intention, meant to be read slowly over a cup of brewed leaves. No noise, just heritage knowledge and sustainable craft.</p>
+</div>
+<div class="mt-12 grid grid-cols-2 gap-8">
+<div>
+<span class="material-symbols-outlined text-brand-green mb-2" style="font-variation-settings: 'wght' 200">auto_stories</span>
+<p class="font-label-caps text-[10px] mt-2">BOTANICAL LORE</p>
+</div>
+<div>
+<span class="material-symbols-outlined text-brand-green mb-2" style="font-variation-settings: 'wght' 200">local_florist</span>
+<p class="font-label-caps text-[10px] mt-2">SEASONAL RITUALS</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right: Subscription Form Card -->
+<div class="lg:col-span-7 bg-surface-container-lowest p-12 lg:p-20 shadow-sm border border-outline-variant/30 reveal-up">
+<div class="max-w-md mx-auto lg:mx-0">
+<h4 class="font-headline-md text-headline-md mb-2">Subscribe</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-12">Receive a 10% welcome gift towards your first ritual collection.</p>
+<form class="space-y-8" id="subscription-form">
+<div class="relative group">
+<label class="font-label-caps text-[9px] text-on-surface-variant absolute -top-3 left-0 transition-all duration-300 opacity-0 group-focus-within:opacity-100" for="email">EMAIL ADDRESS</label>
+<input class="w-full bg-transparent border-b border-outline text-on-surface py-4 focus:border-brand-green transition-colors font-body-md placeholder:text-on-surface-variant/40" id="email" placeholder="Enter your email address" required="" type="email"/>
+</div>
+<div class="flex items-start space-x-3 mb-8">
+<input class="mt-1 w-4 h-4 border-outline text-brand-green focus:ring-brand-green rounded-none" id="consent" type="checkbox"/>
+<label class="text-[11px] leading-relaxed text-on-surface-variant font-body-md" for="consent">
+                                I agree to receive marketing communications and acknowledge the <a class="underline hover:text-brand-green" href="#">Privacy Policy</a>. I can unsubscribe at any time.
+                            </label>
+</div>
+<button class="w-full bg-brand-green text-on-primary py-6 px-8 font-label-caps text-[12px] tracking-widest hover:bg-on-primary-container transition-all duration-500 group flex justify-between items-center" type="submit">
+<span>JOIN THE ALCHEMIST CIRCLE</span>
+<span class="material-symbols-outlined group-hover:translate-x-2 transition-transform duration-300">east</span>
+</button>
+</form>
+<div class="hidden mt-8 text-center animate-pulse" id="success-message">
+<span class="material-symbols-outlined text-brand-green text-4xl mb-4" style="font-variation-settings: 'FILL' 1">check_circle</span>
+<p class="font-headline-md text-headline-md">Welcome to the Circle.</p>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">A verification note has been sent to your apothecary.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Aesthetic Split Quote Section -->
+<section class="mt-section-gap-lg">
+<div class="grid grid-cols-1 md:grid-cols-2 min-h-[500px]">
+<div class="relative overflow-hidden h-96 md:h-auto">
+<img class="absolute inset-0 w-full h-full object-cover grayscale-[20%] hover:scale-105 transition-transform duration-1000" data-alt="A serene, high-end close-up photograph of dried botanicals, chamomile flowers, and earthy herbs spread on a white linen surface. The lighting is soft and ethereal, emphasizing the textures of the plants. The overall aesthetic is minimalist, organic, and rooted in luxury apothecary traditions, using a clean cream and sage green color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMnp3hDP_xasCbKTKxojFattf5dKegayVoXWd6Rck7enPDaw-3FXgFKn885EuZkmbJt-ChFvEkPp1gS-_zWo8L4Qym55vX9vvyc3UYukZTdstb4I7JQMPB4wcmq11WQU65Dr-DxbfynE3ohzPo1zgHG50aci8w1gLjI2XAsXtuQrhXxDI_w2JxoOFcpk2Ymyl-doy0CFeGPcDgCbZ1OX0wADLocJQqL5LW-V3Y3Eym-WTtFqAXO4y7Ao9Zh-_-oEV4NYdovmeGHj8X"/>
+</div>
+<div class="bg-surface-container-low flex items-center justify-center p-12 lg:p-24">
+<div class="max-w-md text-center reveal-up">
+<span class="material-symbols-outlined text-brand-green text-5xl mb-6" style="font-variation-settings: 'wght' 100">format_quote</span>
+<blockquote class="font-display-lg text-headline-lg italic leading-relaxed text-brand-green">
+                            "True health is not merely the absence of disease, but the presence of vitality and ritual in one's daily life."
+                        </blockquote>
+<cite class="block mt-8 font-label-caps text-label-caps tracking-widest">— THE HERBALIST'S CREED</cite>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-section-gap-lg border-t border-outline-variant bg-surface-container-lowest dark:bg-surface-dim">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-grid-gutter px-container-margin py-section-gap-sm max-w-7xl mx-auto">
+<div class="space-y-6">
+<div class="font-display-lg text-headline-md text-brand-green">Nature's Alchemist</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Botanical Apothecary &amp; Herbal Wisdom.</p>
+</div>
+<div class="space-y-4">
+<h5 class="font-label-caps text-label-caps text-brand-green">NAVIGATE</h5>
+<ul class="space-y-2">
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-brand-green transition-colors" href="#">Shop All</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-brand-green transition-colors" href="#">Our Story</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-brand-green transition-colors" href="#">Journal</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h5 class="font-label-caps text-label-caps text-brand-green">ETHOS</h5>
+<ul class="space-y-2">
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-brand-green transition-colors" href="#">Sourcing Ethics</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-brand-green transition-colors" href="#">Plastic Neutrality</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-brand-green transition-colors" href="#">Refill Program</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h5 class="font-label-caps text-label-caps text-brand-green">LEGAL</h5>
+<ul class="space-y-2">
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-brand-green transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-brand-green transition-colors" href="#">Terms of Service</a></li>
+</ul>
+</div>
+</div>
+<div class="px-container-margin py-8 border-t border-outline-variant/30 text-center">
+<p class="font-body-md text-body-md text-on-surface-variant opacity-60">© 2024 Nature's Alchemist Botanical Apothecary. All rights reserved.</p>
+</div>
+</footer>
+<script>
+        // Custom Cursor Logic
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        document.querySelectorAll('a, button, input').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(2)';
+                cursor.style.background = 'rgba(26, 46, 41, 0.05)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+                cursor.style.background = 'transparent';
+            });
+        });
+
+        // Reveal Animation
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
+
+        // Form Submission Interaction
+        document.getElementById('subscription-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('button');
+            const emailInput = document.getElementById('email');
+            
+            btn.innerHTML = '<span>WELCOMING...</span><span class="material-symbols-outlined animate-spin">refresh</span>';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                this.classList.add('hidden');
+                document.getElementById('success-message').classList.remove('hidden');
+            }, 2000);
+        });
+    </script>
+</body></html>

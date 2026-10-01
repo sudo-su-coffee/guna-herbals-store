@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Apothecary Admin | Error Taxonomy &amp; System Health</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed": "#1c1c18",
+                    "inverse-surface": "#303030",
+                    "surface-container-high": "#eae8e6",
+                    "surface-container": "#efedec",
+                    "secondary-fixed": "#e5e2db",
+                    "on-error-container": "#93000a",
+                    "tertiary-container": "#171e1b",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-card": "#ffffff",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#c9c6c0",
+                    "on-tertiary": "#ffffff",
+                    "primary-container": "#0f1f1c",
+                    "outline-variant": "#c2c8c5",
+                    "on-background": "#1b1c1b",
+                    "surface": "#fbf9f8",
+                    "surface-bright": "#fbf9f8",
+                    "on-primary-fixed-variant": "#3a4a46",
+                    "inverse-primary": "#b8cac5",
+                    "secondary": "#5f5e59",
+                    "on-tertiary-container": "#7f8682",
+                    "background": "#fbf9f8",
+                    "on-primary-container": "#778884",
+                    "on-error": "#ffffff",
+                    "on-secondary-fixed-variant": "#474742",
+                    "outline": "#727876",
+                    "on-tertiary-fixed": "#161d1a",
+                    "on-tertiary-fixed-variant": "#414845",
+                    "surface-container-highest": "#e4e2e1",
+                    "tertiary": "#000201",
+                    "surface-dim": "#dbdad8",
+                    "primary-fixed": "#d4e6e1",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed": "#dde4df",
+                    "brand-green": "#1a2e29",
+                    "secondary-container": "#e5e2db",
+                    "on-secondary-container": "#65645f",
+                    "primary-fixed-dim": "#b8cac5",
+                    "on-secondary": "#ffffff",
+                    "text-muted": "rgba(15, 31, 28, 0.6)",
+                    "border-subtle": "rgba(255, 255, 255, 0.1)",
+                    "on-primary": "#ffffff",
+                    "surface-variant": "#e4e2e1",
+                    "primary": "#000101",
+                    "on-surface": "#1b1c1b",
+                    "surface-tint": "#51625e",
+                    "tertiary-fixed-dim": "#c1c8c3",
+                    "on-primary-fixed": "#0e1e1b",
+                    "inverse-on-surface": "#f2f0ef",
+                    "status-sale": "#0f1f1c",
+                    "on-surface-variant": "#424846",
+                    "surface-container-low": "#f5f3f2"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "section-gap-sm": "2.5rem",
+                    "element-gap": "0.5rem",
+                    "grid-gutter": "1rem",
+                    "section-gap-lg": "5rem",
+                    "container-margin": "1.5rem"
+            },
+            "fontFamily": {
+                    "price-tag": ["Noto Sans"],
+                    "label-caps": ["Noto Sans"],
+                    "headline-lg": ["Playfair Display"],
+                    "body-md": ["Noto Sans"],
+                    "headline-md": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                    "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                    "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #fbf9f8;
+            font-family: 'Noto Sans', sans-serif;
+            color: #1b1c1b;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c2c8c5;
+            border-radius: 10px;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(26, 46, 41, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-surface overflow-x-hidden">
+<!-- SideNavBar Anchor -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-brand-green dark:bg-primary-container flex flex-col py-8 z-50">
+<div class="px-6 mb-12">
+<h1 class="font-headline-md text-headline-md text-surface-bright">Apothecary Admin</h1>
+<p class="font-body-md text-body-md text-surface-bright/60 uppercase tracking-widest mt-1">Premium Botanical</p>
+</div>
+<nav class="flex-grow flex flex-col gap-1">
+<a class="flex items-center gap-3 text-on-primary-container/70 dark:text-on-primary-container/50 hover:text-surface-bright pl-5 py-3 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 text-on-primary-container/70 dark:text-on-primary-container/50 hover:text-surface-bright pl-5 py-3 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="herbal_medicine">kebab_dining</span>
+<span class="font-body-md text-body-md">Inventory</span>
+</a>
+<a class="flex items-center gap-3 text-on-primary-container/70 dark:text-on-primary-container/50 hover:text-surface-bright pl-5 py-3 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+<span class="font-body-md text-body-md">Orders</span>
+</a>
+<a class="flex items-center gap-3 text-on-primary-container/70 dark:text-on-primary-container/50 hover:text-surface-bright pl-5 py-3 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-body-md text-body-md">Customers</span>
+</a>
+<a class="flex items-center gap-3 text-surface-bright font-bold border-l-4 border-surface-bright pl-4 py-3" href="#">
+<span class="material-symbols-outlined" data-icon="leaderboard">leaderboard</span>
+<span class="font-body-md text-body-md">Analytics</span>
+</a>
+<a class="flex items-center gap-3 text-on-primary-container/70 dark:text-on-primary-container/50 hover:text-surface-bright pl-5 py-3 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</nav>
+<div class="px-5 mt-auto pt-8 border-t border-white/10">
+<button class="w-full bg-surface-bright text-brand-green py-3 px-4 font-label-caps text-label-caps mb-8 hover:bg-primary-fixed-dim transition-all">
+                New Formulation
+            </button>
+<div class="flex flex-col gap-4">
+<a class="flex items-center gap-3 text-on-primary-container/70 hover:text-surface-bright" href="#">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+<span class="font-body-md text-body-md">Support</span>
+</a>
+<a class="flex items-center gap-3 text-on-primary-container/70 hover:text-surface-bright" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-body-md text-body-md">Sign Out</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- TopAppBar Anchor -->
+<header class="flex justify-between items-center px-container-margin py-4 w-[calc(100%-16rem)] ml-64 bg-surface-bright dark:bg-surface border-b border-outline-variant/30 sticky top-0 z-40">
+<div class="flex items-center gap-8">
+<div class="relative flex items-center bg-surface-container rounded px-3 py-1">
+<span class="material-symbols-outlined text-outline" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 font-body-md text-body-md w-64" placeholder="Search system health..." type="text"/>
+</div>
+<nav class="hidden md:flex gap-6 font-label-caps text-label-caps">
+<a class="text-text-muted hover:text-primary transition-all" href="#">Direct Ship</a>
+<a class="text-text-muted hover:text-primary transition-all" href="#">Wholesale</a>
+<a class="text-text-muted hover:text-primary transition-all" href="#">Archive</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="font-label-caps text-label-caps text-primary border border-primary px-4 py-2 hover:bg-primary hover:text-surface-bright transition-all">Create Report</button>
+<div class="flex items-center gap-3 ml-4">
+<button class="text-outline hover:text-primary transition-all relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img alt="Administrator Profile" data-alt="A professional close-up headshot of a sophisticated administrative officer with a clean, modern look. The lighting is soft and high-key, emphasizing a light-mode aesthetic. The background is a minimalist apothecary-style office with soft cream tones and touches of botanical greenery, reflecting a premium, professional health-focused environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWtMjoq6nm2_6DQrOZUI6KqUSBmpr5VT9OWZLL2rc0RM-oVwgjV3ILsC3DpcskBs7sC-5u6v6ybKWRLlAFHT8uaRGt3VSgyjSZlRHOuIYbin94PoVZ9UQuCkQ4kUWqlHL6FTDdWaaePtsQPUBCKryZkIvX46q2p-5l5fyVObho_gsaInlyN1w63NWIN2k6jsgWDmjGA9NsUzDp_BBIeqBOkmtV31c6jtwu1Dm6U_sAko4aouQKXp4yq7K6MeZaFyPGoekYIqACMvu-"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-64 p-8 min-h-screen">
+<!-- Dashboard Header -->
+<section class="mb-12">
+<div class="flex justify-between items-end">
+<div>
+<h2 class="font-display-lg text-headline-lg text-primary mb-2 italic">Error Taxonomy &amp; System Health</h2>
+<p class="font-body-md text-body-md text-text-muted max-w-2xl">A forensic view of botanical logistics and technical vital signs. Tracking API integrity, payment gateways, and network latency in real-time.</p>
+</div>
+<div class="flex gap-4">
+<div class="text-right">
+<span class="font-label-caps text-label-caps block text-text-muted mb-1">System Uptime</span>
+<span class="font-headline-md text-headline-md text-brand-green">99.98%</span>
+</div>
+</div>
+</div>
+</section>
+<!-- System Vitals (Bento Grid Style) -->
+<section class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+<div class="bg-surface-card p-6 border border-outline-variant/30 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-center mb-4">
+<span class="material-symbols-outlined text-brand-green" data-icon="api">api</span>
+<span class="bg-brand-green text-surface-bright px-2 py-0.5 text-[9px] font-bold uppercase tracking-tighter">Healthy</span>
+</div>
+<h3 class="font-headline-md text-[18px] text-primary">API Latency</h3>
+</div>
+<div class="mt-4">
+<p class="font-display-lg text-[32px] text-primary">42ms</p>
+<div class="w-full h-1 bg-surface-container mt-2">
+<div class="w-2/3 h-full bg-brand-green"></div>
+</div>
+</div>
+</div>
+<div class="bg-surface-card p-6 border border-outline-variant/30 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-center mb-4">
+<span class="material-symbols-outlined text-error" data-icon="payments">payments</span>
+<span class="bg-error text-surface-bright px-2 py-0.5 text-[9px] font-bold uppercase tracking-tighter">Alert</span>
+</div>
+<h3 class="font-headline-md text-[18px] text-primary">Payment Timeout</h3>
+</div>
+<div class="mt-4">
+<p class="font-display-lg text-[32px] text-error">3.4%</p>
+<div class="w-full h-1 bg-surface-container mt-2 relative">
+<div class="w-1/4 h-full bg-error"></div>
+</div>
+</div>
+</div>
+<div class="bg-surface-card p-6 border border-outline-variant/30 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-center mb-4">
+<span class="material-symbols-outlined text-outline" data-icon="monitoring">monitoring</span>
+<span class="bg-primary text-surface-bright px-2 py-0.5 text-[9px] font-bold uppercase tracking-tighter">Peak</span>
+</div>
+<h3 class="font-headline-md text-[18px] text-primary">Request Vol</h3>
+</div>
+<div class="mt-4">
+<p class="font-display-lg text-[32px] text-primary">1.2M</p>
+<p class="font-body-md text-text-muted text-xs">+12% from yesterday</p>
+</div>
+</div>
+<div class="bg-surface-card p-6 border border-outline-variant/30 flex flex-col justify-between overflow-hidden relative">
+
+<div class="relative z-10">
+<div class="flex justify-between items-center mb-4">
+<span class="material-symbols-outlined text-brand-green" data-icon="psychiatry">psychiatry</span>
+</div>
+<h3 class="font-headline-md text-[18px] text-primary">System Pulse</h3>
+</div>
+<div class="mt-4 relative z-10">
+<p class="font-body-md text-text-muted text-xs">All systems functional. Last backup 14m ago.</p>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Error Taxonomy Table -->
+<section class="lg:col-span-2 space-y-6">
+<div class="flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md text-primary">Error Taxonomy</h3>
+<div class="flex gap-2">
+<button class="p-2 border border-outline-variant/30 text-outline hover:text-primary transition-all">
+<span class="material-symbols-outlined" data-icon="filter_list">filter_list</span>
+</button>
+<button class="p-2 border border-outline-variant/30 text-outline hover:text-primary transition-all">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</button>
+</div>
+</div>
+<div class="bg-surface-card border border-outline-variant/30 overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container font-label-caps text-label-caps text-on-surface-variant">
+<th class="px-6 py-4 font-bold">Category</th>
+<th class="px-6 py-4 font-bold">Error Origin</th>
+<th class="px-6 py-4 font-bold text-center">Frequency</th>
+<th class="px-6 py-4 font-bold">Severity</th>
+<th class="px-6 py-4 font-bold">Trends</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md divide-y divide-outline-variant/20">
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-error"></div>
+<span class="font-medium text-primary">404 Trend</span>
+</div>
+</td>
+<td class="px-6 py-5 text-text-muted italic">/api/v1/herbal-stocks/bulk</td>
+<td class="px-6 py-5 text-center font-price-tag">1,204</td>
+<td class="px-6 py-5">
+<span class="bg-error-container text-on-error-container px-2 py-0.5 font-label-caps text-[8px] rounded-full">Critical</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-end gap-0.5 h-6">
+<div class="bg-error/30 w-1 h-3"></div>
+<div class="bg-error/30 w-1 h-2"></div>
+<div class="bg-error/30 w-1 h-4"></div>
+<div class="bg-error/30 w-1 h-5"></div>
+<div class="bg-error w-1 h-6"></div>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-on-secondary-container"></div>
+<span class="font-medium text-primary">Gateway Timeout</span>
+</div>
+</td>
+<td class="px-6 py-5 text-text-muted italic">Braintree Payment Webhook</td>
+<td class="px-6 py-5 text-center font-price-tag">84</td>
+<td class="px-6 py-5">
+<span class="bg-secondary-container text-on-secondary-container px-2 py-0.5 font-label-caps text-[8px] rounded-full">Moderate</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-end gap-0.5 h-6">
+<div class="bg-outline/20 w-1 h-2"></div>
+<div class="bg-outline/20 w-1 h-3"></div>
+<div class="bg-outline/20 w-1 h-2"></div>
+<div class="bg-outline/20 w-1 h-1"></div>
+<div class="bg-outline/40 w-1 h-2"></div>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-brand-green"></div>
+<span class="font-medium text-primary">DB Deadlock</span>
+</div>
+</td>
+<td class="px-6 py-5 text-text-muted italic">inventory_locks_global</td>
+<td class="px-6 py-5 text-center font-price-tag">3</td>
+<td class="px-6 py-5">
+<span class="bg-primary-container text-on-primary-container px-2 py-0.5 font-label-caps text-[8px] rounded-full">Low</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-end gap-0.5 h-6">
+<div class="bg-brand-green/10 w-1 h-1"></div>
+<div class="bg-brand-green/10 w-1 h-1"></div>
+<div class="bg-brand-green/10 w-1 h-1"></div>
+<div class="bg-brand-green/20 w-1 h-2"></div>
+<div class="bg-brand-green/20 w-1 h-1"></div>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-error"></div>
+<span class="font-medium text-primary">CORS Failure</span>
+</div>
+</td>
+<td class="px-6 py-5 text-text-muted italic">cdn.apothecary.admin/assets</td>
+<td class="px-6 py-5 text-center font-price-tag">412</td>
+<td class="px-6 py-5">
+<span class="bg-error-container text-on-error-container px-2 py-0.5 font-label-caps text-[8px] rounded-full">Critical</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-end gap-0.5 h-6">
+<div class="bg-error/30 w-1 h-1"></div>
+<div class="bg-error/30 w-1 h-2"></div>
+<div class="bg-error/30 w-1 h-4"></div>
+<div class="bg-error/30 w-1 h-5"></div>
+<div class="bg-error w-1 h-4"></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Last Occurred Timeline -->
+<aside class="space-y-6">
+<h3 class="font-headline-md text-headline-md text-primary">Live Timeline</h3>
+<div class="glass-panel p-6 border border-outline-variant/20 relative">
+<div class="absolute left-8 top-12 bottom-12 border-l border-outline-variant/30"></div>
+<div class="space-y-8 custom-scrollbar max-h-[500px] overflow-y-auto pr-2">
+<!-- Timeline Item -->
+<div class="relative pl-8">
+<div class="absolute left-[-5px] top-1.5 w-2.5 h-2.5 rounded-full bg-error ring-4 ring-white"></div>
+<div>
+<span class="font-label-caps text-[9px] text-text-muted block mb-1 uppercase">2 minutes ago</span>
+<p class="font-body-md text-body-md font-bold text-primary">404 Endpoint Failure</p>
+<p class="font-body-md text-xs text-text-muted mt-1">User agent: Mozilla/5.0... (Checkout Flow)</p>
+</div>
+</div>
+<div class="relative pl-8">
+<div class="absolute left-[-5px] top-1.5 w-2.5 h-2.5 rounded-full bg-on-secondary-container ring-4 ring-white"></div>
+<div>
+<span class="font-label-caps text-[9px] text-text-muted block mb-1 uppercase">14 minutes ago</span>
+<p class="font-body-md text-body-md font-bold text-primary">Webhook Latency Warning</p>
+<p class="font-body-md text-xs text-text-muted mt-1">Stripe Connect response time: 2.1s</p>
+</div>
+</div>
+<div class="relative pl-8">
+<div class="absolute left-[-5px] top-1.5 w-2.5 h-2.5 rounded-full bg-brand-green ring-4 ring-white"></div>
+<div>
+<span class="font-label-caps text-[9px] text-text-muted block mb-1 uppercase">31 minutes ago</span>
+<p class="font-body-md text-body-md font-bold text-primary">Auth Token Refresh Success</p>
+<p class="font-body-md text-xs text-text-muted mt-1">Global rotate initiated by Admin #21</p>
+</div>
+</div>
+<div class="relative pl-8">
+<div class="absolute left-[-5px] top-1.5 w-2.5 h-2.5 rounded-full bg-error ring-4 ring-white"></div>
+<div>
+<span class="font-label-caps text-[9px] text-text-muted block mb-1 uppercase">1 hour ago</span>
+<p class="font-body-md text-body-md font-bold text-primary">Failed Login Attempt (Brute Force?)</p>
+<p class="font-body-md text-xs text-text-muted mt-1">IP: 192.168.1.104 (Singapore)</p>
+</div>
+</div>
+<div class="relative pl-8">
+<div class="absolute left-[-5px] top-1.5 w-2.5 h-2.5 rounded-full bg-on-secondary-container ring-4 ring-white"></div>
+<div>
+<span class="font-label-caps text-[9px] text-text-muted block mb-1 uppercase">2 hours ago</span>
+<p class="font-body-md text-body-md font-bold text-primary">S3 Bucket Sync Delay</p>
+<p class="font-body-md text-xs text-text-muted mt-1">Product asset synchronization paused.</p>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 py-2 border-t border-outline-variant/20 font-label-caps text-[10px] text-brand-green hover:tracking-widest transition-all uppercase">
+                        View Full System Log
+                    </button>
+</div>
+</aside>
+</div>
+<!-- Atmospheric Background Image (Bottom) -->
+<section class="mt-section-gap-lg">
+<div class="relative h-96 w-full overflow-hidden">
+<img alt="Aesthetic Dark Botanical" class="w-full h-full object-cover filter grayscale brightness-50" data-alt="A dark, moody close-up photograph of lush medicinal herbs and botanical specimens arranged elegantly on a dark stone surface. The lighting is low-key and dramatic, casting soft shadows that highlight the intricate textures of the leaves. The color palette is dominated by deep forest greens and charcoal blacks, creating a serene, sophisticated, and tactile atmosphere that aligns with a high-end apothecary brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDR0EFcFj-nEn9Gv2ph_T6BfxaSmK6nUYiB1bZgmKXu6XI46NZcMI0RfPVeGTE71B5Be3SOJ94-hitTm7zebc6Wy3iqkniMQuxNOS6xrnnuLcD_wtbtmRD4y6gxjqWsfDaHR2Rd6DtD9H3_VxRhSlndl2ky3jMv2j4luKcSCcTo9XneW6WCfQaEp9h4_FMjgwGa2DfBBP3Sh9J3DftBF_0KYJtFtbw1m8ogSUY53FxpCsfYUdVl4rhSyVqEaK5olIQqUNBPoUG6pDTD"/>
+<div class="absolute inset-0 flex flex-col justify-center items-center text-center p-12 bg-primary/20 backdrop-blur-[2px]">
+<span class="font-label-caps text-label-caps text-surface-bright/80 uppercase tracking-[0.4em] mb-4">Security Protocol</span>
+<h3 class="font-display-lg text-[42px] text-surface-bright italic max-w-xl">"Observation is the first step of healing."</h3>
+<p class="font-body-md text-surface-bright/60 mt-6 max-w-lg">Our diagnostic systems mirror the balance of nature—constant, subtle, and restorative.</p>
+</div>
+</div>
+</section>
+</main>
+<script>
+        // Micro-interactions for table rows and vitals
+        document.querySelectorAll('tr').forEach(row => {
+            row.addEventListener('mousedown', () => {
+                row.style.transform = 'scale(0.998)';
+            });
+            row.addEventListener('mouseup', () => {
+                row.style.transform = 'scale(1)';
+            });
+        });
+
+        // Simple pulsing animation for critical items via JS if needed
+        const criticalBadges = document.querySelectorAll('.bg-error-container');
+        setInterval(() => {
+            criticalBadges.forEach(badge => {
+                badge.style.opacity = badge.style.opacity === '0.7' ? '1' : '0.7';
+            });
+        }, 1000);
+    </script>
+</body></html>

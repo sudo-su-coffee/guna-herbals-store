@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Our Heritage | Nature's Alchemist</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .scrolled-header {
+            background-color: rgba(26, 46, 41, 0.95) !important;
+            backdrop-filter: blur(8px);
+        }
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .letter-spacing-widest { letter-spacing: 0.3em; }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-container": "#7f8682",
+                    "on-error-container": "#93000a",
+                    "surface-container-low": "#f5f3f2",
+                    "text-muted": "rgba(15, 31, 28, 0.6)",
+                    "tertiary-fixed": "#dde4df",
+                    "secondary-fixed-dim": "#c9c6c0",
+                    "inverse-on-surface": "#f2f0ef",
+                    "primary-fixed-dim": "#b8cac5",
+                    "on-secondary-fixed-variant": "#474742",
+                    "on-primary-fixed": "#0e1e1b",
+                    "surface-bright": "#fbf9f8",
+                    "surface-container-high": "#eae8e6",
+                    "tertiary-container": "#171e1b",
+                    "on-primary-container": "#778884",
+                    "on-secondary-fixed": "#1c1c18",
+                    "background": "#fbf9f8",
+                    "error-container": "#ffdad6",
+                    "surface-dim": "#dbdad8",
+                    "on-error": "#ffffff",
+                    "tertiary": "#000201",
+                    "on-secondary-container": "#65645f",
+                    "on-primary": "#ffffff",
+                    "surface-container": "#efedec",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed": "#161d1a",
+                    "brand-green": "#1a2e29",
+                    "tertiary-fixed-dim": "#c1c8c3",
+                    "surface-container-highest": "#e4e2e1",
+                    "secondary-fixed": "#e5e2db",
+                    "surface-card": "#ffffff",
+                    "on-surface": "#1b1c1b",
+                    "outline": "#727876",
+                    "outline-variant": "#c2c8c5",
+                    "primary-fixed": "#d4e6e1",
+                    "secondary-container": "#e5e2db",
+                    "surface": "#fbf9f8",
+                    "error": "#ba1a1a",
+                    "surface-container-lowest": "#ffffff",
+                    "primary": "#000101",
+                    "on-surface-variant": "#424846",
+                    "on-background": "#1b1c1b",
+                    "inverse-primary": "#b8cac5",
+                    "inverse-surface": "#303030",
+                    "on-tertiary": "#ffffff",
+                    "surface-tint": "#51625e",
+                    "primary-container": "#0f1f1c",
+                    "secondary": "#5f5e59",
+                    "surface-variant": "#e4e2e1",
+                    "on-tertiary-fixed-variant": "#414845",
+                    "status-sale": "#0f1f1c",
+                    "on-primary-fixed-variant": "#3a4a46",
+                    "border-subtle": "rgba(255, 255, 255, 0.1)"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "section-gap-sm": "2.5rem",
+                    "container-margin": "1.5rem",
+                    "grid-gutter": "1rem",
+                    "element-gap": "0.5rem",
+                    "section-gap-lg": "5rem"
+            },
+            "fontFamily": {
+                    "label-caps": ["Noto Sans"],
+                    "display-lg": ["Playfair Display"],
+                    "price-tag": ["Noto Sans"],
+                    "headline-md": ["Playfair Display"],
+                    "headline-lg": ["Playfair Display"],
+                    "body-md": ["Noto Sans"]
+            },
+            "fontSize": {
+                    "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                    "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                    "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar -->
+<header class="w-full sticky top-0 z-50 bg-brand-green dark:bg-primary-container shadow-sm transition-colors duration-500" id="main-header">
+<nav class="flex justify-between items-center px-12 py-6 w-full max-w-full mx-auto">
+<div class="flex-1 flex items-center gap-8">
+<div class="hidden md:flex items-center gap-6">
+<a class="font-body-md text-body-md uppercase tracking-widest text-on-primary-container opacity-80 hover:opacity-100 transition-opacity duration-300 cursor-pointer transition-transform duration-200 active:scale-95" href="#">Shop All</a>
+<a class="font-body-md text-body-md uppercase tracking-widest text-on-primary-container opacity-80 hover:opacity-100 transition-opacity duration-300 cursor-pointer transition-transform duration-200 active:scale-95" href="#">Rituals</a>
+<a class="font-body-md text-body-md uppercase tracking-widest text-on-primary font-bold border-b border-on-primary pb-1 transition-opacity duration-300 cursor-pointer transition-transform duration-200 active:scale-95" href="#">Heritage</a>
+</div>
+<div class="md:hidden">
+<span class="material-symbols-outlined text-on-primary text-2xl">menu</span>
+</div>
+</div>
+<div class="flex-none">
+<h1 class="font-display-lg text-headline-lg text-on-primary dark:text-on-primary-container tracking-tight">Nature's Alchemist</h1>
+</div>
+<div class="flex-1 flex justify-end items-center gap-6">
+<div class="hidden lg:flex items-center gap-6">
+<a class="font-body-md text-body-md uppercase tracking-widest text-on-primary-container opacity-80 hover:opacity-100 transition-opacity duration-300 cursor-pointer transition-transform duration-200 active:scale-95" href="#">Sustainability</a>
+<a class="font-body-md text-body-md uppercase tracking-widest text-on-primary-container opacity-80 hover:opacity-100 transition-opacity duration-300 cursor-pointer transition-transform duration-200 active:scale-95" href="#">Journal</a>
+</div>
+<div class="flex items-center gap-4 text-on-primary">
+<span class="material-symbols-outlined cursor-pointer hover:opacity-70 transition-opacity">search</span>
+<span class="material-symbols-outlined cursor-pointer hover:opacity-70 transition-opacity">shopping_bag</span>
+<span class="material-symbols-outlined cursor-pointer hover:opacity-70 transition-opacity">person</span>
+</div>
+</div>
+</nav>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative h-[921px] flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-brand-green/40 z-10"></div>
+<img class="w-full h-full object-cover" data-alt="A moody, atmospheric wide shot of a misty ancient forest at dawn. Towering ferns and moss-covered oaks emerge from a soft grey fog. The lighting is low-key and ethereal, emphasizing deep greens and cool earthy tones. This artisan photography captures the mysterious and primal essence of the brand's botanical heritage, framed with a cinematic, high-end lifestyle aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKdUkTPp-C7xWPFLFOLlIx1EHCqcp1duw-5hvH434DPZQ34CoHH8irNRa5dGCfclN6aQApVmFBrxF3o5Xt0c4n_urnMs8ldQvaqeQUJjnz4qBVMeVe8nr7KTAZJOrFQGY4_3Md9MlCF1soHXvvaxv_0sK-Zm6wJ5agn-JnEfRE8WHeb-lDmhjtSmgdQk6kVlzE6AjMk7zIDWgt712PgMbKxEHfLzl6fz2BNCObnxqZdJQp4TD9JmQsxGLsSJJHLa5HJjRxBX_gAiDA"/>
+</div>
+<div class="relative z-20 text-center px-container-margin max-w-4xl">
+<span class="font-label-caps text-label-caps text-on-primary opacity-80 uppercase tracking-[0.4em] mb-6 block">ESTABLISHED MCMXCII</span>
+<h2 class="font-display-lg text-[80px] leading-tight text-on-primary mb-8 italic">The Alchemy of Time</h2>
+<p class="font-body-md text-lg text-on-primary opacity-90 max-w-2xl mx-auto leading-relaxed">
+                    Tracing the lineage of botanical wisdom from the wild meadows of the Old World to the contemporary laboratory.
+                </p>
+<div class="mt-12 flex justify-center">
+<div class="w-px h-24 bg-gradient-to-b from-on-primary to-transparent"></div>
+</div>
+</div>
+</section>
+<!-- The Founder's Vision -->
+<section class="py-section-gap-lg bg-surface flex flex-col md:flex-row items-center gap-16 px-12 md:px-24">
+<div class="w-full md:w-1/2 relative">
+<div class="aspect-[4/5] overflow-hidden bg-surface-container shadow-sm">
+<img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="A detailed close-up of an artisan's hands carefully sorting dried botanical herbs on a weathered wooden table. The lighting is warm and directional, coming from a nearby window, casting soft shadows. The scene is filled with rustic textures—dried lavender, chamomile flowers, and glass apothecary jars. The color palette consists of cream, sage green, and warm wood tones, reflecting a minimalist-tactile apothecary brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzQFpn5LFQD1fVAqzeB9n8jO9aA-mlSUYcWfkzc3KQlDlYhecl5107f0HQnC7BINPckNP4bznnKv5eboftsglK87GKpAlFle9pJHHcWxU0msmns6YVM7CPb8KEaTpcCYwBuA1SYEGz_ZzGdAeE12T_S68dDf_F_4RAKCvQydyMAmy-dw-i_U5a7l6vrVfj2mooWqLhsqKK8R6z8mH8SBjBIC60oyerdeAfZRofkmrwPapo-ZlC_jfUytL1LVWbyHiiFZqpvswK1oCN"/>
+</div>
+<div class="absolute -bottom-8 -right-8 bg-brand-green p-10 hidden lg:block">
+<p class="font-display-lg text-headline-md text-on-primary italic">"Nature is the ultimate chemist; we are merely her translators."</p>
+</div>
+</div>
+<div class="w-full md:w-1/2 space-y-8">
+<span class="font-label-caps text-label-caps text-secondary uppercase tracking-widest block">OUR ORIGIN</span>
+<h3 class="font-headline-lg text-headline-lg text-brand-green leading-snug">Born from the Soil of the Pyrenees</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                    Nature’s Alchemist began in a small stone cottage nestled in the high valleys of the Pyrenees. Our founder, Elena Valeska, spent a decade documenting the medicinal flora of these isolated peaks, learning from the few remaining elders who still remembered the old ways of cold-infusion and solar maceration.
+                </p>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                    What started as a personal quest for purity became a standard-setting apothecary. We believe that true wellness isn't found in a laboratory's synthetic copy, but in the complex, synergistic power of a plant grown in its native soil, harvested at the precise peak of its potency.
+                </p>
+<div class="pt-4">
+<button class="bg-brand-green text-on-primary px-8 py-4 font-label-caps text-label-caps tracking-widest uppercase hover:opacity-90 transition-all active:scale-95">
+                        Discover Elena's Journals
+                    </button>
+</div>
+</div>
+</section>
+<!-- The Source (Immersive Dark Section) -->
+<section class="relative bg-brand-green py-section-gap-lg text-on-primary overflow-hidden">
+
+<div class="container mx-auto px-12 relative z-10">
+<div class="text-center max-w-3xl mx-auto mb-20">
+<h3 class="font-display-lg text-5xl mb-6">The Source Narrative</h3>
+<p class="font-body-md text-on-primary-container text-lg">We travel where others won't. From the high-altitude lavender fields of Provence to the wild-harvested resins of the Arabian desert.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+<!-- Source Card 1 -->
+<div class="space-y-6 group">
+<div class="aspect-square overflow-hidden border border-border-subtle p-4">
+<img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" data-alt="A breathtaking mountain landscape featuring snow-capped peaks against a clear, pale blue sky. In the foreground, vibrant alpine flowers bloom among grey rocks and thin green grass. The lighting is crisp and natural, highlighting the purity and extreme conditions of the high-altitude environment. The image uses a cool, high-key palette to represent the untouched origins of the brand's ingredients." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC66uUjcezxID_Qh_Ebwgg-VQMlkkpImbbNpA_5jeQAcTRd_8taCcYeEa3hA9fMghzV7GXFLlwkuJnsH7hchPm8oIzI5Jaj3XxebbEOxvitQnlMLAvENyyfe6URTaeXP_0-jqP7GowwGdc1Wm9a8y9TN7kkG8yIldlzWspMVCI_CouiP6Lg7UrH6tCxzNiyXOTJ2KTo5O2TpCHli0hmbZhoyGZGEd363e_wvcM0bqor8m-z_P3RSZ6bYriJxtRAZod2b9y-pgL_ETJ5"/>
+</div>
+<h4 class="font-headline-md text-headline-md border-b border-border-subtle pb-4">01. Ethical Foraging</h4>
+<p class="font-body-md text-on-primary-container leading-relaxed">We operate on a 'Leave No Trace' philosophy, only harvesting 10% of any wild population to ensure natural regeneration for generations to come.</p>
+</div>
+<!-- Source Card 2 -->
+<div class="space-y-6 group">
+<div class="aspect-square overflow-hidden border border-border-subtle p-4">
+<img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" data-alt="A macro shot of essential oil being slowly distilled in a vintage copper alembic. The copper reflects warm orange and brown tones, while a single translucent drop of oil hangs from the spout. Steam swirls gently in the background, illuminated by a soft, warm backlight. This image evokes the traditional and tactile process of alchemy, using a palette of deep bronze and cream." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwlUq6G0uxPTfIHFpiHMeWMmhaUd_sl-mx2A9VvjPFHef2njfHC674p7nK3nXRLms5BJa3wHJKw3KXpVuKqJYxHsEAY14AKGp5E9VkP66OtCppLKUhw4ottdIWh_O2mywsFb3xbucr-xfxYP64jzP2r2-CH13JADYLLt4R0Mx-UgzK9iL_50LmY1EHtene8HHzJPbu5GVn02wehWnryohwYPPwY9E37PdGHeEShQ4DcYc4Fbzu41Hhp3HN9kq2Ziebhnc1Dq5OsFH8"/>
+</div>
+<h4 class="font-headline-md text-headline-md border-b border-border-subtle pb-4">02. Slow Distillation</h4>
+<p class="font-body-md text-on-primary-container leading-relaxed">Unlike industrial extraction, our slow-steam distillation preserves the volatile aromatic compounds that are often lost in rapid processing.</p>
+</div>
+<!-- Source Card 3 -->
+<div class="space-y-6 group">
+<div class="aspect-square overflow-hidden border border-border-subtle p-4">
+<img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" data-alt="A serene indoor scene featuring several dark amber glass apothecary bottles arranged on a minimalist cream-colored marble surface. Soft sunlight filters through a nearby plant, casting delicate leaf shadows across the bottles. The composition is clean and balanced, emphasizing the brand's premium, modern apothecary aesthetic with its focus on high-quality materials and sophisticated simplicity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGEt9LGBJst4VGltBUUF4e014a6EVmrBwn1bWs66qjM3PYqKyQWYwPfWTCSYXUrjUpDNfXT8tzEOpn6CTkXBiRnDCg3PAoBE_KjAlZC3c_QSz-NnYnwC2XZ6u3PDASxkayPeg2KU1Kvs_yhBJNV5mtObE5DSpcWj0kM6XSrGIz2fZunqGrbvfVq3Xr7er-o87UpXCaS_Xvu3aIOxtpq_0iGyVrU0l6OrnlUzSzsDqz7x5HJ2fIrjs9KMmAd2DQ7ugxg_AgMRQCy5v3"/>
+</div>
+<h4 class="font-headline-md text-headline-md border-b border-border-subtle pb-4">03. Small-Batch Vitality</h4>
+<p class="font-body-md text-on-primary-container leading-relaxed">Every batch is hand-blended in our coastal laboratory, numbered, and signed by our head alchemist to guarantee absolute freshness.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Heritage Pillars (Bento Grid) -->
+<section class="py-section-gap-lg px-12 md:px-24 bg-surface-bright">
+<div class="grid grid-cols-1 md:grid-cols-12 grid-rows-2 gap-grid-gutter h-auto md:h-[800px]">
+<!-- Pillar 1 -->
+<div class="md:col-span-8 bg-surface-container p-12 flex flex-col justify-end relative overflow-hidden group">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" data-alt="A close-up of a scientific researcher in a clean, modern lab setting, peering into a microscope. The lighting is cool-toned and professional, but softened by organic elements like a small sprig of greenery placed on the workstation. This image represents the intersection of traditional wisdom and modern science, using a sophisticated palette of white, light grey, and sage green." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBssYnBcU5RdSB48Lb3HSRoEhTHIN5SYhp4C8lD1eu61kfEdDr0I_n1Im5A47P56UN7UyndZdyZ5qLvuLUTuOeGtgT3DcXr36eMcWBD8SwuDEJG7kF_988fKQlxeKhEklaVFbww0y1-zvnepKHAbqS6b6e8aF5Ja7tA1coZI-L6cZwOPslGes9AKIEmKamrqMh9bFR14Lzm649SZUxT16rnCvYC6ihiP82gPY2xt8IGMf9wfmSixvax5JunXHDGLlRodkWLHZvVEaNn"/>
+<div class="absolute inset-0 bg-gradient-to-t from-brand-green/80 via-transparent to-transparent"></div>
+<div class="relative z-10 text-on-primary max-w-lg">
+<h5 class="font-headline-lg text-headline-lg mb-4">Precision Science</h5>
+<p class="font-body-md opacity-90">While we honor tradition, every botanical is tested in our labs for bio-availability and skin compatibility. Tradition meets clinical excellence.</p>
+</div>
+</div>
+<!-- Pillar 2 -->
+<div class="md:col-span-4 bg-brand-green p-12 flex flex-col justify-center text-on-primary">
+<span class="material-symbols-outlined text-5xl mb-6 text-primary-fixed">eco</span>
+<h5 class="font-headline-md text-headline-md mb-4">Regenerative Mindset</h5>
+<p class="font-body-md opacity-80 leading-relaxed">Our heritage is linked to the land. We invest 5% of all profits back into rewilding initiatives in the regions where we source our primary botanicals.</p>
+</div>
+<!-- Pillar 3 -->
+<div class="md:col-span-4 bg-surface-container-high p-12 flex flex-col justify-center">
+<span class="material-symbols-outlined text-5xl mb-6 text-brand-green">history_edu</span>
+<h5 class="font-headline-md text-headline-md text-brand-green mb-4">Living Archives</h5>
+<p class="font-body-md text-on-surface-variant leading-relaxed">We maintain a physical seed bank of over 400 heritage botanical varieties, some of which have been part of herbal lore for over a millennium.</p>
+</div>
+<!-- Pillar 4 -->
+<div class="md:col-span-8 bg-surface-container-low p-12 flex items-center relative overflow-hidden">
+<div class="flex-1 z-10 pr-12">
+<h5 class="font-headline-lg text-headline-lg text-brand-green mb-4">Transparency Ritual</h5>
+<p class="font-body-md text-on-surface-variant max-w-md">Scan any bottle to view its unique harvesting date, the coordinates of its origin, and the laboratory test results of that specific batch.</p>
+</div>
+<div class="flex-1 h-full hidden lg:block">
+<img class="w-full h-full object-cover" data-alt="A minimalist overhead view of a modern wellness ritual. A dark amber bottle of botanical oil sits on a textured linen cloth next to a small dish of raw sea salt and a single white jasmine flower. The lighting is soft and even, highlighting the clean lines and tactile surfaces. The color palette is composed of muted earth tones, cream, and deep amber, reflecting a high-end, conscious lifestyle." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB592Kdm_P4-C965UxJUs4iA99yYmwEcgycYax4goYSZAvSWhzRjsiRUX5mrJVFt9pWjnp4IkQ6y1FkgM0u46TaXQUnjGbOjYdvEs6DS2arszxaopLG63mVFxvkftkw7N28yTi9iTxUhT7ie7EfQHXeCZN1qEjfbarLcGBE9NoaejJxHtxbblJYEoU416IhqIcYqk-V5lOs-26JD5XB1URU32q5M99m8KiuYAYZNTjLNFnNZA7S-Ib0uilKbG_iVbZtBtYBtsq38vC1"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Testimonial -->
+<section class="py-section-gap-lg bg-surface-container-low text-center px-12">
+<div class="max-w-3xl mx-auto border-y border-outline-variant py-16">
+<span class="material-symbols-outlined text-4xl text-brand-green mb-8" style="font-variation-settings: 'FILL' 1;">format_quote</span>
+<blockquote class="font-display-lg text-headline-lg text-brand-green italic mb-8">
+                    "Nature's Alchemist is not just a brand; it is a bridge. They have managed to preserve the soul of the plant while meeting the demands of modern dermatology. It is a rare, beautiful achievement."
+                </blockquote>
+<cite class="font-label-caps text-label-caps text-secondary not-italic tracking-widest uppercase">— DR. SOPHIA MORETTI, BOTANICAL DERMATOLOGIST</cite>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-section-gap-lg bg-surface-container-lowest dark:bg-surface-dim border-t border-outline-variant">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-grid-gutter px-container-margin py-section-gap-sm max-w-7xl mx-auto">
+<div class="md:col-span-1">
+<h2 class="font-display-lg text-headline-md text-brand-green mb-4">Nature's Alchemist</h2>
+<p class="font-body-md text-on-surface-variant max-w-xs">Crafting modern botanical remedies from ancient herbal wisdom. Ethically sourced, scientifically refined.</p>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps text-on-surface mb-6 uppercase">Philosophy</h4>
+<ul class="space-y-4">
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-brand-green transition-colors" href="#">Sourcing Ethics</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-brand-green transition-colors" href="#">Plastic Neutrality</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-brand-green transition-colors" href="#">Refill Program</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps text-on-surface mb-6 uppercase">Assistance</h4>
+<ul class="space-y-4">
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-brand-green transition-colors" href="#">Shipping &amp; Returns</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-brand-green transition-colors" href="#">Wholesale Inquiry</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-brand-green transition-colors" href="#">Privacy Policy</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps text-on-surface mb-6 uppercase">Join the Circle</h4>
+<p class="font-body-md text-on-surface-variant mb-4">Receive monthly insights into botanical rituals and seasonal releases.</p>
+<div class="flex">
+<input class="bg-surface p-3 border-b border-outline w-full focus:outline-none focus:border-brand-green font-body-md" placeholder="Email Address" type="email"/>
+<button class="bg-brand-green text-on-primary px-4 hover:opacity-90"><span class="material-symbols-outlined">arrow_forward</span></button>
+</div>
+</div>
+</div>
+<div class="border-t border-outline-variant py-8 px-container-margin">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+<span class="font-body-md text-body-md text-on-surface-variant opacity-70">© 2024 Nature's Alchemist Botanical Apothecary. All rights reserved.</span>
+<div class="flex gap-6">
+<a class="text-on-surface-variant hover:text-brand-green transition-colors" href="#"><span class="material-symbols-outlined">public</span></a>
+<a class="text-on-surface-variant hover:text-brand-green transition-colors" href="#"><span class="material-symbols-outlined">nest_eco_leaf</span></a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Simple header scroll interaction
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled-header');
+                header.classList.remove('py-6');
+                header.classList.add('py-4');
+            } else {
+                header.classList.remove('scrolled-header');
+                header.classList.add('py-6');
+                header.classList.remove('py-4');
+            }
+        });
+
+        // Intersection Observer for fade-in elements
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            el.classList.add('opacity-0', 'translate-y-10', 'transition-all', 'duration-1000');
+            observer.observe(el);
+        });
+    </script>
+</body></html>

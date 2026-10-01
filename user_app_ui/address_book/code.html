@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#fbf9f8",
+                        "outline": "#727876",
+                        "tertiary": "#000201",
+                        "surface-container": "#efedec",
+                        "on-secondary-fixed": "#1c1c18",
+                        "surface-container-highest": "#e4e2e1",
+                        "on-tertiary-fixed-variant": "#414845",
+                        "on-error-container": "#93000a",
+                        "on-background": "#1b1c1b",
+                        "on-secondary": "#ffffff",
+                        "on-surface-variant": "#424846",
+                        "secondary-container": "#e5e2db",
+                        "on-tertiary-fixed": "#161d1a",
+                        "error": "#ba1a1a",
+                        "inverse-surface": "#303030",
+                        "primary-container": "#0f1f1c",
+                        "on-tertiary-container": "#7f8682",
+                        "outline-variant": "#c2c8c5",
+                        "on-secondary-container": "#65645f",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#e4e2e1",
+                        "surface-bright": "#fbf9f8",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed-variant": "#3a4a46",
+                        "tertiary-fixed-dim": "#c1c8c3",
+                        "tertiary-container": "#171e1b",
+                        "background": "#fbf9f8",
+                        "surface-dim": "#dbdad8",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#474742",
+                        "inverse-on-surface": "#f2f0ef",
+                        "on-surface": "#1b1c1b",
+                        "surface-container-low": "#f5f3f2",
+                        "on-primary-container": "#778884",
+                        "inverse-primary": "#b8cac5",
+                        "secondary-fixed": "#e5e2db",
+                        "primary": "#000101",
+                        "tertiary-fixed": "#dde4df",
+                        "text-muted": "rgba(15, 31, 28, 0.6)",
+                        "primary-fixed": "#d4e6e1",
+                        "primary-fixed-dim": "#b8cac5",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#c9c6c0",
+                        "surface-card": "#ffffff",
+                        "status-sale": "#0f1f1c",
+                        "surface-container-high": "#eae8e6",
+                        "on-primary-fixed": "#0e1e1b",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#5f5e59",
+                        "border-subtle": "rgba(255, 255, 255, 0.1)",
+                        "brand-green": "#1a2e29",
+                        "surface-tint": "#51625e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "container-margin": "1.5rem",
+                        "grid-gutter": "1rem",
+                        "section-gap-sm": "2.5rem",
+                        "section-gap-lg": "5rem",
+                        "element-gap": "0.5rem"
+                    },
+                    "fontFamily": {
+                        "price-tag": ["Noto Sans"],
+                        "headline-md": ["Playfair Display"],
+                        "label-caps": ["Noto Sans"],
+                        "headline-lg": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "body-md": ["Noto Sans"]
+                    },
+                    "fontSize": {
+                        "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                        "headline-md-mobile": ["20px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                        "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                        "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #fbf9f8;
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-surface">
+<!-- Top App Bar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-container-margin h-16 bg-surface dark:bg-primary-container">
+<div class="flex items-center space-x-4">
+<button class="active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md-mobile text-primary dark:text-primary-fixed-dim uppercase tracking-widest">SAVED ADDRESSES</h1>
+</div>
+<button class="active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim" data-icon="shopping_bag">shopping_bag</span>
+</button>
+</header>
+<main class="pt-24 pb-32 px-container-margin">
+<!-- Hero Section Aesthetic -->
+<section class="mb-section-gap-sm text-center">
+<span class="font-label-caps text-label-caps text-on-secondary-container mb-2 block">YOUR SANCTUARY</span>
+<h2 class="font-headline-lg text-headline-lg-mobile text-primary mb-4 italic">Delivery Locations</h2>
+<div class="w-12 h-[1px] bg-outline-variant mx-auto mb-8"></div>
+</section>
+<!-- Addresses List -->
+<div class="space-y-6">
+<!-- Default Address Card -->
+<div class="bg-surface-card border border-outline-variant/30 p-6 shadow-sm relative group transition-all duration-300">
+<div class="absolute top-0 right-0 bg-primary px-3 py-1">
+<span class="font-label-caps text-[9px] text-surface uppercase">DEFAULT</span>
+</div>
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-brand-green" data-icon="home">home</span>
+<h3 class="font-headline-md text-headline-md-mobile text-primary">Home Sanctuary</h3>
+</div>
+<button class="text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+</div>
+<div class="space-y-2">
+<p class="font-body-md text-on-surface-variant leading-relaxed">
+                        1224 Juniper Lane, Suite 4B<br/>
+                        Emerald Valley, Oregon 97401<br/>
+                        United States
+                    </p>
+<div class="flex items-center space-x-2 text-on-tertiary-container pt-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="call">call</span>
+<span class="font-price-tag text-price-tag">+1 (541) 555-0198</span>
+</div>
+</div>
+</div>
+<!-- Second Address Card -->
+<div class="bg-surface-container-low border border-outline-variant/10 p-6 transition-all duration-300">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-on-tertiary-container" data-icon="work">work</span>
+<h3 class="font-headline-md text-headline-md-mobile text-primary">The Alchemist Lab</h3>
+</div>
+<button class="text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+</div>
+<div class="space-y-2">
+<p class="font-body-md text-on-surface-variant leading-relaxed">
+                        88 Botanical Boulevard<br/>
+                        Portland, Oregon 97201<br/>
+                        United States
+                    </p>
+<div class="flex items-center space-x-2 text-on-tertiary-container pt-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="call">call</span>
+<span class="font-price-tag text-price-tag">+1 (503) 555-0122</span>
+</div>
+</div>
+<div class="mt-6 flex space-x-4 border-t border-outline-variant/20 pt-4">
+<button class="font-label-caps text-label-caps text-primary underline underline-offset-4 tracking-widest">SET AS DEFAULT</button>
+<button class="font-label-caps text-label-caps text-error tracking-widest">REMOVE</button>
+</div>
+</div>
+<!-- Add New Address Placeholder -->
+<button class="w-full py-10 border-2 border-dashed border-outline-variant/40 flex flex-col items-center justify-center space-y-3 hover:bg-surface-container-highest transition-colors group">
+<div class="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center text-outline group-hover:text-primary group-hover:border-primary transition-all">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant tracking-[0.25em]">ADD NEW ADDRESS</span>
+</button>
+</div>
+<!-- Botanical Visual Anchor -->
+<div class="mt-section-gap-sm opacity-20 pointer-events-none">
+<img alt="Botanical sketch" class="w-full h-48 object-cover grayscale mix-blend-multiply" data-alt="A delicate and minimalist charcoal botanical illustration of dried medicinal herbs and wild lavender on a textured cream parchment background. The style is vintage apothecary, with soft, feathered edges and significant negative space, evoking a sense of heritage, calm, and organic purity. Lighting is soft and diffused as if from a nearby window." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOM6mhc8qZvBXD4ooghizn9neESeZCX0fD6wtKw2diVQIyNNppspDJ_AKksLmwI-L7blWeIxrpAKFoe5W6ypCvHZbuXetq9jmq8QWB8QURaZ4bQ1sQjmDkh3h6bObAx3YQOisFJsTZw13M4kcGQS8hg5i4cb6XP4zEnsDydE7R6CN78RJ2weyPpWNApA8G1nakIAtPoy8urSemBp84SmvsHrd8QJt2AjAkeV9LAeQnzvT7JPRJHnJWXgyrpaOw5ALU0oDPzO8y-uyf"/>
+</div>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-surface dark:bg-primary-container border-t border-outline-variant/20">
+<button class="flex flex-col items-center justify-center text-on-secondary-container dark:text-on-tertiary-container space-y-1 hover:text-primary transition-colors active:scale-90 duration-150">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-caps text-label-caps">HOME</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-secondary-container dark:text-on-tertiary-container space-y-1 hover:text-primary transition-colors active:scale-90 duration-150">
+<span class="material-symbols-outlined" data-icon="spa">spa</span>
+<span class="font-label-caps text-label-caps">SHOP</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-secondary-container dark:text-on-tertiary-container space-y-1 hover:text-primary transition-colors active:scale-90 duration-150">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+<span class="font-label-caps text-label-caps">WISHLIST</span>
+</button>
+<button class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed-dim space-y-1 active:scale-90 duration-150">
+<span class="material-symbols-outlined" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-caps text-label-caps">PROFILE</span>
+</button>
+</nav>
+</body></html>

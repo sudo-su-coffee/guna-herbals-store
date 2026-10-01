@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Shop All | Nature's Alchemist Botanical Apothecary</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#fbf9f8",
+                    "on-secondary-fixed-variant": "#474742",
+                    "on-secondary": "#ffffff",
+                    "secondary": "#5f5e59",
+                    "tertiary": "#000201",
+                    "surface-container-high": "#eae8e6",
+                    "outline-variant": "#c2c8c5",
+                    "surface-container": "#efedec",
+                    "on-primary-fixed-variant": "#3a4a46",
+                    "inverse-primary": "#b8cac5",
+                    "surface-container-low": "#f5f3f2",
+                    "on-primary-fixed": "#0e1e1b",
+                    "on-tertiary-fixed-variant": "#414845",
+                    "outline": "#727876",
+                    "secondary-fixed-dim": "#c9c6c0",
+                    "primary": "#000101",
+                    "tertiary-fixed": "#dde4df",
+                    "tertiary-fixed-dim": "#c1c8c3",
+                    "secondary-fixed": "#e5e2db",
+                    "inverse-surface": "#303030",
+                    "on-secondary-fixed": "#1c1c18",
+                    "surface-dim": "#dbdad8",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-bright": "#fbf9f8",
+                    "error": "#ba1a1a",
+                    "on-primary-container": "#778884",
+                    "surface-card": "#ffffff",
+                    "on-tertiary-fixed": "#161d1a",
+                    "on-error": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-secondary-container": "#65645f",
+                    "inverse-on-surface": "#f2f0ef",
+                    "on-surface": "#1b1c1b",
+                    "on-surface-variant": "#424846",
+                    "text-muted": "rgba(15, 31, 28, 0.6)",
+                    "background": "#fbf9f8",
+                    "status-sale": "#0f1f1c",
+                    "primary-container": "#0f1f1c",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed-dim": "#b8cac5",
+                    "on-background": "#1b1c1b",
+                    "error-container": "#ffdad6",
+                    "brand-green": "#1a2e29",
+                    "surface-tint": "#51625e",
+                    "tertiary-container": "#171e1b",
+                    "primary-fixed": "#d4e6e1",
+                    "on-primary": "#ffffff",
+                    "surface-container-highest": "#e4e2e1",
+                    "border-subtle": "rgba(255, 255, 255, 0.1)"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "section-gap-sm": "2.5rem",
+                    "element-gap": "0.5rem",
+                    "container-margin": "1.5rem",
+                    "grid-gutter": "1rem",
+                    "section-gap-lg": "5rem"
+            },
+            "fontFamily": {
+                    "price-tag": ["Noto Sans"],
+                    "headline-md": ["Playfair Display"],
+                    "headline-lg": ["Playfair Display"],
+                    "label-caps": ["Noto Sans"],
+                    "display-lg": ["Playfair Display"],
+                    "body-md": ["Noto Sans"]
+            },
+            "fontSize": {
+                    "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                    "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                    "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .product-card-image-container:hover .secondary-image {
+            opacity: 1;
+        }
+        .secondary-image {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md selection:bg-brand-green selection:text-white">
+<!-- TopNavBar -->
+<nav class="w-full sticky top-0 z-50 bg-brand-green dark:bg-primary-container shadow-sm flex justify-between items-center px-12 py-6 w-full max-w-full mx-auto">
+<div class="flex items-center">
+<span class="font-display-lg text-headline-lg text-on-primary dark:text-on-primary-container tracking-tight">Nature's Alchemist</span>
+</div>
+<div class="hidden md:flex items-center space-x-10">
+<a class="text-on-primary font-bold border-b border-on-primary pb-1 font-body-md text-body-md uppercase tracking-widest transition-opacity duration-300" href="#">Shop All</a>
+<a class="text-on-primary-container opacity-80 font-body-md text-body-md uppercase tracking-widest hover:opacity-100 transition-opacity duration-300" href="#">Rituals</a>
+<a class="text-on-primary-container opacity-80 font-body-md text-body-md uppercase tracking-widest hover:opacity-100 transition-opacity duration-300" href="#">Heritage</a>
+<a class="text-on-primary-container opacity-80 font-body-md text-body-md uppercase tracking-widest hover:opacity-100 transition-opacity duration-300" href="#">Sustainability</a>
+<a class="text-on-primary-container opacity-80 font-body-md text-body-md uppercase tracking-widest hover:opacity-100 transition-opacity duration-300" href="#">Journal</a>
+<a class="text-on-primary-container opacity-80 font-body-md text-body-md uppercase tracking-widest hover:opacity-100 transition-opacity duration-300" href="#">Stockists</a>
+</div>
+<div class="flex items-center space-x-6 text-on-primary">
+<button class="cursor-pointer transition-transform duration-200 active:scale-95"><span class="material-symbols-outlined">search</span></button>
+<button class="cursor-pointer transition-transform duration-200 active:scale-95"><span class="material-symbols-outlined">person</span></button>
+<button class="cursor-pointer transition-transform duration-200 active:scale-95 flex items-center"><span class="material-symbols-outlined">shopping_bag</span><span class="ml-1 text-xs">0</span></button>
+</div>
+</nav>
+<main class="max-w-[1600px] mx-auto px-container-margin py-12 flex gap-12">
+<!-- Sidebar Filter -->
+<aside class="w-72 flex-shrink-0 hidden lg:block sticky top-32 h-fit">
+<div class="mb-10">
+<h3 class="font-label-caps text-label-caps uppercase text-on-surface-variant mb-6">Collections</h3>
+<ul class="space-y-3">
+<li><label class="flex items-center cursor-pointer group"><input class="w-4 h-4 rounded-none border-outline text-brand-green focus:ring-0 mr-3" type="checkbox"/><span class="font-body-md text-body-md group-hover:text-brand-green transition-colors">The Solstice Series</span></label></li>
+<li><label class="flex items-center cursor-pointer group"><input class="w-4 h-4 rounded-none border-outline text-brand-green focus:ring-0 mr-3" type="checkbox"/><span class="font-body-md text-body-md group-hover:text-brand-green transition-colors">Root &amp; Bark</span></label></li>
+<li><label class="flex items-center cursor-pointer group"><input class="w-4 h-4 rounded-none border-outline text-brand-green focus:ring-0 mr-3" type="checkbox"/><span class="font-body-md text-body-md group-hover:text-brand-green transition-colors">Coastal Forage</span></label></li>
+<li><label class="flex items-center cursor-pointer group"><input class="w-4 h-4 rounded-none border-outline text-brand-green focus:ring-0 mr-3" type="checkbox"/><span class="font-body-md text-body-md group-hover:text-brand-green transition-colors">Limited Distillations</span></label></li>
+</ul>
+</div>
+<div class="mb-10">
+<h3 class="font-label-caps text-label-caps uppercase text-on-surface-variant mb-6">Botanical Properties</h3>
+<ul class="space-y-3">
+<li><label class="flex items-center cursor-pointer group"><input class="w-4 h-4 rounded-none border-outline text-brand-green focus:ring-0 mr-3" type="checkbox"/><span class="font-body-md text-body-md group-hover:text-brand-green transition-colors">Calming (Valerian)</span></label></li>
+<li><label class="flex items-center cursor-pointer group"><input class="w-4 h-4 rounded-none border-outline text-brand-green focus:ring-0 mr-3" type="checkbox"/><span class="font-body-md text-body-md group-hover:text-brand-green transition-colors">Invigorating (Pine)</span></label></li>
+<li><label class="flex items-center cursor-pointer group"><input class="w-4 h-4 rounded-none border-outline text-brand-green focus:ring-0 mr-3" type="checkbox"/><span class="font-body-md text-body-md group-hover:text-brand-green transition-colors">Healing (Calendula)</span></label></li>
+<li><label class="flex items-center cursor-pointer group"><input class="w-4 h-4 rounded-none border-outline text-brand-green focus:ring-0 mr-3" type="checkbox"/><span class="font-body-md text-body-md group-hover:text-brand-green transition-colors">Clarity (Rosemary)</span></label></li>
+</ul>
+</div>
+<div class="mb-10">
+<h3 class="font-label-caps text-label-caps uppercase text-on-surface-variant mb-6">Price Range</h3>
+<div class="px-2">
+<input class="w-full h-1 bg-surface-container-high rounded-full appearance-none cursor-pointer accent-brand-green" type="range"/>
+<div class="flex justify-between mt-4 font-price-tag text-price-tag text-on-surface-variant">
+<span>$20</span>
+<span>$250+</span>
+</div>
+</div>
+</div>
+<div class="pt-6 border-t border-outline-variant">
+<button class="w-full py-4 bg-brand-green text-on-primary font-label-caps text-label-caps uppercase transition-all duration-300 hover:opacity-90 active:scale-95">Clear Filters</button>
+</div>
+</aside>
+<!-- Product Grid -->
+<section class="flex-grow">
+<header class="mb-12 flex justify-between items-end">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-2">Shop All</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Hand-crafted elixirs for the modern soul. (12 Products)</p>
+</div>
+<div class="flex items-center space-x-4">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Sort By:</span>
+<select class="bg-transparent border-none font-body-md text-body-md text-on-surface focus:ring-0 py-0 pr-8 cursor-pointer">
+<option>Curated Selection</option>
+<option>Newest Arrivals</option>
+<option>Price: Low to High</option>
+<option>Price: High to Low</option>
+</select>
+</div>
+</header>
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-x-6 gap-y-12">
+<!-- Product 1 -->
+<article class="group">
+<div class="product-card-image-container relative aspect-[4/5] bg-surface-container overflow-hidden cursor-pointer">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="A premium dark glass apothecary bottle with a minimalist cream label placed on a piece of raw cedar wood. Soft, dramatic side lighting from a nearby window creates a luxurious, earthy mood. The scene is clean, minimal, and reflects a high-end wellness brand aesthetic with a palette of deep greens and natural wood tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVSAk92ibkLxz2tFGjNHAYm_u04v4vnRTTx5oIA6H4bqil4OaKM2aVoKSRa1PUx1Qx9kP9Rutpu7wYbvjZl98Mtd52eJpxvbSnYltvUHNzAY_LnCy4ZeryOYPd_a6XoJTkzT69dr6lfn8wSnx6asL8YhsCzQfKv6wImz7MCJ_ad0UldpY4A8MWqlmdmXxZUt3AcJjHAYXpNVZA_HMJB6bydO7PakgDZALy79tuAr6IaGgJLmu65sn_drejPsa2o_xsU5j8F5jTeatc"/>
+<img class="secondary-image absolute inset-0 w-full h-full object-cover" data-alt="A close-up shot of rich, golden-hued botanical oil being poured from a glass dropper into a palm. The lighting is warm and ethereal, highlighting the texture and purity of the liquid. The background is a soft-focus minimalist cream surface, maintaining the premium apothecary brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvF-Gqp1C3ElA8QR2Ah1rBo7-dEhTh-v6RKZ7lxMjeIBA2FxeVJ6aLm60ZECQh9yHchP2Jox-NlASsVaZ_goLwRgskdjq54XIJScnRb0g0SUx5vi11UZnkxf4UXh4lhY56PcC6nCjsVwNXaSXkaw0C82opJRYkSE3KVZW5eTY3iCoWSkE6YFY8s4NF1L4A7JnuyMR9H1VGXpxXHz5WWHsJ-j_QauoICTXBdplpGVD2U5JuKpBWji2KeOHIPB6c6bEOX-bEbsEdU6JU"/>
+<div class="absolute top-0 left-0 bg-brand-green px-3 py-1">
+<span class="font-label-caps text-[9px] font-bold text-on-primary uppercase tracking-widest">New Arrival</span>
+</div>
+<button class="absolute bottom-4 left-1/2 -translate-x-1/2 w-3/4 py-3 bg-white/90 backdrop-blur-sm text-brand-green font-label-caps text-label-caps uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300">Quick Add</button>
+</div>
+<div class="mt-4 flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-brand-green transition-colors">Evening Primrose Elixir</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Calming • Restoration</p>
+</div>
+<span class="font-price-tag text-price-tag">$72.00</span>
+</div>
+</article>
+<!-- Product 2 -->
+<article class="group">
+<div class="product-card-image-container relative aspect-[4/5] bg-surface-container overflow-hidden cursor-pointer">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="A sophisticated white ceramic vessel containing a botanical candle, surrounded by dried lavender sprigs and raw crystals. The environment is a clean, modern bathroom with marble accents and bright, high-key lighting. The aesthetic is serene, upscale, and focuses on the intersection of ritual and minimalism." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjHppd8TkkWcGTOYWIz84dVCgIq1PJjhfwjovJvwGH0tVhZu6zy0S68jSfS9fWT_BZGpNdzr25bppztTaJ17Fv01guZtEcIPAIPDhaV-sEWyKirqwOR5Bv0nzbzILpXPIwZlxLC4_H81RHF_XcvU2k8fKdKr-e6pMnYTxM3ByPosGIqcJNNBKtRyFQnmwc6xUOtnkzAbndlaW5M1HiVQ866a1G3Ynxe_F7v1q1Tl_NwZQCMoe33kt7JBr6PxCbQS4N7blrbLnRcI3z"/>
+<img class="secondary-image absolute inset-0 w-full h-full object-cover" data-alt="A minimalist overhead flat lay of the open ceramic candle vessel showing the natural wax texture and a single wooden wick. Surrounding the candle are small, dark green botanical leaves on a textured light gray surface. The lighting is soft and shadowless, emphasizing the tactile qualities of the product." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6SJzcBKxWpJVMW1MfHxKxLvK3rhn3tkWHEHDvnzofZYbMIchwgtGq14z9Dzk9UY-3vbnuV8GOrrG6Ph7taNAgnnKB_llFoL4Nnm4tC9jwpvgBtvaSEXs_rNYgBJ8QPLHRb_1-RDeM-mP1qbzziaoysHVtVDWKpmUpQyUGIjfCKCa6L6KMAzLNB_UAZB9OUtX0-XAA00jj2d-jeSr9eqDuLhSZ8xk931vonFnZiOJWvg7bRVmpCJwKeq3LsNVk6C5S_E8G6m2gDxLx"/>
+<button class="absolute bottom-4 left-1/2 -translate-x-1/2 w-3/4 py-3 bg-white/90 backdrop-blur-sm text-brand-green font-label-caps text-label-caps uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300">Quick Add</button>
+</div>
+<div class="mt-4 flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-brand-green transition-colors">Lunar Mist Candle</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Lucidity • Atmosphere</p>
+</div>
+<span class="font-price-tag text-price-tag">$48.00</span>
+</div>
+</article>
+<!-- Product 3 -->
+<article class="group">
+<div class="product-card-image-container relative aspect-[4/5] bg-surface-container overflow-hidden cursor-pointer">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="A collection of three tall, slender glass tinctures with cork stoppers, arranged asymmetrically on a slate stone. The background is a soft, earthy olive green wall. The lighting is moody and focused, highlighting the amber liquid inside the bottles and creating a sense of ancient herbal wisdom meets modern design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3rHprmI4C8bHDzB8Z30UrYeQig3lOWI2vJSqUKpFZ6LlMtyybytfbGZsnI2Tsna_t6NvV6ebIIuwgD9jDKstpTDOfsdUcPZiStZ4axXM981TEXHcZwtSFS-lrr7BMRcCmiA2hW2GO0ULWeaLOCOI5mZYt0M_iVbh49jE07RZHCYk2OBvSxjQterclSKRyL4ikdSiJprbDw3ZGaziz5KUkY1MOx4KMu_2CM9v3s1mC0AIWR771ACS8pYZVLhdbLBcyXiBS1b_nwP8W"/>
+<img class="secondary-image absolute inset-0 w-full h-full object-cover" data-alt="A macro shot of a single amber glass dropper bottle being held by a hand against a blurred background of a botanical garden. Sunlight filters through the leaves, creating a beautiful bokeh effect and a sense of connection to the source of the herbal ingredients. The mood is authentic and life-affirming." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5uIBPcQrbL85IT3uRm5prENFx4aH3zwDWiOzlDMoqVl3teIkHdTNN0rXqYTTl3LItl-eIL9n51JiZhfcPlXmKYls_Nc4F1tdXtVd_alzB2Lj3ewjSHz_XFf-I1fCWvf_nYFNqvKeXOcCcWKVi0SU9eT-0w9gQPio6hUSEQz-twh69SnAHDXpUzMyM1XRvROzOJHqGisilubenQdfKZxnGl804zmvlPF33UQs_GECp1RywdvNJf6hPSscotC4AXHyCWdudJRrOwXAf"/>
+<div class="absolute top-0 left-0 bg-on-surface px-3 py-1">
+<span class="font-label-caps text-[9px] font-bold text-on-primary uppercase tracking-widest">Limited Edition</span>
+</div>
+<button class="absolute bottom-4 left-1/2 -translate-x-1/2 w-3/4 py-3 bg-white/90 backdrop-blur-sm text-brand-green font-label-caps text-label-caps uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300">Quick Add</button>
+</div>
+<div class="mt-4 flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-brand-green transition-colors">Ancient Forest Tincture</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Grounding • Vitality</p>
+</div>
+<span class="font-price-tag text-price-tag">$94.00</span>
+</div>
+</article>
+<!-- Product 4 -->
+<article class="group">
+<div class="product-card-image-container relative aspect-[4/5] bg-surface-container overflow-hidden cursor-pointer">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="A modern glass jar of botanical bath salts, showing large crystalline structures and dried flower petals inside. The jar sits on a minimalist cream-colored plinth in a very bright, airy room. The shadows are long and soft, suggesting a late afternoon serenity. The visual style is exceptionally clean and high-end." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWtiODWbHJLS5HQS0uJFO35SNYz0iJ60TLGZiAwbbFaSmHng0JmGM1OetLNopKtlsc40UZ0En1hKJKwjGfhCu20HyFMVzawLO9_E4qgFQggo1PUEQvegYK5D43Arv-msb92nymvG_JMXbJJ6Vsslv0rBtOkk8_JQcEfN_mgl-3L0wMhjDw2J6PwCQj-Ut6do0naWLPLZla1EN2Z1kAEUBVjIJh-1jCIal_3DElSEGn1PVbWCuoGuUkK45eMyXVqWJSkOkkNBb4Y-Ac"/>
+<img class="secondary-image absolute inset-0 w-full h-full object-cover" data-alt="A lifestyle shot of a bathtub being filled with water, with handfuls of bath salts and petals floating on the surface. The steam is visible in the soft, diffused morning light. The setting is a luxurious, modern spa-like bathroom with neutral tones and natural textures like linen and stone." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPxpBAMAae71F8H3kqrnxmfT-7A12466HR2tb2nftHpRpDvd1en4m-sanAYbu96FVggThRQFsUaaw8ghUJXNRHe-iXR-t0eFEbETVFl5yommlhuIO19ZDjyRbd1ytKpRIRwysLuNYqnnwULR6AHmFmSL3bbAYGol7yGjhqq74LXZeH0cRIjwnuxZfSSADIwqHI9U2PS8-4qcTURlAYF9aJHD9zt034_QFu6L857oI4-cpbRi_pl3zoY_9XlVxlO7XMGysKhwQB7vGu"/>
+<button class="absolute bottom-4 left-1/2 -translate-x-1/2 w-3/4 py-3 bg-white/90 backdrop-blur-sm text-brand-green font-label-caps text-label-caps uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300">Quick Add</button>
+</div>
+<div class="mt-4 flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-brand-green transition-colors">Coastal Salt Soak</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Detox • Minerals</p>
+</div>
+<span class="font-price-tag text-price-tag">$36.00</span>
+</div>
+</article>
+<!-- Product 5-8 Placeholder items for the grid feel -->
+<article class="group">
+<div class="product-card-image-container relative aspect-[4/5] bg-surface-container overflow-hidden cursor-pointer">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="A set of small ceramic bowls containing various ground botanical powders in shades of sage green, terracotta, and ochre. They are arranged in a circular pattern on a light-colored wooden table. The lighting is overhead and soft, emphasizing the organic textures of the powders and the artisanal nature of the products." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQV7KP-py9SxJ7N_dg7rxufbz9QQ476z36hLG8z10N_MgM2lqI5LfcwaL1xltQREATpELdw8a4ed0OicS7VkCl4Lus__sMWK0GVIyeH5WMk41zELB-vq5uKNvaGzkW79Pdr1gRceo2ClC47EVNgK20IdEJrTO5RNZDoFobeqtlyJS4jo3f62-ookfvsBowB173rgNsaULHGJQP94cB0BqOtQor1UrE4lqHINBTrSOrcLJ--cnMAXbXqf-HFFN-blth_0-pBntQIJBN"/>
+<button class="absolute bottom-4 left-1/2 -translate-x-1/2 w-3/4 py-3 bg-white/90 backdrop-blur-sm text-brand-green font-label-caps text-label-caps uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300">Quick Add</button>
+</div>
+<div class="mt-4 flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-brand-green transition-colors">Sage Clay Mask</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Purifying • Earth</p>
+</div>
+<span class="font-price-tag text-price-tag">$52.00</span>
+</div>
+</article>
+<article class="group">
+<div class="product-card-image-container relative aspect-[4/5] bg-surface-container overflow-hidden cursor-pointer">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="A group of artisan soap bars wrapped in recycled paper and tied with twine, with a sprig of rosemary tucked into the knot. They are stacked on a rustic, weathered wooden board. The lighting is warm and golden, evoking a sense of heritage and handcrafted quality. The palette is dominated by natural browns and greens." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpVR-zGKKm6Chi0Wz9x4uQKZ9AP2keHCGk0pj_YxBR6VyQ2HGfmYbX-6EoZf1kcRgKsKETyyojtr7Flm7LizE2712dgwn8G2QkRD_oOmvchFp8lwINWhNz9eW3yQ8QZl5rrA-HStccAQG7YgA5xMe6wJQUzmBDWu7nDHYXm7wnNXbubVC4H1U1Iy4YVP2aDhBE9joKDC_jyURMTPq-1u2TgJAblTzdXjUcs8E3uFaQfoOTgWuv4q26acGShS8S2ExeTZtWQ5yiGP7c"/>
+<button class="absolute bottom-4 left-1/2 -translate-x-1/2 w-3/4 py-3 bg-white/90 backdrop-blur-sm text-brand-green font-label-caps text-label-caps uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300">Quick Add</button>
+</div>
+<div class="mt-4 flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-brand-green transition-colors">Rosemary Bark Soap</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Exfoliate • Refresh</p>
+</div>
+<span class="font-price-tag text-price-tag">$18.00</span>
+</div>
+</article>
+<article class="group">
+<div class="product-card-image-container relative aspect-[4/5] bg-surface-container overflow-hidden cursor-pointer">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="A sleek glass spray bottle with a minimalist label, standing on a reflective dark surface. Fine mist particles are caught in a single beam of light against a dark, moody background. The image is dramatic and high-contrast, emphasizing the lightness and atmospheric quality of the floral water product." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHCnjZKYPBNn7WhSwLh69BZ_T3Y2rPBOG3_a66aZXYSuvtYvIm25YA0Oy1nInVgfFfVqPG2S4yFIXFrmwknmLH-LCQ125ZQ5RzuBk-luZEFZohce575LSVl436uZB8gXOxCp1V1zrPXVamNHvRNLrioFZRzEk1exz4HjcvFiPiq7kVwLC5gD4LOJQuMG_jCIGiV4zMTTieCKP03tWoOM3MFIfYV9aZTaVePC5piIzdFWpJ0N_CutcHZBuCl8bl77JiaVd-o6reWThW"/>
+<button class="absolute bottom-4 left-1/2 -translate-x-1/2 w-3/4 py-3 bg-white/90 backdrop-blur-sm text-brand-green font-label-caps text-label-caps uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300">Quick Add</button>
+</div>
+<div class="mt-4 flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-brand-green transition-colors">Neroli Floral Water</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Hydrate • Floral</p>
+</div>
+<span class="font-price-tag text-price-tag">$32.00</span>
+</div>
+</article>
+<article class="group">
+<div class="product-card-image-container relative aspect-[4/5] bg-surface-container overflow-hidden cursor-pointer">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="A small tin of botanical lip balm sitting on a pile of fresh mint leaves. The scene is bright and invigorating, with cool morning light. The background is a clean, white-washed wood texture. The image focuses on the freshness and natural potency of the ingredients, maintaining a crisp, minimalist aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9oiG7x8MIRSWdeLj7JKmEDVVYooPt24KSMnNr60xH0wEAfhyiO-XerJy1aIQ4ML-DOrnW-WuX7AoxtiJYXBWn99Tz5U-fz_dVpt62VTWGampX8lNJCumETKlRIAcQtyFGNkLCfbovOaqVdpWjz3xLxg4ABJ7fGZ0475cX87Iflg7A3C8mGev3qp8chc-hPN2RFuxFDPtBP6bRECdjg5HkXQU3KCqFqWU1NbtDpWo4uFE2k3tR1EXd8TLvFDqwrppJslIqGBZJ62Uz"/>
+<button class="absolute bottom-4 left-1/2 -translate-x-1/2 w-3/4 py-3 bg-white/90 backdrop-blur-sm text-brand-green font-label-caps text-label-caps uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300">Quick Add</button>
+</div>
+<div class="mt-4 flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-brand-green transition-colors">Spearmint Lip Balm</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Soothe • Fresh</p>
+</div>
+<span class="font-price-tag text-price-tag">$14.00</span>
+</div>
+</article>
+</div>
+<!-- Pagination -->
+<div class="mt-20 flex justify-center items-center space-x-6 border-t border-outline-variant pt-12">
+<button class="font-label-caps text-label-caps uppercase text-on-surface-variant hover:text-brand-green transition-colors flex items-center">
+<span class="material-symbols-outlined text-sm mr-2">arrow_back</span> Prev
+                </button>
+<div class="flex space-x-4">
+<span class="font-label-caps text-label-caps uppercase text-brand-green font-bold">1</span>
+<a class="font-label-caps text-label-caps uppercase text-on-surface-variant hover:text-brand-green transition-colors" href="#">2</a>
+<a class="font-label-caps text-label-caps uppercase text-on-surface-variant hover:text-brand-green transition-colors" href="#">3</a>
+</div>
+<button class="font-label-caps text-label-caps uppercase text-on-surface-variant hover:text-brand-green transition-colors flex items-center">
+                    Next <span class="material-symbols-outlined text-sm ml-2">arrow_forward</span>
+</button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-section-gap-lg bg-surface-container-lowest dark:bg-surface-dim border-t border-outline-variant">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-grid-gutter px-container-margin py-section-gap-sm max-w-7xl mx-auto">
+<div class="md:col-span-1">
+<span class="font-display-lg text-headline-md text-brand-green mb-6 block">Nature's Alchemist</span>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs">Botanical wisdom distilled for the modern apothecary. Join our circle for heritage rituals and sustainable living.</p>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps uppercase text-on-surface mb-6">Discover</h4>
+<ul class="space-y-3">
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-brand-green transition-colors" href="#">Sourcing Ethics</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-brand-green transition-colors" href="#">Plastic Neutrality</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-brand-green transition-colors" href="#">Refill Program</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps uppercase text-on-surface mb-6">Support</h4>
+<ul class="space-y-3">
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-brand-green transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-brand-green transition-colors" href="#">Terms of Service</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-brand-green transition-colors" href="#">Shipping &amp; Returns</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps uppercase text-on-surface mb-6">Connect</h4>
+<form class="relative mb-6">
+<input class="w-full bg-transparent border-b border-outline-variant py-2 focus:border-brand-green focus:ring-0 text-body-md outline-none transition-colors" placeholder="Your email" type="email"/>
+<button class="absolute right-0 bottom-2 text-brand-green"><span class="material-symbols-outlined">arrow_forward</span></button>
+</form>
+<div class="flex space-x-4">
+<a class="text-on-surface-variant hover:text-brand-green transition-colors" href="#"><span class="material-symbols-outlined">share</span></a>
+<a class="text-on-surface-variant hover:text-brand-green transition-colors" href="#"><span class="material-symbols-outlined">public</span></a>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-container-margin py-8 border-t border-outline-variant/30 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+<span class="font-body-md text-body-md text-on-surface-variant opacity-60">© 2024 Nature's Alchemist Botanical Apothecary. All rights reserved.</span>
+<div class="flex space-x-6 text-[10px] uppercase tracking-widest font-bold text-on-surface-variant opacity-60">
+<span>Handcrafted in Vermont</span>
+<span>Small Batch</span>
+</div>
+</div>
+</footer>
+<!-- Mobile Filter Trigger (FAB) -->
+<button class="lg:hidden fixed bottom-8 right-8 w-14 h-14 bg-brand-green text-on-primary rounded-full shadow-lg flex items-center justify-center z-50 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+<script>
+        // Simple Interaction: Smooth reveal on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.remove('opacity-0', 'translate-y-4');
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('article').forEach(el => {
+            el.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-4');
+            observer.observe(el);
+        });
+
+        // Search Bar Placeholder Interaction
+        const searchBtn = document.querySelector('nav .material-symbols-outlined[data-icon="search"]') || document.querySelectorAll('nav span')[7];
+        if(searchBtn) {
+            searchBtn.parentElement.addEventListener('click', () => {
+                console.log('Search interface overlay triggered');
+            });
+        }
+    </script>
+</body></html>

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Apothecary Admin - RBAC Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error": "#ba1a1a",
+                        "text-muted": "rgba(15, 31, 28, 0.6)",
+                        "surface-bright": "#fbf9f8",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#c1c8c3",
+                        "surface-variant": "#e4e2e1",
+                        "brand-green": "#1a2e29",
+                        "on-surface": "#1b1c1b",
+                        "on-tertiary-fixed": "#161d1a",
+                        "secondary-fixed": "#e5e2db",
+                        "on-tertiary": "#ffffff",
+                        "secondary-container": "#e5e2db",
+                        "primary": "#000101",
+                        "primary-fixed-dim": "#b8cac5",
+                        "surface-container-low": "#f5f3f2",
+                        "on-tertiary-container": "#7f8682",
+                        "surface-card": "#ffffff",
+                        "tertiary-fixed": "#dde4df",
+                        "on-error": "#ffffff",
+                        "primary-container": "#0f1f1c",
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#c2c8c5",
+                        "tertiary-container": "#171e1b",
+                        "tertiary": "#000201",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#b8cac5",
+                        "surface-container": "#efedec",
+                        "on-surface-variant": "#424846",
+                        "status-sale": "#0f1f1c",
+                        "surface-container-high": "#eae8e6",
+                        "surface": "#fbf9f8",
+                        "background": "#fbf9f8",
+                        "surface-dim": "#dbdad8",
+                        "surface-container-highest": "#e4e2e1",
+                        "on-background": "#1b1c1b",
+                        "on-tertiary-fixed-variant": "#414845",
+                        "border-subtle": "rgba(255, 255, 255, 0.1)",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#3a4a46",
+                        "on-secondary-container": "#65645f",
+                        "secondary-fixed-dim": "#c9c6c0",
+                        "on-secondary-fixed-variant": "#474742",
+                        "inverse-on-surface": "#f2f0ef",
+                        "primary-fixed": "#d4e6e1",
+                        "on-primary-fixed": "#0e1e1b",
+                        "outline": "#727876",
+                        "surface-tint": "#51625e",
+                        "inverse-surface": "#303030",
+                        "on-secondary-fixed": "#1c1c18",
+                        "on-primary-container": "#778884",
+                        "secondary": "#5f5e59"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "container-margin": "1.5rem",
+                        "section-gap-lg": "5rem",
+                        "element-gap": "0.5rem",
+                        "section-gap-sm": "2.5rem",
+                        "grid-gutter": "1rem"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Noto Sans"],
+                        "price-tag": ["Noto Sans"],
+                        "body-md": ["Noto Sans"],
+                        "headline-md": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                        "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                        "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                        "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #fbf9f8;
+            color: #1b1c1b;
+        }
+        .sidebar-active {
+            color: #fbf9f8 !important;
+            font-weight: 700 !important;
+            border-left-width: 4px;
+            border-color: #fbf9f8 !important;
+            padding-left: 1rem !important;
+        }
+        /* Custom Toggle Switch for RBAC */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #1a2e29;
+            background-color: #1a2e29;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #1a2e29;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-brand-green dark:bg-primary-container flex flex-col py-8 z-50">
+<div class="px-6 mb-12">
+<h1 class="font-headline-md text-headline-md text-surface-bright leading-tight">Apothecary Admin</h1>
+<p class="font-body-md text-surface-bright/60 text-xs tracking-widest uppercase">Premium Botanical</p>
+</div>
+<nav class="flex-grow space-y-2">
+<a class="flex items-center text-on-primary-container/70 dark:text-on-primary-container/50 hover:text-surface-bright pl-5 py-3 transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined mr-4" data-icon="dashboard">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center text-on-primary-container/70 dark:text-on-primary-container/50 hover:text-surface-bright pl-5 py-3 transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined mr-4" data-icon="herbal_medicine">kebab_dining</span>
+                Inventory
+            </a>
+<a class="flex items-center text-on-primary-container/70 dark:text-on-primary-container/50 hover:text-surface-bright pl-5 py-3 transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined mr-4" data-icon="shopping_bag">shopping_bag</span>
+                Orders
+            </a>
+<a class="flex items-center text-on-primary-container/70 dark:text-on-primary-container/50 hover:text-surface-bright pl-5 py-3 transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined mr-4" data-icon="group">group</span>
+                Customers
+            </a>
+<a class="flex items-center text-on-primary-container/70 dark:text-on-primary-container/50 hover:text-surface-bright pl-5 py-3 transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined mr-4" data-icon="leaderboard">leaderboard</span>
+                Analytics
+            </a>
+<a class="flex items-center sidebar-active text-surface-bright font-bold border-l-4 border-surface-bright pl-4 py-3 group" href="#">
+<span class="material-symbols-outlined mr-4" data-icon="settings">settings</span>
+                Settings
+            </a>
+</nav>
+<div class="mt-auto px-5 space-y-4 pt-8 border-t border-white/10">
+<button class="w-full bg-surface-bright text-brand-green py-3 px-4 font-label-caps text-label-caps hover:bg-surface-container transition-colors">
+                New Formulation
+            </button>
+<div class="space-y-1">
+<a class="flex items-center text-on-primary-container/70 dark:text-on-primary-container/50 hover:text-surface-bright py-2 group" href="#">
+<span class="material-symbols-outlined mr-3 text-sm" data-icon="help_outline">help_outline</span>
+                    Support
+                </a>
+<a class="flex items-center text-on-primary-container/70 dark:text-on-primary-container/50 hover:text-surface-bright py-2 group" href="#">
+<span class="material-symbols-outlined mr-3 text-sm" data-icon="logout">logout</span>
+                    Sign Out
+                </a>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center px-container-margin py-4 w-full bg-surface-bright dark:bg-surface border-b border-outline-variant/30 sticky top-0 z-40">
+<div class="flex items-center space-x-8">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-text-muted" data-icon="search">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container border-none text-body-md focus:ring-1 focus:ring-brand-green w-64 rounded-none" placeholder="Search accounts or roles..." type="text"/>
+</div>
+<nav class="hidden md:flex items-center space-x-6">
+<a class="text-text-muted hover:text-primary font-label-caps text-label-caps transition-all" href="#">Direct Ship</a>
+<a class="text-text-muted hover:text-primary font-label-caps text-label-caps transition-all" href="#">Wholesale</a>
+<a class="text-text-muted hover:text-primary font-label-caps text-label-caps transition-all" href="#">Archive</a>
+</nav>
+</div>
+<div class="flex items-center space-x-6">
+<button class="bg-brand-green text-surface-bright px-6 py-2 font-label-caps text-label-caps transition-all active:scale-[0.98]">
+                    Create Report
+                </button>
+<div class="flex items-center space-x-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary" data-icon="notifications">notifications</span>
+<div class="w-8 h-8 rounded-full overflow-hidden bg-brand-green flex items-center justify-center">
+<span class="material-symbols-outlined text-surface-bright text-lg" data-icon="account_circle">account_circle</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Canvas Container -->
+<section class="p-container-margin max-w-7xl mx-auto space-y-section-gap-sm">
+<!-- Page Header -->
+<div class="flex justify-between items-end">
+<div class="space-y-1">
+<h2 class="font-headline-lg text-headline-lg text-primary">Team &amp; Permissions</h2>
+<p class="text-text-muted max-w-lg">Manage administrator access levels and granular functional permissions for the Apothecary ecosystem.</p>
+</div>
+<button class="border border-brand-green text-brand-green px-8 py-3 font-label-caps text-label-caps hover:bg-brand-green hover:text-surface-bright transition-all" onclick="toggleInviteModal()">
+                    Invite New Team Member
+                </button>
+</div>
+<!-- Bento Grid Section -->
+<div class="grid grid-cols-12 gap-grid-gutter items-start">
+<!-- Administrator List (Asymmetric Column) -->
+<div class="col-span-12 lg:col-span-4 space-y-grid-gutter">
+<div class="bg-surface-card p-6 border border-outline-variant/20 shadow-sm">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-md text-headline-md">Administrators</h3>
+<span class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-0.5 tracking-wider uppercase">8 Active</span>
+</div>
+<div class="divide-y divide-outline-variant/30">
+<!-- Team Member Card -->
+<div class="py-4 flex items-center justify-between group cursor-pointer hover:bg-surface-container-low px-2 transition-colors">
+<div class="flex items-center space-x-4">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="A portrait of a male administrator in a clean minimalist environment, with soft natural lighting and a background suggestive of a high-end apothecary or botanical studio. The lighting is bright and airy, reflecting a modern light-mode UI design style with muted earthy tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIEhEhHLpT0a4XqRpV1Zx2jZSGuAiSNd7_6rJlgClnJL9sNS6gKpFCA_CgRBsUX8EncubPTYlHMPcXjns17ZRxWUN4drpy0kk2EnV9LpjsdCrZ6caQYzt6FGl31lKMaCPiarZW1ChZ2lAn4sdJ6Tr8lAssolu5F21NrahE6le2db1BgouLGfcIAasPDEN6LNo-TZLrIFX_pe0ZTZcn_NWcD8oWx8DfpHFIQoUcs8LY15wmsBbaPr-HMygluOKflwGS4MjzJ2s2jBEb"/>
+<div>
+<h4 class="font-bold text-primary">Elias Thorne</h4>
+<p class="text-xs text-text-muted uppercase tracking-tighter">Super Admin</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-text-muted opacity-0 group-hover:opacity-100 transition-opacity" data-icon="more_vert">more_vert</span>
+</div>
+<div class="py-4 flex items-center justify-between group cursor-pointer hover:bg-surface-container-low px-2 transition-colors">
+<div class="flex items-center space-x-4">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="A professional headshot of a female administrative editor in a high-end wellness brand studio. The image captures a clean, premium minimalist aesthetic with bright, white background illumination and soft shadows. The overall mood is sophisticated and authentic to a luxury botanical brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDogDHJP01EGrybQ2_NqJ_4_hpOahskBcV_ZfqdRCH1fLfRAgIiqc70sg3igWhFf4XT4umKw7CLAFe25HhGl9OPPuHbmg2XCMtWVh7jykWWgfZ5HkQeVBagK9F4ezWO_CU3NE2n7guQsFVQ6TlQFCFlNsAxTYrxiz3Cspud4McpdtJzL_gK1gxjPl4z08sbE1sBrfrhKVcy8FSxZnWug5jNELun0zt2kIfLwjbw8FYWmEWgGBihSo0bx2c6NhqtIEkLTiJ43fBbOru-"/>
+<div>
+<h4 class="font-bold text-primary">Clara Vance</h4>
+<p class="text-xs text-text-muted uppercase tracking-tighter">Senior Editor</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-text-muted opacity-0 group-hover:opacity-100 transition-opacity" data-icon="more_vert">more_vert</span>
+</div>
+<div class="py-4 flex items-center justify-between group cursor-pointer hover:bg-surface-container-low px-2 transition-colors">
+<div class="flex items-center space-x-4">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="A portrait of a male logistics manager for a luxury health brand, set against a backdrop of organized botanical samples. The aesthetic is clean and tactile with heavy use of white space and bright, professional lighting. The color palette consists of cream, dark green, and warm wood tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCf1abIkNXLMrhR-qMbhqaVSt-KMHC15F50kmVp8StbVlKAfbJqxFY7Q_oOtQIbdAhW8TplhtNYzpk__AqSkNz19X062xr3Q2gQJRf-A1-N8QqDFN3ZSCEztcF0JC03TGlBVmpaPa7vGpUkc-6zBqAb3IX3NQGNLIFG2vmKMr9sc8ddDAUnsjhCmlSQTHBCuOEqriUd4s8-FluOImQzOskFH1u6To_Aw_nciL1hWWWshibh0nvML2mOj1gokH8ja0cLidras98yGRwO"/>
+<div>
+<h4 class="font-bold text-primary">Julian Reed</h4>
+<p class="text-xs text-text-muted uppercase tracking-tighter">Logistics Manager</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-text-muted opacity-0 group-hover:opacity-100 transition-opacity" data-icon="more_vert">more_vert</span>
+</div>
+<div class="py-4 flex items-center justify-between group cursor-pointer hover:bg-surface-container-low px-2 transition-colors">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed flex items-center justify-center font-bold text-brand-green">SM</div>
+<div>
+<h4 class="font-bold text-primary">Sarah Miller</h4>
+<p class="text-xs text-text-muted uppercase tracking-tighter">Support Lead</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-text-muted opacity-0 group-hover:opacity-100 transition-opacity" data-icon="more_vert">more_vert</span>
+</div>
+</div>
+<button class="w-full mt-6 py-3 text-brand-green font-label-caps text-label-caps border border-outline-variant/30 hover:bg-surface-container transition-all">
+                            View All Staff
+                        </button>
+</div>
+<!-- Role Stats Card -->
+<div class="bg-brand-green p-8 text-surface-bright space-y-4">
+<h3 class="font-headline-md text-headline-md">Role Efficiency</h3>
+<p class="text-surface-bright/70 text-sm">System access is currently optimized. All users are assigned to verified operational roles.</p>
+<div class="pt-4">
+<div class="flex justify-between text-[10px] font-bold uppercase tracking-widest mb-2">
+<span>Security Compliance</span>
+<span>98%</span>
+</div>
+<div class="h-1 bg-white/10 w-full">
+<div class="h-1 bg-surface-bright w-[98%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- RBAC Permissions Table (The Core) -->
+<div class="col-span-12 lg:col-span-8">
+<div class="bg-surface-card border border-outline-variant/20 shadow-sm overflow-hidden">
+<div class="p-8 border-b border-outline-variant/30 flex justify-between items-center">
+<div>
+<h3 class="font-headline-md text-headline-md mb-1">Role Permissions</h3>
+<p class="text-xs text-text-muted uppercase tracking-widest">Active Role: <span class="text-primary font-bold">Senior Editor</span></p>
+</div>
+<div class="flex space-x-2">
+<button class="p-2 border border-outline-variant/30 hover:bg-surface-container"><span class="material-symbols-outlined" data-icon="edit">edit</span></button>
+<button class="p-2 border border-outline-variant/30 hover:bg-surface-container"><span class="material-symbols-outlined" data-icon="history">history</span></button>
+</div>
+</div>
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low">
+<th class="p-6 font-label-caps text-label-caps border-b border-outline-variant/30">Functional Area</th>
+<th class="p-6 font-label-caps text-label-caps text-center border-b border-outline-variant/30">View</th>
+<th class="p-6 font-label-caps text-label-caps text-center border-b border-outline-variant/30">Edit</th>
+<th class="p-6 font-label-caps text-label-caps text-center border-b border-outline-variant/30">Delete</th>
+<th class="p-6 font-label-caps text-label-caps text-center border-b border-outline-variant/30">Export</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/20">
+<!-- Row 1 -->
+<tr>
+<td class="p-6">
+<div class="flex items-center space-x-3">
+<span class="material-symbols-outlined text-brand-green" data-icon="herbal_medicine">kebab_dining</span>
+<div>
+<span class="font-bold text-primary block">Inventory Management</span>
+<span class="text-[10px] text-text-muted">Botanical stocks &amp; suppliers</span>
+</div>
+</div>
+</td>
+<td class="p-6 text-center"><input checked="" class="rounded-none border-outline text-brand-green focus:ring-brand-green" type="checkbox"/></td>
+<td class="p-6 text-center"><input checked="" class="rounded-none border-outline text-brand-green focus:ring-brand-green" type="checkbox"/></td>
+<td class="p-6 text-center"><input class="rounded-none border-outline text-brand-green focus:ring-brand-green" type="checkbox"/></td>
+<td class="p-6 text-center"><input checked="" class="rounded-none border-outline text-brand-green focus:ring-brand-green" type="checkbox"/></td>
+</tr>
+<!-- Row 2 -->
+<tr>
+<td class="p-6">
+<div class="flex items-center space-x-3">
+<span class="material-symbols-outlined text-brand-green" data-icon="shopping_bag">shopping_bag</span>
+<div>
+<span class="font-bold text-primary block">Order Fulfillment</span>
+<span class="text-[10px] text-text-muted">Wholesale &amp; Direct orders</span>
+</div>
+</div>
+</td>
+<td class="p-6 text-center"><input checked="" class="rounded-none border-outline text-brand-green focus:ring-brand-green" type="checkbox"/></td>
+<td class="p-6 text-center"><input checked="" class="rounded-none border-outline text-brand-green focus:ring-brand-green" type="checkbox"/></td>
+<td class="p-6 text-center"><input class="rounded-none border-outline text-brand-green focus:ring-brand-green" type="checkbox"/></td>
+<td class="p-6 text-center"><input class="rounded-none border-outline text-brand-green focus:ring-brand-green" type="checkbox"/></td>
+</tr>
+<!-- Row 3 -->
+<tr>
+<td class="p-6">
+<div class="flex items-center space-x-3">
+<span class="material-symbols-outlined text-brand-green" data-icon="payments">payments</span>
+<div>
+<span class="font-bold text-primary block">Financial Reports</span>
+<span class="text-[10px] text-text-muted">Revenue &amp; Payout cycles</span>
+</div>
+</div>
+</td>
+<td class="p-6 text-center"><input checked="" class="rounded-none border-outline text-brand-green focus:ring-brand-green" type="checkbox"/></td>
+<td class="p-6 text-center"><input class="rounded-none border-outline text-brand-green focus:ring-brand-green" type="checkbox"/></td>
+<td class="p-6 text-center"><input class="rounded-none border-outline text-brand-green focus:ring-brand-green" type="checkbox"/></td>
+<td class="p-6 text-center"><input class="rounded-none border-outline text-brand-green focus:ring-brand-green" type="checkbox"/></td>
+</tr>
+<!-- Row 4 -->
+<tr>
+<td class="p-6">
+<div class="flex items-center space-x-3">
+<span class="material-symbols-outlined text-brand-green" data-icon="admin_panel_settings">admin_panel_settings</span>
+<div>
+<span class="font-bold text-primary block">RBAC Management</span>
+<span class="text-[10px] text-text-muted">User roles &amp; security keys</span>
+</div>
+</div>
+</td>
+<td class="p-6 text-center"><input class="rounded-none border-outline text-brand-green focus:ring-brand-green" type="checkbox"/></td>
+<td class="p-6 text-center"><input class="rounded-none border-outline text-brand-green focus:ring-brand-green" type="checkbox"/></td>
+<td class="p-6 text-center"><input class="rounded-none border-outline text-brand-green focus:ring-brand-green" type="checkbox"/></td>
+<td class="p-6 text-center"><input class="rounded-none border-outline text-brand-green focus:ring-brand-green" type="checkbox"/></td>
+</tr>
+<!-- Row 5 -->
+<tr>
+<td class="p-6">
+<div class="flex items-center space-x-3">
+<span class="material-symbols-outlined text-brand-green" data-icon="campaign">campaign</span>
+<div>
+<span class="font-bold text-primary block">Content &amp; Marketing</span>
+<span class="text-[10px] text-text-muted">Product descriptions &amp; ads</span>
+</div>
+</div>
+</td>
+<td class="p-6 text-center"><input checked="" class="rounded-none border-outline text-brand-green focus:ring-brand-green" type="checkbox"/></td>
+<td class="p-6 text-center"><input checked="" class="rounded-none border-outline text-brand-green focus:ring-brand-green" type="checkbox"/></td>
+<td class="p-6 text-center"><input checked="" class="rounded-none border-outline text-brand-green focus:ring-brand-green" type="checkbox"/></td>
+<td class="p-6 text-center"><input checked="" class="rounded-none border-outline text-brand-green focus:ring-brand-green" type="checkbox"/></td>
+</tr>
+</tbody>
+</table>
+<div class="p-8 bg-surface-container-low flex justify-end items-center space-x-4">
+<span class="text-xs text-text-muted italic">Changes only affect the selected role group.</span>
+<button class="bg-primary text-on-primary px-10 py-3 font-label-caps text-label-caps hover:bg-brand-green transition-all shadow-sm">
+                                Save Permission Set
+                            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Role Quick Actions -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-grid-gutter">
+<div class="bg-surface-container border border-outline-variant/30 p-8 text-center space-y-4 group hover:bg-brand-green hover:text-surface-bright transition-all cursor-pointer">
+<span class="material-symbols-outlined text-4xl mb-2" data-icon="add_moderator">add_moderator</span>
+<h4 class="font-headline-md text-headline-md">Create Custom Role</h4>
+<p class="text-sm opacity-70">Design a specialized permission profile for seasonal staff.</p>
+</div>
+<div class="bg-surface-container border border-outline-variant/30 p-8 text-center space-y-4 group hover:bg-brand-green hover:text-surface-bright transition-all cursor-pointer">
+<span class="material-symbols-outlined text-4xl mb-2" data-icon="security_update_good">security_update_good</span>
+<h4 class="font-headline-md text-headline-md">Security Audit</h4>
+<p class="text-sm opacity-70">Download a full report of recent permission changes.</p>
+</div>
+<div class="bg-surface-container border border-outline-variant/30 p-8 text-center space-y-4 group hover:bg-brand-green hover:text-surface-bright transition-all cursor-pointer">
+<span class="material-symbols-outlined text-4xl mb-2" data-icon="manage_history">manage_history</span>
+<h4 class="font-headline-md text-headline-md">History Log</h4>
+<p class="text-sm opacity-70">Review login attempts and operational overrides.</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Invite New Team Member Modal (Hidden by Default) -->
+<div class="fixed inset-0 z-[60] bg-brand-green/40 backdrop-blur-sm flex items-center justify-center p-6 opacity-0 pointer-events-none transition-all duration-300" id="inviteModal">
+<div class="bg-surface-bright w-full max-w-xl p-10 relative shadow-2xl">
+<button class="absolute top-6 right-6 text-brand-green" onclick="toggleInviteModal()">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+<div class="mb-10 text-center">
+<h2 class="font-headline-lg text-headline-lg text-brand-green mb-2">Invite Collaborator</h2>
+<p class="text-text-muted">An invitation link will be sent to the administrator's email.</p>
+</div>
+<form class="space-y-6">
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-primary">Full Name</label>
+<input class="w-full bg-surface-container-low border-none focus:ring-1 focus:ring-brand-green p-4 rounded-none" placeholder="e.g. Helena Thorne" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-primary">Work Email</label>
+<input class="w-full bg-surface-container-low border-none focus:ring-1 focus:ring-brand-green p-4 rounded-none" placeholder="helena@apothecary.co" type="email"/>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-primary">Department</label>
+<select class="w-full bg-surface-container-low border-none focus:ring-1 focus:ring-brand-green p-4 rounded-none">
+<option>Operations</option>
+<option>Creative</option>
+<option>Fulfillment</option>
+<option>Customer Care</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-primary">Initial Role</label>
+<select class="w-full bg-surface-container-low border-none focus:ring-1 focus:ring-brand-green p-4 rounded-none">
+<option>Editor</option>
+<option>Support</option>
+<option>Logistics Manager</option>
+<option>Viewer</option>
+</select>
+</div>
+</div>
+<div class="pt-6">
+<button class="w-full bg-brand-green text-surface-bright py-4 font-label-caps text-label-caps hover:opacity-90 transition-all" type="submit">
+                        Send Secure Invitation
+                    </button>
+</div>
+</form>
+</div>
+</div>
+<script>
+        function toggleInviteModal() {
+            const modal = document.getElementById('inviteModal');
+            if (modal.classList.contains('opacity-0')) {
+                modal.classList.remove('opacity-0', 'pointer-events-none');
+                modal.classList.add('opacity-100');
+            } else {
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                modal.classList.remove('opacity-100');
+            }
+        }
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('inviteModal');
+                if (modal.classList.contains('opacity-100')) toggleInviteModal();
+            }
+        });
+    </script>
+</body></html>

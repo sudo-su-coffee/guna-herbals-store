@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order Tracking &amp; Logistics | Apothecary Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e4e2e1;
+            border-radius: 10px;
+        }
+        .map-gradient-overlay {
+            background: linear-gradient(to right, rgba(251, 249, 248, 1) 0%, rgba(251, 249, 248, 0) 10%, rgba(251, 249, 248, 0) 90%, rgba(251, 249, 248, 1) 100%);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error": "#ba1a1a",
+                        "text-muted": "rgba(15, 31, 28, 0.6)",
+                        "surface-bright": "#fbf9f8",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#c1c8c3",
+                        "surface-variant": "#e4e2e1",
+                        "brand-green": "#1a2e29",
+                        "on-surface": "#1b1c1b",
+                        "on-tertiary-fixed": "#161d1a",
+                        "secondary-fixed": "#e5e2db",
+                        "on-tertiary": "#ffffff",
+                        "secondary-container": "#e5e2db",
+                        "primary": "#000101",
+                        "primary-fixed-dim": "#b8cac5",
+                        "surface-container-low": "#f5f3f2",
+                        "on-tertiary-container": "#7f8682",
+                        "surface-card": "#ffffff",
+                        "tertiary-fixed": "#dde4df",
+                        "on-error": "#ffffff",
+                        "primary-container": "#0f1f1c",
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#c2c8c5",
+                        "tertiary-container": "#171e1b",
+                        "tertiary": "#000201",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#b8cac5",
+                        "surface-container": "#efedec",
+                        "on-surface-variant": "#424846",
+                        "status-sale": "#0f1f1c",
+                        "surface-container-high": "#eae8e6",
+                        "surface": "#fbf9f8",
+                        "background": "#fbf9f8",
+                        "surface-dim": "#dbdad8",
+                        "surface-container-highest": "#e4e2e1",
+                        "on-background": "#1b1c1b",
+                        "on-tertiary-fixed-variant": "#414845",
+                        "border-subtle": "rgba(255, 255, 255, 0.1)",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#3a4a46",
+                        "on-secondary-container": "#65645f",
+                        "secondary-fixed-dim": "#c9c6c0",
+                        "on-secondary-fixed-variant": "#474742",
+                        "inverse-on-surface": "#f2f0ef",
+                        "primary-fixed": "#d4e6e1",
+                        "on-primary-fixed": "#0e1e1b",
+                        "outline": "#727876",
+                        "surface-tint": "#51625e",
+                        "inverse-surface": "#303030",
+                        "on-secondary-fixed": "#1c1c18",
+                        "on-primary-container": "#778884",
+                        "secondary": "#5f5e59"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "container-margin": "1.5rem",
+                        "section-gap-lg": "5rem",
+                        "element-gap": "0.5rem",
+                        "section-gap-sm": "2.5rem",
+                        "grid-gutter": "1rem"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Noto Sans"],
+                        "price-tag": ["Noto Sans"],
+                        "body-md": ["Noto Sans"],
+                        "headline-md": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                        "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                        "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                        "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+<!-- SideNavBar Anchor -->
+<aside class="bg-brand-green dark:bg-primary-container h-screen w-64 fixed left-0 top-0 flex flex-col py-8 z-50">
+<div class="px-6 mb-10">
+<h1 class="font-headline-md text-headline-md text-surface-bright leading-none">Apothecary Admin</h1>
+<p class="font-label-caps text-[10px] text-on-primary-container/60 mt-1 uppercase tracking-widest">Premium Botanical</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center text-on-primary-container/70 dark:text-on-primary-container/50 hover:text-surface-bright pl-5 py-3 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+<span class="font-body-md">Dashboard</span>
+</a>
+<a class="flex items-center text-on-primary-container/70 dark:text-on-primary-container/50 hover:text-surface-bright pl-5 py-3 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3">kebab_dining</span>
+<span class="font-body-md">Inventory</span>
+</a>
+<!-- Active Tab: Orders -->
+<a class="flex items-center text-surface-bright font-bold border-l-4 border-surface-bright pl-4 py-3 bg-primary-container/50" href="#">
+<span class="material-symbols-outlined mr-3">shopping_bag</span>
+<span class="font-body-md">Orders</span>
+</a>
+<a class="flex items-center text-on-primary-container/70 dark:text-on-primary-container/50 hover:text-surface-bright pl-5 py-3 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3">group</span>
+<span class="font-body-md">Customers</span>
+</a>
+<a class="flex items-center text-on-primary-container/70 dark:text-on-primary-container/50 hover:text-surface-bright pl-5 py-3 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3">leaderboard</span>
+<span class="font-body-md">Analytics</span>
+</a>
+<a class="flex items-center text-on-primary-container/70 dark:text-on-primary-container/50 hover:text-surface-bright pl-5 py-3 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3">settings</span>
+<span class="font-body-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto px-6 space-y-4">
+<button class="w-full bg-surface-bright text-brand-green font-label-caps py-3 text-center uppercase transition-all active:scale-95">
+                New Formulation
+            </button>
+<div class="pt-6 border-t border-on-primary-container/10 space-y-2">
+<a class="flex items-center text-on-primary-container/50 hover:text-surface-bright text-sm transition-colors" href="#">
+<span class="material-symbols-outlined mr-3 text-sm">help_outline</span> Support
+                </a>
+<a class="flex items-center text-on-primary-container/50 hover:text-surface-bright text-sm transition-colors" href="#">
+<span class="material-symbols-outlined mr-3 text-sm">logout</span> Sign Out
+                </a>
+</div>
+</div>
+</aside>
+<!-- TopAppBar Anchor -->
+<header class="flex justify-between items-center px-container-margin py-4 w-[calc(100%-16rem)] ml-64 sticky top-0 bg-surface-bright/95 backdrop-blur-sm border-b border-outline-variant/30 z-40">
+<div class="flex items-center gap-8">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-on-surface-variant/50">search</span>
+<input class="bg-surface-container-low border-none focus:ring-1 focus:ring-brand-green pl-10 pr-4 py-2 w-64 text-sm font-body-md outline-none transition-all" placeholder="Track Order ID..." type="text"/>
+</div>
+<nav class="hidden lg:flex gap-6">
+<a class="font-label-caps text-label-caps text-text-muted hover:text-primary transition-all" href="#">Direct Ship</a>
+<a class="font-label-caps text-label-caps text-primary font-bold border-b-2 border-primary pb-1" href="#">Wholesale</a>
+<a class="font-label-caps text-label-caps text-text-muted hover:text-primary transition-all" href="#">Archive</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="font-label-caps text-label-caps bg-brand-green text-surface-bright px-6 py-2.5 uppercase transition-all active:scale-[0.98]">
+                Create Report
+            </button>
+<div class="flex items-center gap-3 ml-2 border-l border-outline-variant/30 pl-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<img alt="Admin" class="w-8 h-8 rounded-full object-cover grayscale opacity-80" data-alt="Close-up portrait of a professional logistics manager in a high-end minimalist office setting. The lighting is soft and natural, emphasizing clean lines and a sophisticated atmosphere. He is wearing a dark charcoal turtleneck, reflecting a modern, executive aesthetic that aligns with a premium apothecary brand identity. The background is slightly out of focus, showing neutral cream tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC99sesTHwfC8gMeMPgPKOug_iiA0VrOswWIEjLU3yZHwI5BPZ2yPRKmXF26gpTj2y9AGKTSX0f3QhDv4zHF3BUPWv0wf5DrrHovjELaMIJyHLT2Z4bh8wcURgpC_YX4mjk84cHGcS2Bxhh8uaaInJt-pPwtzl8kLW2zMKVrpWuAJLjRLlwiQ_I-Z4yVzAjEGSnuStiaATsn79zvuW-aEHG9NMeScDOs-uMU87i-UA6ZSDnUZuUsbm8N-0X1OhGo__NaEu40N7_UA98"/>
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="ml-64 p-8 max-w-[1600px] mx-auto min-h-screen">
+<!-- Header Section -->
+<section class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<span class="font-label-caps text-label-caps text-on-primary-container/60 uppercase tracking-widest block mb-2">Logistics Dashboard</span>
+<h2 class="font-headline-lg text-headline-lg text-brand-green">Order Tracking &amp; Fulfillment</h2>
+</div>
+<div class="flex gap-3">
+<div class="flex items-center bg-surface-container-highest px-4 py-2 gap-2">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+<span class="font-label-caps text-[10px] uppercase">Status: All active</span>
+<span class="material-symbols-outlined text-sm cursor-pointer">expand_more</span>
+</div>
+<div class="flex items-center bg-surface-container-highest px-4 py-2 gap-2">
+<span class="material-symbols-outlined text-sm">local_shipping</span>
+<span class="font-label-caps text-[10px] uppercase">Provider: All</span>
+<span class="material-symbols-outlined text-sm cursor-pointer">expand_more</span>
+</div>
+</div>
+</section>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-grid-gutter">
+<!-- Map View (Logistics Geographic Overview) -->
+<div class="col-span-12 lg:col-span-8 bg-surface-card border border-outline-variant/30 h-[450px] relative overflow-hidden group">
+<div class="absolute top-6 left-6 z-10 bg-white/80 backdrop-blur px-4 py-3 border border-outline-variant/20">
+<h3 class="font-label-caps text-[11px] uppercase tracking-widest text-brand-green mb-1">Live Fleet Location</h3>
+<div class="flex items-center gap-2 text-primary">
+<span class="w-2 h-2 rounded-full bg-green-600 animate-pulse"></span>
+<span class="text-xs font-medium">14 Couriers Active</span>
+</div>
+</div>
+<div class="w-full h-full grayscale opacity-70 group-hover:grayscale-0 transition-all duration-700">
+<img alt="Logistics Map" class="w-full h-full object-cover" data-alt="A sophisticated, high-contrast overhead satellite map view of a metropolitan area with stylized minimalist aesthetics. The map features a muted palette of cream, sage green, and dark charcoal tones, aligning with a premium apothecary brand. Transparent glass-like overlays indicate logistics routes and delivery hotspots. The mood is calm, organized, and technologically precise." data-location="London" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXgRtWfzwtDlMyuL1l2JOaF9QSD3O4rbPD-GVB2U51uKBUdnxbe140Pm4CnQwbCvrCj40746k9_8NZxC3CG-ycVv9oev7Mq0nc4O9cjUPsC1RzneJlq4ZeGPJQsuRfHcP3BEnvmya_Fd1ga3fB05eu4vVw9cRcuPTKJSXaTfY7F08HWjiQKRgySrnwOjay0p5RX_8BIKbfzY4nQW01GDylPhlj86kFdg4_KCrafps_RoBmcQBF4O424TaJVbpbbuaUJ0m6K_jczlvU"/>
+</div>
+<div class="absolute inset-0 map-gradient-overlay pointer-events-none"></div>
+<!-- Mock Map Pins -->
+<div class="absolute top-1/3 left-1/4 group cursor-pointer">
+<span class="material-symbols-outlined text-brand-green text-3xl" data-weight="fill">location_on</span>
+<div class="hidden group-hover:block absolute top-8 left-0 bg-white border border-outline-variant/30 p-2 shadow-sm w-32 z-20">
+<p class="text-[10px] font-bold text-brand-green">ORD-8821</p>
+<p class="text-[9px] text-text-muted uppercase">In Transit - London</p>
+</div>
+</div>
+<div class="absolute bottom-1/4 right-1/3 group cursor-pointer">
+<span class="material-symbols-outlined text-brand-green text-3xl" data-weight="fill">location_on</span>
+<div class="hidden group-hover:block absolute top-8 left-0 bg-white border border-outline-variant/30 p-2 shadow-sm w-32 z-20">
+<p class="text-[10px] font-bold text-brand-green">ORD-7742</p>
+<p class="text-[9px] text-text-muted uppercase">Processing - Essex</p>
+</div>
+</div>
+</div>
+<!-- Courier Management Section -->
+<div class="col-span-12 lg:col-span-4 bg-brand-green text-surface-bright p-8 flex flex-col">
+<h3 class="font-headline-md text-xl mb-6">Courier Health</h3>
+<div class="space-y-6 flex-1 overflow-y-auto custom-scrollbar pr-2">
+<div class="flex items-center justify-between pb-4 border-b border-on-primary-container/20">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full border border-on-primary-container/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-surface-bright/80">person</span>
+</div>
+<div>
+<p class="text-sm font-medium">Liam Vance</p>
+<p class="text-[10px] text-on-primary-container/60 uppercase">Dhl Express</p>
+</div>
+</div>
+<span class="text-[10px] bg-white/10 px-2 py-1 uppercase">On Route</span>
+</div>
+<div class="flex items-center justify-between pb-4 border-b border-on-primary-container/20">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full border border-on-primary-container/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-surface-bright/80">person</span>
+</div>
+<div>
+<p class="text-sm font-medium">Elena Rossi</p>
+<p class="text-[10px] text-on-primary-container/60 uppercase">FedEx Priority</p>
+</div>
+</div>
+<span class="text-[10px] bg-white/10 px-2 py-1 uppercase">Resting</span>
+</div>
+<div class="flex items-center justify-between pb-4 border-b border-on-primary-container/20">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full border border-on-primary-container/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-surface-bright/80">person</span>
+</div>
+<div>
+<p class="text-sm font-medium">Julian Thorne</p>
+<p class="text-[10px] text-on-primary-container/60 uppercase">Local Botanical</p>
+</div>
+</div>
+<span class="text-[10px] bg-white/10 px-2 py-1 uppercase">Loading</span>
+</div>
+</div>
+<button class="mt-8 w-full border border-surface-bright/30 py-3 font-label-caps text-label-caps uppercase hover:bg-surface-bright hover:text-brand-green transition-all">
+                    Assign New Route
+                </button>
+</div>
+<!-- Detailed Tracking Timeline for Active Order -->
+<div class="col-span-12 lg:col-span-9 bg-surface-card p-10 border border-outline-variant/30">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-4">
+<div>
+<div class="flex items-center gap-3 mb-1">
+<h3 class="font-headline-md text-2xl text-brand-green">Order #APT-10922-LX</h3>
+<span class="bg-surface-container-highest text-[10px] px-3 py-1 uppercase font-bold tracking-widest">In-Transit</span>
+</div>
+<p class="text-text-muted text-sm">Recipient: Clara Hemlock — 42 Willow Lane, Oxfordshire</p>
+</div>
+<div class="text-right">
+<p class="font-label-caps text-label-caps text-text-muted uppercase mb-1">Est. Delivery</p>
+<p class="font-headline-md text-xl text-brand-green">Oct 14, 02:30 PM</p>
+</div>
+</div>
+<!-- Timeline Visualization -->
+<div class="relative py-10">
+<div class="absolute top-[62px] left-0 right-0 h-[1px] bg-outline-variant/40"></div>
+<div class="flex justify-between items-start relative z-10">
+<!-- Step 1: Processing -->
+<div class="flex flex-col items-center text-center w-1/5">
+<div class="w-10 h-10 rounded-full bg-brand-green text-surface-bright flex items-center justify-center mb-4 ring-8 ring-surface-bright">
+<span class="material-symbols-outlined text-lg" data-weight="fill">check_circle</span>
+</div>
+<p class="font-label-caps text-[10px] uppercase font-bold text-brand-green">Processing</p>
+<p class="text-[10px] text-text-muted mt-1">Oct 11, 09:12 AM</p>
+</div>
+<!-- Step 2: Shipped -->
+<div class="flex flex-col items-center text-center w-1/5">
+<div class="w-10 h-10 rounded-full bg-brand-green text-surface-bright flex items-center justify-center mb-4 ring-8 ring-surface-bright">
+<span class="material-symbols-outlined text-lg" data-weight="fill">check_circle</span>
+</div>
+<p class="font-label-caps text-[10px] uppercase font-bold text-brand-green">Shipped</p>
+<p class="text-[10px] text-text-muted mt-1">Oct 11, 04:45 PM</p>
+</div>
+<!-- Step 3: In-Transit -->
+<div class="flex flex-col items-center text-center w-1/5">
+<div class="w-10 h-10 rounded-full bg-brand-green text-surface-bright flex items-center justify-center mb-4 ring-8 ring-surface-bright">
+<span class="material-symbols-outlined text-lg" data-weight="fill">local_shipping</span>
+</div>
+<p class="font-label-caps text-[10px] uppercase font-bold text-brand-green">In-Transit</p>
+<p class="text-[10px] text-text-muted mt-1">Oct 12, 11:20 AM</p>
+</div>
+<!-- Step 4: Out for Delivery -->
+<div class="flex flex-col items-center text-center w-1/5 opacity-40">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center mb-4 ring-8 ring-surface-bright">
+<span class="material-symbols-outlined text-lg">delivery_dining</span>
+</div>
+<p class="font-label-caps text-[10px] uppercase font-bold">Out for Delivery</p>
+<p class="text-[10px] text-text-muted mt-1">Pending</p>
+</div>
+<!-- Step 5: Delivered -->
+<div class="flex flex-col items-center text-center w-1/5 opacity-40">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center mb-4 ring-8 ring-surface-bright">
+<span class="material-symbols-outlined text-lg">home_pin</span>
+</div>
+<p class="font-label-caps text-[10px] uppercase font-bold">Delivered</p>
+<p class="text-[10px] text-text-muted mt-1">Pending</p>
+</div>
+</div>
+</div>
+<!-- Shipping Log -->
+<div class="mt-12">
+<h4 class="font-label-caps text-[10px] uppercase tracking-widest text-text-muted mb-4 border-b border-outline-variant/30 pb-2">Carrier Dispatch Log</h4>
+<div class="space-y-4">
+<div class="flex gap-4 text-xs">
+<span class="text-text-muted w-32 shrink-0">Today, 02:15 PM</span>
+<span class="text-brand-green font-medium">Sorted at London Distribution Center</span>
+</div>
+<div class="flex gap-4 text-xs">
+<span class="text-text-muted w-32 shrink-0">Today, 08:30 AM</span>
+<span class="text-brand-green font-medium">Arrival Scan at Regional Hub</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Inventory Quick Stats -->
+<div class="col-span-12 lg:col-span-3 grid grid-rows-2 gap-grid-gutter">
+<div class="bg-secondary-fixed p-6 flex flex-col justify-between">
+<span class="material-symbols-outlined text-brand-green">box</span>
+<div>
+<p class="text-4xl font-headline-md text-brand-green">182</p>
+<p class="font-label-caps text-[10px] uppercase tracking-widest text-on-secondary-fixed-variant">Pending Fulfillment</p>
+</div>
+</div>
+<div class="bg-surface-container-highest p-6 flex flex-col justify-between">
+<span class="material-symbols-outlined text-brand-green">speed</span>
+<div>
+<p class="text-4xl font-headline-md text-brand-green">98.4%</p>
+<p class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant">On-Time Accuracy</p>
+</div>
+</div>
+</div>
+<!-- Recent Shipment Cards (Table alternative) -->
+<div class="col-span-12 mb-10">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline-md text-xl text-brand-green">Active Shipments</h3>
+<a class="text-[10px] font-label-caps uppercase underline underline-offset-4 decoration-outline-variant hover:text-brand-green" href="#">View All Archive</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Shipment Card 1 -->
+<div class="bg-surface-card p-6 border border-outline-variant/30 hover:shadow-md transition-shadow group">
+<div class="flex justify-between items-start mb-4">
+<span class="bg-brand-green text-surface-bright text-[9px] px-2 py-1 uppercase">Shipped</span>
+<span class="material-symbols-outlined text-on-surface-variant/40 group-hover:text-brand-green transition-colors">open_in_new</span>
+</div>
+<p class="text-sm font-bold text-brand-green mb-1">APT-9923-FF</p>
+<p class="text-xs text-text-muted mb-4">Lavender Tincture x 12</p>
+<div class="flex items-center gap-2">
+<img alt="Product" class="w-10 h-10 object-cover grayscale brightness-110" data-alt="Minimalist studio shot of a brown apothecary glass bottle with a clean white label. The bottle is set against a soft cream-toned background with subtle plant shadows, evoking a sense of natural purity and premium craftsmanship. Lighting is bright and airy, highlighting the tactile texture of the label." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDE7-IL3kDAqnOPgJdl81Bnyhnvq5tcX-W1rJZY879YeSAziMVXNXfXlQwQxMW9DQt8Rp1UouRR48R-cLJ1GVyKNsGaU_vXY402do10VZuon6BOZLvbqrIqQUHM876DftHyVQTnpaiBY4N95nch7TULeHfFGEn7DrBtbu_Iz2HA8TsTGHihmvitvRG7qvnWjVM8R2UpQhBVD7KFRAHSoqsNvutnzJXNANvS3x2dvB4tgwUDrHJHQQvyPK_yEWFHrwPLIPocSHtc2j_d"/>
+<div class="flex flex-col">
+<span class="text-[10px] font-bold">DHL Priority</span>
+<span class="text-[9px] text-text-muted">ETA: 2 Hours</span>
+</div>
+</div>
+</div>
+<!-- Shipment Card 2 -->
+<div class="bg-surface-card p-6 border border-outline-variant/30 hover:shadow-md transition-shadow group">
+<div class="flex justify-between items-start mb-4">
+<span class="bg-surface-container-highest text-on-surface-variant text-[9px] px-2 py-1 uppercase">Pending</span>
+<span class="material-symbols-outlined text-on-surface-variant/40 group-hover:text-brand-green transition-colors">open_in_new</span>
+</div>
+<p class="text-sm font-bold text-brand-green mb-1">APT-9924-FF</p>
+<p class="text-xs text-text-muted mb-4">Eucalyptus Mist x 4</p>
+<div class="flex items-center gap-2">
+<img alt="Product" class="w-10 h-10 object-cover grayscale brightness-110" data-alt="A macro shot of a sleek glass spray bottle with an minimalist herbal design. The image uses a palette of soft whites and deep forest greens, sitting on a textured stone surface. The atmosphere is spa-like and organic, reflecting high-end botanical wellness products." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2ZuJb8V_cOAx5yWOItNzBLg2DsXqINUOC9Udy1UnPv13NB9ON_cdZmtVKphsFROs_RwlnNPtzp_r9e1uaQZjwKuXoZeRo57k5bVpbNmNXPhADTof31aSeVzHSL_lSR70Gs6-8z9Qr5Zb7FbunQ6SdX0_HmvvwYekFwBMjrxTWs829KzYjmJBpgnw4kbGAXEuBNNmfGEM6RTCF3j8VSTTx0iPSEP0bVpWwh9zis-DuGTAYut6UGtgr5h4JRmSqusqCPgwqikWI5W6C"/>
+<div class="flex flex-col">
+<span class="text-[10px] font-bold">Royal Mail</span>
+<span class="text-[9px] text-text-muted">Awaiting Pickup</span>
+</div>
+</div>
+</div>
+<!-- Shipment Card 3 -->
+<div class="bg-surface-card p-6 border border-outline-variant/30 hover:shadow-md transition-shadow group">
+<div class="flex justify-between items-start mb-4">
+<span class="bg-brand-green text-surface-bright text-[9px] px-2 py-1 uppercase">Shipped</span>
+<span class="material-symbols-outlined text-on-surface-variant/40 group-hover:text-brand-green transition-colors">open_in_new</span>
+</div>
+<p class="text-sm font-bold text-brand-green mb-1">APT-9925-FF</p>
+<p class="text-xs text-text-muted mb-4">Rosehip Oil Concentrate</p>
+<div class="flex items-center gap-2">
+<img alt="Product" class="w-10 h-10 object-cover grayscale brightness-110" data-alt="Close-up photograph of a small amber bottle with a dropper. The setting is a bright, modern apothecary lab with cream-colored surfaces and delicate botanical sprigs. The image focuses on the amber glass against a high-key background to create a luxurious and professional visual language." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGrSuLVJyk_18HBSuYRE-DUoP0jO6e9KY3OPq1i9lPz4u2K_WOpGyGNivg0GPmkZov4AqxzzowF9E-zla9_vqgSPsp3hNcINO_-v-biab60p4U4LRX7yfHhNW-GtatWcT2SJ28F6EJnGLWM34AqJ8U8Z4Vql3wGsu7cGkTWU18AKjQVb7512Kk1_KibUX7xps6K2VJRysDZkt_NMp3a80zR2a2eUYwkpsuYP5okQ6P5xczmzfyyaxfdGKeCFXGJxiRuTWnIrRTDyrg"/>
+<div class="flex flex-col">
+<span class="text-[10px] font-bold">FedEx</span>
+<span class="text-[9px] text-text-muted">ETA: Tomorrow</span>
+</div>
+</div>
+</div>
+<!-- Shipment Card 4 -->
+<div class="bg-surface-card p-6 border border-outline-variant/30 hover:shadow-md transition-shadow group">
+<div class="flex justify-between items-start mb-4">
+<span class="bg-error text-surface-bright text-[9px] px-2 py-1 uppercase">Delayed</span>
+<span class="material-symbols-outlined text-on-surface-variant/40 group-hover:text-brand-green transition-colors">open_in_new</span>
+</div>
+<p class="text-sm font-bold text-brand-green mb-1">APT-9926-FF</p>
+<p class="text-xs text-text-muted mb-4">Sandalwood Balm x 2</p>
+<div class="flex items-center gap-2">
+<img alt="Product" class="w-10 h-10 object-cover grayscale brightness-110" data-alt="Modern jar of handcrafted botanical balm on a minimalist display. The packaging is premium and tactile, with dark labels and sharp typography. The lighting is focused and warm, contrasting with a cool, minimalist environment. The shot captures the essence of heritage meets modern luxury." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIffGksYATxWQdfraoRq5A_Mld3JjPwx5bxlksIOe23i2MTlGvjP_KCtDo3DjB5qLubWGC1oDvRneWBSqIWV2Ikc7TUpCnIEjT4r-EeAyXdEk5XtoJ5XBBdvw_HFPP1Voa-dJKyWJrkrnZLf6kYMISYA9VKax3ae9xVmIfoP3DciLEne4JR383d_j3a1P1AIjsCutL18GDMYXTJG2DnAfWykYr_hDpTe0oZszyNLvY3Ljf0RvJjAXh6oN_gGq8HSWKO_RPKX1HnEy5"/>
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-error">Customs Hold</span>
+<span class="text-[9px] text-text-muted">Requires Action</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Simple interaction for tab switching simulation
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                if(!link.classList.contains('border-l-4')) {
+                    // This is just a UI demo, no actual routing
+                    console.log('Navigating to:', link.innerText);
+                }
+            });
+        });
+
+        // Search bar interaction
+        const searchInput = document.querySelector('input[placeholder="Track Order ID..."]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.classList.add('w-80');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.classList.remove('w-80');
+        });
+    </script>
+</body></html>

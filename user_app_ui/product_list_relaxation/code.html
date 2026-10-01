@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#dde4df",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#51625e",
+                        "surface-container-high": "#eae8e6",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#f5f3f2",
+                        "error-container": "#ffdad6",
+                        "primary-container": "#0f1f1c",
+                        "surface-variant": "#e4e2e1",
+                        "surface-card": "#ffffff",
+                        "on-primary-fixed-variant": "#3a4a46",
+                        "outline": "#727876",
+                        "surface-container": "#efedec",
+                        "primary-fixed-dim": "#b8cac5",
+                        "on-secondary-fixed-variant": "#474742",
+                        "tertiary-container": "#171e1b",
+                        "status-sale": "#0f1f1c",
+                        "surface": "#fbf9f8",
+                        "on-tertiary-fixed": "#161d1a",
+                        "inverse-on-surface": "#f2f0ef",
+                        "on-surface-variant": "#424846",
+                        "inverse-surface": "#303030",
+                        "outline-variant": "#c2c8c5",
+                        "on-primary-fixed": "#0e1e1b",
+                        "inverse-primary": "#b8cac5",
+                        "surface-container-highest": "#e4e2e1",
+                        "brand-green": "#1a2e29",
+                        "on-primary-container": "#778884",
+                        "on-surface": "#1b1c1b",
+                        "secondary-fixed": "#e5e2db",
+                        "secondary": "#5f5e59",
+                        "on-tertiary-fixed-variant": "#414845",
+                        "surface-bright": "#fbf9f8",
+                        "tertiary-fixed-dim": "#c1c8c3",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#1b1c1b",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#e5e2db",
+                        "error": "#ba1a1a",
+                        "background": "#fbf9f8",
+                        "primary": "#000101",
+                        "tertiary": "#000201",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed-dim": "#c9c6c0",
+                        "text-muted": "rgba(15, 31, 28, 0.6)",
+                        "on-tertiary-container": "#7f8682",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed": "#1c1c18",
+                        "primary-fixed": "#d4e6e1",
+                        "on-secondary-container": "#65645f",
+                        "surface-dim": "#dbdad8",
+                        "border-subtle": "rgba(255, 255, 255, 0.1)"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "container-margin": "1.5rem",
+                        "grid-gutter": "1rem",
+                        "section-gap-lg": "5rem",
+                        "element-gap": "0.5rem",
+                        "section-gap-sm": "2.5rem"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "price-tag": ["Noto Sans"],
+                        "body-md": ["Noto Sans"],
+                        "label-caps": ["Noto Sans"],
+                        "headline-lg": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                        "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                        "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            font-size: 20px;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body-md text-on-surface">
+<!-- Top App Bar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-container-margin h-16 bg-brand-green text-on-primary">
+<div class="flex items-center gap-4">
+<button class="hover:opacity-80 transition-opacity active:scale-95">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-on-primary tracking-widest uppercase">RELAXATION</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="hover:opacity-80 transition-opacity active:scale-95">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+</button>
+</div>
+</header>
+<main class="pt-24 pb-32 px-container-margin max-w-screen-xl mx-auto">
+<!-- Search & Contextual Header -->
+<section class="mb-section-gap-sm">
+<div class="relative w-full mb-8 group">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline" data-icon="search">search</span>
+<input class="w-full bg-surface-container-low border-none h-12 pl-12 pr-4 font-body-md text-on-surface focus:ring-1 focus:ring-brand-green placeholder:text-outline-variant transition-all" placeholder="Search within Relaxation..." type="text"/>
+</div>
+<!-- Filter Chips -->
+<div class="flex overflow-x-auto hide-scrollbar gap-3 pb-2">
+<button class="whitespace-nowrap px-6 py-2 bg-brand-green text-on-primary font-label-caps text-label-caps border border-brand-green">BEST SELLERS</button>
+<button class="whitespace-nowrap px-6 py-2 border border-outline-variant text-on-surface-variant font-label-caps text-label-caps hover:border-brand-green transition-colors">OILS</button>
+<button class="whitespace-nowrap px-6 py-2 border border-outline-variant text-on-surface-variant font-label-caps text-label-caps hover:border-brand-green transition-colors">TEAS</button>
+<button class="whitespace-nowrap px-6 py-2 border border-outline-variant text-on-surface-variant font-label-caps text-label-caps hover:border-brand-green transition-colors">TINCTURES</button>
+<button class="whitespace-nowrap px-6 py-2 border border-outline-variant text-on-surface-variant font-label-caps text-label-caps hover:border-brand-green transition-colors">CANDLES</button>
+</div>
+</section>
+<!-- Product Grid -->
+<section class="grid grid-cols-2 md:grid-cols-3 gap-grid-gutter lg:gap-8">
+<!-- Product 1 -->
+<article class="group relative flex flex-col bg-surface-card shadow-sm overflow-hidden">
+<div class="relative aspect-[4/5] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A luxurious glass dropper bottle of lavender essential oil resting on a clean cream-colored stone surface. Soft sunlight filters through botanical leaves, creating organic shadows. The overall aesthetic is minimalist and high-end, using a palette of deep greens and soft creams to evoke a sense of calm and purity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgfmY8_6Vi03qFxrWjbHr5J1AGWIMfcwYOSPdaCdSUJh7JN8A74mwXUfGXGSP4TH9IILk1Sn-46-xj_fnXfiC0Rj_Z1HSGZCMzlpfZPpvVzM0zGl-HsCxfxB8q9iV3kv0jmVxMErIHgU6BYtXkZyzw9jahFPuGrth-KEZ55o4ixEp39dgIcU11TRLxGtqDrxftnmPWoNeaQ05nuKpbxgSeu17w3knm6_wpT7JGMk2JjbawelZHLsCuBkcRzzrRQpFD23oJP9VCybSN"/>
+<button class="absolute top-3 right-3 p-2 bg-white/40 backdrop-blur-sm rounded-full text-brand-green hover:bg-white transition-colors">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+<div class="absolute top-3 left-0 bg-status-sale px-3 py-1 font-label-caps text-label-caps text-white">NEW</div>
+</div>
+<div class="p-4 flex flex-col flex-grow">
+<h3 class="font-headline-md text-[18px] text-brand-green mb-1">Lavender Calm Oil</h3>
+<p class="text-on-surface-variant text-xs mb-4 line-clamp-1">De-stress &amp; Unwind with pure essence.</p>
+<div class="mt-auto flex justify-between items-center">
+<span class="font-price-tag text-price-tag text-on-surface">$24.00</span>
+<button class="p-2 border border-brand-green text-brand-green hover:bg-brand-green hover:text-white transition-all active:scale-90">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Product 2 -->
+<article class="group relative flex flex-col bg-surface-card shadow-sm overflow-hidden">
+<div class="relative aspect-[4/5] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Premium dried loose leaf herbal tea with purple chamomile petals and green mint leaves spilling from an artisan ceramic jar. The lighting is moody and dramatic with a focus on the tactile textures of the botanicals. Warm cream tones contrast with the deep greens and purples of the herbs." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlD1ULbqGTERe6y1mCVDBoNSdILPvV2-oCMikAiPr9owJg4ms41eRHd17GhOW84bcS9xmlox2oua9bMvx3Kn3APhJ-TwHkraDl-8eQU6rz8Ykt-O9coaQ_tO5LUsZYYWhcQqcicwbRynQH-UK74S9HYXyBLFGt5jTle6AjodICt7yDVuCQOcJDVXceoKc7dhwtc083e5WCY-kmT84upkyjP6_Bzyelo8xKU4ZFwaBOzEErhoBWFibwElujzv-aT1B-ymfKasABwLGU"/>
+<button class="absolute top-3 right-3 p-2 bg-white/40 backdrop-blur-sm rounded-full text-brand-green hover:bg-white transition-colors">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+</div>
+<div class="p-4 flex flex-col flex-grow">
+<h3 class="font-headline-md text-[18px] text-brand-green mb-1">Evening Peace Tea</h3>
+<p class="text-on-surface-variant text-xs mb-4 line-clamp-1">A gentle blend for deep sleep.</p>
+<div class="mt-auto flex justify-between items-center">
+<span class="font-price-tag text-price-tag text-on-surface">$18.00</span>
+<button class="p-2 border border-brand-green text-brand-green hover:bg-brand-green hover:text-white transition-all active:scale-90">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Product 3 -->
+<article class="group relative flex flex-col bg-surface-card shadow-sm overflow-hidden">
+<div class="relative aspect-[4/5] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A dark amber glass tincture bottle with a gold-accented dropper. The bottle is placed amidst lush green fern leaves and damp mossy rocks, suggesting a forest apothecary setting. High-quality macro photography highlights the glass's reflection and the vibrant green of the nature surrounding it." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcsd1VcTq-_HM0UTRs_J3EeDU3lLjxfFTK5XTfB3hkrNFlVp7LRNamWW897WkEPyofMGVXOzcmcFDaNbR2mSCzkSYGDUTAtYTHDnj8tjJN_e6p4eTxI88qKrB85W7teSHgyWm4CPyWSGHPzdpEOWG2uTP9LjxWy4wmBXSKJxe8h3pXAzIdaUE5DZNxEsFvokWnjvDDjlL50id_SZYrcNn6Z0NwAi8wdrUieYIH0eIDWmhEE4ZrMG0Nu5oF12z4YB5MdS-85y7VhEqZ"/>
+<button class="absolute top-3 right-3 p-2 bg-white/40 backdrop-blur-sm rounded-full text-brand-green hover:bg-white transition-colors">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+</div>
+<div class="p-4 flex flex-col flex-grow">
+<h3 class="font-headline-md text-[18px] text-brand-green mb-1">Ashwagandha Relief</h3>
+<p class="text-on-surface-variant text-xs mb-4 line-clamp-1">Support your nervous system daily.</p>
+<div class="mt-auto flex justify-between items-center">
+<span class="font-price-tag text-price-tag text-on-surface">$32.00</span>
+<button class="p-2 border border-brand-green text-brand-green hover:bg-brand-green hover:text-white transition-all active:scale-90">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Product 4 -->
+<article class="group relative flex flex-col bg-surface-card shadow-sm overflow-hidden">
+<div class="relative aspect-[4/5] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Minimalist display of a sage-colored ceramic bowl filled with coarse grey bath salts and dried botanical sprigs. The scene is bright and airy with soft focus in the background, reinforcing the clean apothecary brand style. Texture of the salts and the matte ceramic is sharp and detailed." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtN-cpU4KF6KWNJvCoDSaguglcHU7jmknucGSGrOzaHL1T-A0mA1NZ6j2cjXPV99D310Ml20667FuimC-8BAAtx-iE7rnAp3TXdT0gMmFGE3xRIAo2ptS7nstqWH5t3Z6_82MYlSB8u0cXDF65A-LEC-RglyJB074WvM_MoQkwW8muI8oX-5ZgqLVXkpJEQ3_gWulSQH6pXRnB2319mSHUjsRs28jgbKH4XGQmY-DdbNCRHudYdD4J2naCZBwmWCcfszvU9bzHVlXM"/>
+<button class="absolute top-3 right-3 p-2 bg-white/40 backdrop-blur-sm rounded-full text-brand-green hover:bg-white transition-colors">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+</div>
+<div class="p-4 flex flex-col flex-grow">
+<h3 class="font-headline-md text-[18px] text-brand-green mb-1">Mineral Soak Bath</h3>
+<p class="text-on-surface-variant text-xs mb-4 line-clamp-1">Magnesium-rich for muscle ease.</p>
+<div class="mt-auto flex justify-between items-center">
+<span class="font-price-tag text-price-tag text-on-surface">$22.00</span>
+<button class="p-2 border border-brand-green text-brand-green hover:bg-brand-green hover:text-white transition-all active:scale-90">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Product 5 -->
+<article class="group relative flex flex-col bg-surface-card shadow-sm overflow-hidden">
+<div class="relative aspect-[4/5] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="An elegant hand-poured soy candle with a wooden wick, housed in a heavy frosted glass container. Wisps of aromatic smoke rise gently in a soft-lit room. The environment is serene, featuring organic textures like linen and light wood. The color story is dominated by soft creams and warm muted greens." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7hDnXZyZnJljSLWKyKDeej9Kvv_PC57sWpZ7YT5EP5vB5sTAC8A_yQFHeJCmdsvyxOVn39LQP32kJ8JTnc6DW8dB79r89h69g9PwmY2K0s6V9OrPfFTiW6FqAC-HFBImee_8VNkw319wuXC93ai8Q7X5J9zJx8IOqQAo20PluJ5uU3WYpIkuQXBz4XhRp5IdjDN-M6RBUF5k2Pz8Sxtq4b3aBg9MlJIuzO7v4mgCc9uyPQTpbnQaPT-pgvY-iwziBlGuaRLOoIhNq"/>
+<button class="absolute top-3 right-3 p-2 bg-white/40 backdrop-blur-sm rounded-full text-brand-green hover:bg-white transition-colors">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+</div>
+<div class="p-4 flex flex-col flex-grow">
+<h3 class="font-headline-md text-[18px] text-brand-green mb-1">Midnight Forest Candle</h3>
+<p class="text-on-surface-variant text-xs mb-4 line-clamp-1">Grounding scents of cedar &amp; pine.</p>
+<div class="mt-auto flex justify-between items-center">
+<span class="font-price-tag text-price-tag text-on-surface">$28.00</span>
+<button class="p-2 border border-brand-green text-brand-green hover:bg-brand-green hover:text-white transition-all active:scale-90">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Product 6 -->
+<article class="group relative flex flex-col bg-surface-card shadow-sm overflow-hidden">
+<div class="relative aspect-[4/5] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A small linen bag of dried lavender buds, tied with a simple twine string. The sachet sits on a stack of clean white cotton towels. The lighting is bright morning sun, creating high-contrast highlights and soft shadows. A clean, fresh botanical aesthetic for a luxury wellness brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYqSUQcgSy0RIak3pnMQ6oNu2ZGouPEQ1bssCcy1Wch6lQpw-2OucDruo4WVie27_S4y3CIQtzFUmMztajj82xqq4h2VoErCLQuENDcRo3gLPMhlaSIWGORoRXOleGYqgd7bY87YDoEtZzkKWgyH0gLgRDs8LFon-E3yptiXQN_I9jgLZvnowhyr0wLwhrkEdNqP2Oyi9_IZrThJmQAFHnyJcaPNcji532kviuxW0CUwfmcDqr4OSa39nHm6G_gtDbZb55rrEZYcDb"/>
+<button class="absolute top-3 right-3 p-2 bg-white/40 backdrop-blur-sm rounded-full text-brand-green hover:bg-white transition-colors">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+</div>
+<div class="p-4 flex flex-col flex-grow">
+<h3 class="font-headline-md text-[18px] text-brand-green mb-1">Dream Sachet Duo</h3>
+<p class="text-on-surface-variant text-xs mb-4 line-clamp-1">Place under your pillow for peace.</p>
+<div class="mt-auto flex justify-between items-center">
+<span class="font-price-tag text-price-tag text-on-surface">$15.00</span>
+<button class="p-2 border border-brand-green text-brand-green hover:bg-brand-green hover:text-white transition-all active:scale-90">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</article>
+</section>
+<!-- Testimonial / Story Section -->
+<section class="mt-section-gap-lg py-12 px-8 bg-surface-container text-center">
+<span class="material-symbols-outlined text-brand-green mb-4" data-icon="spa" style="font-size: 32px;">spa</span>
+<blockquote class="font-headline-md italic text-headline-md text-on-surface mb-6">
+                "Finding my evening ritual with the Lavender Calm Oil has truly transformed my transition from work to rest."
+            </blockquote>
+<p class="font-label-caps text-label-caps text-on-surface-variant">— SOPHIA R., ALCHEMIST CUSTOMER</p>
+</section>
+</main>
+<!-- Bottom Nav Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 bg-surface shadow-sm border-t border-outline-variant">
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim hover:text-primary transition-colors active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-caps text-label-caps">HOME</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary font-bold active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="herb">cannabis</span>
+<span class="font-label-caps text-label-caps">SHOP</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim hover:text-primary transition-colors active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-label-caps text-label-caps">SEARCH</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim hover:text-primary transition-colors active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+<span class="font-label-caps text-label-caps">WISHLIST</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim hover:text-primary transition-colors active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-caps text-label-caps">PROFILE</span>
+</a>
+</nav>
+</body></html>

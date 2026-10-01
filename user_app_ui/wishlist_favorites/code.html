@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Wishlist | Nature's Alchemist</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .bg-hero-overlay {
+            background: linear-gradient(to bottom, rgba(26, 46, 41, 0.4), rgba(26, 46, 41, 0.1));
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container": "#efedec",
+                    "tertiary-fixed": "#dde4df",
+                    "surface-variant": "#e4e2e1",
+                    "surface-container-highest": "#e4e2e1",
+                    "on-tertiary": "#ffffff",
+                    "outline": "#727876",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#414845",
+                    "on-primary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed-dim": "#c1c8c3",
+                    "on-background": "#1b1c1b",
+                    "on-secondary-container": "#65645f",
+                    "surface-container-low": "#f5f3f2",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-card": "#ffffff",
+                    "on-surface": "#1b1c1b",
+                    "secondary-container": "#e5e2db",
+                    "on-primary-fixed-variant": "#3a4a46",
+                    "primary-fixed-dim": "#b8cac5",
+                    "surface-dim": "#dbdad8",
+                    "secondary-fixed-dim": "#c9c6c0",
+                    "status-sale": "#0f1f1c",
+                    "text-muted": "rgba(15, 31, 28, 0.6)",
+                    "inverse-on-surface": "#f2f0ef",
+                    "tertiary": "#000201",
+                    "surface": "#fbf9f8",
+                    "on-secondary-fixed": "#1c1c18",
+                    "primary-container": "#0f1f1c",
+                    "tertiary-container": "#171e1b",
+                    "on-secondary-fixed-variant": "#474742",
+                    "on-error-container": "#93000a",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed": "#0e1e1b",
+                    "on-tertiary-fixed": "#161d1a",
+                    "surface-container-high": "#eae8e6",
+                    "inverse-surface": "#303030",
+                    "surface-bright": "#fbf9f8",
+                    "secondary": "#5f5e59",
+                    "primary-fixed": "#d4e6e1",
+                    "on-tertiary-container": "#7f8682",
+                    "error-container": "#ffdad6",
+                    "brand-green": "#1a2e29",
+                    "secondary-fixed": "#e5e2db",
+                    "border-subtle": "rgba(255, 255, 255, 0.1)",
+                    "inverse-primary": "#b8cac5",
+                    "outline-variant": "#c2c8c5",
+                    "primary": "#000101",
+                    "background": "#fbf9f8",
+                    "on-surface-variant": "#424846",
+                    "surface-tint": "#51625e",
+                    "on-primary-container": "#778884"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "container-margin": "1.5rem",
+                    "section-gap-lg": "5rem",
+                    "grid-gutter": "1rem",
+                    "element-gap": "0.5rem",
+                    "section-gap-sm": "2.5rem"
+            },
+            "fontFamily": {
+                    "body-md": ["Noto Sans"],
+                    "headline-lg": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"],
+                    "price-tag": ["Noto Sans"],
+                    "headline-md": ["Playfair Display"],
+                    "label-caps": ["Noto Sans"]
+            },
+            "fontSize": {
+                    "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                    "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                    "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                    "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen pb-32">
+<!-- Top Navigation Shell -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-container-margin h-16 bg-brand-green">
+<div class="flex items-center gap-4">
+<button class="text-on-primary hover:opacity-80 transition-opacity active:scale-95">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+<div class="font-headline-md text-headline-md text-on-primary tracking-widest uppercase">
+            NATURE'S ALCHEMIST
+        </div>
+<div class="flex items-center gap-4">
+<button class="text-on-primary hover:opacity-80 transition-opacity active:scale-95">
+<span class="material-symbols-outlined">shopping_bag</span>
+</button>
+</div>
+</nav>
+<!-- Page Content -->
+<main class="mt-24 px-container-margin max-w-5xl mx-auto">
+<!-- Header Section -->
+<header class="mb-section-gap-sm text-center">
+<p class="font-label-caps text-label-caps text-on-primary-container mb-2">CURATED SELECTION</p>
+<h1 class="font-headline-lg text-headline-lg text-primary mb-4">Your Wishlist</h1>
+<div class="w-12 h-px bg-on-surface-variant mx-auto mb-8"></div>
+</header>
+<!-- Wishlist Grid -->
+<section class="grid grid-cols-2 md:grid-cols-3 gap-grid-gutter">
+<!-- Wishlist Item 1 -->
+<div class="bg-surface-card border border-surface-variant group relative shadow-sm overflow-hidden flex flex-col">
+<div class="aspect-[4/5] relative overflow-hidden bg-surface-container">
+<img alt="Herbal Serum" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A high-end apothecary glass bottle containing a dark amber botanical serum, placed on a textured stone surface under soft morning light. The background features blurred green sage leaves, creating a clean, minimalist, and luxury organic aesthetic consistent with a premium wellness brand palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1WfgHF3sqqF9f_AdJqCRy2nxTVU0wjU5uHBC6Qmr0eGX1m3MRqotLgxPhvjw-qGOFG90O0XhbVyDgaxBNjkpV9vXCN3bT16ZfEnv3ZWJcV-mk-SUjPT81qktC4IKidqn7xVW5-Mw1shHzJk6758Ja7I4NW_MMB36NhdAIYC3KwTsEZKB_nMPQbnxKOG0toF3nMXz2rkfynFb2SpEz2yZGZ1oHfAZaVikmBrolzwC0QQFbnWnQvWTcaGO2BLnoaxGultJdg7_NSQ9i"/>
+<div class="absolute top-0 right-0 p-3">
+<button class="w-8 h-8 flex items-center justify-center bg-surface-card rounded-full text-primary shadow-sm hover:text-error transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+<div class="absolute top-3 left-0">
+<span class="bg-status-sale text-on-primary font-label-caps text-[9px] px-2 py-1 uppercase tracking-tighter">Bestseller</span>
+</div>
+</div>
+<div class="p-4 flex-1 flex flex-col justify-between">
+<div>
+<h3 class="font-headline-md text-[18px] text-primary mb-1">Night Rejuvenating Elixir</h3>
+<p class="font-body-md text-on-surface-variant text-xs mb-3 italic">Artemisia &amp; Elderberry</p>
+<p class="font-price-tag text-price-tag text-primary">$84.00</p>
+</div>
+<button class="mt-4 w-full bg-brand-green text-on-primary font-label-caps py-3 text-center uppercase tracking-widest hover:opacity-90 active:scale-[0.98] transition-all">
+                        Add to Cart
+                    </button>
+</div>
+</div>
+<!-- Wishlist Item 2 -->
+<div class="bg-surface-card border border-surface-variant group relative shadow-sm overflow-hidden flex flex-col">
+<div class="aspect-[4/5] relative overflow-hidden bg-surface-container">
+<img alt="Herbal Tea" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A minimalist overhead shot of dried organic herbs and flowers arranged artistically in a small wooden bowl. The scene is bathed in bright, soft, natural light, emphasizing textures of lavender and chamomile. The overall mood is peaceful and artisanal, reflecting the purity of botanical ingredients." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkS0RnMJuwd5pL3nsb4TQ-6NsSjTQ1AMprXu5GfLS57diDPSeO9JNRMipKOV8oJD1_fmeIx5EPPKt8MO3kVcP1LQl0A8BwsOjx7yolFS6gHtDjaVtvZdLAx1JzQSyFPuCptTbhw-DarHlCPffNoSeCYRYB1gD1ouxRsuugBOQbK8lrIF7aGdHH4wP9L82KXpiUmeU47jXYY2uQ65Z1yKHZO79ctStYF71oq8rZhPqjzaW7c3iQb0JrNvPxsvQXy1wFlasIIGPjMSIC"/>
+<div class="absolute top-0 right-0 p-3">
+<button class="w-8 h-8 flex items-center justify-center bg-surface-card rounded-full text-primary shadow-sm hover:text-error transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+</div>
+<div class="p-4 flex-1 flex flex-col justify-between">
+<div>
+<h3 class="font-headline-md text-[18px] text-primary mb-1">Restorative Herbal Tisane</h3>
+<p class="font-body-md text-on-surface-variant text-xs mb-3 italic">Chamomile &amp; Holy Basil</p>
+<p class="font-price-tag text-price-tag text-primary">$28.00</p>
+</div>
+<button class="mt-4 w-full bg-brand-green text-on-primary font-label-caps py-3 text-center uppercase tracking-widest hover:opacity-90 active:scale-[0.98] transition-all">
+                        Add to Cart
+                    </button>
+</div>
+</div>
+<!-- Wishlist Item 3 -->
+<div class="bg-surface-card border border-surface-variant group relative shadow-sm overflow-hidden flex flex-col">
+<div class="aspect-[4/5] relative overflow-hidden bg-surface-container">
+<img alt="Tincture Set" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Premium brown apothecary glass tincture bottles with glass droppers, neatly arranged on a clean white linen cloth. Soft shadows dance across the background, suggesting a sunlit studio environment. The aesthetic is clean, medical-grade herbalism with a luxurious, modern artisan touch." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDANNPDVciUdaWWogjxxktdqnt57LD7sec3anFr-xKFE23lRJtNtc-8dzwb_MeFjfCWgNeOdSITbbSvpMUgAyY3bP5B5YZ51BR7ibTn5xW8JWRNV1vzUQQPfCPBxpoAXQIOYxjIfQwA9eS_204M51sqfw2IaAxQXS6340ikrFvu31kUC4UtdAvgJOSWzCeqOw9EZUs-P9kh0re3xGWNoiANR-7Ip5QfC2TJFXcdAS3oUlJl7w3XE8DbTuy8HMm8spIfSMzLAbRGRA5W"/>
+<div class="absolute top-0 right-0 p-3">
+<button class="w-8 h-8 flex items-center justify-center bg-surface-card rounded-full text-primary shadow-sm hover:text-error transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+<div class="absolute top-3 left-0">
+<span class="bg-on-tertiary-fixed-variant text-on-primary font-label-caps text-[9px] px-2 py-1 uppercase tracking-tighter">Limited</span>
+</div>
+</div>
+<div class="p-4 flex-1 flex flex-col justify-between">
+<div>
+<h3 class="font-headline-md text-[18px] text-primary mb-1">Focus Tincture Set</h3>
+<p class="font-body-md text-on-surface-variant text-xs mb-3 italic">Lion's Mane &amp; Rosemary</p>
+<p class="font-price-tag text-price-tag text-primary">$110.00</p>
+</div>
+<button class="mt-4 w-full bg-brand-green text-on-primary font-label-caps py-3 text-center uppercase tracking-widest hover:opacity-90 active:scale-[0.98] transition-all">
+                        Add to Cart
+                    </button>
+</div>
+</div>
+<!-- Wishlist Item 4 -->
+<div class="bg-surface-card border border-surface-variant group relative shadow-sm overflow-hidden flex flex-col">
+<div class="aspect-[4/5] relative overflow-hidden bg-surface-container">
+<img alt="Botanical Candle" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A luxurious ceramic candle with a matte white finish sitting next to a sprig of dried eucalyptus. The warm flame of the candle creates a soft, cozy glow that illuminates the surrounding cream-colored surfaces. The visual style is rooted in minimalist sanctuary design, evoking feelings of calm and purity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbMsF1hmVVOwYOPlfMn8p4StUKv7jsMq9W26q-SKB5Uhq-SZQhHfyk7Q8znS8rb_hdR1i_EAFPhxK3UUjEPDhYwnngKNRn7VntQcEv0N9qulbYYn5J5fikm9s18rvvz7WycC3_90k3WHWR7YoU08K5K4rWy2IUafNA_7jkeq87vC75-tQN2t4YzDE9X095FOhl9dR4Wzczdv4npf8I2RAVjT0yL_NaIYHcejJbrBG0c5fPGLkqjMa8yFgMJxYN5pVkO4L9aHaqr5qr"/>
+<div class="absolute top-0 right-0 p-3">
+<button class="w-8 h-8 flex items-center justify-center bg-surface-card rounded-full text-primary shadow-sm hover:text-error transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+</div>
+<div class="p-4 flex-1 flex flex-col justify-between">
+<div>
+<h3 class="font-headline-md text-[18px] text-primary mb-1">Ritual Hearth Candle</h3>
+<p class="font-body-md text-on-surface-variant text-xs mb-3 italic">Cedarwood &amp; Sage</p>
+<p class="font-price-tag text-price-tag text-primary">$42.00</p>
+</div>
+<button class="mt-4 w-full bg-brand-green text-on-primary font-label-caps py-3 text-center uppercase tracking-widest hover:opacity-90 active:scale-[0.98] transition-all">
+                        Add to Cart
+                    </button>
+</div>
+</div>
+</section>
+<!-- Empty State Recommendation (Subtle UX Layer) -->
+<section class="mt-section-gap-lg border-t border-surface-variant pt-section-gap-sm text-center">
+<div class="max-w-md mx-auto">
+<span class="material-symbols-outlined text-on-primary-container text-4xl mb-4">auto_awesome</span>
+<h2 class="font-headline-md text-headline-md text-primary mb-2">Continue Your Ritual</h2>
+<p class="font-body-md text-on-surface-variant mb-8 px-6">Every plant has a story. Discover more formulations curated specifically for your wellness journey.</p>
+<button class="border border-brand-green text-brand-green font-label-caps py-4 px-10 uppercase tracking-widest hover:bg-brand-green hover:text-on-primary transition-all active:scale-95">
+                    Explore All Collections
+                </button>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Shell -->
+<footer class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 bg-surface shadow-sm border-t border-outline-variant">
+<div class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim hover:text-primary transition-colors cursor-pointer scale-90 active:transition-transform">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps text-label-caps mt-1">HOME</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim hover:text-primary transition-colors cursor-pointer scale-90 active:transition-transform">
+<span class="material-symbols-outlined">Bed</span>
+<span class="font-label-caps text-label-caps mt-1">SHOP</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim hover:text-primary transition-colors cursor-pointer scale-90 active:transition-transform">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-caps text-label-caps mt-1">SEARCH</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary dark:text-primary font-bold cursor-pointer scale-90 active:transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="font-label-caps text-label-caps mt-1">WISHLIST</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim hover:text-primary transition-colors cursor-pointer scale-90 active:transition-transform">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-label-caps mt-1">PROFILE</span>
+</div>
+</footer>
+</body></html>

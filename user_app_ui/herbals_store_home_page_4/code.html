@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nature's Alchemist</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Noto+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "brand-dark": "#0f1f1c",
+                        "brand-green": "#1a2e29",
+                        "brand-cream": "#f4f1ea",
+                        "brand-sage": "#dce3de",
+                        "text-dark": "#0f1f1c",
+                        "text-light": "#f4f1ea",
+                    },
+                    fontFamily: {
+                        "serif": ["Playfair Display", "serif"],
+                        "sans": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "1rem",
+                        "2xl": "1.5rem",
+                        "3xl": "2rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .scroll-snap-x {
+            scroll-snap-type: x mandatory;
+        }
+        .scroll-snap-center {
+            scroll-snap-align: center;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-brand-cream text-brand-dark font-sans antialiased selection:bg-brand-green selection:text-brand-cream">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden pb-16">
+<header class="sticky top-0 z-50 flex items-center bg-brand-dark/95 backdrop-blur-sm text-brand-cream px-5 py-4 justify-between transition-colors duration-200 border-b border-white/5 shadow-lg">
+<button class="text-brand-cream hover:bg-white/10 p-1 rounded-full transition-colors">
+<span class="material-symbols-outlined text-[28px]">menu</span>
+</button>
+<h2 class="text-lg font-serif italic tracking-wide">Nature's Alchemist</h2>
+<div class="flex items-center justify-end gap-3">
+<button class="flex items-center justify-center text-brand-cream hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[24px]">search</span>
+</button>
+<button class="flex items-center justify-center text-brand-cream hover:text-white transition-colors relative">
+<span class="material-symbols-outlined text-[24px]">shopping_bag</span>
+<span class="absolute -top-1 -right-1 bg-brand-sage text-brand-dark text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">2</span>
+</button>
+</div>
+</header>
+<section class="relative w-full bg-brand-dark text-brand-cream min-h-[500px] flex flex-col items-center justify-center text-center overflow-hidden px-6">
+<div class="absolute inset-0 bg-cover bg-center opacity-40 mix-blend-luminosity" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBJBJZiKchfEs2i6ixOGuxIZsW8vX1TOBb4bv8mkdEmNLbUnOZ1mCZ6IAtwb7YwjNWmR_cnEX18jf67i_CJnY595kZQ4dyyaGBQq-u-drxjGEZYf3DYXS0-SOGbvSVtOSAs3w1V1YW9sxMeYW93mGXappaeE9MCVauSzKHNIxO0FQnZG0UvBIarY_FB4GJG0fv2hIpvwQxeZlywOEj1cpZzc01AUqTbQFEMVUwZtIQ4p-GEU9dx2TM_mip9HyS04nVPjttNhgz1tq1Q");'></div>
+<div class="absolute inset-0 bg-gradient-to-b from-brand-dark/30 via-transparent to-brand-dark/90"></div>
+<div class="relative z-10 max-w-lg mx-auto flex flex-col items-center">
+<div class="inline-block border border-brand-cream/20 bg-brand-dark/20 backdrop-blur-md px-3 py-1 rounded-full mb-6">
+<p class="text-[10px] uppercase tracking-[0.2em] font-medium text-brand-sage">Est. 2018 • Sunkani</p>
+</div>
+<h1 class="text-5xl md:text-6xl font-serif italic mb-4 leading-none tracking-tight drop-shadow-lg">
+                Nature's <br/><span class="not-italic font-normal">Alchemist</span>
+</h1>
+<p class="text-sm font-light leading-relaxed text-brand-sage/90 mb-10 max-w-[280px] mx-auto drop-shadow-md">
+                Handcrafted herbal remedies from the foothills of Pothigai. Pure, potent, and tradition-rich.
+            </p>
+<div class="flex flex-row gap-3 w-full max-w-xs mx-auto">
+<button class="flex-1 bg-brand-cream text-brand-dark font-semibold py-4 px-6 rounded-sm uppercase tracking-widest text-xs hover:bg-white transition-colors shadow-lg">
+                    Shop Now
+                </button>
+<button class="flex-1 bg-transparent border border-brand-cream text-brand-cream font-semibold py-4 px-6 rounded-sm uppercase tracking-widest text-xs hover:bg-brand-cream/10 transition-colors backdrop-blur-sm">
+                    Bulk Orders
+                </button>
+</div>
+</div>
+</section>
+<section class="bg-brand-dark text-brand-cream py-10 px-4 border-t border-white/5 relative z-20 -mt-4 rounded-t-3xl shadow-negative">
+<div class="grid grid-cols-4 gap-2 max-w-2xl mx-auto">
+<div class="flex flex-col items-center gap-3 text-center group">
+<div class="w-12 h-12 rounded-full bg-brand-green/50 border border-brand-cream/10 flex items-center justify-center group-hover:bg-brand-green transition-colors">
+<span class="material-symbols-outlined text-xl text-brand-sage">spa</span>
+</div>
+<p class="text-[9px] font-bold uppercase leading-tight tracking-wider text-brand-sage">Made in<br/>Sunkani</p>
+</div>
+<div class="flex flex-col items-center gap-3 text-center group">
+<div class="w-12 h-12 rounded-full bg-brand-green/50 border border-brand-cream/10 flex items-center justify-center group-hover:bg-brand-green transition-colors">
+<span class="material-symbols-outlined text-xl text-brand-sage">verified</span>
+</div>
+<p class="text-[9px] font-bold uppercase leading-tight tracking-wider text-brand-sage">100%<br/>Natural</p>
+</div>
+<div class="flex flex-col items-center gap-3 text-center group">
+<div class="w-12 h-12 rounded-full bg-brand-green/50 border border-brand-cream/10 flex items-center justify-center group-hover:bg-brand-green transition-colors">
+<span class="material-symbols-outlined text-xl text-brand-sage">local_shipping</span>
+</div>
+<p class="text-[9px] font-bold uppercase leading-tight tracking-wider text-brand-sage">Pan India<br/>Shipping</p>
+</div>
+<div class="flex flex-col items-center gap-3 text-center group">
+<div class="w-12 h-12 rounded-full bg-brand-green/50 border border-brand-cream/10 flex items-center justify-center group-hover:bg-brand-green transition-colors">
+<span class="material-symbols-outlined text-xl text-brand-sage">payments</span>
+</div>
+<p class="text-[9px] font-bold uppercase leading-tight tracking-wider text-brand-sage">Cash on<br/>Delivery</p>
+</div>
+</div>
+</section>
+<section class="py-16 px-5 bg-brand-cream">
+<div class="flex flex-row justify-between items-end mb-8 border-b border-brand-dark/10 pb-4">
+<div>
+<p class="text-[10px] uppercase tracking-widest text-brand-dark/60 mb-1">Customer Favorites</p>
+<h2 class="text-3xl font-serif text-brand-dark">Best Sellers</h2>
+</div>
+<a class="text-[10px] font-bold uppercase tracking-wider underline underline-offset-4 decoration-1 decoration-brand-dark/30 hover:text-brand-green" href="#">View All</a>
+</div>
+<div class="grid grid-cols-2 gap-x-4 gap-y-10">
+<div class="group flex flex-col">
+<div class="relative w-full aspect-[3/4] bg-white rounded-xl overflow-hidden mb-4 shadow-sm border border-brand-dark/5">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Restorative Oil" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHIV8tpuAwULiib8z40dcvofFbltGObD5xUGP0YL6JNkFdSYvGXAwEPqTBP8nef8r9-F2QDX1XU76FHoJVlALAfg9HbGYPW2x4fajuaJpPu9E6Qth955skYZ1zz1zzy8-jZLw5Zmilg5IqMK3KbTGlF_PDAtiFaIrmnydZpHl1JJgNB4MxZ9FlLAYoc0hBPRaf-42ue5Fm9TGT6XnGLeNfbE5IM2Yhj4fSiF6ambepFFGuxDlpBVp5kfqEFAyOj_VpiZl8QEIrqFfe"/>
+<button class="absolute top-2 right-2 w-8 h-8 rounded-full bg-white/90 backdrop-blur flex items-center justify-center text-brand-dark hover:bg-brand-dark hover:text-white transition-all shadow-sm">
+<span class="material-symbols-outlined text-lg">favorite_border</span>
+</button>
+<div class="absolute bottom-0 left-0 bg-brand-dark text-white text-[9px] px-3 py-1 uppercase tracking-wider font-bold rounded-tr-lg">20% Off</div>
+</div>
+<div class="space-y-1">
+<p class="text-[9px] uppercase font-bold text-brand-dark/50 tracking-wider">Elixir</p>
+<h3 class="font-serif text-lg leading-tight text-brand-dark">Restorative Oil</h3>
+<p class="text-xs text-brand-dark/60">100ml</p>
+</div>
+<div class="w-full flex items-center justify-between mt-3">
+<span class="font-medium text-brand-dark text-sm">₹2,400</span>
+<button class="bg-brand-dark text-brand-cream px-3 py-1.5 text-[10px] uppercase font-bold tracking-wider rounded-sm hover:bg-brand-green transition-colors">
+                        Add
+                    </button>
+</div>
+</div>
+<div class="group flex flex-col">
+<div class="relative w-full aspect-[3/4] bg-white rounded-xl overflow-hidden mb-4 shadow-sm border border-brand-dark/5">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Digestive Tea" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsH7A1KuWjMZmFt0cRqzrnojp6cbbFaeLeAe7c7YTyQZ-pjRuUAzRVyhOV3RuOnGJvDKOMDeryZkLtGF1x6TgsYQJZWDvGGwQupTPC083chLILpiD795l8BOiNWJBmE32fXbdcxhx_-kOI83y93fAMIwHFHJYKKKfr7k8Nt0uBINC1IqfqcciSDcXvqmsr1lEQcVrObenvde3zwsg_MupDW3nx_SRyddPFo4AvtTarsrzZQmtsI7_qoFYkM88XB9syXjYvBvnNPQJ5"/>
+<button class="absolute top-2 right-2 w-8 h-8 rounded-full bg-white/90 backdrop-blur flex items-center justify-center text-brand-dark hover:bg-brand-dark hover:text-white transition-all shadow-sm">
+<span class="material-symbols-outlined text-lg">favorite_border</span>
+</button>
+<div class="absolute bottom-0 left-0 bg-brand-green text-white text-[9px] px-3 py-1 uppercase tracking-wider font-bold rounded-tr-lg">New</div>
+</div>
+<div class="space-y-1">
+<p class="text-[9px] uppercase font-bold text-brand-dark/50 tracking-wider">Tea Blend</p>
+<h3 class="font-serif text-lg leading-tight text-brand-dark">Digestive Tea</h3>
+<p class="text-xs text-brand-dark/60">50g</p>
+</div>
+<div class="w-full flex items-center justify-between mt-3">
+<span class="font-medium text-brand-dark text-sm">₹850</span>
+<button class="bg-brand-dark text-brand-cream px-3 py-1.5 text-[10px] uppercase font-bold tracking-wider rounded-sm hover:bg-brand-green transition-colors">
+                        Add
+                    </button>
+</div>
+</div>
+<div class="group flex flex-col">
+<div class="relative w-full aspect-[3/4] bg-white rounded-xl overflow-hidden mb-4 shadow-sm border border-brand-dark/5">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Golden Paste" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBc3BSANcM15tCmEPZ8teZ_naJadozLqpT07Kb_THtgd_cJ1PvjAtp_91vn5bWS_790x_O3VYG8MGKuFwFnxUSXhEIlwpW84ky9gPmFgX0CKSJ215OcNiS38AUacN9zYx8KuM7otL5ZgpW_bwsTlyKErtZnqNHVjry11YnJFetppl9zaBNF19eeYFy0Id1gmg_piixma42ZLEKp3nZOY2hUp0K8XeDWZF3GL0T4_Xi34aF_DI1vjKf0PphX7cdDIJi2JFRNQrSoAo3P"/>
+<button class="absolute top-2 right-2 w-8 h-8 rounded-full bg-white/90 backdrop-blur flex items-center justify-center text-brand-dark hover:bg-brand-dark hover:text-white transition-all shadow-sm">
+<span class="material-symbols-outlined text-lg">favorite_border</span>
+</button>
+</div>
+<div class="space-y-1">
+<p class="text-[9px] uppercase font-bold text-brand-dark/50 tracking-wider">Wellness</p>
+<h3 class="font-serif text-lg leading-tight text-brand-dark">Golden Paste</h3>
+<p class="text-xs text-brand-dark/60">150g</p>
+</div>
+<div class="w-full flex items-center justify-between mt-3">
+<span class="font-medium text-brand-dark text-sm">₹1,200</span>
+<button class="bg-brand-dark text-brand-cream px-3 py-1.5 text-[10px] uppercase font-bold tracking-wider rounded-sm hover:bg-brand-green transition-colors">
+                        Add
+                    </button>
+</div>
+</div>
+<div class="group flex flex-col">
+<div class="relative w-full aspect-[3/4] bg-white rounded-xl overflow-hidden mb-4 shadow-sm border border-brand-dark/5">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Sage Bundle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDu5Wx__eZCRrus_ikgYOOdpWLlsed9MkY2_uPLGlbzNfhuXl7y2Nhxig-LgjUU2URp9RjQUj3V6wO8EGVOJcH23gBo7fa4M22ga6pOuFXnKB8Z5OhWTLOiou9o5bGbsMrAfk9K7EWhbNy3Kvz11HYcu4j23VsyT2XYKud2YkpGWrSRM7neZaSBMaYIe4aeEUlz0Zk70A-dk8Ts4H-Dif7GMxle8oZNtrYXnbqh6_0dj_NqSm9zEwk4q045b9L7i57z7jdydmGeBy3D"/>
+<button class="absolute top-2 right-2 w-8 h-8 rounded-full bg-white/90 backdrop-blur flex items-center justify-center text-brand-dark hover:bg-brand-dark hover:text-white transition-all shadow-sm">
+<span class="material-symbols-outlined text-lg">favorite_border</span>
+</button>
+</div>
+<div class="space-y-1">
+<p class="text-[9px] uppercase font-bold text-brand-dark/50 tracking-wider">Incense</p>
+<h3 class="font-serif text-lg leading-tight text-brand-dark">Sage Bundle</h3>
+<p class="text-xs text-brand-dark/60">1 pc</p>
+</div>
+<div class="w-full flex items-center justify-between mt-3">
+<span class="font-medium text-brand-dark text-sm">₹450</span>
+<button class="bg-brand-dark text-brand-cream px-3 py-1.5 text-[10px] uppercase font-bold tracking-wider rounded-sm hover:bg-brand-green transition-colors">
+                        Add
+                    </button>
+</div>
+</div>
+</div>
+</section>
+<section class="px-5 py-4 space-y-6">
+<div class="relative w-full h-72 rounded-2xl overflow-hidden group shadow-md">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDJ86y8GR8FtAwpVXrQk9_I3l8npJbgXhWYX-wdeQN6kFpAPYnFr_na2LKptVJ8iQ9p8bFeLihqiksnEIGHLs4A9d1Mw4mvXmVqABrn6owfRX1kC0wt04HS9Nls6vUsFBwVoLVdYe5RgByTAaqY0AZsoxY3eqauO7iBCk1foZ4PHM6bA6ImsO_-ty-f-GM3q9ignoNqdEtc3yYcah9B4Lb2rTHqXjG9Zpc0P3ZJIUGVf5j2egGEeWqrU7bvPy_WY4ZqRk9S1LDpWMWy");'></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full">
+<p class="text-[10px] uppercase tracking-widest text-white/70 mb-2">Retail</p>
+<h2 class="text-white font-serif italic text-3xl mb-2">The Apothecary</h2>
+<p class="text-white/80 text-sm mb-6 max-w-[200px] leading-relaxed">Shop our signature range of handcrafted soaps and oils.</p>
+<button class="bg-white text-brand-dark px-6 py-3 rounded-sm text-[10px] font-bold uppercase tracking-widest hover:bg-brand-cream transition-colors">
+                    Shop Products
+                </button>
+</div>
+</div>
+<div class="relative w-full h-72 rounded-2xl overflow-hidden group shadow-md">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBQv5X0VTPaL4v1fvGX4ABy1eV4bp0zy0pNsHQ87eZopL0TSBd91E_JbOe91z_7Fy2MRNGUY3O3w66tdSl58U3hx7QLm7nkZGoe1zT1H7bzW4xymUs2DDi2w12guZDc_vPSjd6Uu2X71XvnE7ncM--0K3djrdO8sz6bMEGDR1VnoQyQO8OUYC2pFdEtKMy7eHnUAIDeLM1CJuTiTnDUNPE0pozI-Y0g2p6eyAyBh3kQaHM1QbKLElWUnXAtg6C1Rc_m6ROI79xNwkHR");'></div>
+<div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/30 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full">
+<p class="text-[10px] uppercase tracking-widest text-white/70 mb-2">Wholesale</p>
+<h2 class="text-white font-serif italic text-3xl mb-2">The Source</h2>
+<p class="text-white/80 text-sm mb-6 max-w-[200px] leading-relaxed">Premium raw materials for bulk buyers and creators.</p>
+<button class="bg-transparent border border-white/60 text-white px-6 py-3 rounded-sm text-[10px] font-bold uppercase tracking-widest hover:bg-white/10 transition-colors">
+                    Sourcing Enquiry
+                </button>
+</div>
+</div>
+</section>
+<section class="py-12 px-5 bg-brand-cream">
+<div class="flex flex-col items-center mb-8 text-center">
+<p class="text-[10px] uppercase tracking-widest text-brand-dark/60 mb-2">Curated for you</p>
+<h2 class="text-3xl font-serif text-brand-dark">Essentials</h2>
+<a class="mt-2 text-[10px] font-bold uppercase tracking-widest text-brand-dark/50 hover:text-brand-dark" href="#">View Full Catalog +</a>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="relative w-full h-48 rounded-xl overflow-hidden shadow-sm group cursor-pointer">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCTkRnDzohevdtxjtXsi_HfjqwQQIQqKoAkNw4w_nHBjWpiXknqgV8XYMBOD5PPpYJqrENktSU7o1WPdXMSt76UNc4-gHNfU4GaZ2jfYLc0EzmplYU6Ntdo1RMFnDMhhDRIxYAYhcCdFjUPV0aD4MQDlZZxqQALqJUS-Nsq6K-fDCYxZK2G5hmVpmhSWpCDMsdgG-R_gKLc0yG-lQ7HbZZP-Ejzt3-BDdfQ1HLrkYZpF-ZF7LGVmnWUek4lim3b2qNPI9l4dDgHf3LK");'></div>
+<div class="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors"></div>
+<div class="absolute bottom-4 left-4">
+<p class="text-[9px] font-bold uppercase tracking-wider text-white/70 mb-1">Hair Growth</p>
+<h3 class="text-xl font-serif text-white mb-0.5">Elixirs</h3>
+<p class="text-[10px] text-white/80">Potent oils</p>
+</div>
+</div>
+<div class="relative w-full h-48 rounded-xl overflow-hidden shadow-sm group cursor-pointer">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB_2ce9RZYONIEmEhAUv8ktTnE_ZclHFOZLIOHzo3sJ7ArtnrOweZwXrADu_Nb6cyYtZZGR_mupXhOCWNV0vOpupN3W6arNXIpYRI29rP4wr6Oq4yqfMmewg0F8VONZ60Yi1cfG0Tvfquk0wtIriP5oBF3vnKeSim4BAmWGmv_yCXbsA101JoKuueyZIFRP5uZbSmHy1UFQ-AFdYL_EPcj7h99bYIaRIOTtVMv8bHjPaXpWgLnSF95Ve0ZPQ_MQIKIVFSPYBo8b_zzN");'></div>
+<div class="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors"></div>
+<div class="absolute bottom-4 left-4">
+<p class="text-[9px] font-bold uppercase tracking-wider text-white/70 mb-1">Relaxation</p>
+<h3 class="text-xl font-serif text-white mb-0.5">Calm</h3>
+<p class="text-[10px] text-white/80">Aromatherapy</p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-16 bg-white overflow-hidden">
+<div class="px-5 mb-8 flex justify-between items-end">
+<h2 class="text-2xl font-serif text-brand-dark">Loved by<br/>Customers</h2>
+<div class="flex gap-1 text-brand-green">
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star_half</span>
+<span class="text-xs font-bold ml-1 text-brand-dark">4.8</span>
+</div>
+</div>
+<div class="flex gap-4 overflow-x-auto px-5 pb-8 no-scrollbar scroll-snap-x">
+<div class="min-w-[85%] md:min-w-[60%] bg-brand-cream p-6 rounded-xl relative scroll-snap-center border border-brand-dark/5 shadow-sm">
+<span class="material-symbols-outlined text-4xl text-brand-sage/50 absolute top-4 right-4">format_quote</span>
+<div class="flex text-brand-green mb-3">
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+</div>
+<p class="font-serif italic text-lg leading-relaxed mb-6 text-brand-dark/80">"Absolutely love the smell! My hair feels so soft after just one wash. It's become a daily ritual I look forward to."</p>
+<div class="flex items-center gap-3 border-t border-brand-dark/5 pt-4">
+<div class="w-8 h-8 rounded-full bg-brand-green flex items-center justify-center text-white text-xs font-bold shadow-sm">PS</div>
+<div>
+<p class="text-xs font-bold text-brand-dark">Priya Sharma</p>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[10px] text-green-600">verified</span>
+<p class="text-[9px] uppercase tracking-wider text-brand-dark/50">Verified Buyer</p>
+</div>
+</div>
+</div>
+</div>
+<div class="min-w-[85%] md:min-w-[60%] bg-brand-cream p-6 rounded-xl relative scroll-snap-center border border-brand-dark/5 shadow-sm">
+<span class="material-symbols-outlined text-4xl text-brand-sage/50 absolute top-4 right-4">format_quote</span>
+<div class="flex text-brand-green mb-3">
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+</div>
+<p class="font-serif italic text-lg leading-relaxed mb-6 text-brand-dark/80">"The best herbal oil I have used. Highly recommend for hair growth. The packaging is also beautiful and eco-friendly."</p>
+<div class="flex items-center gap-3 border-t border-brand-dark/5 pt-4">
+<div class="w-8 h-8 rounded-full bg-brand-green flex items-center justify-center text-white text-xs font-bold shadow-sm">AM</div>
+<div>
+<p class="text-xs font-bold text-brand-dark">Anita M.</p>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[10px] text-green-600">verified</span>
+<p class="text-[9px] uppercase tracking-wider text-brand-dark/50">Verified Buyer</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-20 px-6 bg-brand-dark text-brand-cream flex flex-col items-center text-center space-y-16">
+<div class="relative">
+<h3 class="font-serif italic text-4xl mb-3 text-white">Pure</h3>
+<p class="text-[10px] uppercase tracking-[0.2em] text-brand-sage mb-4 font-medium">Chemical Free</p>
+<p class="text-sm text-brand-sage/70 max-w-xs mx-auto leading-relaxed">No sulfates, parabens, or synthetics. Only what nature intended.</p>
+<div class="w-px h-8 bg-brand-sage/20 mx-auto mt-8"></div>
+</div>
+<div class="relative">
+<h3 class="font-serif italic text-4xl mb-3 text-white">Artisan</h3>
+<p class="text-[10px] uppercase tracking-[0.2em] text-brand-sage mb-4 font-medium">Handcrafted</p>
+<p class="text-sm text-brand-sage/70 max-w-xs mx-auto leading-relaxed">Made in small batches in Tenkasi to ensure the highest potency.</p>
+<div class="w-px h-8 bg-brand-sage/20 mx-auto mt-8"></div>
+</div>
+<div class="relative">
+<h3 class="font-serif italic text-4xl mb-3 text-white">Ethical</h3>
+<p class="text-[10px] uppercase tracking-[0.2em] text-brand-sage mb-4 font-medium">Cruelty Free</p>
+<p class="text-sm text-brand-sage/70 max-w-xs mx-auto leading-relaxed">Tested on friends and family, never on animals.</p>
+</div>
+</section>
+<section class="relative py-28 px-6 flex flex-col items-center text-center text-white overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCPOyWUcJifZqwd_6iPqL3r7gXwvQ6y-8RUBHT447D7jRdWhvK4rOte2MPpliABhLxso5UW84giOYVbs1C42oneugp3vBz9uZIwyF1wl_a-NemPqXl96M-F08b4kyFZHV9_Eq2qI0Oh_ECU1N_67v8uGPqAecJocnh12-ziHAQwbiv_whMgGPI8DiGnXT-lHkXod6G6FT-2NQURIcbcTtSWh5IjrEvgCxNZDk3rsZzBA0tdSdrQBFZ2aYThD_ClAeM8DhR9TiZq8Xzq");'></div>
+<div class="absolute inset-0 bg-black/60 mix-blend-multiply"></div>
+<div class="relative z-10 max-w-md border border-white/20 p-8 backdrop-blur-[2px] bg-white/5 rounded-sm">
+<p class="text-[10px] uppercase tracking-widest text-brand-sage mb-3">The Academy</p>
+<h2 class="text-4xl font-serif mb-6 italic">Master the Craft</h2>
+<p class="text-sm leading-relaxed text-brand-sage mb-8">
+                 Join our exclusive workshops in Tenkasi. Learn the ancient secrets of herbal formulation from master artisans.
+             </p>
+<button class="bg-white text-brand-dark px-8 py-3 rounded-sm text-xs font-bold uppercase tracking-widest hover:bg-brand-sage transition-colors">
+                Enquire About Classes
+            </button>
+</div>
+</section>
+<section class="py-20 px-6 bg-brand-cream text-center relative overflow-hidden">
+<div class="absolute -top-24 -right-24 w-64 h-64 bg-brand-sage/30 rounded-full blur-3xl"></div>
+<div class="absolute -bottom-24 -left-24 w-64 h-64 bg-brand-green/5 rounded-full blur-3xl"></div>
+<span class="material-symbols-outlined text-4xl text-brand-green mb-4 relative z-10">spa</span>
+<h2 class="text-3xl font-serif text-brand-dark mb-6 relative z-10">Premium Sourcing</h2>
+<p class="text-sm text-brand-dark/70 max-w-sm mx-auto mb-10 leading-relaxed relative z-10">
+            For businesses that demand excellence. We supply bulk raw materials ranging from cold-pressed carrier oils to rare herbal extracts, sourced directly from organic farms.
+        </p>
+<div class="grid grid-cols-2 gap-y-6 gap-x-8 max-w-xs mx-auto mb-12 text-brand-dark font-serif italic text-lg relative z-10">
+<div class="flex items-center gap-2 justify-center"><span class="w-1.5 h-1.5 bg-brand-green rounded-full opacity-50"></span>Carrier Oils</div>
+<div class="flex items-center gap-2 justify-center"><span class="w-1.5 h-1.5 bg-brand-green rounded-full opacity-50"></span>Essential Oils</div>
+<div class="flex items-center gap-2 justify-center"><span class="w-1.5 h-1.5 bg-brand-green rounded-full opacity-50"></span>Herbal Powders</div>
+<div class="flex items-center gap-2 justify-center"><span class="w-1.5 h-1.5 bg-brand-green rounded-full opacity-50"></span>Clays &amp; Butters</div>
+</div>
+<button class="bg-brand-dark text-white px-8 py-3.5 rounded-sm text-xs font-bold uppercase tracking-widest hover:bg-brand-dark/90 transition-colors shadow-lg relative z-10">
+            Request Catalog
+        </button>
+</section>
+<footer class="bg-brand-dark text-brand-cream/60 py-16 px-6 border-t border-white/10 mb-16">
+<div class="flex flex-col gap-10">
+<div>
+<h2 class="text-3xl font-serif italic text-brand-cream mb-2">Guna's</h2>
+<p class="text-[10px] font-bold uppercase tracking-widest text-brand-cream/80 mb-6">Herbal Legacy</p>
+<p class="text-xs leading-relaxed max-w-xs text-brand-cream/60">
+                    Reviving the lost art of Siddha formulations. Pure, potent, and handcrafted in Tenkasi for the conscious modern home.
+                </p>
+</div>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full border border-brand-cream/20 flex items-center justify-center hover:bg-brand-cream hover:text-brand-dark transition-all" href="#">
+<span class="material-symbols-outlined text-lg">camera_alt</span>
+</a>
+<a class="w-10 h-10 rounded-full border border-brand-cream/20 flex items-center justify-center hover:bg-brand-cream hover:text-brand-dark transition-all" href="#">
+<span class="material-symbols-outlined text-lg">public</span>
+</a>
+<a class="w-10 h-10 rounded-full border border-brand-cream/20 flex items-center justify-center hover:bg-brand-cream hover:text-brand-dark transition-all" href="#">
+<span class="material-symbols-outlined text-lg">mail</span>
+</a>
+</div>
+<div class="grid grid-cols-1 gap-4 text-xs font-medium tracking-wide">
+<h3 class="text-brand-cream font-serif text-lg mb-2 italic">Resources</h3>
+<a class="hover:text-brand-cream transition-colors flex items-center gap-2" href="#">
+<span class="w-1 h-1 bg-brand-cream/40 rounded-full"></span> The Academy
+                </a>
+<a class="hover:text-brand-cream transition-colors flex items-center gap-2" href="#">
+<span class="w-1 h-1 bg-brand-cream/40 rounded-full"></span> Raw Materials (B2B)
+                </a>
+<a class="hover:text-brand-cream transition-colors flex items-center gap-2" href="#">
+<span class="w-1 h-1 bg-brand-cream/40 rounded-full"></span> Our Heritage
+                </a>
+<a class="hover:text-brand-cream transition-colors flex items-center gap-2" href="#">
+<span class="w-1 h-1 bg-brand-cream/40 rounded-full"></span> Partnership Enquiry
+                </a>
+<div class="h-px bg-white/10 my-2 w-full max-w-[100px]"></div>
+<a class="hover:text-brand-cream transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-brand-cream transition-colors" href="#">Return &amp; Refunds</a>
+</div>
+<div class="pt-8 border-t border-white/5 text-[10px] text-center opacity-40">
+                © 2024 Guna's Herbal Legacy. All rights reserved.
+            </div>
+</div>
+</footer>
+<nav class="fixed bottom-0 left-0 w-full bg-brand-dark border-t border-white/10 z-50 pb-safe">
+<div class="flex justify-around items-center h-16 px-2 text-brand-cream/50">
+<a class="flex flex-col items-center justify-center flex-1 gap-1 text-brand-cream" href="#">
+<span class="material-symbols-outlined text-2xl">home</span>
+<span class="text-[9px] uppercase tracking-wider font-bold">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center flex-1 gap-1 hover:text-brand-cream transition-colors" href="#">
+<span class="material-symbols-outlined text-2xl">grid_view</span>
+<span class="text-[9px] uppercase tracking-wider font-bold">Catalog</span>
+</a>
+<a class="flex flex-col items-center justify-center flex-1 gap-1 hover:text-brand-cream transition-colors" href="#">
+<span class="material-symbols-outlined text-2xl">person</span>
+<span class="text-[9px] uppercase tracking-wider font-bold">Account</span>
+</a>
+</div>
+</nav>
+<style>
+        .pb-safe {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+    </style>
+</div>
+
+</body></html>

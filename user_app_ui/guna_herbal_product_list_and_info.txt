@@ -1,0 +1,90 @@
+# Guna's Hand Made Herbal Products Catalog
+
+## Categories
+- All
+- Shampoo
+- Soap
+- Oil
+- Cream
+- Lip Balm
+- Powders
+- Spice
+- Honey
+
+## Product List (Name | Price | MRP | Code)
+
+### Shampoos (200ml)
+- Guna's Coconut Milk Shampoo | ₹180 | ₹230 | GUNA001
+- Guna's Onion Hibiscus Shampoo | ₹180 | ₹230 | GUNA002
+- Guna's Aloe Vera Shampoo | ₹180 | ₹230 | GUNA003
+- Guna's Goat Milk Shampoo | ₹180 | ₹250 | GUNA004
+- Guna's Bringaraj Shampoo | ₹250 | ₹350 | GUNA005
+- Guna's Flaxseed & Rice Water Shampoo | ₹250 | ₹350 | GUNA006
+- Guna's Flaxseed Shampoo | ₹250 | ₹350 | GUNA007
+- Guna's Amla & Aloevera Shampoo | ₹250 | ₹350 | GUNA008
+- Guna's Rosemary Shampoo | ₹250 | ₹350 | GUNA009
+
+### Oils
+- Guna's Kumkumadi Skin Glow Oil (10ml) | ₹350 | ₹500 | GUNA010
+- Guna's Hair Growth Oil (200ml) | ₹220 | ₹300 | GUNA011
+- Guna's Saffron Glow Oil (10ml) | ₹220 | ₹300 | GUNA012
+- Guna's Olive Oil (200ml) | ₹220 | ₹300 | GUNA013
+- Guna's Almond Oil (200ml) | ₹220 | ₹230 | GUNA015
+
+### Soaps (80gram)
+- Guna's Nalangu Maavu Soap | ₹100 | ₹160 | GUNA016
+- Guna's Anti Bacterial Soap | ₹100 | ₹160 | GUNA017
+- Guna's Skin Brightening Soap | ₹135 | ₹200 | GUNA018
+- Guna's De-Tan Soap | ₹135 | ₹200 | GUNA019
+- Guna's Manjista & Beet Root Soap | ₹135 | ₹200 | GUNA020
+- Guna's Goat Milk Soap | ₹135 | ₹200 | GUNA021
+- Guna's Baby Soap | ₹199 | ₹300 | GUNA022
+- Guna's Viamin-C Soap | ₹100 | ₹140 | GUNA023
+- Guna's Avanram Poo & Hibiscus Soap | ₹100 | ₹140 | GUNA024
+- Guna's Oat Milk & Honey Soap | ₹100 | ₹140 | GUNA025
+- Guna's Kupai Meni Soap | ₹100 | ₹140 | GUNA026
+- Guna's Saffron Soap | ₹135 | ₹200 | GUNA027
+- Guna's Lavender Soap | ₹135 | ₹200 | GUNA028
+- Guna's Coffee Soap | ₹100 | ₹140 | GUNA029
+- Guna's Charcoal Soap | ₹100 | ₹140 | GUNA030
+- Guna's Aloe Vera Soap | ₹100 | ₹140 | GUNA031
+- Guna's Multhjani Mutti Soap | ₹100 | ₹140 | GUNA032
+- Guna's Paneer Rose Soap | ₹100 | ₹140 | GUNA033
+- Guna's Kasturi Manjal Soap | ₹100 | ₹140 | GUNA034
+- Guna's Sandal Wood Soap | ₹100 | ₹140 | GUNA035
+
+### Creams & Face Washes
+- Guna's Pigmentation Cream | GUNA036
+- Guna's Acne Cream | GUNA037
+- Guna's Papaaya Cream | GUNA038
+- Guna's Neem Face Wash | GUNA039
+- Guna's Charcoal Facewash Gel | GUNA040
+- Guna's Manjista Face Wash Gel | GUNA041
+- Guna's Natural Sun Screen Cream SPF 50 | GUNA042
+
+### Lip Balms
+- Guna's Beet Root Lip Balm | GUNA043
+- Guna's Vempalam Pattai Lip Balm | GUNA044
+- Guna's Bee-Wax Lip Balm | GUNA045
+
+### Powders & Others
+- Guna's Rose Pettal Face Powder | GUNA046
+- Guna's Sandalwood Powder | GUNA047
+- Guna's Instant Hair Removal Powder (50gram) | ₹150 | ₹230 | GUNA048
+- Guna's Nalangu Maavu Powder | GUNA049
+- Guna's Multhaani Mutti Powder | GUNA050
+- Guna's Rose Water | GUNA051
+- Guna's Bamboo Napkin (6Pieces) | GUNA052
+- Guna's Ridge Gourd Luffa (1Piece) | GUNA053
+- Guna's Kashmir Mongra Saffron (1gram) | ₹350 | ₹500 | GUNA054
+
+### Honey (100gram)
+- Guna's Natural Honey | GUNA055
+- Guna's Small Bee Honey | GUNA056
+- Guna's Kombu Honey | GUNA057
+- Guna's Multiflora Honey | GUNA058
+- Guna's Raw Honey | GUNA059
+
+## Store Information
+**Address**: #11, MUNICIPALITY COMPLEX, PERUMAL KOVIL STREET, Opp. CANARA BANK, TENKASI, TAMIL NADU - 627811
+**Contact**: +91 88701 89093 / +91 90476 55333

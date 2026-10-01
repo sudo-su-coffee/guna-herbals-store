@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Botanical Admin | User Sessions &amp; Analytics</title>
+<!-- Google Fonts: Playfair Display for Serifs, Noto Sans for UI -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "status-sale": "#0f1f1c",
+                    "primary": "#000101",
+                    "text-muted": "rgba(15, 31, 28, 0.6)",
+                    "secondary": "#5f5e59",
+                    "on-tertiary-container": "#7f8682",
+                    "tertiary-fixed-dim": "#c1c8c3",
+                    "primary-fixed": "#d4e6e1",
+                    "outline-variant": "#c2c8c5",
+                    "surface-card": "#ffffff",
+                    "secondary-fixed-dim": "#c9c6c0",
+                    "on-secondary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#1b1c1b",
+                    "outline": "#727876",
+                    "inverse-primary": "#b8cac5",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface-variant": "#424846",
+                    "error": "#ba1a1a",
+                    "primary-container": "#0f1f1c",
+                    "brand-green": "#1a2e29",
+                    "border-subtle": "rgba(255, 255, 255, 0.1)",
+                    "on-error": "#ffffff",
+                    "on-secondary-container": "#65645f",
+                    "surface-dim": "#dbdad8",
+                    "secondary-container": "#e5e2db",
+                    "on-background": "#1b1c1b",
+                    "secondary-fixed": "#e5e2db",
+                    "on-error-container": "#93000a",
+                    "primary-fixed-dim": "#b8cac5",
+                    "background": "#fbf9f8",
+                    "on-primary-fixed": "#0e1e1b",
+                    "surface-bright": "#fbf9f8",
+                    "on-tertiary-fixed": "#161d1a",
+                    "tertiary-fixed": "#dde4df",
+                    "inverse-on-surface": "#f2f0ef",
+                    "on-secondary-fixed": "#1c1c18",
+                    "surface-container-high": "#eae8e6",
+                    "surface-container": "#efedec",
+                    "on-tertiary-fixed-variant": "#414845",
+                    "inverse-surface": "#303030",
+                    "on-primary-container": "#778884",
+                    "surface-container-low": "#f5f3f2",
+                    "tertiary-container": "#171e1b",
+                    "surface-variant": "#e4e2e1",
+                    "on-tertiary": "#ffffff",
+                    "tertiary": "#000201",
+                    "on-secondary-fixed-variant": "#474742",
+                    "surface-tint": "#51625e",
+                    "surface-container-highest": "#e4e2e1",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#3a4a46",
+                    "surface": "#fbf9f8"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "container-margin": "1.5rem",
+                    "element-gap": "0.5rem",
+                    "section-gap-sm": "2.5rem",
+                    "grid-gutter": "1rem",
+                    "section-gap-lg": "5rem"
+            },
+            "fontFamily": {
+                    "headline-md": ["Playfair Display"],
+                    "label-caps": ["Noto Sans"],
+                    "display-lg": ["Playfair Display"],
+                    "price-tag": ["Noto Sans"],
+                    "body-md": ["Noto Sans"],
+                    "headline-lg": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                    "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                    "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                    "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                    "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-dot {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        .chart-bar-mobile { transition: height 1s ease-out; }
+        .chart-bar-web { transition: height 1.2s ease-out; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-hidden">
+<!-- Sidebar (Shared Components Navigation) -->
+<nav class="fixed left-0 top-0 h-screen w-64 bg-brand-green dark:bg-status-sale flex flex-col py-8 z-50">
+<div class="px-6 mb-12">
+<h1 class="font-headline-lg text-headline-lg text-on-primary mb-1">Apothecary</h1>
+<p class="font-label-caps text-label-caps text-on-primary opacity-60">Management Portal</p>
+</div>
+<div class="flex-1 space-y-2">
+<a class="text-on-tertiary-container hover:text-on-primary p-3 mx-2 flex items-center gap-3 transition-all duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-caps text-label-caps">Dashboard</span>
+</a>
+<a class="text-on-tertiary-container hover:text-on-primary p-3 mx-2 flex items-center gap-3 transition-all duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">potted_plant</span>
+<span class="font-label-caps text-label-caps">Inventory</span>
+</a>
+<a class="text-on-tertiary-container hover:text-on-primary p-3 mx-2 flex items-center gap-3 transition-all duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="font-label-caps text-label-caps">Orders</span>
+</a>
+<a class="bg-on-primary-container text-on-primary rounded-lg p-3 mx-2 flex items-center gap-3 transition-all duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-caps text-label-caps">Customers</span>
+</a>
+<a class="text-on-tertiary-container hover:text-on-primary p-3 mx-2 flex items-center gap-3 transition-all duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">leaderboard</span>
+<span class="font-label-caps text-label-caps">Analytics</span>
+</a>
+<a class="text-on-tertiary-container hover:text-on-primary p-3 mx-2 flex items-center gap-3 transition-all duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">local_shipping</span>
+<span class="font-label-caps text-label-caps">Suppliers</span>
+</a>
+</div>
+<div class="mt-auto pt-8 border-t border-border-subtle space-y-2">
+<a class="text-on-tertiary-container hover:text-on-primary p-3 mx-2 flex items-center gap-3 transition-all duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span class="font-label-caps text-label-caps">Support</span>
+</a>
+<a class="text-on-tertiary-container hover:text-on-primary p-3 mx-2 flex items-center gap-3 transition-all duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-caps text-label-caps">Log Out</span>
+</a>
+</div>
+</nav>
+<!-- Main Canvas -->
+<main class="ml-64 min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="flex items-center justify-between px-container-margin w-full h-20 bg-background border-b border-outline-variant">
+<div class="flex items-center gap-8">
+<h2 class="font-headline-md text-headline-md text-primary">User Activity</h2>
+<div class="relative w-80">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-none text-body-md focus:ring-1 focus:ring-primary" placeholder="Search sessions, IPs or Users..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined cursor-pointer hover:text-primary">notifications</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary">settings</span>
+</div>
+<div class="w-10 h-10 bg-surface-variant overflow-hidden rounded-full border border-outline-variant">
+<img alt="Admin" class="w-full h-full object-cover" data-alt="A professional headshot of a mature administrative director with a calm, authoritative expression, set against a blurred minimalist studio background. The lighting is soft and natural, emphasizing textures and clear skin tones, fitting a high-end wellness brand aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHg8Hj7lS5eJDk5bycAzlrmlKlZ0-OjK2h3ickgWu7j4NW4cCSh2jJr8HuPDKdsV61Qp3X8RpraYV_I0si8l1zPfYw3EP4H_5PXSr4zK5NN6nD6mm9V5ptN0ZjwkcTjYVpsWMPvNrCpQ2MZAilbPLywXLS4rlZx7sY4L0shlvDidyvoW4ukBU-BDhLsbi9_OxqnPpVs6BcxFYHQe65vd_uzpO40-wyb_j34exBnov2ejL_FbTylgGI51t2LpROIWa4LCTsDK2wdGMB"/>
+</div>
+</div>
+</header>
+<!-- Analytics Content -->
+<div class="flex-1 p-container-margin overflow-y-auto hide-scrollbar space-y-10">
+<!-- Summary Grid & Comparison Chart -->
+<section class="grid grid-cols-12 gap-grid-gutter">
+<!-- Data Visualization: Web vs Mobile -->
+<div class="col-span-8 bg-surface-card p-8 border border-outline-variant">
+<div class="flex items-end justify-between mb-8">
+<div>
+<h3 class="font-label-caps text-label-caps text-text-muted mb-2">TRAFFIC COMPARISON</h3>
+<p class="font-headline-md text-headline-md">App vs Web Channels</p>
+</div>
+<div class="flex gap-4">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 bg-brand-green"></span>
+<span class="text-xs font-label-caps">WEB</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 bg-primary-fixed-dim"></span>
+<span class="text-xs font-label-caps">MOBILE APP</span>
+</div>
+</div>
+</div>
+<div class="h-64 flex items-end justify-between px-4 border-b border-outline-variant relative">
+<!-- Mock Chart Grid Lines -->
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none opacity-10">
+<div class="border-t border-primary w-full"></div>
+<div class="border-t border-primary w-full"></div>
+<div class="border-t border-primary w-full"></div>
+</div>
+<!-- Visualizing Bars -->
+<div class="flex gap-1 w-full justify-around items-end h-full pt-4">
+<!-- Mon -->
+<div class="flex items-end gap-1 h-full w-8">
+<div class="bg-brand-green w-1/2 h-[60%] chart-bar-web"></div>
+<div class="bg-primary-fixed-dim w-1/2 h-[45%] chart-bar-mobile"></div>
+</div>
+<!-- Tue -->
+<div class="flex items-end gap-1 h-full w-8">
+<div class="bg-brand-green w-1/2 h-[75%] chart-bar-web"></div>
+<div class="bg-primary-fixed-dim w-1/2 h-[80%] chart-bar-mobile"></div>
+</div>
+<!-- Wed -->
+<div class="flex items-end gap-1 h-full w-8">
+<div class="bg-brand-green w-1/2 h-[40%] chart-bar-web"></div>
+<div class="bg-primary-fixed-dim w-1/2 h-[30%] chart-bar-mobile"></div>
+</div>
+<!-- Thu -->
+<div class="flex items-end gap-1 h-full w-8">
+<div class="bg-brand-green w-1/2 h-[90%] chart-bar-web"></div>
+<div class="bg-primary-fixed-dim w-1/2 h-[65%] chart-bar-mobile"></div>
+</div>
+<!-- Fri -->
+<div class="flex items-end gap-1 h-full w-8">
+<div class="bg-brand-green w-1/2 h-[85%] chart-bar-web"></div>
+<div class="bg-primary-fixed-dim w-1/2 h-[95%] chart-bar-mobile"></div>
+</div>
+<!-- Sat -->
+<div class="flex items-end gap-1 h-full w-8">
+<div class="bg-brand-green w-1/2 h-[55%] chart-bar-web"></div>
+<div class="bg-primary-fixed-dim w-1/2 h-[40%] chart-bar-mobile"></div>
+</div>
+<!-- Sun -->
+<div class="flex items-end gap-1 h-full w-8">
+<div class="bg-brand-green w-1/2 h-[30%] chart-bar-web"></div>
+<div class="bg-primary-fixed-dim w-1/2 h-[20%] chart-bar-mobile"></div>
+</div>
+</div>
+</div>
+<div class="flex justify-around mt-4">
+<span class="text-xs font-label-caps opacity-60">MON</span>
+<span class="text-xs font-label-caps opacity-60">TUE</span>
+<span class="text-xs font-label-caps opacity-60">WED</span>
+<span class="text-xs font-label-caps opacity-60">THU</span>
+<span class="text-xs font-label-caps opacity-60">FRI</span>
+<span class="text-xs font-label-caps opacity-60">SAT</span>
+<span class="text-xs font-label-caps opacity-60">SUN</span>
+</div>
+</div>
+<!-- Stats Sidebar -->
+<div class="col-span-4 space-y-grid-gutter">
+<div class="bg-brand-green p-6 text-on-primary">
+<h4 class="font-label-caps text-label-caps opacity-60 mb-4">ACTIVE NOW</h4>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-headline-lg">1,284</span>
+<span class="text-xs text-primary-fixed">+12% vs last hr</span>
+</div>
+<div class="mt-4 flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary-fixed active-dot"></div>
+<span class="text-xs">Live activity streaming</span>
+</div>
+</div>
+<div class="bg-surface-card p-6 border border-outline-variant">
+<h4 class="font-label-caps text-label-caps text-text-muted mb-4">BOUNCE RATE</h4>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-headline-lg text-primary">24.5%</span>
+</div>
+<div class="mt-4 flex justify-between items-center text-xs opacity-60">
+<span>Last 30 Days</span>
+<span class="text-error font-bold">↑ 2.1%</span>
+</div>
+</div>
+<div class="bg-surface-card p-6 border border-outline-variant">
+<h4 class="font-label-caps text-label-caps text-text-muted mb-4">AVG SESSION DURATION</h4>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-headline-lg text-primary">04:12</span>
+</div>
+<div class="mt-4 flex justify-between items-center text-xs opacity-60">
+<span>Target: 05:00</span>
+<div class="w-24 h-1 bg-surface-container overflow-hidden">
+<div class="h-full bg-brand-green w-4/5"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Active Sessions List & Session Detail -->
+<section class="grid grid-cols-12 gap-grid-gutter pb-section-gap-sm">
+<!-- Active Sessions List -->
+<div class="col-span-7 bg-surface-card border border-outline-variant flex flex-col">
+<div class="p-6 border-b border-outline-variant flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md">Active Sessions</h3>
+<button class="font-label-caps text-label-caps text-primary border border-primary px-4 py-1 hover:bg-primary hover:text-on-primary transition-colors">EXPORT LOGS</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low border-b border-outline-variant">
+<tr>
+<th class="p-4 font-label-caps text-[9px] text-text-muted">DEVICE</th>
+<th class="p-4 font-label-caps text-[9px] text-text-muted">USER / IP</th>
+<th class="p-4 font-label-caps text-[9px] text-text-muted">LAST ACTION</th>
+<th class="p-4 font-label-caps text-[9px] text-text-muted">DURATION</th>
+<th class="p-4"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/30">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group cursor-pointer" onclick="selectSession('Elena R.')">
+<td class="p-4">
+<span class="material-symbols-outlined text-brand-green">desktop_windows</span>
+</td>
+<td class="p-4">
+<div class="font-bold text-sm">Elena R.</div>
+<div class="text-[11px] opacity-50">192.168.1.45</div>
+</td>
+<td class="p-4">
+<span class="px-2 py-1 bg-surface-container-high rounded-full text-[10px] font-bold">CHECKOUT</span>
+</td>
+<td class="p-4 text-xs font-mono">12m 4s</td>
+<td class="p-4">
+<span class="material-symbols-outlined opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group cursor-pointer" onclick="selectSession('Guest #402')">
+<td class="p-4">
+<span class="material-symbols-outlined text-brand-green">smartphone</span>
+</td>
+<td class="p-4">
+<div class="font-bold text-sm text-text-muted italic">Guest #402</div>
+<div class="text-[11px] opacity-50">45.22.109.12</div>
+</td>
+<td class="p-4">
+<span class="px-2 py-1 bg-surface-container-high rounded-full text-[10px] font-bold">VIEW PRODUCT</span>
+</td>
+<td class="p-4 text-xs font-mono">03m 12s</td>
+<td class="p-4">
+<span class="material-symbols-outlined opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group cursor-pointer bg-primary-fixed/10" onclick="selectSession('Julian S.')">
+<td class="p-4">
+<span class="material-symbols-outlined text-brand-green">tablet_mac</span>
+</td>
+<td class="p-4">
+<div class="font-bold text-sm">Julian S.</div>
+<div class="text-[11px] opacity-50">72.14.213.8</div>
+</td>
+<td class="p-4">
+<span class="px-2 py-1 bg-primary text-on-primary rounded-full text-[10px] font-bold">ADD TO CART</span>
+</td>
+<td class="p-4 text-xs font-mono">28m 15s</td>
+<td class="p-4">
+<span class="material-symbols-outlined opacity-100">chevron_right</span>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group cursor-pointer" onclick="selectSession('Sarah W.')">
+<td class="p-4">
+<span class="material-symbols-outlined text-brand-green">desktop_windows</span>
+</td>
+<td class="p-4">
+<div class="font-bold text-sm">Sarah W.</div>
+<div class="text-[11px] opacity-50">101.32.4.99</div>
+</td>
+<td class="p-4">
+<span class="px-2 py-1 bg-surface-container-high rounded-full text-[10px] font-bold">HOME</span>
+</td>
+<td class="p-4 text-xs font-mono">00m 45s</td>
+<td class="p-4">
+<span class="material-symbols-outlined opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Session Detail View -->
+<div class="col-span-5 bg-background border border-outline-variant p-8 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-5">
+<span class="material-symbols-outlined scale-[5]" style="font-variation-settings: 'wght' 100;">history</span>
+</div>
+<div class="relative z-10">
+<h3 class="font-label-caps text-label-caps text-text-muted mb-4">SESSION JOURNEY</h3>
+<div class="font-headline-md text-headline-md mb-8" id="session-user-name">Julian S.</div>
+<!-- Clickstream Journey -->
+<div class="space-y-6 relative">
+<!-- Timeline Line -->
+<div class="absolute left-3 top-0 bottom-0 w-[1px] bg-outline-variant"></div>
+<div class="flex gap-6 items-start">
+<div class="w-6 h-6 rounded-full bg-brand-green flex items-center justify-center relative z-20">
+<div class="w-2 h-2 rounded-full bg-on-primary"></div>
+</div>
+<div>
+<p class="text-sm font-bold">Home Page</p>
+<p class="text-[11px] opacity-50">14:02:10 — Landing via Google Ads</p>
+</div>
+</div>
+<div class="flex gap-6 items-start">
+<div class="w-6 h-6 rounded-full bg-outline flex items-center justify-center relative z-20">
+<div class="w-2 h-2 rounded-full bg-background"></div>
+</div>
+<div>
+<p class="text-sm font-bold">Product Search: "Lavender Oil"</p>
+<p class="text-[11px] opacity-50">14:05:44 — 2 filters applied</p>
+</div>
+</div>
+<div class="flex gap-6 items-start">
+<div class="w-6 h-6 rounded-full bg-outline flex items-center justify-center relative z-20">
+<div class="w-2 h-2 rounded-full bg-background"></div>
+</div>
+<div>
+<p class="text-sm font-bold">Detail View: Organic Essence 50ml</p>
+<p class="text-[11px] opacity-50">14:08:12 — Viewed reviews section</p>
+</div>
+</div>
+<div class="flex gap-6 items-start">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center relative z-20">
+<span class="material-symbols-outlined text-on-primary text-[14px]">shopping_cart</span>
+</div>
+<div>
+<p class="text-sm font-bold">Added to Cart</p>
+<p class="text-[11px] text-brand-green font-bold uppercase tracking-wider">Current Location</p>
+</div>
+</div>
+</div>
+<div class="mt-12 pt-8 border-t border-outline-variant">
+<div class="grid grid-cols-2 gap-4">
+<div class="p-4 bg-surface-container-low">
+<div class="text-[9px] font-label-caps text-text-muted mb-1">REFERRER</div>
+<div class="text-xs truncate">google.com/search?q=lavender...</div>
+</div>
+<div class="p-4 bg-surface-container-low">
+<div class="text-[9px] font-label-caps text-text-muted mb-1">REGION</div>
+<div class="text-xs">Portland, Oregon (US)</div>
+</div>
+</div>
+<button class="w-full mt-6 py-4 bg-primary text-on-primary font-label-caps text-label-caps tracking-widest hover:opacity-90 transition-opacity">
+                                TERMINATE SESSION
+                            </button>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<script>
+        function selectSession(userName) {
+            const display = document.getElementById('session-user-name');
+            display.innerText = userName;
+            
+            // Micro-interaction animation trigger
+            display.style.opacity = '0';
+            display.style.transform = 'translateY(10px)';
+            setTimeout(() => {
+                display.style.transition = 'all 0.4s ease';
+                display.style.opacity = '1';
+                display.style.transform = 'translateY(0)';
+            }, 50);
+        }
+
+        // Initialize Bar Chart simple animation
+        window.addEventListener('load', () => {
+            const bars = document.querySelectorAll('.chart-bar-web, .chart-bar-mobile');
+            bars.forEach(bar => {
+                const finalHeight = bar.style.height;
+                bar.style.height = '0%';
+                setTimeout(() => {
+                    bar.style.height = finalHeight;
+                }, 300);
+            });
+        });
+    </script>
+</body></html>

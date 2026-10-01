@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Botanical Journal | Nature's Alchemist</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .article-content p {
+            margin-bottom: 2rem;
+            color: #424846; /* on-surface-variant */
+        }
+        .drop-cap::first-letter {
+            float: left;
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            line-height: 1;
+            padding-right: 0.75rem;
+            color: #000101; /* primary */
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#fbf9f8",
+                        "on-secondary-fixed-variant": "#474742",
+                        "on-secondary": "#ffffff",
+                        "secondary": "#5f5e59",
+                        "tertiary": "#000201",
+                        "surface-container-high": "#eae8e6",
+                        "outline-variant": "#c2c8c5",
+                        "surface-container": "#efedec",
+                        "on-primary-fixed-variant": "#3a4a46",
+                        "inverse-primary": "#b8cac5",
+                        "surface-variant": "#e4e2e1",
+                        "secondary-container": "#e5e2db",
+                        "on-tertiary-container": "#7f8682",
+                        "surface-container-low": "#f5f3f2",
+                        "on-primary-fixed": "#0e1e1b",
+                        "on-tertiary-fixed-variant": "#414845",
+                        "outline": "#727876",
+                        "secondary-fixed-dim": "#c9c6c0",
+                        "primary": "#000101",
+                        "tertiary-fixed": "#dde4df",
+                        "tertiary-fixed-dim": "#c1c8c3",
+                        "secondary-fixed": "#e5e2db",
+                        "inverse-surface": "#303030",
+                        "on-secondary-fixed": "#1c1c18",
+                        "surface-dim": "#dbdad8",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#fbf9f8",
+                        "error": "#ba1a1a",
+                        "on-primary-container": "#778884",
+                        "surface-card": "#ffffff",
+                        "on-tertiary-fixed": "#161d1a",
+                        "on-error": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#65645f",
+                        "inverse-on-surface": "#f2f0ef",
+                        "on-surface": "#1b1c1b",
+                        "on-surface-variant": "#424846",
+                        "text-muted": "rgba(15, 31, 28, 0.6)",
+                        "background": "#fbf9f8",
+                        "status-sale": "#0f1f1c",
+                        "primary-container": "#0f1f1c",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed-dim": "#b8cac5",
+                        "on-background": "#1b1c1b",
+                        "error-container": "#ffdad6",
+                        "brand-green": "#1a2e29",
+                        "surface-tint": "#51625e",
+                        "tertiary-container": "#171e1b",
+                        "primary-fixed": "#d4e6e1",
+                        "on-primary": "#ffffff",
+                        "surface-container-highest": "#e4e2e1",
+                        "border-subtle": "rgba(255, 255, 255, 0.1)"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "section-gap-sm": "2.5rem",
+                        "element-gap": "0.5rem",
+                        "container-margin": "1.5rem",
+                        "grid-gutter": "1rem",
+                        "section-gap-lg": "5rem"
+                    },
+                    "fontFamily": {
+                        "price-tag": ["Noto Sans"],
+                        "headline-md": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "label-caps": ["Noto Sans"],
+                        "display-lg": ["Playfair Display"],
+                        "body-md": ["Noto Sans"]
+                    },
+                    "fontSize": {
+                        "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                        "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                        "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-container-margin py-4 w-full bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container">
+<div class="font-headline-md text-headline-md text-on-primary dark:text-on-primary-container uppercase tracking-widest">
+            Nature's Alchemist
+        </div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="font-body-md text-body-md text-on-primary-container/80 dark:text-on-primary-container/70 hover:text-on-primary transition-colors duration-300" href="#">Shop All</a>
+<a class="font-body-md text-body-md text-on-primary border-b border-on-primary pb-1" href="#">Rituals</a>
+<a class="font-body-md text-body-md text-on-primary-container/80 dark:text-on-primary-container/70 hover:text-on-primary transition-colors duration-300" href="#">Heritage</a>
+<a class="font-body-md text-body-md text-on-primary-container/80 dark:text-on-primary-container/70 hover:text-on-primary transition-colors duration-300" href="#">Sourcing</a>
+</nav>
+<div class="flex gap-4 items-center">
+<span class="material-symbols-outlined cursor-pointer hover:opacity-80 transition-all">person</span>
+<span class="material-symbols-outlined cursor-pointer hover:opacity-80 transition-all">shopping_cart</span>
+</div>
+</header>
+<main class="pt-24">
+<!-- Article Header -->
+<section class="max-w-4xl mx-auto px-container-margin mt-section-gap-sm mb-16 text-center">
+<span class="font-label-caps text-label-caps text-primary uppercase mb-4 block tracking-[0.3em]">Herbal Wisdom • Issue No. 04</span>
+<h1 class="font-display-lg text-display-lg md:text-[80px] leading-tight mb-8">The Alchemy of Wild Lavender</h1>
+<p class="font-body-md text-lg text-on-surface-variant max-w-2xl mx-auto italic">
+                Exploring the ancestral heritage and modern clinical potency of high-altitude Lavandula angustifolia in restorative rituals.
+            </p>
+</section>
+<!-- Hero Image -->
+<section class="w-full h-[716px] mb-section-gap-sm overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="A cinematic, high-angle shot of vast, rolling lavender fields in Provence at dawn. The lighting is soft and ethereal with a cool blue and violet color palette, reflecting a modern apothecary aesthetic. Mist clings to the distant mountains under a pale, serene morning sky. The image feels deeply tactile, atmospheric, and premium, evoking a sense of calm and botanical purity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDeTGbBWeGVIK6Qc99gjQCsEWMCxrV-PWXXRe0c4aPt7nFgAVfgw8IkJaA3M4iqnEAvPBePDL-w76IfDUnQFY-pDlYEL8yKmQBHflDpWueSzDSFzKKTcnoCUFaUlRb3kILBGvRIVUasWnjdWz53nZj2wELvNS45IGqQ1BucYbCzrPWLdQsGPXW0aBvHlUpOiAY_v8JRDr7w-bPYWKyT53OkF0T552c56D5cczgKtBzTUoCjHzDvfSMIkBOMNUhwi4L4nnp-Dr7OQglg"/>
+<div class="absolute inset-0 bg-black/10"></div>
+</section>
+<!-- Article Layout -->
+<div class="max-w-7xl mx-auto px-container-margin grid grid-cols-1 lg:grid-cols-12 gap-16">
+<!-- Side Navigation (Collections Sidebar) -->
+<aside class="hidden lg:flex lg:col-span-3 flex-col h-fit sticky top-32">
+<div class="mb-8">
+<h3 class="font-headline-md text-primary mb-1">Collections</h3>
+<p class="text-[11px] uppercase tracking-widest text-on-surface-variant">Pure. Potent. Proven.</p>
+</div>
+<nav class="flex flex-col gap-4 border-l border-outline-variant">
+<a class="font-label-caps text-label-caps text-on-surface-variant pl-4 hover:bg-surface-variant/20 py-2 transition-all" href="#">Apothecary</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant pl-4 hover:bg-surface-variant/20 py-2 transition-all" href="#">Skincare</a>
+<a class="font-label-caps text-label-caps text-primary font-bold border-l-2 border-primary pl-4 py-2 bg-surface-variant/10" href="#">Supplements</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant pl-4 hover:bg-surface-variant/20 py-2 transition-all" href="#">Home Fragrance</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant pl-4 hover:bg-surface-variant/20 py-2 transition-all" href="#">Gifts</a>
+</nav>
+<div class="mt-16 p-6 bg-surface-container-low border border-outline-variant/30 text-center">
+<span class="material-symbols-outlined text-primary mb-4 text-3xl">spa</span>
+<p class="font-headline-md text-sm mb-4">Join the Alchemist Circle</p>
+<p class="text-xs text-on-surface-variant mb-6 leading-relaxed">Early access to small-batch harvests and botanical research.</p>
+<button class="w-full bg-primary text-surface py-3 text-[10px] font-bold tracking-widest uppercase">Subscribe</button>
+</div>
+</aside>
+<!-- Main Content -->
+<article class="lg:col-span-7 article-content">
+<div class="font-body-md text-lg leading-relaxed drop-cap">
+<p>For centuries, the rugged peaks of the Haute-Provence Alps have guarded a secret known only to mountain shepherds and local healers. Unlike its cultivated cousins in the valleys, wild lavender—<i>Lavandula angustifolia</i>—thrives in the harsh, rocky soil above 1,200 meters. This struggle against the elements is what synthesizes its extraordinary chemical profile, rich in linalyl acetate and linalool, creating a potent elixir that far surpasses standard aromatic oils.</p>
+<p>The harvest is a ritual of patience. It must occur at the height of summer, under the midday sun when the oils are at their peak concentration. Our alchemists follow the ancient method of steam distillation, using copper stills that have remained unchanged for three generations. This slow, low-pressure process ensures that the fragile molecular structure of the plant remains intact, preserving the soul of the flower.</p>
+<!-- Pull Quote -->
+<blockquote class="my-16 py-12 px-8 bg-surface-container-low border-y border-outline-variant text-center italic">
+<p class="font-headline-lg text-primary text-3xl md:text-4xl leading-snug mb-4">
+                            "The plant does not just survive the mountain; it absorbs the mountain's resilience into its very essence."
+                        </p>
+<cite class="font-label-caps text-label-caps not-italic text-on-surface-variant uppercase tracking-[0.2em]">— Dr. Elara Vance, Ethnobotanist</cite>
+</blockquote>
+<h2 class="font-headline-lg text-primary mb-6">Restorative Rituals</h2>
+<p>Integrating wild lavender into a modern wellness practice is more than an olfactory experience—it is a physiological reset. Scientific studies have shown that the inhalation of these specific high-altitude compounds directly modulates the parasympathetic nervous system, lowering cortisol levels and inducing a state of "deep neural quiet."</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-12">
+<img class="w-full aspect-[4/5] object-cover" data-alt="A close-up, high-detail macro shot of dried lavender bundles being placed into a traditional copper distillation vat. The lighting is warm and directional, emphasizing the tactile textures of the dried herbs and the polished, reflective surface of the copper. The scene is set in a rustic but clean stone-walled workshop, blending heritage craft with modern minimalist design principles." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcbVCksJYESHrPxmOMTbTGhLUCCWHZClgmUPwpki6sMkKF8_2D-90VGEMJGIaMwNjS40-uCRd9c0O2QvodTK-v48uh2porJA10Wjlvwr2SyWRX4Qx6EKRw0UAmBK0_wfQLHFXj6lIChp6NrLdk_r6nqyKmFiWmwnD0qBtGVv0xW490PeL4SQbUh_P7kT9SKrPdOIEQqH7PLpGRzl8pb6n3VFPY8P_XLiUAc7Y7hPn2SB6eyF9JtKIXQqWLtXRb6ZlyR4BCGB8YbRBA"/>
+<img class="w-full aspect-[4/5] object-cover" data-alt="A minimalist overhead flat-lay of a wellness ritual setup on a cream-toned stone surface. A glass dropper bottle of clear lavender elixir sits next to a small ceramic bowl of raw herbs and a single linen cloth. The composition is airy with heavy whitespace, using a neutral color palette of sage, cream, and charcoal. The lighting is soft and natural, suggesting a peaceful morning ritual." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8RJBge_dOA36QfxHhPkD4HG0R2MVwktBm-pwmePfveBKdBNcQ3NO0tCQa0TXZDAXW81j-vajAllghSP9F4IgTaYoZWaEu6ARH0ifc9VGZttc1HlN-usHXTONGVX0DfiF9ROAn1lXKFCA_MUpr6muVEJwdCxu5c8NbB-iicYGublKjc_8_QKae6gLEJxQVDNhK8G0fQv4fKpD2Weiud_AYhSidoLQUQIybRBMLSttN8TNkXGKXjyQQeMceSFQJemFNSHvfY9MupuRr"/>
+</div>
+<p>To perform the Alchemist's Evening Ritual: warm three drops of the Alpine Essence in your palms. Place them over the face and inhale deeply for five slow breaths. The immediate transition from the chaos of the digital world to the stillness of the mountain air is the hallmark of true botanical alchemy.</p>
+</div>
+<!-- Shared/Related Products Carousel -->
+<section class="mt-section-gap-lg border-t border-outline-variant pt-16 mb-16">
+<div class="flex justify-between items-end mb-10">
+<div>
+<h3 class="font-headline-lg text-primary mb-2">The Lavender Collection</h3>
+<p class="font-body-md text-on-surface-variant">Harness the potency of the Alps.</p>
+</div>
+<div class="flex gap-2">
+<button class="p-2 border border-outline hover:bg-primary hover:text-surface transition-all">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="p-2 border border-outline hover:bg-primary hover:text-surface transition-all">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="flex gap-6 overflow-x-auto hide-scrollbar pb-8">
+<!-- Product Card 1 -->
+<div class="min-w-[280px] bg-surface-card shadow-sm group">
+<div class="relative aspect-[4/5] overflow-hidden">
+<span class="absolute top-4 left-0 bg-primary text-on-primary font-label-caps text-[9px] px-3 py-1 z-10">LIMITED HARVEST</span>
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A premium glass bottle of lavender facial oil photographed against a clean, off-white plaster background. The lighting creates sharp, architectural shadows. The product design is minimalist with a dark label and serif typography. The overall aesthetic is high-end apothecary, focusing on purity, luxury, and botanical integrity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmmQhlVSPhHdZLLHikWZvSDM9Cgxy1ZzmSbN6kjXSZFSBnQ9jEzefRv7_U6BfdgA_pl83WAKaeIPyesIkv8KCkcvBH_CBTjggDud9uzZT-jelU3g2XYaqyqq9fIWXdLHxKbp6xH9_to3CY8-kjw39OIfK-Dzz10z4XionMbRVTqUtAJgMFmK6ZvM9MKn9ohvA6jXRAa6nPxeQW0qOX6S_aIj9kcpcLwTO_8cfpkTJFb_o0WTnqgflp9Zoin4kmevOQInYPHoZdJeQp"/>
+</div>
+<div class="p-4 text-center">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1">APOTHECARY</p>
+<h4 class="font-headline-md text-lg mb-2">Alpine Wild Lavender Oil</h4>
+<p class="font-price-tag text-price-tag text-primary">$72.00</p>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="min-w-[280px] bg-surface-card shadow-sm group">
+<div class="relative aspect-[4/5] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A sleek black tin of botanical sleep balm sitting on a rustic wooden table next to a sprig of fresh lavender. The lighting is moody and low-key, highlighting the matte texture of the tin. The style is sophisticated, masculine-leaning but universally appealing, emphasizing a grounding and natural bedtime ritual." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXGEt7ZMpu-PGO1aa9BU8zes6T97b1hlEZQ5iNz9a7EpXUe1qu5K7q62YQNRHryrcRa3Q06S5bloEHQdU8kwhxglKjSW_UfxJmJWXzYnV6_0JoUaiuLxKe6vdUQQJmGgIXq1kKGm343L1PIt8mIwRQs-A9Tvr999qbdI7wOUG-9eCQSiK1w0QxtEjEqZuPDaelJQxqMTKTeU_4hjCNnGrYLeGafpsvXLwl4IchL3aome6W8HTu9WjECiaxm-dRXSBguu2PNMXnxjkX"/>
+</div>
+<div class="p-4 text-center">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1">RITUALS</p>
+<h4 class="font-headline-md text-lg mb-2">Nocturnal Sleep Balm</h4>
+<p class="font-price-tag text-price-tag text-primary">$38.00</p>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="min-w-[280px] bg-surface-card shadow-sm group">
+<div class="relative aspect-[4/5] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A tall, minimalist glass bottle of linen spray with a silver misting nozzle. The bottle is backlit by soft, diffused light, making the clear liquid appear luminous. It sits on a stack of clean, white linen sheets in a bright, modern bedroom setting. The mood is fresh, airy, and impeccably clean." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjP7RIQpbWipmtLQcLDF7bZgcyAPRKLaKEYVEmQ6-Q4sPyOg7UWH8NuBnHhi6c7voWQ2ZP6RciMHqHQ_slKePDA96KpvCe8SqaBc_PNKVkLhLNUQ1Iz6Lama6cKLQXbmBxVkALNJjG0YplRQ0OTVOBeTeoA8TwN877Cd_4DnPOebJkSxGSZBr6obCP5dLaz2s31eoFrxamiXh-xXAYM34zVJHVB9hQ2egiqxXQ-OJRUb9zC-FJkBumDCMpejOF66ho1AcbxwVRk0j8"/>
+</div>
+<div class="p-4 text-center">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1">HOME</p>
+<h4 class="font-headline-md text-lg mb-2">High-Altitude Linen Mist</h4>
+<p class="font-price-tag text-price-tag text-primary">$45.00</p>
+</div>
+</div>
+</div>
+</section>
+</article>
+<!-- Tags & Sharing (Right Sidebar) -->
+<aside class="hidden lg:block lg:col-span-2 h-fit sticky top-32">
+<div class="mb-12">
+<h4 class="font-label-caps text-label-caps text-primary mb-4 uppercase">Read Time</h4>
+<p class="font-body-md">8 Minutes</p>
+</div>
+<div class="mb-12">
+<h4 class="font-label-caps text-label-caps text-primary mb-4 uppercase">Share</h4>
+<div class="flex flex-col gap-3">
+<a class="text-on-surface-variant hover:text-primary flex items-center gap-2 transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">alternate_email</span>
+<span class="text-xs">Email</span>
+</a>
+<a class="text-on-surface-variant hover:text-primary flex items-center gap-2 transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">share</span>
+<span class="text-xs">Clipboard</span>
+</a>
+</div>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps text-primary mb-4 uppercase">Tags</h4>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-surface-container text-[10px] uppercase font-bold tracking-tighter">Botanicals</span>
+<span class="px-3 py-1 bg-surface-container text-[10px] uppercase font-bold tracking-tighter">Wellness</span>
+<span class="px-3 py-1 bg-surface-container text-[10px] uppercase font-bold tracking-tighter">Heritage</span>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-highest dark:bg-tertiary-container w-full py-section-gap-sm border-t border-outline-variant">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-grid-gutter px-container-margin max-w-7xl mx-auto">
+<div class="flex flex-col gap-4">
+<div class="font-headline-lg text-headline-lg text-primary dark:text-tertiary-fixed">Nature's Alchemist</div>
+<p class="font-body-md text-on-surface-variant max-w-xs">Honoring the ancient wisdom of the soil through modern distillation and ethical sourcing.</p>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col gap-2">
+<h5 class="font-label-caps text-label-caps text-primary mb-2 uppercase">Explore</h5>
+<a class="font-body-md text-on-surface-variant hover:text-primary dark:hover:text-tertiary-fixed underline transition-opacity duration-200" href="#">Our Story</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary dark:hover:text-tertiary-fixed underline transition-opacity duration-200" href="#">Sourcing Ethics</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary dark:hover:text-tertiary-fixed underline transition-opacity duration-200" href="#">Sustainability</a>
+</div>
+<div class="flex flex-col gap-2">
+<h5 class="font-label-caps text-label-caps text-primary mb-2 uppercase">Service</h5>
+<a class="font-body-md text-on-surface-variant hover:text-primary dark:hover:text-tertiary-fixed underline transition-opacity duration-200" href="#">Shipping</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary dark:hover:text-tertiary-fixed underline transition-opacity duration-200" href="#">Wholesale</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary dark:hover:text-tertiary-fixed underline transition-opacity duration-200" href="#">Contact</a>
+</div>
+</div>
+<div class="flex flex-col gap-6">
+<p class="font-body-md text-on-surface-variant">© 2024 Nature's Alchemist. Ethical Sourcing &amp; Botanical Integrity.</p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer hover:opacity-70">eco</span>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:opacity-70">psychology</span>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:opacity-70">public</span>
+</div>
+</div>
+</div>
+</footer>
+<!-- Mobile Navigation Bar -->
+<div class="md:hidden fixed bottom-0 w-full bg-surface-container border-t border-outline-variant px-container-margin py-4 flex justify-around items-center z-50">
+<div class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined">spa</span>
+<span class="text-[9px] font-bold uppercase tracking-widest">Rituals</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">search</span>
+<span class="text-[9px] font-bold uppercase tracking-widest">Explore</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="text-[9px] font-bold uppercase tracking-widest">Journal</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[9px] font-bold uppercase tracking-widest">Account</span>
+</div>
+</div>
+<script>
+        // Micro-interaction for smooth scrolling and header background shift
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.classList.add('shadow-lg');
+                header.style.backgroundColor = 'rgba(0, 1, 1, 0.95)';
+            } else {
+                header.classList.remove('shadow-lg');
+                header.style.backgroundColor = 'rgba(0, 1, 1, 1)';
+            }
+        });
+
+        // Simple horizontal scroll for carousel via buttons
+        const container = document.querySelector('.hide-scrollbar');
+        const nextBtn = document.querySelectorAll('button')[1];
+        const prevBtn = document.querySelectorAll('button')[0];
+
+        if (nextBtn && prevBtn && container) {
+            nextBtn.addEventListener('click', () => {
+                container.scrollBy({ left: 300, behavior: 'smooth' });
+            });
+            prevBtn.addEventListener('click', () => {
+                container.scrollBy({ left: -300, behavior: 'smooth' });
+            });
+        }
+    </script>
+</body></html>

@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Apothecary OS | Internal Employee Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#93000a",
+                    "tertiary-container": "#171e1b",
+                    "error": "#ba1a1a",
+                    "surface-container-high": "#eae8e6",
+                    "on-tertiary-fixed-variant": "#414845",
+                    "secondary-fixed": "#e5e2db",
+                    "surface-variant": "#e4e2e1",
+                    "tertiary-fixed-dim": "#c1c8c3",
+                    "on-tertiary-container": "#7f8682",
+                    "outline-variant": "#c2c8c5",
+                    "on-primary-fixed-variant": "#3a4a46",
+                    "surface-card": "#ffffff",
+                    "surface-container": "#efedec",
+                    "on-secondary-fixed-variant": "#474742",
+                    "secondary": "#5f5e59",
+                    "tertiary": "#000201",
+                    "on-primary-container": "#778884",
+                    "text-muted": "rgba(15, 31, 28, 0.6)",
+                    "inverse-surface": "#303030",
+                    "surface-bright": "#fbf9f8",
+                    "outline": "#727876",
+                    "surface-container-highest": "#e4e2e1",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed": "#161d1a",
+                    "on-secondary-container": "#65645f",
+                    "primary-fixed": "#d4e6e1",
+                    "surface-container-low": "#f5f3f2",
+                    "inverse-on-surface": "#f2f0ef",
+                    "surface-dim": "#dbdad8",
+                    "on-error": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "border-subtle": "rgba(255, 255, 255, 0.1)",
+                    "surface-tint": "#51625e",
+                    "secondary-fixed-dim": "#c9c6c0",
+                    "secondary-container": "#e5e2db",
+                    "on-secondary-fixed": "#1c1c18",
+                    "primary-fixed-dim": "#b8cac5",
+                    "inverse-primary": "#b8cac5",
+                    "surface-container-lowest": "#ffffff",
+                    "status-sale": "#0f1f1c",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed": "#0e1e1b",
+                    "primary-container": "#0f1f1c",
+                    "primary": "#000101",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed": "#dde4df",
+                    "background": "#fbf9f8",
+                    "on-surface": "#1b1c1b",
+                    "brand-green": "#1a2e29",
+                    "surface": "#fbf9f8",
+                    "on-surface-variant": "#424846",
+                    "on-background": "#1b1c1b"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "grid-gutter": "1rem",
+                    "section-gap-lg": "5rem",
+                    "element-gap": "0.5rem",
+                    "container-margin": "1.5rem",
+                    "section-gap-sm": "2.5rem"
+            },
+            "fontFamily": {
+                    "label-caps": ["Noto Sans"],
+                    "body-md": ["Noto Sans"],
+                    "headline-lg": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"],
+                    "price-tag": ["Noto Sans"],
+                    "headline-md": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                    "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                    "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                    "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c2c8c5;
+            border-radius: 10px;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+<div class="flex min-h-screen">
+<!-- SideNavBar - Identity & Shell Visibility Check: Top-level Navigation -->
+<aside class="bg-brand-green dark:bg-tertiary-container border-r border-outline-variant/20 h-screen sticky left-0 top-0 w-64 flex flex-col py-6 hidden md:flex shrink-0">
+<div class="px-6 mb-8">
+<h1 class="font-headline-md text-headline-md text-primary-fixed tracking-tight">Apothecary Lab</h1>
+<p class="font-label-caps text-label-caps text-primary-fixed-dim/70 mt-1">INTERNAL PORTAL</p>
+</div>
+<div class="px-4 mb-8">
+<div class="flex items-center gap-3 p-3 bg-white/5 rounded-lg">
+<img alt="Botanical Admin User" class="w-10 h-10 rounded-full object-cover grayscale" data-alt="A professional headshot of a middle-aged man with a warm smile, wearing a minimal linen shirt. The background is a soft-focus apothecary workshop with glass vials and dried herbs. High-end editorial photography style with soft natural lighting and a muted, organic color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPhX376Ewz4wc9rnhXJXyk8r9zkzquGmQZQmVdRhKQGWBkMOIf991xDp9Wm3NSHlrna2YHOHrllJ8laE-pyCUxq9FTJJwDYAOtpHtgmdpTwQXT75CL9_8poRz45nfzjbRFz7mYpjY-Xlu8MDg9FrhvBUSkCW6DsAjYu7zlJIz-Qu8ArftxIeWl9kdGXS7f4MCzj_Bku41i_E3IUaP7M5AN60kGxZ3MziH7NgwssYmJ00kzy4VfLEeQBUh_yTjCTYoknAsHW2jJM_r_"/>
+<div class="overflow-hidden">
+<p class="font-body-md text-primary-fixed font-bold truncate">Lead Alchemist</p>
+<p class="font-label-caps text-label-caps text-primary-fixed-dim/60 truncate uppercase">Apothecary Lab</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1 overflow-y-auto custom-scrollbar">
+<!-- Dashboard Active -->
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container rounded-lg mx-2 transition-colors active:scale-95 transition-all duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-caps text-label-caps">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim hover:text-secondary-fixed transition-colors mx-2 hover:bg-primary-container/10" href="#">
+<span class="material-symbols-outlined" data-icon="potted_plant">potted_plant</span>
+<span class="font-label-caps text-label-caps">Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim hover:text-secondary-fixed transition-colors mx-2 hover:bg-primary-container/10" href="#">
+<span class="material-symbols-outlined" data-icon="package_2">package_2</span>
+<span class="font-label-caps text-label-caps">Orders</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim hover:text-secondary-fixed transition-colors mx-2 hover:bg-primary-container/10" href="#">
+<span class="material-symbols-outlined" data-icon="leaderboard">leaderboard</span>
+<span class="font-label-caps text-label-caps">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim hover:text-secondary-fixed transition-colors mx-2 hover:bg-primary-container/10" href="#">
+<span class="material-symbols-outlined" data-icon="local_shipping">local_shipping</span>
+<span class="font-label-caps text-label-caps">Suppliers</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim hover:text-secondary-fixed transition-colors mx-2 hover:bg-primary-container/10" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-caps text-label-caps">Settings</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 border-t border-white/10 mx-4">
+<a class="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim hover:text-secondary-fixed transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="font-label-caps text-label-caps">Support</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim hover:text-secondary-fixed transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-label-caps text-label-caps">Log Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col min-w-0 bg-surface-bright">
+<!-- TopNavBar -->
+<header class="bg-surface-bright dark:bg-surface-dim border-b border-outline-variant/30 flex justify-between items-center px-6 h-16 w-full sticky top-0 z-40">
+<div class="flex items-center gap-6 flex-1">
+<h2 class="font-headline-md text-headline-md text-on-surface">Apothecary OS</h2>
+<div class="relative max-w-md w-full hidden md:block group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full py-2 pl-10 pr-4 text-sm focus:ring-1 focus:ring-primary/20 transition-shadow" placeholder="Search resources, SOPs, or staff..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Dashboard Content -->
+<div class="p-6 md:p-10 max-w-7xl mx-auto w-full space-y-10">
+<!-- Welcome Section -->
+<section class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h1 class="font-display-lg text-display-lg text-primary tracking-tight">Welcome, Alchemist.</h1>
+<p class="font-body-md text-on-surface-variant mt-2">Monday, Oct 23rd — Current shift: <span class="font-bold text-primary">Day Morning (06:00 - 14:00)</span></p>
+</div>
+<button class="bg-primary text-surface-bright px-8 py-3 font-label-caps text-label-caps tracking-widest hover:bg-primary/90 transition-all active:scale-95 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">add</span> New Entry
+                    </button>
+</section>
+<!-- Bento Grid Layout -->
+<div class="bento-grid">
+<!-- Announcements (Span 8) -->
+<div class="col-span-12 lg:col-span-8 bg-surface-card border border-outline-variant/30 p-8 flex flex-col gap-6 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 opacity-10">
+<span class="material-symbols-outlined text-[120px]" data-icon="campaign" style="font-variation-settings: 'FILL' 1;">campaign</span>
+</div>
+<div class="flex items-center justify-between">
+<h3 class="font-headline-md text-headline-md">Role-Based Announcements</h3>
+<span class="font-label-caps text-label-caps bg-secondary-container px-3 py-1 text-on-secondary-container uppercase">Global Updates</span>
+</div>
+<div class="space-y-6">
+<div class="group border-l-4 border-primary pl-6 py-1 hover:bg-surface-container-low transition-colors cursor-pointer">
+<p class="font-label-caps text-label-caps text-primary/60 mb-1">Product Owner • 2h ago</p>
+<h4 class="font-headline-md text-[20px] mb-2">Winter Solstice Collection Launch Update</h4>
+<p class="text-on-surface-variant leading-relaxed">Packing teams: The primary lavender wax seals have arrived. Please refer to the updated "Heritage Aesthetic" SOP before starting the batch run tonight.</p>
+</div>
+<div class="group border-l-4 border-outline-variant/30 pl-6 py-1 hover:bg-surface-container-low transition-colors cursor-pointer">
+<p class="font-label-caps text-label-caps text-primary/60 mb-1">HR Operations • Yesterday</p>
+<h4 class="font-headline-md text-[20px] mb-2">Revised Health &amp; Safety: Essential Oil Handling</h4>
+<p class="text-on-surface-variant leading-relaxed">Updated ventilation protocols for the alchemy lab are now live. All staff must review the new PPE checklist in the resource library.</p>
+</div>
+</div>
+</div>
+<!-- Shift Schedule (Span 4) -->
+<div class="col-span-12 lg:col-span-4 bg-brand-green text-surface-bright p-8 flex flex-col gap-6 relative">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-md text-headline-md">Shift Schedule</h3>
+<span class="material-symbols-outlined cursor-pointer hover:rotate-12 transition-transform">calendar_today</span>
+</div>
+<div class="space-y-4">
+<div class="bg-white/10 p-4 rounded-lg flex items-center justify-between border border-white/5">
+<div>
+<p class="font-label-caps text-label-caps text-white/60">TODAY</p>
+<p class="font-bold">06:00 - 14:00</p>
+</div>
+<span class="font-label-caps text-label-caps bg-primary-fixed text-on-primary-fixed px-2 py-1">ACTIVE</span>
+</div>
+<div class="p-4 rounded-lg flex items-center justify-between border border-white/5 opacity-60">
+<div>
+<p class="font-label-caps text-label-caps text-white/60">TOMORROW</p>
+<p class="font-bold">08:00 - 16:00</p>
+</div>
+</div>
+<div class="p-4 rounded-lg flex items-center justify-between border border-white/5 opacity-60">
+<div>
+<p class="font-label-caps text-label-caps text-white/60">WEDNESDAY</p>
+<p class="font-bold">OFF</p>
+</div>
+</div>
+</div>
+<button class="mt-auto w-full py-3 border border-white/20 font-label-caps text-label-caps hover:bg-white/5 transition-colors uppercase tracking-widest">Team Calendar</button>
+</div>
+<!-- Resource Library (Span 12 / Grid) -->
+<div class="col-span-12 py-10 border-t border-outline-variant/20">
+<div class="flex items-center justify-between mb-8">
+<h3 class="font-headline-md text-headline-md">Internal Resource Library</h3>
+<a class="font-label-caps text-label-caps border-b border-primary pb-1" href="#">View Full Directory</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Resource Card -->
+<div class="bg-surface-card p-6 border border-outline-variant/30 hover:shadow-sm transition-all group">
+<div class="w-12 h-12 bg-surface-container-high flex items-center justify-center rounded-full mb-4 text-on-surface-variant group-hover:bg-primary group-hover:text-surface-bright transition-colors">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+</div>
+<h4 class="font-headline-md text-[18px] mb-2">Packing SOP v4.2</h4>
+<p class="text-on-surface-variant text-sm mb-4">Master guide for sustainable packaging and wax seal application.</p>
+<span class="font-label-caps text-[9px] font-bold bg-secondary-container px-2 py-1 rounded">UPDATED</span>
+</div>
+<!-- Resource Card -->
+<div class="bg-surface-card p-6 border border-outline-variant/30 hover:shadow-sm transition-all group">
+<div class="w-12 h-12 bg-surface-container-high flex items-center justify-center rounded-full mb-4 text-on-surface-variant group-hover:bg-primary group-hover:text-surface-bright transition-colors">
+<span class="material-symbols-outlined" data-icon="health_and_safety">health_and_safety</span>
+</div>
+<h4 class="font-headline-md text-[18px] mb-2">Safety Protocols</h4>
+<p class="text-on-surface-variant text-sm mb-4">Chemical handling and alchemy lab ventilation procedures.</p>
+</div>
+<!-- Resource Card -->
+<div class="bg-surface-card p-6 border border-outline-variant/30 hover:shadow-sm transition-all group">
+<div class="w-12 h-12 bg-surface-container-high flex items-center justify-center rounded-full mb-4 text-on-surface-variant group-hover:bg-primary group-hover:text-surface-bright transition-colors">
+<span class="material-symbols-outlined" data-icon="auto_stories">auto_stories</span>
+</div>
+<h4 class="font-headline-md text-[18px] mb-2">Brand Heritage</h4>
+<p class="text-on-surface-variant text-sm mb-4">Storytelling through scent: A guide to our artisan roots.</p>
+</div>
+<!-- Resource Card -->
+<div class="bg-surface-card p-6 border border-outline-variant/30 hover:shadow-sm transition-all group">
+<div class="w-12 h-12 bg-surface-container-high flex items-center justify-center rounded-full mb-4 text-on-surface-variant group-hover:bg-primary group-hover:text-surface-bright transition-colors">
+<span class="material-symbols-outlined" data-icon="verified">verified</span>
+</div>
+<h4 class="font-headline-md text-[18px] mb-2">Quality Standards</h4>
+<p class="text-on-surface-variant text-sm mb-4">Visual inspection benchmarks for final shipping batches.</p>
+</div>
+</div>
+</div>
+<!-- Feedback Loop (Span 12) -->
+<div class="col-span-12 grid grid-cols-1 lg:grid-cols-2 gap-12 bg-surface-container-low p-10 rounded-lg">
+<div class="space-y-6">
+<span class="font-label-caps text-label-caps bg-brand-green text-surface-bright px-3 py-1">FEEDBACK LOOP</span>
+<h3 class="font-display-lg text-headline-lg">Operational Bottlenecks?</h3>
+<p class="text-on-surface-variant max-w-md italic font-headline-md">"We value the hands that build our world. Report any friction in your daily flow so we can smooth the path for the collective."</p>
+<div class="flex items-center gap-4 pt-4">
+<div class="flex -space-x-3">
+<img class="w-10 h-10 rounded-full border-2 border-surface-bright object-cover grayscale" data-alt="A close-up portrait of a diverse female team member with a gentle expression. The aesthetic is clean and professional, using soft natural light and a focus on authenticity and community within a modern herbal apothecary setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAagETJydeXPbevX-KMdqPJF2f2SJY88uRX8so19Cco3eDL6_NOGINdXhX95ZMpM27SBsEKRgwkkqEr5gNOVPxcYhzqR7sAShWQNMqwHGZZl5DraZqw1TYJDAr-q35dEyWM21I22CbjQJlE6G9yY23ngcXJV3IJOBEuLk29hfPBcnrDWkarA0PcJzHTLZm-OFP0RaiQs8au9qWrW9VdjGtt6Bvy_dF-9z_bZY7amg-2yMbVZsB-9I9W8SvYeYuGGqtqHTv8McNgdEWu"/>
+<img class="w-10 h-10 rounded-full border-2 border-surface-bright object-cover grayscale" data-alt="A focused male employee wearing a simple dark apron in a bright, minimalist warehouse. He is looking off-camera with a thoughtful look. High-quality editorial style with an emphasis on the tactile, artisan nature of the workplace." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-rMq3vSn9EfLur2LqCTaFcN0Ite1iEaLepbmukJ94V5PZ2kskavmPwBYiCCBxAkcJo7XeISuyUSYUgLj8947biYYavqDuTGK6_1CpAnittY9JgtH-h-OwgRSQX3oIXG-FDgkIEpUMiiGolCt0WeAWgeicMlb0pRcVr4pY2zZBQpYF8hoZVALnK8JEBAohbd11UxD1SNrD_q6hFbxjLeSs40RuqlqigzLdSJZ_zIMLbarQ5EfrYfBSGzn5V2L-Pw04lL2VQ_Mt8bxA"/>
+<img class="w-10 h-10 rounded-full border-2 border-surface-bright object-cover grayscale" data-alt="A confident professional man in his 30s with a clean-cut appearance. The background is a blurred high-end shop environment with warm woody tones and soft overhead lighting. The mood is collaborative and supportive." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVB6Hfmn8ivbWxmHbO5voHzPx-87-umnqCFiaR8x-G6HYanYX0edUF7pBlWULesLZ_kq4uRI3ceeKIu6-FBvGe2bzgF9nNdrB8blsJzeXhnRBVcG5Hwsv7QfEQEeUJtEWBoCwkuY82Z_KvrOyrlUh4NAdLOoBjY_2-NqWMbOAb6adHodqe-8EFSxdHQc-DHTSR-NTimyy20GbsYHByRLBpsAFe_EGkpPNkGod6AIzfOiSX_YKYkhcXtNUh2Fq-iuLwYHRx4ThJSDus"/>
+</div>
+<p class="font-label-caps text-label-caps">12 Reports Resolved This Week</p>
+</div>
+</div>
+<form class="space-y-4">
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="font-label-caps text-[10px] block mb-2 text-on-surface-variant uppercase">Role</label>
+<select class="w-full bg-surface-card border-outline-variant/30 p-3 text-sm focus:ring-primary focus:border-primary">
+<option>Packer</option>
+<option>Warehouse Staff</option>
+<option>Lab Alchemist</option>
+<option>Logistics Admin</option>
+</select>
+</div>
+<div>
+<label class="font-label-caps text-[10px] block mb-2 text-on-surface-variant uppercase">Urgency</label>
+<select class="w-full bg-surface-card border-outline-variant/30 p-3 text-sm focus:ring-primary focus:border-primary">
+<option>Low - Observation</option>
+<option>Medium - Daily Friction</option>
+<option>High - Immediate Action</option>
+</select>
+</div>
+</div>
+<div>
+<label class="font-label-caps text-[10px] block mb-2 text-on-surface-variant uppercase">The Bottleneck</label>
+<textarea class="w-full bg-surface-card border-outline-variant/30 p-3 text-sm focus:ring-primary focus:border-primary" placeholder="Describe the issue in detail..." rows="4"></textarea>
+</div>
+<button class="w-full bg-primary text-surface-bright py-4 font-label-caps text-label-caps tracking-[0.2em] uppercase hover:bg-brand-green transition-colors" type="submit">Submit Report</button>
+</form>
+</div>
+</div>
+<!-- Footer / Support Branding -->
+<footer class="pt-10 border-t border-outline-variant/20 flex flex-col md:flex-row items-center justify-between gap-6 opacity-60">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sage-green" data-icon="eco">eco</span>
+<p class="font-label-caps text-[10px] tracking-widest uppercase">Growing Together Since 1994</p>
+</div>
+<div class="flex gap-8">
+<a class="font-label-caps text-[10px] uppercase hover:text-primary transition-colors" href="#">Employee Handbook</a>
+<a class="font-label-caps text-[10px] uppercase hover:text-primary transition-colors" href="#">Ethics Hotline</a>
+<a class="font-label-caps text-[10px] uppercase hover:text-primary transition-colors" href="#">Privacy &amp; Data</a>
+</div>
+</footer>
+</div>
+</main>
+</div>
+<!-- Mobile Navigation - Shell Visibility Check: BottomNavBar -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-surface-bright border-t border-outline-variant/20 h-16 flex items-center justify-around z-50">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-label-caps text-[8px] uppercase">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span class="font-label-caps text-[8px] uppercase">Shifts</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="auto_stories">auto_stories</span>
+<span class="font-label-caps text-[8px] uppercase">Library</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-label-caps text-[8px] uppercase">Feedback</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="font-label-caps text-[8px] uppercase">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple Interaction logic for feedback form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> Sending...';
+            btn.classList.add('bg-brand-green');
+            
+            setTimeout(() => {
+                btn.innerHTML = '<span class="material-symbols-outlined">check</span> Report Received';
+                btn.classList.remove('bg-primary');
+                btn.classList.add('bg-primary-container', 'text-on-primary-container');
+                e.target.reset();
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.classList.remove('bg-primary-container', 'text-on-primary-container');
+                    btn.classList.add('bg-primary');
+                }, 3000);
+            }, 1500);
+        });
+
+        // Search Bar Focus Effect
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('ring-2', 'ring-primary/10');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('ring-2', 'ring-primary/10');
+        });
+    </script>
+</body></html>

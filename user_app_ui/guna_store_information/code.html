@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Contact &amp; Store Info - Nature's Alchemist</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-highest": "#e4e2e1",
+                    "inverse-on-surface": "#f2f0ef",
+                    "text-muted": "rgba(15, 31, 28, 0.6)",
+                    "secondary": "#5f5e59",
+                    "secondary-fixed-dim": "#c9c6c0",
+                    "border-subtle": "rgba(255, 255, 255, 0.1)",
+                    "surface-container-high": "#eae8e6",
+                    "on-secondary-fixed": "#1c1c18",
+                    "tertiary-fixed-dim": "#c1c8c3",
+                    "brand-green": "#1a2e29",
+                    "error": "#ba1a1a",
+                    "primary-container": "#0f1f1c",
+                    "surface-bright": "#fbf9f8",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#b8cac5",
+                    "primary-fixed-dim": "#b8cac5",
+                    "on-tertiary-container": "#7f8682",
+                    "on-tertiary": "#ffffff",
+                    "surface-variant": "#e4e2e1",
+                    "surface-container-low": "#f5f3f2",
+                    "tertiary": "#000201",
+                    "outline-variant": "#c2c8c5",
+                    "secondary-fixed": "#e5e2db",
+                    "on-secondary": "#ffffff",
+                    "surface-container": "#efedec",
+                    "tertiary-fixed": "#dde4df",
+                    "primary": "#000101",
+                    "background": "#fbf9f8",
+                    "surface-dim": "#dbdad8",
+                    "on-surface": "#1b1c1b",
+                    "tertiary-container": "#171e1b",
+                    "surface": "#fbf9f8",
+                    "surface-tint": "#51625e",
+                    "on-surface-variant": "#424846",
+                    "on-primary": "#ffffff",
+                    "status-sale": "#0f1f1c",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-container": "#65645f",
+                    "on-primary-fixed-variant": "#3a4a46",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed": "#161d1a",
+                    "surface-card": "#ffffff",
+                    "inverse-surface": "#303030",
+                    "outline": "#727876",
+                    "on-primary-fixed": "#0e1e1b",
+                    "on-secondary-fixed-variant": "#474742",
+                    "primary-fixed": "#d4e6e1",
+                    "secondary-container": "#e5e2db",
+                    "on-primary-container": "#778884",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed-variant": "#414845",
+                    "on-background": "#1b1c1b"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "section-gap-sm": "2.5rem",
+                    "section-gap-lg": "5rem",
+                    "grid-gutter": "1rem",
+                    "container-margin": "1.5rem",
+                    "element-gap": "0.5rem"
+            },
+            "fontFamily": {
+                    "headline-md": ["Playfair Display"],
+                    "body-md": ["Noto Sans"],
+                    "label-caps": ["Noto Sans"],
+                    "price-tag": ["Noto Sans"],
+                    "headline-lg": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                    "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                    "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #fbf9f8; color: #1b1c1b; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+        .brand-gradient-overlay { background: linear-gradient(to bottom, rgba(26, 46, 41, 0.4), rgba(26, 46, 41, 0.8)); }
+        .ghost-border { border: 1px solid rgba(27, 28, 27, 0.1); }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-body-md">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex items-center justify-between px-container-margin h-16 w-full bg-background dark:bg-background">
+<div class="flex items-center gap-4">
+<button class="text-primary dark:text-primary-fixed hover:opacity-70 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-primary dark:text-primary-fixed font-bold tracking-tight">Nature's Alchemist</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-primary dark:text-primary-fixed hover:opacity-70 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined">shopping_bag</span>
+</button>
+</div>
+</header>
+<main class="pt-16 pb-24 min-h-screen">
+<!-- Hero Section -->
+<section class="relative h-[530px] w-full flex items-end overflow-hidden">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="A macro photograph of dried herbal ingredients and wooden apothecary tools arranged on a soft linen surface. The lighting is bright and natural, coming from a side window to create soft, long shadows that enhance the tactile textures of the herbs. The color palette is dominated by warm creams, muted greens, and earthy browns, evoking a sense of heritage and organic purity in a modern boutique setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPKivtHB1yXIwC8kBqZv1V5W3bpG3fUEs3prtgiji1hLQSp6ot67hAqt8l8mhLiFtfia9YTC1Ls6Z0MbwJFVXIBwc6XZyiHRWCfrfDhk7szm5oJjWhrOH39jv4_QOJjXnqIAlv0Lhjuyd7uCjmf5YxOdJsHdVlr1G1I69jM1wwN5ZqLv2f6jQar1iQjTbZZHlX633Ee6KNgxRlfZjJ-dOtKf7ROzPwswCznCy2wL5jfYswW4-x-9KCh9j-YqtKup9U0IKABqawpqlI"/>
+<div class="absolute inset-0 brand-gradient-overlay"></div>
+<div class="relative z-10 px-container-margin pb-12 text-on-primary max-w-2xl">
+<span class="font-label-caps text-label-caps mb-4 block opacity-80 uppercase tracking-[0.3em]">Our Apothecary</span>
+<h2 class="font-display-lg text-[40px] md:text-display-lg leading-tight italic">Visit Our Sanctuary in Tenkasi</h2>
+</div>
+</section>
+<!-- Information Bento Grid -->
+<section class="px-container-margin py-section-gap-lg">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Brand Story / Store Name -->
+<div class="md:col-span-7 bg-surface-container-lowest p-10 flex flex-col justify-center ghost-border shadow-sm">
+<h3 class="font-headline-lg text-headline-lg mb-6">Guna's Hand Made Herbal Products</h3>
+<p class="text-on-surface-variant font-body-md text-lg leading-relaxed mb-8">
+                        Crafting wellness through generations. Our Tenkasi store serves as the heart of our operations, where traditional techniques meet contemporary purity.
+                    </p>
+<div class="flex flex-wrap gap-4">
+<a class="bg-primary text-on-primary px-8 py-4 font-label-caps text-label-caps uppercase tracking-widest flex items-center gap-2 hover:opacity-90 transition-all active:scale-95" href="tel:+918870189093">
+<span class="material-symbols-outlined text-sm">call</span> Call Now
+                        </a>
+<a class="bg-brand-green text-on-primary px-8 py-4 font-label-caps text-label-caps uppercase tracking-widest flex items-center gap-2 hover:opacity-90 transition-all active:scale-95" href="https://wa.me/919047655333">
+<span class="material-symbols-outlined text-sm">chat</span> WhatsApp Us
+                        </a>
+</div>
+</div>
+<!-- Contact Details -->
+<div class="md:col-span-5 grid grid-cols-1 gap-6">
+<div class="bg-surface-container p-8 ghost-border">
+<h4 class="font-label-caps text-label-caps mb-4 opacity-60">LOCATION</h4>
+<p class="font-headline-md text-headline-md mb-2">The Heritage Store</p>
+<address class="not-italic text-on-surface-variant leading-relaxed">
+                            #11, Municipality Complex,<br/>
+                            Perumal Kovil Street, Opp. Canara Bank,<br/>
+                            Tenkasi, Tamil Nadu - 627811
+                        </address>
+</div>
+<div class="bg-brand-green text-on-primary p-8 shadow-sm">
+<h4 class="font-label-caps text-label-caps mb-4 opacity-60">PHONE NUMBERS</h4>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<span class="font-headline-md text-headline-md">+91 88701 89093</span>
+<span class="material-symbols-outlined opacity-50">call</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-headline-md text-headline-md">+91 90476 55333</span>
+<span class="material-symbols-outlined opacity-50">call</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Map View (Conceptualized as Map Image for UI) -->
+<div class="md:col-span-12 relative h-[450px] overflow-hidden ghost-border shadow-sm">
+<div class="absolute inset-0 bg-surface-container-highest flex items-center justify-center">
+<img class="w-full h-full object-cover filter grayscale opacity-40" data-alt="A stylized, high-contrast map view of a historic South Indian city layout, rendered in a minimalist architectural style with muted sage and cream tones. The map highlights key landmarks and street grids with delicate lines and elegant serif typography. The overall aesthetic is clean and professional, focusing on clarity and geographic heritage rather than a colorful digital map." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBG2SDU0HMKkvZnOjTzSQmrLQLTCrdNzwaC5JgiKI8Q0vzaJnevWSDoM8hXG-IoAaEEf16FK6ptAov_dDSMvCdso4kGPL-iyPjQEXeT3pDM30qAMwyK5XrcbwXVTXz24Kr0ZDFQVeiER-uyG1uuuIeq2JqkndnHSLtw15HoyZLYUOInOY3dx6C329_Myh84C9edSKnb2dsno0kg3ZGR4AwNzUuGvMWqW-BO5cg_R-J0vAamFCHvSBneukdBBzvSivpW40o2S_FJ3HDm"/>
+<!-- Placeholder Pin -->
+<div class="absolute z-10 flex flex-col items-center">
+<span class="material-symbols-outlined text-brand-green text-5xl" style="font-variation-settings: 'FILL' 1;">location_on</span>
+<div class="bg-white px-4 py-2 shadow-lg mt-2 font-label-caps text-[12px]">GUNA'S HERBAL</div>
+</div>
+</div>
+<div class="absolute bottom-8 right-8">
+<button class="bg-primary text-on-primary px-6 py-3 font-label-caps text-label-caps uppercase tracking-widest shadow-xl flex items-center gap-2 hover:opacity-90 active:scale-95 transition-all">
+                            Open in Maps <span class="material-symbols-outlined text-sm">open_in_new</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Features / Store Policies -->
+<section class="bg-surface-container-low py-section-gap-lg px-container-margin">
+<div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+<div class="flex flex-col items-center">
+<div class="w-16 h-16 rounded-full border border-outline-variant flex items-center justify-center mb-6 text-brand-green">
+<span class="material-symbols-outlined text-3xl">eco</span>
+</div>
+<h5 class="font-headline-md text-headline-md mb-2">100% Pure</h5>
+<p class="text-on-surface-variant">Hand-crafted using traditional extraction methods.</p>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-16 h-16 rounded-full border border-outline-variant flex items-center justify-center mb-6 text-brand-green">
+<span class="material-symbols-outlined text-3xl">schedule</span>
+</div>
+<h5 class="font-headline-md text-headline-md mb-2">Open Daily</h5>
+<p class="text-on-surface-variant">9:00 AM - 8:30 PM for all your herbal needs.</p>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-16 h-16 rounded-full border border-outline-variant flex items-center justify-center mb-6 text-brand-green">
+<span class="material-symbols-outlined text-3xl">local_shipping</span>
+</div>
+<h5 class="font-headline-md text-headline-md mb-2">Pan India</h5>
+<p class="text-on-surface-variant">We ship our fresh products across the country.</p>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center h-20 px-4 w-full bg-brand-green dark:bg-primary-container shadow-sm md:hidden">
+<a class="flex flex-col items-center justify-center text-on-primary dark:text-on-primary-fixed opacity-60 hover:opacity-100 transition-opacity active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-primary dark:text-on-primary-fixed opacity-60 hover:opacity-100 transition-opacity active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">storefront</span>
+<span class="font-label-caps text-label-caps">Shop</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-primary dark:text-on-primary-fixed opacity-60 hover:opacity-100 transition-opacity active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-caps text-label-caps">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-primary dark:text-on-primary-fixed opacity-60 hover:opacity-100 transition-opacity active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">favorite</span>
+<span class="font-label-caps text-label-caps">Wishlist</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-primary dark:text-on-primary-fixed opacity-100 hover:opacity-100 transition-opacity active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</a>
+</nav>
+</body></html>

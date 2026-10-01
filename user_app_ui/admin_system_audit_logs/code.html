@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Noto+Sans:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error": "#ba1a1a",
+                        "text-muted": "rgba(15, 31, 28, 0.6)",
+                        "surface-bright": "#fbf9f8",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#c1c8c3",
+                        "surface-variant": "#e4e2e1",
+                        "brand-green": "#1a2e29",
+                        "on-surface": "#1b1c1b",
+                        "on-tertiary-fixed": "#161d1a",
+                        "secondary-fixed": "#e5e2db",
+                        "on-tertiary": "#ffffff",
+                        "secondary-container": "#e5e2db",
+                        "primary": "#000101",
+                        "primary-fixed-dim": "#b8cac5",
+                        "surface-container-low": "#f5f3f2",
+                        "on-tertiary-container": "#7f8682",
+                        "surface-card": "#ffffff",
+                        "tertiary-fixed": "#dde4df",
+                        "on-error": "#ffffff",
+                        "primary-container": "#0f1f1c",
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#c2c8c5",
+                        "tertiary-container": "#171e1b",
+                        "tertiary": "#000201",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#b8cac5",
+                        "surface-container": "#efedec",
+                        "on-surface-variant": "#424846",
+                        "status-sale": "#0f1f1c",
+                        "surface-container-high": "#eae8e6",
+                        "surface": "#fbf9f8",
+                        "background": "#fbf9f8",
+                        "surface-dim": "#dbdad8",
+                        "surface-container-highest": "#e4e2e1",
+                        "on-background": "#1b1c1b",
+                        "on-tertiary-fixed-variant": "#414845",
+                        "border-subtle": "rgba(255, 255, 255, 0.1)",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#3a4a46",
+                        "on-secondary-container": "#65645f",
+                        "secondary-fixed-dim": "#c9c6c0",
+                        "on-secondary-fixed-variant": "#474742",
+                        "inverse-on-surface": "#f2f0ef",
+                        "primary-fixed": "#d4e6e1",
+                        "on-primary-fixed": "#0e1e1b",
+                        "outline": "#727876",
+                        "surface-tint": "#51625e",
+                        "inverse-surface": "#303030",
+                        "on-secondary-fixed": "#1c1c18",
+                        "on-primary-container": "#778884",
+                        "secondary": "#5f5e59"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "container-margin": "1.5rem",
+                        "section-gap-lg": "5rem",
+                        "element-gap": "0.5rem",
+                        "section-gap-sm": "2.5rem",
+                        "grid-gutter": "1rem"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Noto Sans"],
+                        "price-tag": ["Noto Sans"],
+                        "body-md": ["Noto Sans"],
+                        "headline-md": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                        "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                        "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                        "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #e5e2db; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #c9c6c0; }
+        .bento-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .bento-card:hover { transform: translateY(-2px); }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md min-h-screen overflow-x-hidden">
+<!-- SideNavBar Shell -->
+<aside class="bg-brand-green dark:bg-primary-container h-screen w-64 fixed left-0 top-0 flex flex-col py-8 z-50">
+<div class="px-6 mb-10">
+<h1 class="font-headline-md text-headline-md text-surface-bright leading-tight">Apothecary Admin</h1>
+<p class="text-on-primary-container/70 font-label-caps text-[10px] mt-1">Premium Botanical</p>
+</div>
+<nav class="flex-1 space-y-1">
+<!-- Navigation Links -->
+<a class="flex items-center gap-3 py-3 text-on-primary-container/70 dark:text-on-primary-container/50 hover:text-surface-bright pl-5 hover:bg-primary-container/50 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 py-3 text-on-primary-container/70 dark:text-on-primary-container/50 hover:text-surface-bright pl-5 hover:bg-primary-container/50 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="herbal_medicine">kebab_dining</span>
+<span>Inventory</span>
+</a>
+<a class="flex items-center gap-3 py-3 text-on-primary-container/70 dark:text-on-primary-container/50 hover:text-surface-bright pl-5 hover:bg-primary-container/50 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+<span>Orders</span>
+</a>
+<a class="flex items-center gap-3 py-3 text-on-primary-container/70 dark:text-on-primary-container/50 hover:text-surface-bright pl-5 hover:bg-primary-container/50 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span>Customers</span>
+</a>
+<a class="flex items-center gap-3 py-3 text-on-primary-container/70 dark:text-on-primary-container/50 hover:text-surface-bright pl-5 hover:bg-primary-container/50 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="leaderboard">leaderboard</span>
+<span>Analytics</span>
+</a>
+<a class="flex items-center gap-3 py-3 text-surface-bright font-bold border-l-4 border-surface-bright pl-4 hover:bg-primary-container/50 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<div class="mt-auto px-6 space-y-6">
+<button class="w-full bg-surface-bright text-brand-green py-3 px-4 font-label-caps text-label-caps tracking-widest hover:opacity-90 transition-all duration-300">
+                New Formulation
+            </button>
+<div class="border-t border-white/10 pt-6 space-y-3">
+<a class="flex items-center gap-3 text-on-primary-container/70 hover:text-surface-bright transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+<span>Support</span>
+</a>
+<a class="flex items-center gap-3 text-on-primary-container/70 hover:text-surface-bright transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span>Sign Out</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 flex-1 flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="bg-surface-bright dark:bg-surface sticky top-0 z-40 border-b border-outline-variant/30 flex justify-between items-center px-container-margin py-4 w-full">
+<div class="flex items-center gap-8">
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted material-symbols-outlined" data-icon="search">search</span>
+<input class="bg-surface-container-low border-none focus:ring-1 focus:ring-brand-green pl-10 pr-4 py-2 w-64 font-body-md text-body-md" placeholder="Search logs..." type="text"/>
+</div>
+<nav class="hidden lg:flex gap-6">
+<a class="font-label-caps text-label-caps text-text-muted hover:text-primary transition-all" href="#">Direct Ship</a>
+<a class="font-label-caps text-label-caps text-text-muted hover:text-primary transition-all" href="#">Wholesale</a>
+<a class="font-label-caps text-label-caps text-text-muted hover:text-primary transition-all" href="#">Archive</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary p-2 transition-all" data-icon="notifications">notifications</button>
+<div class="h-8 w-px bg-outline-variant/30"></div>
+<div class="flex items-center gap-3 group cursor-pointer">
+<div class="text-right hidden sm:block">
+<p class="font-label-caps text-label-caps text-primary leading-none">Admin Profile</p>
+<p class="text-[10px] text-text-muted mt-0.5">System Master</p>
+</div>
+<img alt="Administrator Profile" class="w-10 h-10 rounded-full border border-outline-variant/30 grayscale hover:grayscale-0 transition-all duration-500" data-alt="A close-up high-fidelity portrait of a professional male administrator in a clean minimalist setting. He is wearing a dark, textured linen shirt that reflects a premium botanical brand aesthetic. The lighting is soft and natural, coming from the side to create gentle shadows, maintaining a sophisticated and trustworthy mood consistent with modern apothecary design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjfm2jMdKekmC6KIj16f9LhJJHjb3barbnEMuu8UythriMxw4xBdDqiz4KztcMfNStC8ONjOPVBuVIR8RIB4SMMnqlQUa_qw3nipj6WDHruU-ul2MWAp9rf8lXiHtIdt4_VdBD5-3rZD8bD4XoJMmwgIBKY-DYoXKXEWbxvxEqR8xUPm_gA4-jrIv6FGqCXdf6TkY-hLTxG-pZHAOs0RxaBifJJMN_8bFvjGGFmJe_PqzReL809nyumgyZ6RQYaUWUktIGyeZFRUM0"/>
+</div>
+</div>
+</header>
+<!-- Audit Log Canvas -->
+<section class="p-container-margin flex-1 space-y-section-gap-sm">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary">System Activity &amp; Audit</h2>
+<p class="text-text-muted mt-2 max-w-xl">A comprehensive historical record of all administrative interactions, ensuring full operational transparency and security integrity across the botanical ecosystem.</p>
+</div>
+<div class="flex gap-3">
+<button class="bg-surface-container-highest border border-outline-variant/30 text-primary px-6 py-2.5 font-label-caps text-label-caps flex items-center gap-2 hover:bg-surface-dim transition-all">
+<span class="material-symbols-outlined" data-icon="filter_list" style="font-size: 18px;">filter_list</span>
+                        Filter View
+                    </button>
+<button class="bg-brand-green text-surface-bright px-6 py-2.5 font-label-caps text-label-caps flex items-center gap-2 hover:opacity-90 transition-all">
+<span class="material-symbols-outlined" data-icon="download" style="font-size: 18px;">download</span>
+                        Export Log
+                    </button>
+</div>
+</div>
+<!-- Bento Stats Grid (High-End Contextual UI) -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-grid-gutter">
+<div class="bento-card bg-surface-container-low p-6 flex flex-col justify-between h-32 border border-outline-variant/20">
+<p class="font-label-caps text-label-caps text-text-muted">Total Events (24h)</p>
+<p class="font-headline-md text-headline-md text-primary">1,284</p>
+</div>
+<div class="bento-card bg-surface-container-low p-6 flex flex-col justify-between h-32 border border-outline-variant/20">
+<p class="font-label-caps text-label-caps text-text-muted">Security Flags</p>
+<p class="font-headline-md text-headline-md text-error">0</p>
+</div>
+<div class="bento-card bg-surface-container-low p-6 flex flex-col justify-between h-32 border border-outline-variant/20">
+<p class="font-label-caps text-label-caps text-text-muted">Active Sessions</p>
+<p class="font-headline-md text-headline-md text-primary">12</p>
+</div>
+<div class="bento-card bg-brand-green p-6 flex flex-col justify-between h-32 text-surface-bright">
+<p class="font-label-caps text-label-caps opacity-70">Integrity Status</p>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+<p class="font-label-caps text-label-caps">Verified Secure</p>
+</div>
+</div>
+</div>
+<!-- Audit Table -->
+<div class="bg-surface-card border border-outline-variant/30 overflow-hidden shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-lowest border-b border-outline-variant/30">
+<tr>
+<th class="px-6 py-4 font-label-caps text-label-caps text-text-muted">Timestamp</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-text-muted">User</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-text-muted">Action Category</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-text-muted">IP Address</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-text-muted">Detail</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-text-muted">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="px-6 py-5 whitespace-nowrap">
+<p class="text-primary font-price-tag">2023.10.24</p>
+<p class="text-[12px] text-text-muted">14:32:05</p>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed flex items-center justify-center font-label-caps text-[10px] text-primary">EB</div>
+<div>
+<p class="text-primary font-medium">Elias Thorne</p>
+<p class="text-[11px] text-text-muted italic">Inventory Mgr</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="bg-surface-container px-3 py-1 rounded-full font-label-caps text-[9px] text-primary uppercase tracking-tighter">Product Edit</span>
+</td>
+<td class="px-6 py-5 font-mono text-[12px] text-text-muted">192.168.1.104</td>
+<td class="px-6 py-5 max-w-xs">
+<p class="truncate text-on-surface-variant">Modified 'Elderberry Elixir' stock levels from 45 to 120 units.</p>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-1.5 text-brand-green">
+<span class="material-symbols-outlined text-[16px]" data-icon="check_circle">check_circle</span>
+<span class="font-label-caps text-[9px]">Success</span>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="px-6 py-5 whitespace-nowrap">
+<p class="text-primary font-price-tag">2023.10.24</p>
+<p class="text-[12px] text-text-muted">13:15:42</p>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-tertiary-fixed flex items-center justify-center font-label-caps text-[10px] text-primary">SM</div>
+<div>
+<p class="text-primary font-medium">Sarah Miller</p>
+<p class="text-[11px] text-text-muted italic">Sales Lead</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="bg-surface-container px-3 py-1 rounded-full font-label-caps text-[9px] text-primary uppercase tracking-tighter">Order Status</span>
+</td>
+<td class="px-6 py-5 font-mono text-[12px] text-text-muted">74.125.22.101</td>
+<td class="px-6 py-5 max-w-xs">
+<p class="truncate text-on-surface-variant">Batch processed 12 wholesale orders for shipment.</p>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-1.5 text-brand-green">
+<span class="material-symbols-outlined text-[16px]" data-icon="check_circle">check_circle</span>
+<span class="font-label-caps text-[9px]">Success</span>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="px-6 py-5 whitespace-nowrap">
+<p class="text-primary font-price-tag">2023.10.24</p>
+<p class="text-[12px] text-text-muted">11:02:18</p>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-fixed-dim flex items-center justify-center font-label-caps text-[10px] text-primary">JD</div>
+<div>
+<p class="text-primary font-medium">Julian Deon</p>
+<p class="text-[11px] text-text-muted italic">System Admin</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="bg-primary-container text-surface-bright px-3 py-1 rounded-full font-label-caps text-[9px] uppercase tracking-tighter">Permission</span>
+</td>
+<td class="px-6 py-5 font-mono text-[12px] text-text-muted">104.18.23.41</td>
+<td class="px-6 py-5 max-w-xs">
+<p class="truncate text-on-surface-variant">Revoked 'Delete' rights for Archive User Group.</p>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-1.5 text-brand-green">
+<span class="material-symbols-outlined text-[16px]" data-icon="check_circle">check_circle</span>
+<span class="font-label-caps text-[9px]">Success</span>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group bg-error-container/5">
+<td class="px-6 py-5 whitespace-nowrap">
+<p class="text-primary font-price-tag">2023.10.24</p>
+<p class="text-[12px] text-text-muted">09:44:30</p>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-error-container flex items-center justify-center font-label-caps text-[10px] text-error">S</div>
+<div>
+<p class="text-primary font-medium">System</p>
+<p class="text-[11px] text-text-muted italic">Automated</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="bg-error-container text-on-error-container px-3 py-1 rounded-full font-label-caps text-[9px] uppercase tracking-tighter">Login Fail</span>
+</td>
+<td class="px-6 py-5 font-mono text-[12px] text-error">203.0.113.12</td>
+<td class="px-6 py-5 max-w-xs">
+<p class="truncate text-error">Failed login attempt for user 'm_reese' from unknown IP.</p>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-1.5 text-error">
+<span class="material-symbols-outlined text-[16px]" data-icon="report">report</span>
+<span class="font-label-caps text-[9px]">Blocked</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-6 py-4 border-t border-outline-variant/30 flex items-center justify-between">
+<p class="text-[12px] text-text-muted">Showing 1 to 10 of 1,284 entries</p>
+<div class="flex gap-2">
+<button class="w-8 h-8 flex items-center justify-center border border-outline-variant/30 text-text-muted hover:border-primary hover:text-primary transition-all">
+<span class="material-symbols-outlined text-[18px]" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center bg-brand-green text-surface-bright font-price-tag">1</button>
+<button class="w-8 h-8 flex items-center justify-center border border-outline-variant/30 text-text-muted hover:border-primary hover:text-primary font-price-tag transition-all">2</button>
+<button class="w-8 h-8 flex items-center justify-center border border-outline-variant/30 text-text-muted hover:border-primary hover:text-primary font-price-tag transition-all">3</button>
+<button class="w-8 h-8 flex items-center justify-center border border-outline-variant/30 text-text-muted hover:border-primary hover:text-primary transition-all">
+<span class="material-symbols-outlined text-[18px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Visual Atmosphere - Aesthetic Card -->
+<div class="relative h-[400px] overflow-hidden flex items-center justify-center group">
+<img alt="Atmospheric Botanical Imagery" class="absolute inset-0 w-full h-full object-cover grayscale transition-transform duration-1000 group-hover:scale-105" data-alt="A cinematic, high-contrast photograph of dried botanical herbs and glassware arranged on a dark stone surface. The composition uses a minimalist tactile aesthetic with deep shadows and soft, focused light hitting the delicate textures of lavender and eucalyptus. The color palette is dominated by rich forest greens, charcoal blacks, and muted cream tones, evoking a mood of heritage, purity, and quiet administrative precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAz7frlRQKCxq4gxhFYEiKMaMg9rmo0K2mu2RrwCWc_pYhuMExthnZ-8HxFCSpYjJFUyGdXiL9G80uTKdCv7O2G_APJ6tVLPHnh4JPRVlK4iP9aXYUWhv2bee9U6olAtZyN9zEdc0uwrkZA-whXfYcsXxn_lk3jhxEQjvy-wnaVEItYVHtYDnUnz45WaxgTXad8pPc59hZTLb3LNHx1A6O-MAxfmZoaA134MNxTG_esCHrzlOOE4CSPey0B1lKSmtpdfgo6Ldec541v"/>
+<div class="absolute inset-0 bg-brand-green/40 mix-blend-multiply"></div>
+<div class="relative z-10 text-center px-6 max-w-2xl">
+<span class="font-label-caps text-label-caps text-surface-bright tracking-[0.3em] mb-4 block">Security Philosophy</span>
+<h3 class="font-display-lg text-headline-lg text-surface-bright italic mb-6">"True transparency is the bedrock of trust in our botanical legacy."</h3>
+<div class="h-12 w-px bg-surface-bright/30 mx-auto"></div>
+</div>
+</div>
+</section>
+<!-- Footer Footer (Minimal) -->
+<footer class="mt-auto py-10 px-container-margin border-t border-outline-variant/30 flex justify-between items-center bg-surface-container-lowest">
+<p class="font-label-caps text-label-caps text-text-muted">© 2023 APOTHECARY ADMIN SYSTEM • V2.4.1</p>
+<div class="flex gap-6">
+<a class="font-label-caps text-label-caps text-text-muted hover:text-primary" href="#">System Health</a>
+<a class="font-label-caps text-label-caps text-text-muted hover:text-primary" href="#">Privacy Protocol</a>
+<a class="font-label-caps text-label-caps text-text-muted hover:text-primary" href="#">API Documentation</a>
+</div>
+</footer>
+</main>
+<script>
+        // Micro-interactions for table rows and buttons
+        document.querySelectorAll('tr').forEach(row => {
+            row.addEventListener('mousedown', () => {
+                row.style.transform = 'scale(0.998)';
+            });
+            row.addEventListener('mouseup', () => {
+                row.style.transform = 'scale(1)';
+            });
+        });
+
+        // Search Bar Focus Effect
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('ring-1', 'ring-brand-green');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('ring-1', 'ring-brand-green');
+        });
+    </script>
+</body></html>

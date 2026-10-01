@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Apothecary Admin | Inventory Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline": "#727876",
+                    "inverse-surface": "#303030",
+                    "error": "#ba1a1a",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed-variant": "#414845",
+                    "on-secondary-fixed": "#1c1c18",
+                    "on-secondary-fixed-variant": "#474742",
+                    "on-primary": "#ffffff",
+                    "primary-container": "#0f1f1c",
+                    "on-error-container": "#93000a",
+                    "surface-tint": "#51625e",
+                    "on-tertiary-fixed": "#161d1a",
+                    "primary": "#000101",
+                    "inverse-primary": "#b8cac5",
+                    "tertiary-container": "#171e1b",
+                    "outline-variant": "#c2c8c5",
+                    "on-surface": "#1b1c1b",
+                    "background": "#fbf9f8",
+                    "on-secondary-container": "#65645f",
+                    "primary-fixed-dim": "#b8cac5",
+                    "secondary-fixed-dim": "#c9c6c0",
+                    "border-subtle": "rgba(255, 255, 255, 0.1)",
+                    "error-container": "#ffdad6",
+                    "surface-card": "#ffffff",
+                    "surface-variant": "#e4e2e1",
+                    "secondary": "#5f5e59",
+                    "surface-container-highest": "#e4e2e1",
+                    "brand-green": "#1a2e29",
+                    "on-primary-fixed-variant": "#3a4a46",
+                    "surface": "#fbf9f8",
+                    "on-surface-variant": "#424846",
+                    "secondary-container": "#e5e2db",
+                    "on-error": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#f2f0ef",
+                    "tertiary-fixed-dim": "#c1c8c3",
+                    "tertiary-fixed": "#dde4df",
+                    "primary-fixed": "#d4e6e1",
+                    "surface-container": "#efedec",
+                    "surface-container-low": "#f5f3f2",
+                    "on-primary-container": "#778884",
+                    "text-muted": "rgba(15, 31, 28, 0.6)",
+                    "on-tertiary-container": "#7f8682",
+                    "secondary-fixed": "#e5e2db",
+                    "tertiary": "#000201",
+                    "on-primary-fixed": "#0e1e1b",
+                    "surface-container-high": "#eae8e6",
+                    "on-background": "#1b1c1b",
+                    "status-sale": "#0f1f1c",
+                    "surface-bright": "#fbf9f8",
+                    "surface-dim": "#dbdad8",
+                    "on-tertiary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "price-tag": ["Noto Sans"],
+                    "headline-md": ["Playfair Display"],
+                    "headline-lg": ["Playfair Display"],
+                    "body-md": ["Noto Sans"],
+                    "label-caps": ["Noto Sans"],
+                    "display-lg": ["Playfair Display"]
+            },
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+
+        /* Custom Scrollbar for modern look */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #c2c8c5; border-radius: 10px; }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md overflow-x-hidden">
+<!-- SIDE NAVIGATION (From JSON) -->
+<nav class="bg-brand-green dark:bg-primary-container text-on-primary dark:text-on-primary-container font-body-md text-body-md h-full w-64 fixed left-0 top-0 border-r border-outline-variant dark:border-border-subtle flex flex-col h-screen py-6 z-50">
+<div class="px-6 mb-10">
+<h1 class="font-headline-md text-headline-md text-on-primary tracking-tight">Herbal Admin</h1>
+<p class="text-[11px] uppercase tracking-widest opacity-60">Modern Apothecary</p>
+</div>
+<div class="flex-1 space-y-1">
+<a class="text-on-primary/70 hover:text-on-primary mx-2 px-4 py-3 flex items-center gap-3 transition-colors hover:bg-on-primary-fixed-variant/50" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Overview
+            </a>
+<a class="bg-on-primary-fixed-variant text-on-primary rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+                Inventory
+            </a>
+<a class="text-on-primary/70 hover:text-on-primary mx-2 px-4 py-3 flex items-center gap-3 transition-colors hover:bg-on-primary-fixed-variant/50" href="#">
+<span class="material-symbols-outlined">shopping_bag</span>
+                Orders
+            </a>
+<a class="text-on-primary/70 hover:text-on-primary mx-2 px-4 py-3 flex items-center gap-3 transition-colors hover:bg-on-primary-fixed-variant/50" href="#">
+<span class="material-symbols-outlined">group</span>
+                Customers
+            </a>
+<a class="text-on-primary/70 hover:text-on-primary mx-2 px-4 py-3 flex items-center gap-3 transition-colors hover:bg-on-primary-fixed-variant/50" href="#">
+<span class="material-symbols-outlined">auto_stories</span>
+                Rituals
+            </a>
+<a class="text-on-primary/70 hover:text-on-primary mx-2 px-4 py-3 flex items-center gap-3 transition-colors hover:bg-on-primary-fixed-variant/50" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+</div>
+<div class="px-6 mt-auto">
+<button class="w-full py-3 border border-on-primary/20 hover:bg-on-primary hover:text-brand-green transition-all text-label-caps uppercase text-[10px] tracking-widest">
+                View Storefront
+            </button>
+</div>
+</nav>
+<!-- MAIN CONTENT AREA -->
+<main class="ml-64 min-h-screen">
+<!-- TOP NAV BAR (From JSON) -->
+<header class="bg-surface dark:bg-inverse-surface text-on-surface dark:text-inverse-on-surface font-label-caps text-label-caps sticky top-0 border-b border-outline-variant dark:border-border-subtle flex justify-between items-center w-full h-16 px-6 z-40">
+<div class="flex items-center gap-8 w-1/2">
+<span class="font-headline-md text-headline-md text-primary dark:text-inverse-primary">Apothecary Dashboard</span>
+<div class="relative w-full max-w-sm">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-low border-none focus:ring-1 focus:ring-primary py-2 pl-10 pr-4 rounded-full text-body-md normal-case font-normal" placeholder="Search inventory..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-transform active:scale-90">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="flex items-center gap-3 pl-4 border-l border-outline-variant">
+<div class="text-right">
+<p class="text-[12px] font-bold text-on-surface normal-case leading-none">Elena Thorne</p>
+<p class="text-[10px] text-on-surface-variant normal-case leading-none mt-1">Lead Alchemist</p>
+</div>
+<span class="material-symbols-outlined text-[32px]">account_circle</span>
+</div>
+</div>
+</header>
+<!-- PAGE CONTENT -->
+<div class="p-8 max-w-[1400px] mx-auto">
+<!-- HEADER & CTA -->
+<div class="flex justify-between items-end mb-10">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary">Botanical Stock List</h2>
+<p class="text-on-surface-variant max-w-md mt-2">Manage your collection of rare elixirs, balms, and tinctures. Real-time tracking of apothecary reserves.</p>
+</div>
+<button class="bg-primary text-on-primary px-8 py-4 font-label-caps text-label-caps tracking-[0.2em] hover:opacity-90 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                    ADD NEW PRODUCT
+                </button>
+</div>
+<!-- ANALYTICS MINI BENTO -->
+<div class="grid grid-cols-4 gap-4 mb-10">
+<div class="bg-surface-card p-6 border border-outline-variant/30 shadow-sm flex flex-col justify-between">
+<span class="text-label-caps text-on-surface-variant uppercase">Total Items</span>
+<div class="flex items-baseline gap-2 mt-4">
+<span class="font-headline-lg text-headline-lg">142</span>
+<span class="text-primary text-[12px]">+4 this month</span>
+</div>
+</div>
+<div class="bg-surface-card p-6 border border-outline-variant/30 shadow-sm flex flex-col justify-between">
+<span class="text-label-caps text-on-surface-variant uppercase">Low Stock Alerts</span>
+<div class="flex items-baseline gap-2 mt-4">
+<span class="font-headline-lg text-headline-lg text-error">12</span>
+<span class="text-on-surface-variant text-[12px]">Action required</span>
+</div>
+</div>
+<div class="bg-surface-card p-6 border border-outline-variant/30 shadow-sm flex flex-col justify-between">
+<span class="text-label-caps text-on-surface-variant uppercase">Inventory Value</span>
+<div class="flex items-baseline gap-2 mt-4">
+<span class="font-headline-lg text-headline-lg">$24,840</span>
+<span class="text-on-surface-variant text-[12px]">USD Portfolio</span>
+</div>
+</div>
+<div class="bg-brand-green text-on-primary p-6 shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="relative z-10">
+<span class="text-label-caps uppercase opacity-60">Top Performer</span>
+<p class="font-headline-md text-headline-md mt-4">Astral Serenity</p>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-10 rotate-12">
+<span class="material-symbols-outlined text-[120px]" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+</div>
+</div>
+<!-- FILTERS BAR -->
+<div class="bg-surface-container-low p-4 mb-6 flex flex-wrap items-center justify-between gap-4">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="text-label-caps text-on-surface-variant uppercase text-[10px]">Category:</span>
+<select class="bg-transparent border-b border-outline text-body-md py-1 focus:ring-0 focus:border-primary outline-none">
+<option>All Botanicals</option>
+<option>Elixirs</option>
+<option>Balms</option>
+<option>Tinctures</option>
+<option>Infusions</option>
+</select>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-label-caps text-on-surface-variant uppercase text-[10px]">Status:</span>
+<select class="bg-transparent border-b border-outline text-body-md py-1 focus:ring-0 focus:border-primary outline-none">
+<option>All Status</option>
+<option>In Stock</option>
+<option>Low Stock</option>
+<option>Out of Stock</option>
+</select>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined">filter_list</span></button>
+<button class="p-2 hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined">download</span></button>
+</div>
+</div>
+<!-- INVENTORY TABLE -->
+<div class="bg-surface-card border border-outline-variant/30 shadow-sm overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-high text-on-surface-variant text-label-caps">
+<tr>
+<th class="px-6 py-4 font-bold tracking-widest uppercase">Product Details</th>
+<th class="px-6 py-4 font-bold tracking-widest uppercase">SKU</th>
+<th class="px-6 py-4 font-bold tracking-widest uppercase">Category</th>
+<th class="px-6 py-4 font-bold tracking-widest uppercase">Price</th>
+<th class="px-6 py-4 font-bold tracking-widest uppercase">Stock</th>
+<th class="px-6 py-4 font-bold tracking-widest uppercase">Status</th>
+<th class="px-6 py-4 font-bold tracking-widest uppercase text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/20">
+<!-- Product Row 1 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-4">
+<div class="w-12 h-15 bg-surface-container overflow-hidden">
+<img alt="Elixir Bottle" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="A macro studio photograph of a tall, dark glass apothecary bottle with a minimalist parchment label, sitting on a clean stone surface. Soft daylight illuminates the dust particles in the air, creating a serene and premium wellness aesthetic. The background is a soft, warm cream color consistent with modern apothecary branding." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGNuLv3jUQhbh5joN5xzxMp9kMirKZGeSWrtH7yZyZBIyBXApP2fUi-Vxcx5I07-jWtBifz3S4USNN0T5qUmdxtiljK-9R3CYy56xKjhRRzetX9CYwYClVjOM9nCUYPvvizSHOnDHeltL7YGE885fR2V3MV2l5eTL4NOeoognUB5e3O3k_UHxuatmgEk_8IilRUrDstZrB6cswyPQSBkuMrBaxaONFKcHva1bFoWHVNlGNXUzHUQrW1buOH2a6nd90TAn9C9CLt6ww"/>
+</div>
+<div>
+<p class="font-headline-md text-[18px] text-primary">Astral Serenity Elixir</p>
+<p class="text-[12px] text-on-surface-variant">Lavender &amp; White Thyme</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5 font-price-tag text-price-tag text-on-surface-variant">ELX-AST-01</td>
+<td class="px-6 py-5">
+<span class="bg-surface-container px-3 py-1 text-[11px] font-label-caps uppercase">Elixir</span>
+</td>
+<td class="px-6 py-5 font-price-tag text-price-tag text-primary">$84.00</td>
+<td class="px-6 py-5">
+<div class="flex flex-col gap-1 w-24">
+<span class="text-body-md font-bold">42 Units</span>
+<div class="h-1 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-brand-green w-[70%]"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2 text-primary">
+<div class="w-2 h-2 rounded-full bg-green-800"></div>
+<span class="text-label-caps text-[10px] uppercase">In Stock</span>
+</div>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="p-2 hover:text-primary transition-colors"><span class="material-symbols-outlined">edit_note</span></button>
+<button class="p-2 hover:text-error transition-colors"><span class="material-symbols-outlined">more_vert</span></button>
+</td>
+</tr>
+<!-- Product Row 2 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-4">
+<div class="w-12 h-15 bg-surface-container overflow-hidden">
+<img alt="Sage Balm" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="A close-up shot of an artisan botanical balm in a small, round tin container with a minimalist black label. The scene is set in a boutique herbalist's shop with natural wood textures and soft warm lighting. The mood is authentic and handcrafted, emphasizing organic luxury and clean design principles." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaSzrQ3hpHOW-6I9OfYzwZ38DjrAUUKIYKSOrNhHRD7wltR1zR_E_bbSapVx0TtahWIBUNi8FwCkUV3EKD4FQ-paE6lJXQIPY2hxnhi-JVVFvsj6eE8SvnLpqXyXKv-PvEn2tUm8G5vAipLM-f0-4dnE5fq04jJArsjEC0VDHKu9wx8OqrRfAmgmE1sdchE_Cb7LNxaBRBQjVbAKuYtKjlyIFOF_r0nRT-BVMVdkUbFxSlE5HwMMUo-tI_80pjDsiER5I5FmAWKVno"/>
+</div>
+<div>
+<p class="font-headline-md text-[18px] text-primary">Velvet Sage Balm</p>
+<p class="text-[12px] text-on-surface-variant">Wild Sage &amp; Beeswax</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5 font-price-tag text-price-tag text-on-surface-variant">BLM-VSG-09</td>
+<td class="px-6 py-5">
+<span class="bg-surface-container px-3 py-1 text-[11px] font-label-caps uppercase">Balms</span>
+</td>
+<td class="px-6 py-5 font-price-tag text-price-tag text-primary">$42.00</td>
+<td class="px-6 py-5">
+<div class="flex flex-col gap-1 w-24">
+<span class="text-body-md font-bold text-error">5 Units</span>
+<div class="h-1 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-error w-[15%]"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2 text-error">
+<div class="w-2 h-2 rounded-full bg-error animate-pulse"></div>
+<span class="text-label-caps text-[10px] uppercase">Low Stock</span>
+</div>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="p-2 hover:text-primary transition-colors"><span class="material-symbols-outlined">edit_note</span></button>
+<button class="p-2 hover:text-error transition-colors"><span class="material-symbols-outlined">more_vert</span></button>
+</td>
+</tr>
+<!-- Product Row 3 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-4">
+<div class="w-12 h-15 bg-surface-container overflow-hidden">
+<img alt="Tincture" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="An atmospheric photograph of a row of small dropper bottles filled with golden and herbal tinctures. The background is a soft-focus laboratory or apothecary setting with dried herbs hanging nearby. The lighting is diffused and professional, creating a clean but deeply rooted connection to traditional herbal medicine." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLBFMx7khaHc-BakV4-Smc2JZ5LFpInzQX5uuMaUN-4mtj6D2Edda374iQ61Z8ZoQFPKBLW0sytusQNMSN8UuaYI7TR0x7oG3fq49bcCai93uO8WpJsRoP_vrYBTi2c4Fn3veqN3XYqQJuFmkod7kigjML4u_CZA0n4uYjKQ3KUrY9GJruK5fpJourzeN5lacm-M4pcfcnTtEJPkKHC-XzxJuHhrOdVaYMN2Ad_49w10AkQEdrXr1ksJR5YviIQqNRw8yuAPbGZX10"/>
+</div>
+<div>
+<p class="font-headline-md text-[18px] text-primary">Midnight Peppermint Infusion</p>
+<p class="text-[12px] text-on-surface-variant">Cool Mint &amp; Valerian</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5 font-price-tag text-price-tag text-on-surface-variant">INF-MID-22</td>
+<td class="px-6 py-5">
+<span class="bg-surface-container px-3 py-1 text-[11px] font-label-caps uppercase">Infusions</span>
+</td>
+<td class="px-6 py-5 font-price-tag text-price-tag text-primary">$35.00</td>
+<td class="px-6 py-5">
+<div class="flex flex-col gap-1 w-24">
+<span class="text-body-md font-bold">118 Units</span>
+<div class="h-1 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-brand-green w-[95%]"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2 text-primary">
+<div class="w-2 h-2 rounded-full bg-green-800"></div>
+<span class="text-label-caps text-[10px] uppercase">In Stock</span>
+</div>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="p-2 hover:text-primary transition-colors"><span class="material-symbols-outlined">edit_note</span></button>
+<button class="p-2 hover:text-error transition-colors"><span class="material-symbols-outlined">more_vert</span></button>
+</td>
+</tr>
+<!-- Product Row 4 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group opacity-70 bg-surface-container-low">
+<td class="px-6 py-5">
+<div class="flex items-center gap-4">
+<div class="w-12 h-15 bg-surface-container overflow-hidden">
+<img alt="Rose Tincture" class="w-full h-full object-cover grayscale transition-all duration-500" data-alt="A minimalist composition of a medicinal glass jar containing dried rose petals, placed on a high-end textured background. The image evokes feelings of tradition and carefully preserved botanical secrets. The color palette is restricted to natural earth tones and deep rose hues, maintainining a sophisticated, luxurious apothecary brand aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxEWiqR8qMryMnWaMGZakYAI-aU8pWwzJR6gcBfoqBUgwCbK27OvM6Ml0TkOiVC35eoRDmGPzB6ZB2yDLpPlKv2LysO2-E82IV4IWa835YswdMasTiAxSWCDV1_1XKIss4PenPeHyGn0H-nU6E8KHAMEgL3Pbdnli0mvBA5KVD8lE17rYQl524BM6HnS1S5FLDQfT-VEe72JP_vjZND1oI3JqLhPEZ_uKtBZJVNsmqYLjPyyQoH0EoIJQ31yQNmYUwB5Cyx-wgXoT8"/>
+</div>
+<div>
+<p class="font-headline-md text-[18px] text-primary italic">Wild Rose Heart Tincture</p>
+<p class="text-[12px] text-on-surface-variant">Damask Rose &amp; Alcohol</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5 font-price-tag text-price-tag text-on-surface-variant">TNC-WRH-05</td>
+<td class="px-6 py-5">
+<span class="bg-surface-container px-3 py-1 text-[11px] font-label-caps uppercase">Tinctures</span>
+</td>
+<td class="px-6 py-5 font-price-tag text-price-tag text-primary">$120.00</td>
+<td class="px-6 py-5">
+<div class="flex flex-col gap-1 w-24">
+<span class="text-body-md font-bold text-on-surface-variant">0 Units</span>
+<div class="h-1 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-outline w-[0%]"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<div class="w-2 h-2 rounded-full bg-outline"></div>
+<span class="text-label-caps text-[10px] uppercase">Out of Stock</span>
+</div>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="p-2 hover:text-primary transition-colors"><span class="material-symbols-outlined">edit_note</span></button>
+<button class="p-2 hover:text-error transition-colors"><span class="material-symbols-outlined">more_vert</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- PAGINATION -->
+<div class="px-6 py-4 flex items-center justify-between border-t border-outline-variant/30">
+<p class="text-on-surface-variant text-[12px]">Showing 4 of 142 unique botanical formulations</p>
+<div class="flex gap-2">
+<button class="w-8 h-8 flex items-center justify-center border border-outline-variant hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-[18px]">chevron_left</span></button>
+<button class="w-8 h-8 flex items-center justify-center bg-primary text-on-primary font-bold text-[12px]">1</button>
+<button class="w-8 h-8 flex items-center justify-center border border-outline-variant hover:bg-surface-container transition-colors font-bold text-[12px]">2</button>
+<button class="w-8 h-8 flex items-center justify-center border border-outline-variant hover:bg-surface-container transition-colors font-bold text-[12px]">3</button>
+<button class="w-8 h-8 flex items-center justify-center border border-outline-variant hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-[18px]">chevron_right</span></button>
+</div>
+</div>
+</div>
+<!-- INSPIRATION SECTION (Contextual Footer) -->
+<div class="mt-16 grid grid-cols-2 gap-10">
+<div class="relative h-64 overflow-hidden shadow-sm group">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A moody, high-contrast photograph of an artisan's workshop table covered in fresh herbs, dried roots, and glass measuring tools. Dark shadows and spotlighting create a sense of mystery and heritage. The overall composition is artful and leans towards a lifestyle magazine aesthetic, emphasizing the craft behind the modern apothecary brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfPAFsYp3HhjnZd4UjWKqvBAqaoc1u7Kuq9QA7APwafM1KEqrgAphIuNQgsrjgs2gjXuZFtf7vVCIpA8EsbTdEi7pp5CJ_8SWRKEslC6gNOg50Y6rNHWWm4jVADuZozAZvW6gNGFnzpAGuNULrXM2IibRJ515G1G9pCV6Avvoz911URduqFaDlqj9G7TK1L_t27UxKY3MUyjG_dQTEc-Mmw1xUo5Mx0M6toJzgTkouM8DhPh_Md26osA8iVd82j2JQJAeVCHe4F5B1"/>
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center p-8 text-center">
+<div>
+<h3 class="font-headline-md text-on-primary mb-2">Restock Forecast</h3>
+<p class="text-on-primary/80 text-[12px] uppercase tracking-widest">Seasonal demand for Lavender is expected to rise by 40% next month.</p>
+<button class="mt-4 px-6 py-2 border border-on-primary text-on-primary text-label-caps text-[10px] hover:bg-on-primary hover:text-black transition-all">ORDER RAW MATERIALS</button>
+</div>
+</div>
+</div>
+<div class="bg-primary-container text-on-primary-container p-8 flex flex-col justify-center">
+<span class="material-symbols-outlined text-on-primary-container/40 text-[48px] mb-4">auto_stories</span>
+<h3 class="font-headline-md text-on-primary mb-2">Apothecary Knowledge Base</h3>
+<p class="opacity-80 leading-relaxed mb-6">Need help categorizing new herbal discoveries? Access the Guna Herbal taxonomy guide and ritual pairing documentation.</p>
+<a class="inline-flex items-center gap-2 text-label-caps text-[10px] uppercase font-bold hover:underline decoration-1 underline-offset-4" href="#">
+                        Explore Library
+                        <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Micro-interactions
+        document.querySelectorAll('tr').forEach(row => {
+            row.addEventListener('mouseenter', () => {
+                row.style.cursor = 'pointer';
+            });
+        });
+
+        // Search Bar Focus Effect
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('ring-2', 'ring-primary/20');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('ring-2', 'ring-primary/20');
+        });
+    </script>
+</body></html>

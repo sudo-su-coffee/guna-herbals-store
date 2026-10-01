@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Returns & Refunds Management | Nature's Alchemist</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans:wght@400;500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100..900&family=Playfair+Display:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "status-sale": "#0f1f1c",
+                    "primary": "#000101",
+                    "text-muted": "rgba(15, 31, 28, 0.6)",
+                    "secondary": "#5f5e59",
+                    "on-tertiary-container": "#7f8682",
+                    "tertiary-fixed-dim": "#c1c8c3",
+                    "primary-fixed": "#d4e6e1",
+                    "outline-variant": "#c2c8c5",
+                    "surface-card": "#ffffff",
+                    "secondary-fixed-dim": "#c9c6c0",
+                    "on-secondary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#1b1c1b",
+                    "outline": "#727876",
+                    "inverse-primary": "#b8cac5",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface-variant": "#424846",
+                    "error": "#ba1a1a",
+                    "primary-container": "#0f1f1c",
+                    "brand-green": "#1a2e29",
+                    "border-subtle": "rgba(255, 255, 255, 0.1)",
+                    "on-error": "#ffffff",
+                    "on-secondary-container": "#65645f",
+                    "surface-dim": "#dbdad8",
+                    "secondary-container": "#e5e2db",
+                    "on-background": "#1b1c1b",
+                    "secondary-fixed": "#e5e2db",
+                    "on-error-container": "#93000a",
+                    "primary-fixed-dim": "#b8cac5",
+                    "background": "#fbf9f8",
+                    "on-primary-fixed": "#0e1e1b",
+                    "surface-bright": "#fbf9f8",
+                    "on-tertiary-fixed": "#161d1a",
+                    "tertiary-fixed": "#dde4df",
+                    "inverse-on-surface": "#f2f0ef",
+                    "on-secondary-fixed": "#1c1c18",
+                    "surface-container-high": "#eae8e6",
+                    "surface-container": "#efedec",
+                    "on-tertiary-fixed-variant": "#414845",
+                    "inverse-surface": "#303030",
+                    "on-primary-container": "#778884",
+                    "surface-container-low": "#f5f3f2",
+                    "tertiary-container": "#171e1b",
+                    "surface-variant": "#e4e2e1",
+                    "on-tertiary": "#ffffff",
+                    "tertiary": "#000201",
+                    "on-secondary-fixed-variant": "#474742",
+                    "surface-tint": "#51625e",
+                    "surface-container-highest": "#e4e2e1",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#3a4a46",
+                    "surface": "#fbf9f8"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "container-margin": "1.5rem",
+                    "element-gap": "0.5rem",
+                    "section-gap-sm": "2.5rem",
+                    "grid-gutter": "1rem",
+                    "section-gap-lg": "5rem"
+            },
+            "fontFamily": {
+                    "headline-md": ["Playfair Display"],
+                    "label-caps": ["Noto Sans"],
+                    "display-lg": ["Playfair Display"],
+                    "price-tag": ["Noto Sans"],
+                    "body-md": ["Noto Sans"],
+                    "headline-lg": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                    "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                    "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                    "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                    "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(15, 31, 28, 0.05);
+        }
+
+        .side-nav-active {
+            background-color: #ffffff !important;
+            color: #1a2e29 !important;
+            border-radius: 0.25rem;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex overflow-hidden">
+<!-- SideNavBar (Shared Component) -->
+<aside class="fixed left-0 top-0 h-screen w-64 bg-brand-green dark:bg-status-sale flex flex-col h-full py-8 transition-all duration-300 z-50">
+<div class="px-6 mb-10">
+<h1 class="font-headline-lg text-headline-lg text-on-primary dark:text-on-primary-fixed">Apothecary</h1>
+<p class="font-label-caps text-label-caps text-on-primary/60 tracking-widest mt-1">Management Portal</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 text-on-tertiary-container hover:text-on-primary p-3 mx-2 transition-all duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-caps text-label-caps">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 text-on-tertiary-container hover:text-on-primary p-3 mx-2 transition-all duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">potted_plant</span>
+<span class="font-label-caps text-label-caps">Inventory</span>
+</a>
+<a class="flex items-center gap-3 bg-on-primary-container text-on-primary rounded-lg p-3 mx-2 transition-all duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="font-label-caps text-label-caps">Orders</span>
+</a>
+<a class="flex items-center gap-3 text-on-tertiary-container hover:text-on-primary p-3 mx-2 transition-all duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-caps text-label-caps">Customers</span>
+</a>
+<a class="flex items-center gap-3 text-on-tertiary-container hover:text-on-primary p-3 mx-2 transition-all duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">leaderboard</span>
+<span class="font-label-caps text-label-caps">Analytics</span>
+</a>
+<a class="flex items-center gap-3 text-on-tertiary-container hover:text-on-primary p-3 mx-2 transition-all duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">local_shipping</span>
+<span class="font-label-caps text-label-caps">Suppliers</span>
+</a>
+</nav>
+<div class="mt-auto border-t border-border-subtle pt-6">
+<a class="flex items-center gap-3 text-on-tertiary-container hover:text-on-primary p-3 mx-2 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span class="font-label-caps text-label-caps">Support</span>
+</a>
+<a class="flex items-center gap-3 text-on-tertiary-container hover:text-on-primary p-3 mx-2 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-caps text-label-caps">Log Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 flex-1 flex flex-col h-screen overflow-hidden bg-background">
+<!-- TopNavBar (Shared Component) -->
+<header class="flex items-center justify-between px-container-margin w-full ml-auto h-20 border-b border-outline-variant dark:border-border-subtle bg-background z-40">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full text-body-md focus:ring-1 focus:ring-brand-green" placeholder="Search returns, order IDs..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6 ml-auto">
+<button class="relative text-on-surface-variant hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="flex items-center gap-3 border-l border-outline-variant pl-6">
+<div class="text-right">
+<p class="font-label-caps text-[11px] font-bold">ALISTAIR V.</p>
+<p class="text-[10px] text-text-muted">Administrator</p>
+</div>
+<img alt="Administrator profile photo" class="w-10 h-10 rounded-full object-cover grayscale brightness-95" data-alt="A professional headshot of a mature male administrator with a short beard and a neutral, calm expression. The lighting is sophisticated and soft, typical of a high-end editorial shoot. The color palette is minimal, focusing on deep greens and soft creams to match a modern apothecary brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYKTPnvApHIe_dO4qBjtnGKGOjdK7iubhhU8_Zv4MWsVB0FeNKUeJDVBluvPNuT4rEyoaemuyDbAhVopqhQaqk4M4u9N6VbQVFgVJCz1bnbugcBA0SO3bw2dbiOyS02XRqRfANZ_U7u2Fp8lgUyEAiZHvuAXNI_byY8zmW3U4bC5_FqfuORhchMA2AOPhX0SwpQDGzcpWUxnt1eoiaDWFJ724xvXdHXw3MfqJnXq11fikju7KRoePX8m0cxYc9XKxyEhQ0c9OoF1Bg"/>
+</div>
+</div>
+</header>
+<!-- Canvas Body -->
+<div class="flex-1 flex overflow-hidden p-6 gap-6">
+<!-- Returns List Section -->
+<div class="flex-1 flex flex-col bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/30 overflow-hidden">
+<div class="p-6 border-b border-outline-variant/20 flex items-center justify-between">
+<div>
+<h2 class="font-headline-md text-headline-md text-primary">Returns & Refunds</h2>
+<p class="text-text-muted text-sm italic">Managing the harmony of apothecary exchanges.</p>
+</div>
+<div class="flex gap-2">
+<button class="px-4 py-2 border border-outline-variant font-label-caps text-label-caps hover:bg-surface-container transition-colors">EXPORT CSV</button>
+<button class="px-4 py-2 bg-brand-green text-on-primary font-label-caps text-label-caps hover:bg-primary transition-colors">BULK ACTIONS</button>
+</div>
+</div>
+<!-- Table Container -->
+<div class="flex-1 overflow-y-auto scrollbar-hide">
+<table class="w-full text-left border-collapse">
+<thead class="sticky top-0 bg-surface-container-low z-10">
+<tr>
+<th class="p-4 font-label-caps text-label-caps text-on-surface-variant border-b border-outline-variant/30">Order ID</th>
+<th class="p-4 font-label-caps text-label-caps text-on-surface-variant border-b border-outline-variant/30">Customer</th>
+<th class="p-4 font-label-caps text-label-caps text-on-surface-variant border-b border-outline-variant/30">Reason</th>
+<th class="p-4 font-label-caps text-label-caps text-on-surface-variant border-b border-outline-variant/30">Status</th>
+<th class="p-4 font-label-caps text-label-caps text-on-surface-variant border-b border-outline-variant/30">Amount</th>
+<th class="p-4 font-label-caps text-label-caps text-on-surface-variant border-b border-outline-variant/30">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group" onclick="openDetails('NA-8892', 'Elena Thorne', 'Damaged during transit', 'Pending', '₹2,450.00', 'UPI - Razorpay')">
+<td class="p-4 font-price-tag text-primary">#NA-8892</td>
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-[10px] font-bold">ET</div>
+<span class="text-on-surface font-medium">Elena Thorne</span>
+</div>
+</td>
+<td class="p-4 text-on-surface-variant italic">Damaged during transit</td>
+<td class="p-4">
+<span class="px-2 py-1 bg-secondary-container text-on-secondary-container text-[10px] font-bold rounded uppercase tracking-wider">Pending</span>
+</td>
+<td class="p-4 font-price-tag text-primary">₹2,450.00</td>
+<td class="p-4">
+<button class="text-brand-green hover:underline font-label-caps text-[10px]">REVIEW</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer" onclick="openDetails('NA-9012', 'Julian Vane', 'Incorrect item received', 'Approved', '₹1,120.00', 'Net Banking - Razorpay')">
+<td class="p-4 font-price-tag text-primary">#NA-9012</td>
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed flex items-center justify-center text-[10px] font-bold">JV</div>
+<span class="text-on-surface font-medium">Julian Vane</span>
+</div>
+</td>
+<td class="p-4 text-on-surface-variant italic">Incorrect item received</td>
+<td class="p-4">
+<span class="px-2 py-1 bg-brand-green text-on-primary text-[10px] font-bold rounded uppercase tracking-wider">Approved</span>
+</td>
+<td class="p-4 font-price-tag text-primary">₹1,120.00</td>
+<td class="p-4">
+<button class="text-brand-green hover:underline font-label-caps text-[10px]">REFUND</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer" onclick="openDetails('NA-7741', 'Sofia Loren', 'Allergic reaction reported', 'Refunded', '₹4,890.00', 'Credit Card - Razorpay')">
+<td class="p-4 font-price-tag text-primary">#NA-7741</td>
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-tertiary-fixed flex items-center justify-center text-[10px] font-bold">SL</div>
+<span class="text-on-surface font-medium">Sofia Loren</span>
+</div>
+</td>
+<td class="p-4 text-on-surface-variant italic">Allergic reaction reported</td>
+<td class="p-4">
+<span class="px-2 py-1 bg-surface-container-high text-on-surface-variant text-[10px] font-bold rounded uppercase tracking-wider">Refunded</span>
+</td>
+<td class="p-4 font-price-tag text-primary">₹4,890.00</td>
+<td class="p-4">
+<button class="text-outline hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-sm">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer" onclick="openDetails('NA-9055', 'Marcus Aurelius', 'Dissatisfied with scent profile', 'Pending', '₹3,200.00', 'UPI - Razorpay')">
+<td class="p-4 font-price-tag text-primary">#NA-9055</td>
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-fixed-dim flex items-center justify-center text-[10px] font-bold">MA</div>
+<span class="text-on-surface font-medium">Marcus Aurelius</span>
+</div>
+</td>
+<td class="p-4 text-on-surface-variant italic">Dissatisfied with scent profile</td>
+<td class="p-4">
+<span class="px-2 py-1 bg-secondary-container text-on-secondary-container text-[10px] font-bold rounded uppercase tracking-wider">Pending</span>
+</td>
+<td class="p-4 font-price-tag text-primary">₹3,200.00</td>
+<td class="p-4">
+<button class="text-brand-green hover:underline font-label-caps text-[10px]">REVIEW</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Detail Panel (Fixed-width side inspector) -->
+<aside class="w-96 flex flex-col gap-6 transition-transform duration-500 translate-x-full lg:translate-x-0" id="detail-panel">
+<!-- Bento Info Card -->
+<div class="glass-panel rounded-xl p-6 flex flex-col gap-6 border border-outline-variant/40 shadow-lg h-full">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-headline-md text-primary leading-tight">Request Details</h3>
+<button class="text-outline hover:text-error transition-colors lg:hidden" onclick="closeDetails()">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Detail Section -->
+<div class="flex-1 flex flex-col items-center justify-center text-center opacity-60 px-4" id="empty-state">
+<span class="material-symbols-outlined text-4xl mb-4 text-outline">receipt_long</span>
+<p class="font-label-caps text-label-caps">Select an order to view processing options</p>
+</div>
+<div class="hidden flex-1 flex flex-col gap-8" id="detail-content">
+<div>
+<p class="font-label-caps text-label-caps text-text-muted mb-2">IDENTIFICATION</p>
+<div class="flex items-center justify-between">
+<span class="font-headline-lg text-headline-md text-primary" id="detail-id">#NA-8892</span>
+<span class="px-2 py-0.5 bg-secondary-container text-on-secondary-container text-[9px] font-bold rounded uppercase tracking-tighter" id="detail-status">PENDING</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-4 bg-surface-container-low rounded-lg">
+<p class="font-label-caps text-[9px] text-text-muted mb-1">CUSTOMER</p>
+<p class="font-medium text-sm" id="detail-customer">Elena Thorne</p>
+</div>
+<div class="p-4 bg-surface-container-low rounded-lg">
+<p class="font-label-caps text-[9px] text-text-muted mb-1">REFUND TOTAL</p>
+<p class="font-price-tag text-primary" id="detail-amount">₹2,450.00</p>
+</div>
+</div>
+<div class="space-y-4">
+<div>
+<p class="font-label-caps text-label-caps text-text-muted mb-2">ISSUE DESCRIPTION</p>
+<p class="text-body-md italic p-4 bg-background border border-outline-variant/30 rounded-lg" id="detail-reason">
+                                    "The glass tincture bottle arrived shattered in the box. Essential oil leaked through the cardboard packaging."
+                                </p>
+</div>
+<div class="p-4 border border-outline-variant/20 rounded-lg bg-surface-bright flex items-center gap-4">
+<span class="material-symbols-outlined text-brand-green">account_balance_wallet</span>
+<div>
+<p class="font-label-caps text-[9px] text-text-muted">ORIGINAL PAYMENT</p>
+<p class="text-sm font-medium" id="detail-method">UPI - Razorpay (TXN_44512)</p>
+</div>
+</div>
+</div>
+<!-- Processing Section -->
+<div class="mt-auto space-y-3">
+<div class="flex items-center gap-2 mb-4">
+<input class="rounded border-outline-variant text-brand-green focus:ring-brand-green" id="restock" type="checkbox"/>
+<label class="text-[11px] font-label-caps text-on-surface-variant" for="restock">RESTOCK RETURNED ITEMS</label>
+</div>
+<button class="w-full py-4 bg-brand-green text-on-primary font-label-caps tracking-widest hover:bg-primary transition-all active:scale-95">ISSUE FULL REFUND</button>
+<button class="w-full py-4 border border-outline text-primary font-label-caps tracking-widest hover:bg-surface-container-low transition-all">REJECT REQUEST</button>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<script>
+        function openDetails(id, customer, reason, status, amount, method) {
+            const emptyState = document.getElementById('empty-state');
+            const detailContent = document.getElementById('detail-content');
+            const detailPanel = document.getElementById('detail-panel');
+
+            // Set content
+            document.getElementById('detail-id').innerText = id;
+            document.getElementById('detail-customer').innerText = customer;
+            document.getElementById('detail-reason').innerText = reason;
+            document.getElementById('detail-status').innerText = status;
+            document.getElementById('detail-amount').innerText = amount;
+            document.getElementById('detail-method').innerText = method;
+
+            // Handle status color
+            const statusBadge = document.getElementById('detail-status');
+            statusBadge.className = 'px-2 py-0.5 text-[9px] font-bold rounded uppercase tracking-tighter ';
+            if(status === 'Pending') statusBadge.classList.add('bg-secondary-container', 'text-on-secondary-container');
+            if(status === 'Approved') statusBadge.classList.add('bg-brand-green', 'text-on-primary');
+            if(status === 'Refunded') statusBadge.classList.add('bg-surface-container-high', 'text-on-surface-variant');
+
+            // Transitions
+            emptyState.classList.add('hidden');
+            detailContent.classList.remove('hidden');
+            detailPanel.classList.remove('translate-x-full');
+        }
+
+        function closeDetails() {
+            const detailPanel = document.getElementById('detail-panel');
+            detailPanel.classList.add('translate-x-full');
+        }
+
+        // Simple row hover micro-interactions
+        const rows = document.querySelectorAll('tbody tr');
+        rows.forEach(row => {
+            row.addEventListener('click', () => {
+                rows.forEach(r => r.classList.remove('bg-surface-container-low'));
+                row.classList.add('bg-surface-container-low');
+            });
+        });
+    </script>
+</body></html>

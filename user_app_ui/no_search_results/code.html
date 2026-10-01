@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+                  "error-container": "#ffdad6",
+                  "on-secondary-fixed-variant": "#474742",
+                  "error": "#ba1a1a",
+                  "surface-container": "#efedec",
+                  "secondary": "#5f5e59",
+                  "on-tertiary-fixed": "#161d1a",
+                  "on-secondary": "#ffffff",
+                  "background": "#fbf9f8",
+                  "secondary-fixed": "#e5e2db",
+                  "primary-fixed": "#d4e6e1",
+                  "on-primary-fixed-variant": "#3a4a46",
+                  "surface-variant": "#e4e2e1",
+                  "surface-container-high": "#eae8e6",
+                  "surface-card": "#ffffff",
+                  "on-surface-variant": "#424846",
+                  "on-primary-container": "#778884",
+                  "surface-bright": "#fbf9f8",
+                  "on-background": "#1b1c1b",
+                  "on-error": "#ffffff",
+                  "tertiary": "#000201",
+                  "tertiary-container": "#171e1b",
+                  "on-surface": "#1b1c1b",
+                  "surface-dim": "#dbdad8",
+                  "primary-container": "#0f1f1c",
+                  "tertiary-fixed-dim": "#c1c8c3",
+                  "secondary-container": "#e5e2db",
+                  "on-tertiary-fixed-variant": "#414845",
+                  "on-primary": "#ffffff",
+                  "status-sale": "#0f1f1c",
+                  "on-primary-fixed": "#0e1e1b",
+                  "text-muted": "rgba(15, 31, 28, 0.6)",
+                  "outline-variant": "#c2c8c5",
+                  "primary-fixed-dim": "#b8cac5",
+                  "surface-container-highest": "#e4e2e1",
+                  "on-secondary-fixed": "#1c1c18",
+                  "surface-tint": "#51625e",
+                  "on-tertiary": "#ffffff",
+                  "secondary-fixed-dim": "#c9c6c0",
+                  "tertiary-fixed": "#dde4df",
+                  "brand-green": "#1a2e29",
+                  "surface-container-lowest": "#ffffff",
+                  "outline": "#727876",
+                  "on-error-container": "#93000a",
+                  "on-secondary-container": "#65645f",
+                  "inverse-surface": "#303030",
+                  "inverse-primary": "#b8cac5",
+                  "surface": "#fbf9f8",
+                  "inverse-on-surface": "#f2f0ef",
+                  "on-tertiary-container": "#7f8682",
+                  "surface-container-low": "#f5f3f2",
+                  "border-subtle": "rgba(255, 255, 255, 0.1)",
+                  "primary": "#000101"
+          },
+          "borderRadius": {
+                  "DEFAULT": "0.125rem",
+                  "lg": "0.25rem",
+                  "xl": "0.5rem",
+                  "full": "0.75rem"
+          },
+          "spacing": {
+                  "section-gap-sm": "2.5rem",
+                  "element-gap": "0.5rem",
+                  "section-gap-lg": "5rem",
+                  "grid-gutter": "1rem",
+                  "container-margin": "1.5rem"
+          },
+          "fontFamily": {
+                  "headline-lg": ["Playfair Display"],
+                  "body-md": ["Noto Sans"],
+                  "price-tag": ["Noto Sans"],
+                  "headline-md": ["Playfair Display"],
+                  "display-lg": ["Playfair Display"],
+                  "label-caps": ["Noto Sans"]
+          },
+          "fontSize": {
+                  "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                  "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                  "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                  "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                  "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                  "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    body {
+      background-color: #fbf9f8;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary-fixed">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex items-center justify-between px-container-margin h-16 w-full bg-background dark:bg-background">
+<div class="flex items-center">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed hover:opacity-70 transition-opacity active:scale-95 transition-transform cursor-pointer">menu</span>
+</div>
+<h1 class="font-headline-md text-headline-md text-primary dark:text-primary-fixed">Nature's Alchemist</h1>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed hover:opacity-70 transition-opacity active:scale-95 transition-transform cursor-pointer">shopping_bag</span>
+</div>
+</header>
+<main class="pt-24 pb-32 px-container-margin max-w-4xl mx-auto min-h-screen">
+<!-- Search Context -->
+<div class="mb-12">
+<div class="flex items-center gap-2 text-on-surface-variant mb-4">
+<span class="material-symbols-outlined text-[20px]">search</span>
+<span class="font-label-caps text-label-caps uppercase tracking-widest">Search Results For</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg italic">"Moonlight Mandrake Root"</h2>
+<div class="mt-4 w-12 h-[1px] bg-outline"></div>
+</div>
+<!-- Empty State Section: Bento Style -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-grid-gutter">
+<!-- Main Visual & Message -->
+<div class="md:col-span-8 bg-surface-container-lowest p-10 flex flex-col justify-center border border-outline-variant/30">
+<div class="mb-8">
+<span class="material-symbols-outlined text-[48px] text-primary/20 mb-6">filter_vintage</span>
+<h3 class="font-headline-lg text-headline-lg mb-4 text-primary">No results found</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md">
+            The particular botanical alchemy you seek is currently beyond our current collection. Our apothecary is ever-evolving, yet some rare essences remain elusive.
+          </p>
+</div>
+<div class="flex flex-wrap gap-4">
+<button class="bg-primary text-on-primary px-8 py-4 font-label-caps text-label-caps uppercase tracking-[0.2em] hover:opacity-70 transition-opacity active:scale-95">
+            Browse All Products
+          </button>
+<button class="border border-outline text-primary px-8 py-4 font-label-caps text-label-caps uppercase tracking-[0.2em] hover:bg-surface-container transition-colors active:scale-95">
+            Contact Curator
+          </button>
+</div>
+</div>
+<!-- Sidebar Suggestions -->
+<div class="md:col-span-4 flex flex-col gap-grid-gutter">
+<div class="bg-surface-container p-6 border border-outline-variant/30 flex-1">
+<h4 class="font-label-caps text-label-caps mb-4 text-on-surface-variant">REFINEMENTS</h4>
+<ul class="space-y-4">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[18px]">auto_fix_high</span>
+<span class="font-body-md text-body-md">Try broader terminology</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[18px]">spellcheck</span>
+<span class="font-body-md text-body-md">Verify botanical spelling</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[18px]">category</span>
+<span class="font-body-md text-body-md">Search by category instead</span>
+</li>
+</ul>
+</div>
+<div class="relative overflow-hidden aspect-square md:aspect-auto flex-1">
+<img alt="Botanical illustration" class="w-full h-full object-cover" data-alt="A moody, high-end close-up photograph of dried apothecary herbs and vintage glass jars on a textured cream surface. The lighting is soft and directional, creating elegant shadows that emphasize the organic textures of the plants. The overall aesthetic is minimalist-tactile, with a sophisticated palette of sage greens, deep blacks, and warm cream tones, evoking a sense of heritage and artisanal purity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAT6Ah9SNVS9e9nHGE_iTEWklGaRhW0F650KCuo0EnXN7jvDM5kOcbobn5R6TL5zsMHy_sRl-L1f-J3L0Vrhq2wX8_zR6zwv5orj3mupHILRZSTpyWogmhtjX_ddEBTsTP8SLB4H-W7vtwoj3XBcP5ssKXkbuH5ImTZRodiSgFKfb4F6y3Op0To1MFXhXFxJ0dXt24-asApFvFwU9CyOCBdwg5RZLWIkxQUONWdx55OBst5UsTXJvTEaYihxbEwwXpcPXjl9HpTJcDo"/>
+<div class="absolute inset-0 bg-primary/20"></div>
+<div class="absolute bottom-4 left-4 right-4 text-on-primary">
+<p class="font-headline-md text-headline-md italic">Discover our seasonal distillations.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Curator Recommendations -->
+<section class="mt-section-gap-lg">
+<div class="text-center mb-12">
+<h3 class="font-headline-lg text-headline-lg mb-2">Curator's Suggestions</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">While we search for your request, perhaps these similar elixirs might resonate.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-grid-gutter">
+<!-- Product Card 1 -->
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] bg-surface-container-high overflow-hidden relative mb-4">
+<img alt="Rosemary Distillation" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A premium minimalist product shot of a small dark glass apothecary bottle containing clear rosemary essential oil. The bottle sits on a clean, off-white stone pedestal under bright, diffused studio lighting. The scene is calm and clean, utilizing the Modern Apothecary aesthetic with high-contrast sharp edges and a focus on the tactile quality of the glass and liquid." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtalvRO-1y51vZctqWMzA1l6Go16iSSGIXMfzfRJK8LULLWQJdaDXICOxWQRfNnmO-zxo76NWMOQvm62hkMJGvrZhsTc221AdOcdjjBQB8yVCCYzDn760DxwCBJO9uReQl5mXrT1oXqkamzbWP7SB2uI51ib7nncGJ-_tCbGemXKhWPxEzXWPS7IQva9vhtZZlej6UBHtnMf6mOiHRMAfcqz6d2pmWMzRnwS1EMCRZC-VbQA2YT8DGtH9Ni-ch4qRaLEyeV3QGFcJH"/>
+<div class="absolute top-0 left-0 bg-primary text-on-primary px-3 py-1 font-label-caps text-[9px] font-bold">STOCKED</div>
+</div>
+<h5 class="font-label-caps text-label-caps text-on-surface-variant mb-1">ESSENTIAL OILS</h5>
+<p class="font-headline-md text-[18px] leading-tight mb-2">Wild Rosemary Extract</p>
+<p class="font-price-tag text-price-tag text-primary">$42.00</p>
+</div>
+<!-- Product Card 2 -->
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] bg-surface-container-high overflow-hidden relative mb-4">
+<img alt="Amber Resin" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Close-up of golden amber resin pieces resting in a shallow, handmade ceramic bowl of a sage-green hue. The lighting is warm and golden-hour inspired, creating a rich, tactile glow. The composition follows minimalist principles, emphasizing the natural geometry of the resin and the artisan quality of the vessel against a soft cream-toned background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXsyIWBC2NVHjDrX8jd-peX4TqKhOtYVlVuqMj-3UAMCXBwKesLeUqjyciKzSY4A7M-5vMIeICAmX4B8zoCeTWLrupUwMJ1ycZ16-dm25FYSphi8eGEnWUaYJvs8j5KpppTZy3M09to7JDqskGCy9jDUhJImFcgZ-VorA0KRJXGQKa6kS5PEiMFTWk0dvFWk3zAhl8Niouuyq_N4LfWKwad8mjXUKSsyDDTPcgRsjbBmNBTEMB051KuY5y7KbyrsZCx4Gfdb1RX5fG"/>
+</div>
+<h5 class="font-label-caps text-label-caps text-on-surface-variant mb-1">RESINS</h5>
+<p class="font-headline-md text-[18px] leading-tight mb-2">Ancient Baltic Amber</p>
+<p class="font-price-tag text-price-tag text-primary">$78.00</p>
+</div>
+<!-- Product Card 3 -->
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] bg-surface-container-high overflow-hidden relative mb-4">
+<img alt="Tonic water" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A dark green glass bottle with a minimalist cream label featuring serif typography, containing a herbal wellness tonic. The bottle is positioned asymmetrically in the frame against a backdrop of soft-focus botanical leaves. The aesthetic is clean and contemporary, highlighting the blend of traditional herbalism and modern premium packaging." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxR9glz4fG566-N6j5KfVSvG2t-lgpaPXzezwvH_R5zQtDrjQ82w1CzWa-PtYRnlz81gsobGvJuffpO2G12sHkYBR9kDA_rDCiqH28Uquid8fnYznxUbLbcsIe-6xI-QbIiUXohV907XN-nyt9_ShguerN5BLwB8NVL7AoiAfjjyrDIaVi0eJT_TXreUUkBblGuu2ecqO7HSbb-ZfDQaSkUtmMe_1NeyJSaq9utnwV2gfaKXv2lEXnNCy8dzqXPTIeFTNVQK_MIxX5"/>
+</div>
+<h5 class="font-label-caps text-label-caps text-on-surface-variant mb-1">WELLNESS TONICS</h5>
+<p class="font-headline-md text-[18px] leading-tight mb-2">Silver Fir Elixir</p>
+<p class="font-price-tag text-price-tag text-primary">$35.00</p>
+</div>
+<!-- Product Card 4 -->
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] bg-surface-container-high overflow-hidden relative mb-4">
+<img alt="Handheld ritual" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A top-down artistic shot of hands holding a cluster of dried sage and lavender tied with a simple twine. The skin tones are natural and the hands appear delicate. The setting is a minimalist wooden table with a soft linen cloth, illuminated by bright daylight. The style is organic and grounded, reflecting the tactile nature of artisan herbal products." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8sWOhBLihQS1Jn-C-WFPikE0rmGZ0BltDMxF6jHuIwWEmSNXcrRHd1uhRbuX8HLIc0xPgMJmNGasyFqlDcVs4b4IHxsJxIMCmlvw5nE81e_GBq0bZjU_HLsWN6pZkJuJfJA2B-Mg6TIc6Z8rMdH8OehD2GsBGNFIO9FPdGmc1dMKSiFQbX4LLS2ck76Xe8KvOWRRnUJdj2suCI6857diITMvd5t9tlH_HFfKFld8zNuzwC5wqle8XjK9s-VJSSEFpgeu9vQjf2c8v"/>
+<div class="absolute top-0 left-0 bg-primary text-on-primary px-3 py-1 font-label-caps text-[9px] font-bold">NEW</div>
+</div>
+<h5 class="font-label-caps text-label-caps text-on-surface-variant mb-1">RITUALS</h5>
+<p class="font-headline-md text-[18px] leading-tight mb-2">Twilight Smudge Bundle</p>
+<p class="font-price-tag text-price-tag text-primary">$18.00</p>
+</div>
+</div>
+</section>
+<!-- Help Banner -->
+<section class="mt-section-gap-lg bg-brand-green p-10 text-on-primary flex flex-col md:flex-row items-center justify-between gap-8">
+<div class="text-center md:text-left">
+<h4 class="font-headline-md text-headline-md mb-2">Cannot find your specific infusion?</h4>
+<p class="font-body-md text-body-md opacity-80">Our alchemists can source bespoke ingredients for your unique needs.</p>
+</div>
+<button class="bg-surface-container-lowest text-primary px-10 py-4 font-label-caps text-label-caps uppercase tracking-[0.2em] hover:opacity-90 active:scale-95 transition-all whitespace-nowrap">
+        Special Requests
+      </button>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 bg-brand-green dark:bg-primary-container h-20 px-4 w-full flex justify-around items-center shadow-sm">
+<a class="flex flex-col items-center justify-center text-on-primary dark:text-on-primary-fixed opacity-60 hover:opacity-100 transition-opacity active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps text-label-caps mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-primary dark:text-on-primary-fixed opacity-60 hover:opacity-100 transition-opacity active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">storefront</span>
+<span class="font-label-caps text-label-caps mt-1">Shop</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-primary dark:text-on-primary-fixed opacity-100 hover:opacity-100 transition-opacity active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-caps text-label-caps mt-1">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-primary dark:text-on-primary-fixed opacity-60 hover:opacity-100 transition-opacity active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">favorite</span>
+<span class="font-label-caps text-label-caps mt-1">Wishlist</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-primary dark:text-on-primary-fixed opacity-60 hover:opacity-100 transition-opacity active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-label-caps mt-1">Profile</span>
+</a>
+</nav>
+</body></html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "surface-container-low": "#f5f3f2",
+                      "secondary-fixed": "#e5e2db",
+                      "on-primary-container": "#778884",
+                      "on-secondary-fixed": "#1c1c18",
+                      "brand-green": "#1a2e29",
+                      "tertiary-fixed": "#dde4df",
+                      "tertiary-container": "#171e1b",
+                      "on-secondary-fixed-variant": "#474742",
+                      "on-surface": "#1b1c1b",
+                      "inverse-on-surface": "#f2f0ef",
+                      "status-sale": "#0f1f1c",
+                      "on-tertiary-fixed-variant": "#414845",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-dim": "#dbdad8",
+                      "tertiary": "#000201",
+                      "outline-variant": "#c2c8c5",
+                      "surface-container-high": "#eae8e6",
+                      "primary-fixed": "#d4e6e1",
+                      "on-tertiary": "#ffffff",
+                      "secondary-fixed-dim": "#c9c6c0",
+                      "outline": "#727876",
+                      "on-tertiary-fixed": "#161d1a",
+                      "on-secondary-container": "#65645f",
+                      "error-container": "#ffdad6",
+                      "primary-fixed-dim": "#b8cac5",
+                      "on-error-container": "#93000a",
+                      "inverse-surface": "#303030",
+                      "background": "#fbf9f8",
+                      "on-primary-fixed": "#0e1e1b",
+                      "primary": "#000101",
+                      "surface-card": "#ffffff",
+                      "inverse-primary": "#b8cac5",
+                      "surface-container-highest": "#e4e2e1",
+                      "on-tertiary-container": "#7f8682",
+                      "surface-container": "#efedec",
+                      "on-primary-fixed-variant": "#3a4a46",
+                      "secondary-container": "#e5e2db",
+                      "secondary": "#5f5e59",
+                      "tertiary-fixed-dim": "#c1c8c3",
+                      "surface-variant": "#e4e2e1",
+                      "on-background": "#1b1c1b",
+                      "on-surface-variant": "#424846",
+                      "surface": "#fbf9f8",
+                      "text-muted": "rgba(15, 31, 28, 0.6)",
+                      "surface-tint": "#51625e",
+                      "border-subtle": "rgba(255, 255, 255, 0.1)",
+                      "error": "#ba1a1a",
+                      "surface-bright": "#fbf9f8",
+                      "primary-container": "#0f1f1c",
+                      "on-error": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "grid-gutter": "1rem",
+                      "section-gap-lg": "5rem",
+                      "container-margin": "1.5rem",
+                      "section-gap-sm": "2.5rem",
+                      "element-gap": "0.5rem"
+              },
+              "fontFamily": {
+                      "display-lg": ["Playfair Display"],
+                      "price-tag": ["Noto Sans"],
+                      "headline-lg": ["Playfair Display"],
+                      "headline-md": ["Playfair Display"],
+                      "label-caps": ["Noto Sans"],
+                      "body-md": ["Noto Sans"]
+              },
+              "fontSize": {
+                      "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                      "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                      "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                      "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                      "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-container-margin h-16 bg-surface dark:bg-primary-container">
+<button class="text-primary dark:text-primary-fixed-dim hover:opacity-70 transition-opacity active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-primary dark:text-primary-fixed-dim uppercase tracking-widest">Nature's Alchemist</h1>
+<button class="text-primary dark:text-primary-fixed-dim hover:opacity-70 transition-opacity active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+</button>
+</header>
+<main class="pt-24 px-container-margin max-w-2xl mx-auto">
+<!-- Hero Search Section -->
+<section class="mb-section-gap-sm text-center">
+<h2 class="font-display-lg text-display-lg text-primary mb-element-gap">How can we assist your journey?</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">Discover answers about our botanical creations and the rituals that surround them.</p>
+<div class="relative group">
+<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline" data-icon="search">search</span>
+</div>
+<input class="w-full bg-surface-container border border-outline-variant/30 py-4 pl-12 pr-4 font-body-md text-body-md focus:outline-none focus:border-primary transition-colors placeholder:text-outline-variant italic" placeholder="Search for rituals, orders, or botanical ingredients..." type="text"/>
+</div>
+</section>
+<!-- FAQ Categories -->
+<div class="space-y-section-gap-sm">
+<!-- Category: Orders -->
+<section>
+<div class="flex items-center gap-3 mb-6 border-b border-outline-variant/20 pb-2">
+<span class="material-symbols-outlined text-primary" data-icon="local_shipping">local_shipping</span>
+<h3 class="font-label-caps text-label-caps tracking-widest text-primary">ORDERS &amp; LOGISTICS</h3>
+</div>
+<div class="space-y-4">
+<details class="group bg-surface-card border border-outline-variant/10 p-5 cursor-pointer">
+<summary class="flex justify-between items-center list-none font-headline-md text-headline-md text-on-surface">
+<span>Track your botanical delivery</span>
+<span class="material-symbols-outlined text-outline-variant group-open:rotate-180 transition-transform" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                            Once your order is crafted and prepared for transit, you will receive a confirmation email containing a tracking number linked to our eco-conscious logistics partners.
+                        </div>
+</details>
+<details class="group bg-surface-card border border-outline-variant/10 p-5 cursor-pointer">
+<summary class="flex justify-between items-center list-none font-headline-md text-headline-md text-on-surface">
+<span>International shipping destinations</span>
+<span class="material-symbols-outlined text-outline-variant group-open:rotate-180 transition-transform" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                            We currently share our alchemy with practitioners in over 40 countries. Shipping times vary based on local customs and regional proximity to our botanical laboratory.
+                        </div>
+</details>
+</div>
+</section>
+<!-- Category: Products -->
+<section>
+<div class="flex items-center gap-3 mb-6 border-b border-outline-variant/20 pb-2">
+<span class="material-symbols-outlined text-primary" data-icon="auto_awesome">auto_awesome</span>
+<h3 class="font-label-caps text-label-caps tracking-widest text-primary">PRODUCT ETHOS</h3>
+</div>
+<div class="space-y-4">
+<details class="group bg-surface-card border border-outline-variant/10 p-5 cursor-pointer">
+<summary class="flex justify-between items-center list-none font-headline-md text-headline-md text-on-surface">
+<span>Purity and ingredient sourcing</span>
+<span class="material-symbols-outlined text-outline-variant group-open:rotate-180 transition-transform" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                            Every ingredient is sourced from sustainable farms that prioritize soil health and biodiversity. Our extracts are cold-pressed to maintain their vital energetic properties.
+                        </div>
+</details>
+<details class="group bg-surface-card border border-outline-variant/10 p-5 cursor-pointer">
+<summary class="flex justify-between items-center list-none font-headline-md text-headline-md text-on-surface">
+<span>Shelf life of natural formulations</span>
+<span class="material-symbols-outlined text-outline-variant group-open:rotate-180 transition-transform" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                            As our products are free from harsh synthetic preservatives, we recommend using them within 6 months of opening. Store in a cool, dark sanctuary for optimal potency.
+                        </div>
+</details>
+</div>
+</section>
+<!-- Category: Rituals -->
+<section>
+<div class="flex items-center gap-3 mb-6 border-b border-outline-variant/20 pb-2">
+<span class="material-symbols-outlined text-primary" data-icon="self_improvement">self_improvement</span>
+<h3 class="font-label-caps text-label-caps tracking-widest text-primary">RITUAL GUIDANCE</h3>
+</div>
+<div class="space-y-4">
+<details class="group bg-surface-card border border-outline-variant/10 p-5 cursor-pointer">
+<summary class="flex justify-between items-center list-none font-headline-md text-headline-md text-on-surface">
+<span>Integrating products into your daily flow</span>
+<span class="material-symbols-outlined text-outline-variant group-open:rotate-180 transition-transform" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                            We believe skincare is a meditative practice. Refer to the 'Ritual' card included in your package for guided breathwork and application techniques designed for each formulation.
+                        </div>
+</details>
+</div>
+</section>
+</div>
+<!-- Featured Support Image -->
+<section class="mt-section-gap-lg mb-section-gap-sm">
+<div class="relative h-64 overflow-hidden shadow-sm">
+<img alt="Botanical workspace" class="w-full h-full object-cover grayscale opacity-80" data-alt="A serene and minimalist apothecary workspace featuring glass beakers filled with dried herbs, sprigs of fresh lavender on a marble surface, and soft morning light streaming through a window. The aesthetic is tactile and organic with a cream and muted sage color palette, evoking a sense of calm and heritage. Professional high-end photography focusing on textures and purity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_DRETwHUx0Kylld5Bp51_jTpTtwZYlqqykMbCDmApa2twq-RIi5oheodhhrU0eYzTrmf-L7Fc7f-WlKf3yoBP2miLF8xYWK9OV5YpsegeIgjAsREzikMT-9P4pLYf1r2YRyw5V1EF5FlDloBUB-r9TbeXf1fXQNnf5NZBGtVwXH1sVEQMaGRhJjZzt8oem_9h2_JxV-3lRN4FfVNv1o0Iprp4moN3jFy1nAUUqrbnXOvCNrNgSfc-n0apNd0CgfNS9sl6CU2RPg6H"/>
+<div class="absolute inset-0 bg-brand-green/20 flex items-center justify-center text-center p-8">
+<div class="bg-surface/90 backdrop-blur-sm p-8 border border-white/10 max-w-md">
+<h4 class="font-headline-md text-headline-md text-primary mb-2">The Alchemist's Presence</h4>
+<p class="font-body-md text-body-md text-on-surface-variant italic">"Wisdom is found in the questions we dare to ask."</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Live Support CTA -->
+<section class="text-center pb-12">
+<h3 class="font-headline-lg text-headline-lg text-primary mb-4">Still seeking clarity?</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">Our master alchemists are available for real-time guidance on products and pairings.</p>
+<button class="bg-primary text-background font-label-caps text-label-caps py-5 px-12 tracking-[0.3em] hover:opacity-90 active:scale-95 transition-all inline-flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="chat_bubble_outline">chat_bubble_outline</span>
+                CHAT WITH AN ALCHEMIST
+            </button>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-surface dark:bg-primary-container border-t border-outline-variant/20">
+<a class="flex flex-col items-center justify-center text-on-secondary-container dark:text-on-tertiary-container space-y-1 hover:text-primary dark:hover:text-primary-fixed-dim transition-colors active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-caps text-label-caps">HOME</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-secondary-container dark:text-on-tertiary-container space-y-1 hover:text-primary dark:hover:text-primary-fixed-dim transition-colors active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="spa">spa</span>
+<span class="font-label-caps text-label-caps">SHOP</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-secondary-container dark:text-on-tertiary-container space-y-1 hover:text-primary dark:hover:text-primary-fixed-dim transition-colors active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+<span class="font-label-caps text-label-caps">WISHLIST</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed-dim space-y-1 hover:text-primary dark:hover:text-primary-fixed-dim transition-colors active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-caps text-label-caps">PROFILE</span>
+</a>
+</nav>
+</body></html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "surface-container-low": "#f5f3f2",
+                    "secondary-fixed": "#e5e2db",
+                    "on-primary-container": "#778884",
+                    "on-secondary-fixed": "#1c1c18",
+                    "brand-green": "#1a2e29",
+                    "tertiary-fixed": "#dde4df",
+                    "tertiary-container": "#171e1b",
+                    "on-secondary-fixed-variant": "#474742",
+                    "on-surface": "#1b1c1b",
+                    "inverse-on-surface": "#f2f0ef",
+                    "status-sale": "#0f1f1c",
+                    "on-tertiary-fixed-variant": "#414845",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-dim": "#dbdad8",
+                    "tertiary": "#000201",
+                    "outline-variant": "#c2c8c5",
+                    "surface-container-high": "#eae8e6",
+                    "primary-fixed": "#d4e6e1",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed-dim": "#c9c6c0",
+                    "outline": "#727876",
+                    "on-tertiary-fixed": "#161d1a",
+                    "on-secondary-container": "#65645f",
+                    "error-container": "#ffdad6",
+                    "primary-fixed-dim": "#b8cac5",
+                    "on-error-container": "#93000a",
+                    "inverse-surface": "#303030",
+                    "background": "#fbf9f8",
+                    "on-primary-fixed": "#0e1e1b",
+                    "primary": "#000101",
+                    "surface-card": "#ffffff",
+                    "inverse-primary": "#b8cac5",
+                    "surface-container-highest": "#e4e2e1",
+                    "on-tertiary-container": "#7f8682",
+                    "surface-container": "#efedec",
+                    "on-primary-fixed-variant": "#3a4a46",
+                    "secondary-container": "#e5e2db",
+                    "secondary": "#5f5e59",
+                    "tertiary-fixed-dim": "#c1c8c3",
+                    "surface-variant": "#e4e2e1",
+                    "on-background": "#1b1c1b",
+                    "on-surface-variant": "#424846",
+                    "surface": "#fbf9f8",
+                    "text-muted": "rgba(15, 31, 28, 0.6)",
+                    "surface-tint": "#51625e",
+                    "border-subtle": "rgba(255, 255, 255, 0.1)",
+                    "error": "#ba1a1a",
+                    "surface-bright": "#fbf9f8",
+                    "primary-container": "#0f1f1c",
+                    "on-error": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "grid-gutter": "1rem",
+                    "section-gap-lg": "5rem",
+                    "container-margin": "1.5rem",
+                    "section-gap-sm": "2.5rem",
+                    "element-gap": "0.5rem"
+            },
+            "fontFamily": {
+                    "display-lg": ["Playfair Display"],
+                    "price-tag": ["Noto Sans"],
+                    "headline-lg": ["Playfair Display"],
+                    "headline-md": ["Playfair Display"],
+                    "label-caps": ["Noto Sans"],
+                    "body-md": ["Noto Sans"]
+            },
+            "fontSize": {
+                    "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                    "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                    "headline-md-mobile": ["20px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                    "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                    "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24
+    }
+.botanical-bg {
+    background-image: linear-gradient(rgba(251, 249, 248, 0.92), rgba(251, 249, 248, 0.92)), url(https://lh3.googleusercontent.com/aida-public/AB6AXuAFBhzsM2oC6bOt0Sv8sA3LW8TONU6slOUOVw10uHCJ7BZcizZIDXZ0oqQHbjn-CoQHFT66cXsh1iiGaOPq5FOcOF-gAysUDGw1aeqx1F6egN86WgC8qOHnApghvSEhLdvwxWZPvTX8WYvMq1gTNAWEM6SNbHKVONIITpD-5Ht2DDrEFmsIFK0uuX1Ji5M6DW-m5zK46joi2MTrrbL3oG_-97N74aJVXhywI7z62RUHjPfTR-uLi4w56pZi8iPeIH_wzxncV9HmzAs4);
+    background-size: cover;
+    background-position: center
+    }</style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-container-margin h-16 bg-surface dark:bg-primary-container">
+<div class="flex items-center">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim cursor-pointer active:scale-95 transition-transform duration-200" data-icon="menu">menu</span>
+</div>
+<h1 class="font-headline-md text-headline-md-mobile text-primary dark:text-primary-fixed-dim uppercase tracking-widest">Nature's Alchemist</h1>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim cursor-pointer active:scale-95 transition-transform duration-200" data-icon="shopping_bag">shopping_bag</span>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-24 pb-32 px-container-margin botanical-bg" data-alt="A sophisticated background featuring delicate, hand-drawn botanical illustrations of herbs and leaves, set against a warm, light cream paper texture. The lighting is soft and even, mimicking a sun-drenched artisan studio. The overall aesthetic is organic, premium, and calm, utilizing a palette of off-whites and very faint charcoal lines to maintain a high-end minimalist feel.">
+<!-- Hero Section -->
+<section class="max-w-2xl mx-auto text-center mb-section-gap-sm">
+<span class="font-label-caps text-label-caps text-secondary mb-4 block">SHARE THE RITUAL</span>
+<h2 class="font-headline-lg text-headline-lg-mobile text-on-surface mb-6">Give $10, Get $10</h2>
+<p class="font-body-md text-on-surface-variant max-w-md mx-auto italic">
+                “In every walk with nature, one receives far more than he seeks.” Invite your circle to experience our artisanal elixirs and share the gift of wellbeing.
+            </p>
+</section>
+<!-- Referral Card -->
+<section class="max-w-md mx-auto bg-surface-card border border-outline-variant/30 rounded-lg p-8 shadow-sm mb-12">
+<div class="text-center mb-8">
+<span class="font-label-caps text-label-caps text-secondary block mb-2">YOUR UNIQUE CODE</span>
+<div class="flex items-center justify-between bg-surface-container px-6 py-4 rounded border border-dashed border-outline/40">
+<span class="font-headline-md text-primary tracking-widest font-bold">ALCHEMIST10</span>
+<button class="material-symbols-outlined text-secondary hover:text-primary transition-colors active:scale-90" data-icon="content_copy">content_copy</button>
+</div>
+</div>
+<!-- Sharing Grid -->
+<div class="grid grid-cols-1 gap-4">
+<button class="w-full bg-primary text-on-primary py-4 px-6 flex items-center justify-center space-x-3 active:scale-95 transition-transform duration-200 rounded-none uppercase font-label-caps text-label-caps tracking-widest">
+<span class="material-symbols-outlined" data-icon="mail">mail</span>
+<span>Invite via Email</span>
+</button>
+<div class="grid grid-cols-2 gap-4">
+<button class="w-full bg-surface border border-primary text-primary py-4 px-2 flex items-center justify-center space-x-2 active:scale-95 transition-transform duration-200 rounded-none uppercase font-label-caps text-label-caps tracking-widest">
+<span class="material-symbols-outlined" data-icon="chat">chat</span>
+<span>WhatsApp</span>
+</button>
+<button class="w-full bg-surface border border-primary text-primary py-4 px-2 flex items-center justify-center space-x-2 active:scale-95 transition-transform duration-200 rounded-none uppercase font-label-caps text-label-caps tracking-widest">
+<span class="material-symbols-outlined" data-icon="link">link</span>
+<span>Copy Link</span>
+</button>
+</div>
+</div>
+</section>
+<!-- How it Works -->
+<section class="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center border-t border-outline-variant/20 pt-12">
+<div class="flex flex-col items-center">
+<div class="w-12 h-12 rounded-full border border-primary/10 flex items-center justify-center mb-4 bg-surface">
+<span class="material-symbols-outlined text-brand-green" data-icon="send">send</span>
+</div>
+<h4 class="font-label-caps text-label-caps text-on-surface mb-2">1. SEND INVITE</h4>
+<p class="text-[12px] text-on-surface-variant px-4">Share your unique code with friends who value purity.</p>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-12 h-12 rounded-full border border-primary/10 flex items-center justify-center mb-4 bg-surface">
+<span class="material-symbols-outlined text-brand-green" data-icon="shopping_basket">shopping_basket</span>
+</div>
+<h4 class="font-label-caps text-label-caps text-on-surface mb-2">2. THEY SHOP</h4>
+<p class="text-[12px] text-on-surface-variant px-4">Friends get $10 off their first organic apothecary purchase.</p>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-12 h-12 rounded-full border border-primary/10 flex items-center justify-center mb-4 bg-surface">
+<span class="material-symbols-outlined text-brand-green" data-icon="redeem">redeem</span>
+</div>
+<h4 class="font-label-caps text-label-caps text-on-surface mb-2">3. YOU EARN</h4>
+<p class="text-[12px] text-on-surface-variant px-4">Receive a $10 credit in your vault for every successful referral.</p>
+</div>
+</section>
+<!-- Aesthetic Imagery -->
+<div class="mt-section-gap-sm grid grid-cols-2 gap-4 max-w-lg mx-auto">
+<div class="aspect-[4/5] bg-surface-container-high overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A close-up, high-quality photograph of dried lavender bundles and eucalyptus leaves resting on a rustic wooden table. The scene is bathed in natural, morning sunlight, creating soft shadows and highlighting the organic textures. The color palette consists of muted greens, soft purples, and warm wood tones, perfectly aligning with a premium apothecary aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjFS5ClWU3ZXL8CCkK-fb9gCTXqK6jcKDRu13UuQ_r4uuJRJ9b3SOenihEAuBEgUgwC-Yq98z1CihaOndaUx6V3pkXgETcpV5eHcXC5jRqJG57ZX3OReNl1h7uJ_cArPjCdV-667QG7kQO4r3B5u8JoNUqJRS75-lgzDkGkPr7ogJttRclsw6bdB-JOD0gz2XQ4QZ2W4P7UyeAK3z89vQDqrGLxZiQ5UXJfPJ8AXImKp69xvos1B2veeaQdhPw2CLh-diLrED5vPKV"/>
+</div>
+<div class="aspect-[4/5] bg-surface-container-high overflow-hidden shadow-sm mt-8">
+<img class="w-full h-full object-cover" data-alt="An elegant glass apothecary jar filled with botanical oils, placed next to a small ceramic bowl of raw herbal ingredients. The background is a clean, minimalist white stone surface. The lighting is bright and airy, emphasizing the purity and luxury of the natural skincare products. Deep greens and earthy browns provide a grounded contrast to the bright setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNDbwbrxFd8sEsuPEXgjiQmJcUDx-D8AO3YryG47zbo7dgQJDrUXAgJJP2rYRLFO8L5ndSqozkMxjrcyS6vw7qTnBDctL_VUmeBi3nH-ohbFg6VWXCDxb0LJoH7nztq3fsoJDb9kDmFVJnvD6N73KK4Ah1Qhpnkz9BWMN1_MmxbSPr7e7wSHwICBgz4fjQHCf_bi4ei1IJ7oOnQAARDgAarAnC3NMmv8ZE3lJ6_QQjRCnE44X34j3LvBKNQljA_PkC_zsJ_XEwflzJ"/>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-surface dark:bg-primary-container border-t border-outline-variant/20">
+<div class="flex flex-col items-center justify-center text-on-secondary-container dark:text-on-tertiary-container space-y-1 hover:text-primary dark:hover:text-primary-fixed-dim transition-colors cursor-pointer active:scale-90">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-caps text-label-caps uppercase">HOME</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-secondary-container dark:text-on-tertiary-container space-y-1 hover:text-primary dark:hover:text-primary-fixed-dim transition-colors cursor-pointer active:scale-90">
+<span class="material-symbols-outlined" data-icon="spa">spa</span>
+<span class="font-label-caps text-label-caps uppercase">SHOP</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-secondary-container dark:text-on-tertiary-container space-y-1 hover:text-primary dark:hover:text-primary-fixed-dim transition-colors cursor-pointer active:scale-90">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+<span class="font-label-caps text-label-caps uppercase">WISHLIST</span>
+</div>
+<!-- Active Tab: Profile (closest match to Referral/Account screen) -->
+<div class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed-dim space-y-1 cursor-pointer">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-caps text-label-caps uppercase">PROFILE</span>
+</div>
+</nav>
+</body></html>

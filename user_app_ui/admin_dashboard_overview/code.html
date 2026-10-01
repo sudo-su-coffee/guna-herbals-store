@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nature's Alchemist Admin | Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#727876",
+                        "inverse-surface": "#303030",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed-variant": "#414845",
+                        "on-secondary-fixed": "#1c1c18",
+                        "on-secondary-fixed-variant": "#474742",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#0f1f1c",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#51625e",
+                        "on-tertiary-fixed": "#161d1a",
+                        "primary": "#000101",
+                        "inverse-primary": "#b8cac5",
+                        "tertiary-container": "#171e1b",
+                        "outline-variant": "#c2c8c5",
+                        "on-surface": "#1b1c1b",
+                        "background": "#fbf9f8",
+                        "on-secondary-container": "#65645f",
+                        "primary-fixed-dim": "#b8cac5",
+                        "secondary-fixed-dim": "#c9c6c0",
+                        "border-subtle": "rgba(255, 255, 255, 0.1)",
+                        "error-container": "#ffdad6",
+                        "surface-card": "#ffffff",
+                        "surface-variant": "#e4e2e1",
+                        "secondary": "#5f5e59",
+                        "surface-container-highest": "#e4e2e1",
+                        "brand-green": "#1a2e29",
+                        "on-primary-fixed-variant": "#3a4a46",
+                        "surface": "#fbf9f8",
+                        "on-surface-variant": "#424846",
+                        "secondary-container": "#e5e2db",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#f2f0ef",
+                        "tertiary-fixed-dim": "#c1c8c3",
+                        "tertiary-fixed": "#dde4df",
+                        "primary-fixed": "#d4e6e1",
+                        "surface-container": "#efedec",
+                        "surface-container-low": "#f5f3f2",
+                        "on-primary-container": "#778884",
+                        "text-muted": "rgba(15, 31, 28, 0.6)",
+                        "on-tertiary-container": "#7f8682",
+                        "secondary-fixed": "#e5e2db",
+                        "tertiary": "#000201",
+                        "on-primary-fixed": "#0e1e1b",
+                        "surface-container-high": "#eae8e6",
+                        "on-background": "#1b1c1b",
+                        "status-sale": "#0f1f1c",
+                        "surface-bright": "#fbf9f8",
+                        "surface-dim": "#dbdad8",
+                        "on-tertiary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "price-tag": ["Noto Sans"],
+                        "headline-md": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "body-md": ["Noto Sans"],
+                        "label-caps": ["Noto Sans"],
+                        "display-lg": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                        "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .chart-container {
+            position: relative;
+            height: 240px;
+            width: 100%;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #fbf9f8;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c2c8c5;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md overflow-hidden">
+<!-- Side Navigation Bar -->
+<aside class="flex flex-col h-screen py-6 bg-brand-green dark:bg-primary-container text-on-primary dark:text-on-primary-container h-full w-64 fixed left-0 top-0 border-r border-outline-variant dark:border-border-subtle transition-all duration-200 ease-in-out">
+<div class="px-6 mb-10">
+<h1 class="font-headline-md text-headline-md text-on-primary tracking-tight">Herbal Admin</h1>
+<p class="text-[11px] opacity-60 font-label-caps uppercase tracking-[0.2em] mt-1">Modern Apothecary</p>
+</div>
+<nav class="flex-1 space-y-1">
+<!-- Active Navigation -->
+<a class="bg-on-primary-fixed-variant text-on-primary rounded-lg mx-2 px-4 py-3 flex items-center gap-3 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Overview</span>
+</a>
+<a class="text-on-primary/70 hover:text-on-primary mx-2 px-4 py-3 flex items-center gap-3 transition-colors hover:bg-on-primary-fixed-variant/50 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span>Inventory</span>
+</a>
+<a class="text-on-primary/70 hover:text-on-primary mx-2 px-4 py-3 flex items-center gap-3 transition-colors hover:bg-on-primary-fixed-variant/50 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+<span>Orders</span>
+</a>
+<a class="text-on-primary/70 hover:text-on-primary mx-2 px-4 py-3 flex items-center gap-3 transition-colors hover:bg-on-primary-fixed-variant/50 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span>Customers</span>
+</a>
+<a class="text-on-primary/70 hover:text-on-primary mx-2 px-4 py-3 flex items-center gap-3 transition-colors hover:bg-on-primary-fixed-variant/50 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="auto_stories">auto_stories</span>
+<span>Rituals</span>
+</a>
+<a class="text-on-primary/70 hover:text-on-primary mx-2 px-4 py-3 flex items-center gap-3 transition-colors hover:bg-on-primary-fixed-variant/50 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<div class="px-4 mt-auto pt-6 border-t border-white/10">
+<button class="w-full py-3 bg-white/5 border border-white/10 hover:bg-white/10 transition-colors text-on-primary font-label-caps text-[10px] tracking-widest uppercase">
+                View Storefront
+            </button>
+</div>
+</aside>
+<!-- Top Navigation Bar -->
+<header class="flex justify-between items-center w-full h-16 px-6 ml-64 max-w-[calc(100%-16rem)] bg-surface dark:bg-inverse-surface text-on-surface dark:text-inverse-on-surface docked full-width top-0 sticky border-b border-outline-variant dark:border-border-subtle z-40">
+<div class="flex items-center gap-6">
+<h2 class="font-headline-md text-headline-md text-primary dark:text-inverse-primary">Apothecary Dashboard</h2>
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]" data-icon="search">search</span>
+<input class="bg-surface-container-low border-none rounded-lg pl-10 pr-4 py-1.5 text-body-md w-80 focus:ring-1 focus:ring-primary" placeholder="Search rituals, herbs, orders..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="flex items-center gap-3 pl-4 border-l border-outline-variant">
+<div class="text-right">
+<p class="text-body-md font-bold leading-none">Elowen Thorne</p>
+<p class="text-[10px] text-on-surface-variant font-label-caps mt-1 uppercase">Head Alchemist</p>
+</div>
+<img alt="Admin Profile Avatar" class="w-10 h-10 rounded-full object-cover border border-outline-variant" data-alt="A professional headshot of a woman in her 40s with a warm smile, wearing minimal jewelry and a clean white linen garment. The background is a blurred high-end apothecary with amber glass bottles on wooden shelves. Lighting is soft, natural, and bright, conveying a sense of expertise and calm wellness." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRGFFE2sQxcRw-A5136iweF0w7EDdXPxD-a67j5cM71XIlBG4MwbdfubXWSik9PiIeBjqoKLPnbiNg-b9IFxVCy6P9iH5AFM63ikbGcBuscLWRAZBH4K4wlmQbqjWqBNZIp-ko5wNiM1oZq2u9g93BycMETXXHJH0LLE8vawdQU2avQkshvUwWtQ0suJaukmqwU8v9VNbrseDNmaj3Ne2EHu8vSNP5BIpGded0QPbHgyeimnyaQUMsP10YID1IYjjeoV4J-F2GsXkp"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 p-8 max-h-[calc(100vh-64px)] overflow-y-auto custom-scrollbar">
+<div class="max-w-7xl mx-auto space-y-8">
+<!-- KPI Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Total Sales -->
+<div class="bg-surface-card p-6 border border-outline-variant/30 shadow-sm transition-all hover:-translate-y-1">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-brand-green bg-primary-fixed p-2 rounded-lg" data-icon="payments">payments</span>
+<span class="text-emerald-600 font-label-caps text-[10px] font-bold">+12.5%</span>
+</div>
+<p class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-wider">Total Sales</p>
+<h3 class="font-headline-lg text-headline-lg mt-1">$42,890.00</h3>
+<div class="mt-4 h-1 w-full bg-surface-container-low rounded-full overflow-hidden">
+<div class="bg-brand-green h-full" style="width: 75%"></div>
+</div>
+</div>
+<!-- Active Rituals -->
+<div class="bg-surface-card p-6 border border-outline-variant/30 shadow-sm transition-all hover:-translate-y-1">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-brand-green bg-primary-fixed p-2 rounded-lg" data-icon="auto_stories">auto_stories</span>
+<span class="text-brand-green font-label-caps text-[10px] font-bold">Stable</span>
+</div>
+<p class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-wider">Active Rituals</p>
+<h3 class="font-headline-lg text-headline-lg mt-1">1,204</h3>
+<p class="text-[11px] text-on-surface-variant mt-2 italic">Subscribers to lunar cycles</p>
+</div>
+<!-- New Customers -->
+<div class="bg-surface-card p-6 border border-outline-variant/30 shadow-sm transition-all hover:-translate-y-1">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-brand-green bg-primary-fixed p-2 rounded-lg" data-icon="person_add">person_add</span>
+<span class="text-emerald-600 font-label-caps text-[10px] font-bold">+4%</span>
+</div>
+<p class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-wider">New Customers</p>
+<h3 class="font-headline-lg text-headline-lg mt-1">156</h3>
+<div class="flex -space-x-2 mt-3">
+<img alt="User 1" class="w-6 h-6 rounded-full border-2 border-white object-cover" data-alt="Close up face of a man with clear skin and a kind expression in bright daylight." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBr3Ed-dd2nEjLdb8NtBJz8IlJQqO4FSITReiKGVyshzU2k089vBui-CWn3_VA5tFHH1vcCPvEnnj9qhOofHgpgmagw5_pvy0Y3GdzSujVZHsOb7iIPc7pu15nPrK9qmOfozzZfkxecTqSWMP-H5w92EFziiTsnHxAyYucfPXXgoFZlKVkOAYI_HproJhlo0-gmZOYnjvd1TOHcgswU7D4Sx2MtUB5V4WzpCvA33_7j8tXAvLDyKGQ1Q70Z_3dJl1MWHqEGzsqa6w4M"/>
+<img alt="User 2" class="w-6 h-6 rounded-full border-2 border-white object-cover" data-alt="Portrait of a woman with vibrant hair and soft natural makeup in a garden setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBugR3UkfCN8VH09k_UdawWpjDat1TtoNjg0t8jkQqvO5hmkyR_Pn_vlv7HJVt3G0vJqJ_KjRyCsRuVPau7rbgCtgdCNjt2JsQRSlGSoZuwrfkgUVVvt0SthA1g_BOf-0Lo4ECIYpFi9FH5hzKuJNkLBdKwtMpNphzy7i_QMj0lMiuTmZ5mOTQrsWmBHZWjRKzLt9Qwib0p07oXW24Td9eZMBx5lbYXp2jBbRjNetONwpL0wfOohC9OWEqt4ou57Xni4FhFkUcK8YM"/>
+<img alt="User 3" class="w-6 h-6 rounded-full border-2 border-white object-cover" data-alt="Portrait of a man with glasses and a professional demeanor in a bright office space." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkaq4aGHfa1sFqVUqDWdSB4c1LUoHMudG8MWS6T6MtbG8NrBgNOBnzeVGfl-tVHNXORtYBaeigjI10msPqjh53I9YSvavwnsSlJOu6vHK_RWf8ApZOpgRiS4F294BImGEg7nRl6HoiXxxf0nD--kKlX2VurlHznE-5LOhes-4CNu-jkhWguRMOgKbf0zXu7ueBf754eWAh0omaiHoISwZqWBhv4mYbTcBrV1Cj5q6uAfpQh-ymn2wettLGEAqizlo0fCpgzUD7ijwQ"/>
+<div class="w-6 h-6 rounded-full border-2 border-white bg-surface-container-high flex items-center justify-center text-[8px] font-bold">+153</div>
+</div>
+</div>
+<!-- Inventory Alerts -->
+<div class="bg-surface-card p-6 border border-outline-variant/30 shadow-sm border-l-4 border-l-error transition-all hover:-translate-y-1">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-error bg-error-container p-2 rounded-lg" data-icon="inventory_2">inventory_2</span>
+<span class="text-error font-label-caps text-[10px] font-bold">Action Req.</span>
+</div>
+<p class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-wider">Inventory Alerts</p>
+<h3 class="font-headline-lg text-headline-lg mt-1 text-error">8 Items</h3>
+<p class="text-[11px] text-on-surface-variant mt-2">Low stock: Lavender, Moon Root</p>
+</div>
+</section>
+<!-- Chart & Tasks Section -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Ritual Engagement Chart -->
+<div class="lg:col-span-2 bg-surface-card p-8 border border-outline-variant/30 shadow-sm">
+<div class="flex justify-between items-end mb-8">
+<div>
+<h4 class="font-headline-md text-headline-md">Ritual Engagement</h4>
+<p class="text-on-surface-variant text-body-md">Daily activity over the last 30 days</p>
+</div>
+<div class="flex gap-2">
+<button class="px-3 py-1 text-[11px] border border-outline-variant font-label-caps uppercase hover:bg-surface-container-low transition-colors">Week</button>
+<button class="px-3 py-1 text-[11px] border border-primary bg-primary text-on-primary font-label-caps uppercase">Month</button>
+</div>
+</div>
+<div class="chart-container flex items-end justify-between gap-1">
+<!-- Simulated Line/Bar Chart -->
+<div class="flex-1 bg-primary-fixed hover:bg-brand-green transition-colors h-1/2" title="Day 1"></div>
+<div class="flex-1 bg-primary-fixed hover:bg-brand-green transition-colors h-2/3" title="Day 2"></div>
+<div class="flex-1 bg-primary-fixed hover:bg-brand-green transition-colors h-3/4" title="Day 3"></div>
+<div class="flex-1 bg-primary-fixed hover:bg-brand-green transition-colors h-1/2" title="Day 4"></div>
+<div class="flex-1 bg-primary-fixed hover:bg-brand-green transition-colors h-2/5" title="Day 5"></div>
+<div class="flex-1 bg-primary-fixed hover:bg-brand-green transition-colors h-3/5" title="Day 6"></div>
+<div class="flex-1 bg-primary-fixed hover:bg-brand-green transition-colors h-full" title="Day 7"></div>
+<div class="flex-1 bg-primary-fixed hover:bg-brand-green transition-colors h-4/5" title="Day 8"></div>
+<div class="flex-1 bg-primary-fixed hover:bg-brand-green transition-colors h-1/3" title="Day 9"></div>
+<div class="flex-1 bg-primary-fixed hover:bg-brand-green transition-colors h-2/3" title="Day 10"></div>
+<div class="flex-1 bg-primary-fixed hover:bg-brand-green transition-colors h-3/4" title="Day 11"></div>
+<div class="flex-1 bg-primary-fixed hover:bg-brand-green transition-colors h-5/6" title="Day 12"></div>
+<div class="flex-1 bg-primary-fixed hover:bg-brand-green transition-colors h-1/2" title="Day 13"></div>
+<div class="flex-1 bg-primary-fixed hover:bg-brand-green transition-colors h-4/5" title="Day 14"></div>
+<div class="flex-1 bg-primary-fixed hover:bg-brand-green transition-colors h-3/5" title="Day 15"></div>
+<div class="flex-1 bg-primary-fixed hover:bg-brand-green transition-colors h-1/2" title="Day 16"></div>
+<div class="flex-1 bg-primary-fixed hover:bg-brand-green transition-colors h-2/3" title="Day 17"></div>
+<div class="flex-1 bg-primary-fixed hover:bg-brand-green transition-colors h-full" title="Day 18"></div>
+<div class="flex-1 bg-primary-fixed hover:bg-brand-green transition-colors h-4/5" title="Day 19"></div>
+<div class="flex-1 bg-primary-fixed hover:bg-brand-green transition-colors h-3/4" title="Day 20"></div>
+<div class="flex-1 bg-primary-fixed hover:bg-brand-green transition-colors h-2/3" title="Day 21"></div>
+<div class="flex-1 bg-primary-fixed hover:bg-brand-green transition-colors h-5/6" title="Day 22"></div>
+<div class="flex-1 bg-primary-fixed hover:bg-brand-green transition-colors h-4/5" title="Day 23"></div>
+<div class="flex-1 bg-primary-fixed hover:bg-brand-green transition-colors h-full" title="Day 24"></div>
+<div class="flex-1 bg-primary-fixed hover:bg-brand-green transition-colors h-3/4" title="Day 25"></div>
+<div class="flex-1 bg-primary-fixed hover:bg-brand-green transition-colors h-2/3" title="Day 26"></div>
+<div class="flex-1 bg-primary-fixed hover:bg-brand-green transition-colors h-1/2" title="Day 27"></div>
+<div class="flex-1 bg-primary-fixed hover:bg-brand-green transition-colors h-3/5" title="Day 28"></div>
+<div class="flex-1 bg-primary-fixed hover:bg-brand-green transition-colors h-4/5" title="Day 29"></div>
+<div class="flex-1 bg-primary-fixed hover:bg-brand-green transition-colors h-5/6" title="Day 30"></div>
+</div>
+<div class="mt-4 flex justify-between text-on-surface-variant font-label-caps text-[9px] uppercase tracking-tighter">
+<span>1 Nov</span>
+<span>10 Nov</span>
+<span>20 Nov</span>
+<span>30 Nov</span>
+</div>
+</div>
+<!-- Alchemy Tasks / Notifications -->
+<div class="bg-surface-card p-8 border border-outline-variant/30 shadow-sm">
+<h4 class="font-headline-md text-headline-md mb-6">Alchemy Log</h4>
+<div class="space-y-6">
+<div class="flex gap-4">
+<div class="w-1.5 h-1.5 mt-2 rounded-full bg-brand-green shrink-0"></div>
+<div>
+<p class="text-body-md font-bold">New Batch Prepared</p>
+<p class="text-on-surface-variant text-[12px]">24 units of 'Lunar Essence' added to inventory.</p>
+<span class="text-[10px] text-on-surface-variant/60 font-label-caps uppercase mt-1 inline-block">10 min ago</span>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-1.5 h-1.5 mt-2 rounded-full bg-error shrink-0"></div>
+<div>
+<p class="text-body-md font-bold">Stock Warning</p>
+<p class="text-on-surface-variant text-[12px]">Wildcrafted Sage is below 5 units.</p>
+<span class="text-[10px] text-on-surface-variant/60 font-label-caps uppercase mt-1 inline-block">2 hours ago</span>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-1.5 h-1.5 mt-2 rounded-full bg-blue-400 shrink-0"></div>
+<div>
+<p class="text-body-md font-bold">System Update</p>
+<p class="text-on-surface-variant text-[12px]">Ritual Engine updated to v2.4.0</p>
+<span class="text-[10px] text-on-surface-variant/60 font-label-caps uppercase mt-1 inline-block">Yesterday</span>
+</div>
+</div>
+</div>
+<button class="w-full mt-8 py-2 border-b border-outline-variant text-[10px] font-label-caps uppercase text-on-surface-variant hover:text-primary transition-colors">
+                        View All logs
+                    </button>
+</div>
+</section>
+<!-- Recent Orders Table -->
+<section class="bg-surface-card border border-outline-variant/30 shadow-sm overflow-hidden mb-12">
+<div class="px-8 py-6 flex justify-between items-center border-b border-outline-variant/30">
+<div>
+<h4 class="font-headline-md text-headline-md">Recent Orders</h4>
+<p class="text-on-surface-variant text-body-md">Managing herbal transactions</p>
+</div>
+<button class="bg-primary text-on-primary font-label-caps text-[10px] px-6 py-2.5 uppercase tracking-widest hover:opacity-90 transition-opacity">
+                        Export CSV
+                    </button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low">
+<th class="px-8 py-4 font-label-caps text-[10px] uppercase tracking-wider text-on-surface-variant">Order ID</th>
+<th class="px-8 py-4 font-label-caps text-[10px] uppercase tracking-wider text-on-surface-variant">Customer</th>
+<th class="px-8 py-4 font-label-caps text-[10px] uppercase tracking-wider text-on-surface-variant">Product</th>
+<th class="px-8 py-4 font-label-caps text-[10px] uppercase tracking-wider text-on-surface-variant">Amount</th>
+<th class="px-8 py-4 font-label-caps text-[10px] uppercase tracking-wider text-on-surface-variant">Status</th>
+<th class="px-8 py-4 font-label-caps text-[10px] uppercase tracking-wider text-on-surface-variant">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/20">
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-8 py-5 font-bold">#NA-2094</td>
+<td class="px-8 py-5">Sienna Brooks</td>
+<td class="px-8 py-5">Dream Weaver Tincture</td>
+<td class="px-8 py-5">$124.00</td>
+<td class="px-8 py-5">
+<span class="inline-flex items-center px-2 py-0.5 bg-blue-100 text-blue-700 text-[9px] font-bold font-label-caps uppercase rounded">Processing</span>
+</td>
+<td class="px-8 py-5">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors" data-icon="more_vert">more_vert</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-8 py-5 font-bold">#NA-2093</td>
+<td class="px-8 py-5">Marcus Aurelius</td>
+<td class="px-8 py-5">Stoic Focus Blend</td>
+<td class="px-8 py-5">$89.50</td>
+<td class="px-8 py-5">
+<span class="inline-flex items-center px-2 py-0.5 bg-amber-100 text-amber-700 text-[9px] font-bold font-label-caps uppercase rounded">Shipped</span>
+</td>
+<td class="px-8 py-5">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors" data-icon="more_vert">more_vert</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-8 py-5 font-bold">#NA-2092</td>
+<td class="px-8 py-5">Luna Lovegood</td>
+<td class="px-8 py-5">Midnight Ritual Kit</td>
+<td class="px-8 py-5">$245.00</td>
+<td class="px-8 py-5">
+<span class="inline-flex items-center px-2 py-0.5 bg-emerald-100 text-emerald-700 text-[9px] font-bold font-label-caps uppercase rounded">Delivered</span>
+</td>
+<td class="px-8 py-5">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors" data-icon="more_vert">more_vert</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-8 py-5 font-bold">#NA-2091</td>
+<td class="px-8 py-5">Oliver Twist</td>
+<td class="px-8 py-5">Golden Root Elixir</td>
+<td class="px-8 py-5">$42.00</td>
+<td class="px-8 py-5">
+<span class="inline-flex items-center px-2 py-0.5 bg-emerald-100 text-emerald-700 text-[9px] font-bold font-label-caps uppercase rounded">Delivered</span>
+</td>
+<td class="px-8 py-5">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors" data-icon="more_vert">more_vert</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-8 py-4 bg-surface-container-low flex justify-center">
+<nav class="flex gap-2">
+<button class="w-8 h-8 flex items-center justify-center border border-outline-variant hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center bg-primary text-on-primary font-bold text-[12px]">1</button>
+<button class="w-8 h-8 flex items-center justify-center border border-outline-variant hover:bg-white transition-colors text-[12px]">2</button>
+<button class="w-8 h-8 flex items-center justify-center border border-outline-variant hover:bg-white transition-colors text-[12px]">3</button>
+<button class="w-8 h-8 flex items-center justify-center border border-outline-variant hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</nav>
+</div>
+</section>
+</div>
+</main>
+<!-- Floating Action Button -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-brand-green text-on-primary rounded-full shadow-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-all z-50">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+<script>
+        // Simple micro-interactions
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                document.querySelectorAll('nav a').forEach(l => {
+                    l.classList.remove('bg-on-primary-fixed-variant', 'text-on-primary');
+                    l.classList.add('text-on-primary/70');
+                });
+                link.classList.add('bg-on-primary-fixed-variant', 'text-on-primary');
+                link.classList.remove('text-on-primary/70');
+            });
+        });
+
+        // Search highlight effect
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('ring-2', 'ring-primary/20');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('ring-2', 'ring-primary/20');
+        });
+    </script>
+</body></html>

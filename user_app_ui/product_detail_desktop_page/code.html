@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Organic Peppermint Tea | Nature's Alchemist</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-container": "#65645f",
+                    "background": "#fbf9f8",
+                    "text-muted": "rgba(15, 31, 28, 0.6)",
+                    "inverse-on-surface": "#f2f0ef",
+                    "surface-container-highest": "#e4e2e1",
+                    "secondary-container": "#e5e2db",
+                    "on-secondary": "#ffffff",
+                    "on-primary-container": "#778884",
+                    "on-background": "#1b1c1b",
+                    "outline-variant": "#c2c8c5",
+                    "on-error": "#ffffff",
+                    "on-primary-fixed-variant": "#3a4a46",
+                    "tertiary-fixed": "#dde4df",
+                    "border-subtle": "rgba(255, 255, 255, 0.1)",
+                    "surface-container-high": "#eae8e6",
+                    "tertiary": "#000201",
+                    "on-secondary-fixed": "#1c1c18",
+                    "surface-card": "#ffffff",
+                    "primary-fixed-dim": "#b8cac5",
+                    "on-primary": "#ffffff",
+                    "inverse-surface": "#303030",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed-dim": "#c9c6c0",
+                    "on-tertiary": "#ffffff",
+                    "secondary": "#5f5e59",
+                    "on-secondary-fixed-variant": "#474742",
+                    "on-surface": "#1b1c1b",
+                    "surface-bright": "#fbf9f8",
+                    "surface-variant": "#e4e2e1",
+                    "surface-container": "#efedec",
+                    "primary-fixed": "#d4e6e1",
+                    "on-primary-fixed": "#0e1e1b",
+                    "inverse-primary": "#b8cac5",
+                    "on-error-container": "#93000a",
+                    "surface": "#fbf9f8",
+                    "outline": "#727876",
+                    "secondary-fixed": "#e5e2db",
+                    "error": "#ba1a1a",
+                    "on-tertiary-container": "#7f8682",
+                    "surface-container-low": "#f5f3f2",
+                    "brand-green": "#1a2e29",
+                    "status-sale": "#0f1f1c",
+                    "tertiary-fixed-dim": "#c1c8c3",
+                    "primary": "#000101",
+                    "on-tertiary-fixed": "#161d1a",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#0f1f1c",
+                    "surface-tint": "#51625e",
+                    "surface-dim": "#dbdad8",
+                    "on-surface-variant": "#424846",
+                    "tertiary-container": "#171e1b",
+                    "on-tertiary-fixed-variant": "#414845"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "element-gap": "0.5rem",
+                    "grid-gutter": "1rem",
+                    "section-gap-sm": "2.5rem",
+                    "section-gap-lg": "5rem",
+                    "container-margin": "1.5rem"
+            },
+            "fontFamily": {
+                    "body-md": ["Noto Sans"],
+                    "headline-md": ["Playfair Display"],
+                    "label-caps": ["Noto Sans"],
+                    "display-lg": ["Playfair Display"],
+                    "headline-lg": ["Playfair Display"],
+                    "price-tag": ["Noto Sans"]
+            },
+            "fontSize": {
+                    "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                    "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                    "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                    "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .filled-icon {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-brand-green border-b border-border-subtle">
+<div class="flex justify-between items-center px-container-margin py-6 max-w-full mx-auto">
+<div class="font-headline-md text-headline-md text-on-primary tracking-tight">Nature's Alchemist</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-on-primary border-b border-on-primary pb-1 font-body-md text-body-md" href="#">Shop All</a>
+<a class="text-on-primary-container opacity-80 hover:opacity-100 transition-all duration-300 font-body-md text-body-md" href="#">The Apothecary</a>
+<a class="text-on-primary-container opacity-80 hover:opacity-100 transition-all duration-300 font-body-md text-body-md" href="#">The Source</a>
+<a class="text-on-primary-container opacity-80 hover:opacity-100 transition-all duration-300 font-body-md text-body-md" href="#">Herbal Remedies</a>
+<a class="text-on-primary-container opacity-80 hover:opacity-100 transition-all duration-300 font-body-md text-body-md" href="#">Rituals</a>
+</div>
+<div class="flex gap-6 items-center text-on-primary">
+<span class="material-symbols-outlined cursor-pointer" data-icon="search">search</span>
+<span class="material-symbols-outlined cursor-pointer" data-icon="shopping_bag">shopping_bag</span>
+<span class="material-symbols-outlined cursor-pointer" data-icon="person">person</span>
+</div>
+</div>
+</nav>
+<main class="pt-32">
+<!-- Product Section -->
+<section class="max-w-7xl mx-auto px-container-margin grid grid-cols-1 md:grid-cols-2 gap-16 mb-section-gap-lg">
+<!-- Left: Image Gallery -->
+<div class="relative group">
+<div class="aspect-[4/5] bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A cinematic, high-detail photograph of premium organic peppermint tea leaves stored in a rustic hand-carved wooden bowl. The scene is set on a minimalist cream-toned stone surface with soft morning light filtering through a nearby window, creating gentle shadows. The palette is dominated by deep forest greens and warm earthy wood tones, perfectly embodying a high-end apothecary aesthetic. The mood is serene, natural, and grounded, emphasizing the raw, tactile quality of the dried botanicals." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdtM0bLK6XniJVjKci2vZEEotFm9GnscrTxr-8dgHACTofc4OQC8Y0LOpZylDPrjS8gRKQzYgUBl_ckaWJgwTcGfPr0Y1f75Ixdu2-GTWLTue-p5RSPly3mTpiwscp58dmRvqA8L3PY_4wT0PfxLUkD_uXKslIL0RoMN4Cdne2hXhXpugw3voHIdYaw5_z2KE93OxGXHl01xgGNIWxUXzPDnPiVfJeKA3LecKIE_qXzxVOPaVqQ6wD9ZKQ7ErhjRdgxyGADptJsFYT"/>
+</div>
+<div class="absolute top-4 left-4 bg-brand-green text-on-primary px-3 py-1 font-label-caps text-label-caps tracking-widest">PURE SOURCED</div>
+</div>
+<!-- Right: Product Details -->
+<div class="flex flex-col justify-center">
+<nav class="flex items-center gap-2 mb-6 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">
+<a class="hover:text-primary transition-colors" href="#">Shop</a>
+<span class="text-[8px] opacity-30">/</span>
+<a class="hover:text-primary transition-colors" href="#">Teas</a>
+<span class="text-[8px] opacity-30">/</span>
+<span class="text-primary">Peppermint</span>
+</nav>
+<h1 class="font-headline-lg text-headline-lg mb-4 text-brand-green">Organic Peppermint Tea</h1>
+<div class="flex items-center gap-4 mb-8">
+<div class="flex text-brand-green">
+<span class="material-symbols-outlined filled-icon text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined filled-icon text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined filled-icon text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined filled-icon text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star_half">star_half</span>
+</div>
+<span class="text-body-md font-body-md text-on-surface-variant">(120 Reviews)</span>
+</div>
+<p class="text-headline-md font-headline-md mb-8">$18.50 <span class="text-body-md font-body-md text-on-surface-variant ml-2">/ 100g pack</span></p>
+<div class="space-y-6 mb-10 text-on-surface-variant">
+<p class="font-body-md text-body-md leading-relaxed">
+                        Sourced directly from the high-altitude valleys of the Himalayas, our Organic Peppermint is hand-picked at peak potency. This single-origin botanical offers an intensely crisp, cooling aroma and a refreshingly clean finish that revitalizes the spirit.
+                    </p>
+<p class="font-body-md text-body-md leading-relaxed border-l-2 border-primary-fixed pl-4">
+                        Each leaf is steam-dried in small batches to preserve the essential oils, ensuring a therapeutic-grade experience in every cup.
+                    </p>
+</div>
+<!-- Selectors -->
+<div class="grid grid-cols-2 gap-4 mb-8">
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant">Quantity</label>
+<div class="flex items-center border border-outline-variant px-4 py-3 justify-between">
+<button class="text-xl hover:text-brand-green">-</button>
+<span class="font-price-tag">1</span>
+<button class="text-xl hover:text-brand-green">+</button>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant">Weight</label>
+<select class="border border-outline-variant bg-transparent px-4 py-3 font-price-tag focus:ring-0 focus:border-brand-green appearance-none cursor-pointer">
+<option>100g Pack</option>
+<option>250g Pack</option>
+<option>500g Pack</option>
+</select>
+</div>
+</div>
+<button class="w-full bg-brand-green text-on-primary py-5 font-label-caps text-label-caps tracking-widest uppercase hover:opacity-90 transition-opacity">
+                    Add to Cart
+                </button>
+<div class="mt-12 flex items-center gap-8 border-t border-surface-container-highest pt-8">
+<div class="flex flex-col items-center gap-2">
+<span class="material-symbols-outlined text-brand-green" data-icon="eco">eco</span>
+<span class="text-[10px] font-label-caps uppercase tracking-widest">Certified Organic</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<span class="material-symbols-outlined text-brand-green" data-icon="local_shipping">local_shipping</span>
+<span class="text-[10px] font-label-caps uppercase tracking-widest">Carbon Neutral</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<span class="material-symbols-outlined text-brand-green" data-icon="inventory_2">inventory_2</span>
+<span class="text-[10px] font-label-caps uppercase tracking-widest">Plastic Free</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Testimonial Section -->
+<section class="bg-surface-container-low py-section-gap-lg mb-section-gap-lg">
+<div class="max-w-3xl mx-auto px-container-margin text-center">
+<span class="material-symbols-outlined text-brand-green mb-6 text-4xl" data-icon="format_quote">format_quote</span>
+<h2 class="font-headline-md text-headline-md italic mb-8 text-on-surface leading-snug">
+                    "The clarity of this tea is unlike anything I've found in a boutique shop. You can literally taste the Himalayan air in every sip. It's become my daily afternoon ritual for focus and calm."
+                </h2>
+<div class="flex flex-col items-center">
+<div class="w-12 h-12 rounded-full overflow-hidden mb-4 border-2 border-white shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A portrait of a serene woman with a natural, healthy glow, smiling softly in a brightly lit, minimalist indoor setting. The lighting is soft and airy, creating a professional yet warm atmosphere. The image uses a clean, high-key palette with subtle neutral tones, reflecting the premium, wellness-focused brand identity of an organic apothecary. Her expression conveys trust, satisfaction, and calm." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgJ7VIwRvl6WfYE7Jc_Ghtu1157d9fDuC3rzHDdKO0oT9njc6zZbt2i_AuOg1JULoVMVmt8raOyNzUhsvmyYyEESu7pdwRgoyPoec3QUiV2mMNnJM7n1od03MLwzr7fUqVX9ilPcMOqzwtYD7-dqEURwVdHPmsqjP8Pl6Qql8RnAWMftRfXq8-Ogl-Wz5seqKMNYmYKGGeDa3GDF0rKvO6mt13xZKFZsavabTYCqv8uKwQ7PyKS7oQRvvAr-QkW6q2aGohfkCXIcNC"/>
+</div>
+<p class="font-label-caps text-label-caps tracking-widest uppercase">Sarah M.</p>
+<p class="text-body-md text-on-surface-variant font-body-md italic">Verified Collector</p>
+</div>
+</div>
+</section>
+<!-- Recommendations -->
+<section class="max-w-7xl mx-auto px-container-margin mb-section-gap-lg">
+<div class="flex justify-between items-end mb-12">
+<div>
+<span class="font-label-caps text-label-caps text-on-secondary-container tracking-widest uppercase mb-2 block">Curated Pairings</span>
+<h3 class="font-headline-lg text-headline-lg text-brand-green">You might also like</h3>
+</div>
+<a class="font-label-caps text-label-caps border-b border-brand-green pb-1 hover:opacity-70 transition-opacity" href="#">View Apothecary</a>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-grid-gutter">
+<!-- Card 1 -->
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] bg-surface-container overflow-hidden relative mb-4">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A minimalist and artful arrangement of dried chamomile flowers on a textured white ceramic plate. The lighting is soft and directional, highlighting the delicate yellow centers and white petals of the flowers. The overall aesthetic is clean, organic, and premium, using a palette of creams, whites, and golden yellows. The mood is tranquil and therapeutic, echoing a modern herbal apothecary style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrgaiLGIkDOSvPm4xuW8i92AROrKdMKrrw7xx59LX1EX7TBQZYOzTUJUkx2853CYuNtpL0qOYb-AUFVIPoYf8yD-YmQIhmB8ablTwE3QT5lYaVH9vMuV1PFvX4p35AWhVs3LlpDTB3CE19nG1NxnxA3b0l_AGIuTVmdR7m4TKkYm1UIQms4Jr4bqKYxd8knYLV0F6wD7tizdgVRYC34nJ_KMV7KFjgR3fmAw1OMrHBqnfCZCAzmRb792s26KwBnEmCcR5DOaPvcDZN"/>
+</div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1 uppercase">Remedy</p>
+<h4 class="font-headline-md text-[18px] mb-2">Chamomile Flower</h4>
+<p class="font-price-tag">$22.00</p>
+</div>
+<!-- Card 2 -->
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] bg-surface-container overflow-hidden relative mb-4">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A high-end, editorial-style product shot of raw ashwagandha root segments on a dark slate background. The lighting is dramatic and low-key, emphasizing the earthy textures and natural shapes of the roots. The color palette is composed of deep charcoals and warm beige tones, creating a sophisticated and grounded visual. The mood is mysterious yet powerful, highlighting the ancient heritage and potency of the botanical." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5CoTSQdByxXraeCt3S9fdwe9VU7IWigDgPxZhjXsf3TVmBTNlHUjfmWg264BGS40hY6mkaeGQUDne0230lsBuImNcYD_dh11yl8C8luN3FtipZwz_yOsL6awZ3lBnK4sfGgyuLWFsl-QNKa_qVmvcpfyrJpDqZE5f3u88KWsyzH1oNJgw_p8n12sKC25qVaZE6qSCw1_hcEXPkCS5b791dPRejZtn9sI5YmBp6RzafyL7SiPQfD3xkijKJjMHtwdLvxKk7wwd4qu4"/>
+</div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1 uppercase">Adaptogen</p>
+<h4 class="font-headline-md text-[18px] mb-2">Ashwagandha Root</h4>
+<p class="font-price-tag">$28.00</p>
+</div>
+<!-- Card 3 -->
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] bg-surface-container overflow-hidden relative mb-4">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A clean, minimalist composition of fresh lavender sprigs resting on a light linen textile. The soft, natural light creates a dreamy, peaceful atmosphere, emphasizing the vibrant purple of the lavender against the neutral cream background. The visual style is elegant and modern, focusing on purity and botanical beauty. The palette is a blend of soft lavenders, sage greens, and warm whites." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTVNYkuikeeRbIOb6Y8EVuicJu5BSAyPGM_Ry5bywUc1dynixigUkiuILCTjyRmNBWwDjUE1vRQZO2ZoqM-lUMeXHFiA190wj1i0Pe0Fo5ZzguyMD0d0YTGj0dfFv-6421ZrcKeM4P7hl0HTy1Q47Yvd5lgUQVNaGkeYZa-dPbR6cDIN5yym3xmCg1GlArFneGegdxQUd8mfuSl03BvoUY8UmjreqnrU7A1o5yqkBYTc9eojVDWH6gYSJ_Uh0_3nd73fJTQl7s8KCd"/>
+</div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1 uppercase">Ritual</p>
+<h4 class="font-headline-md text-[18px] mb-2">English Lavender</h4>
+<p class="font-price-tag">$19.50</p>
+</div>
+<!-- Card 4 -->
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] bg-surface-container overflow-hidden relative mb-4">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A close-up, high-definition photograph of dried hibiscus petals in a heavy glass jar. The lighting is bright and crisp, making the deep ruby red colors of the petals pop against the clear glass. The aesthetic is modern and vibrant yet grounded in natural apothecary traditions. The palette features intense reds and clean whites, evoking a sense of energy and antioxidant richness." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTALNWKg6T_68_5pGZFoDvTHMItJ0nn8_5zEagXOSHdZbQlqt4yjiCWhLfIE8dWOj-KXSVOdtyjTk0OAHeEzaXYvrvhaT1A_1EHFigtdLtNZjdlPcHLi9PSDNrvX5G-Me-sFU3LTd5jruUiFrJLN1TeiqsMUDSvmbmP5TFmddpfZQYod5X_7MvijfSwpHJ2wj-GtSpqbHBTzTVNSQ1r4aCn90SY4As9cbboXhjXNvrxJRhtoOgCKDG9h_4R5eQ-lKgpVAYnve-7qx6"/>
+</div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1 uppercase">Infusion</p>
+<h4 class="font-headline-md text-[18px] mb-2">Hibiscus Petal</h4>
+<p class="font-price-tag">$16.00</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full pt-section-gap-lg pb-section-gap-sm bg-surface-container-highest">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-grid-gutter px-container-margin max-w-7xl mx-auto">
+<div class="md:col-span-1">
+<div class="font-headline-lg text-headline-lg text-brand-green mb-6">Nature's Alchemist</div>
+<p class="text-body-md text-on-surface-variant mb-6 leading-relaxed">
+                    Elevating daily rituals through the wisdom of plants and the precision of modern science.
+                </p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-brand-green transition-colors" data-icon="language">language</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-brand-green transition-colors" data-icon="potted_plant">potted_plant</span>
+</div>
+</div>
+<div class="flex flex-col gap-element-gap">
+<h5 class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest mb-4">Discovery</h5>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-body-md font-body-md" href="#">Our Story</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-body-md font-body-md" href="#">Sustainability</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-body-md font-body-md" href="#">Wholesale</a>
+</div>
+<div class="flex flex-col gap-element-gap">
+<h5 class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest mb-4">Support</h5>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-body-md font-body-md" href="#">Shipping &amp; Returns</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-body-md font-body-md" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-body-md font-body-md" href="#">Contact Us</a>
+</div>
+<div class="flex flex-col gap-element-gap">
+<h5 class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest mb-4">Join The Circle</h5>
+<p class="text-body-md text-on-surface-variant mb-4">Receive monthly insights and exclusive offerings.</p>
+<div class="flex border-b border-outline">
+<input class="bg-transparent border-none py-2 px-0 focus:ring-0 text-body-md w-full placeholder:text-outline" placeholder="Email Address" type="email"/>
+<button class="material-symbols-outlined text-brand-green" data-icon="arrow_forward">arrow_forward</button>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-container-margin mt-20 pt-8 border-t border-outline-variant flex flex-col md:flex-row justify-between items-center gap-4 text-on-surface-variant">
+<p class="text-body-md font-body-md">© 2024 Nature's Alchemist. Crafted with Intention.</p>
+<div class="flex gap-8">
+<span class="text-body-md font-body-md">Himalayan Sourced</span>
+<span class="text-body-md font-body-md">Small Batch</span>
+</div>
+</div>
+</footer>
+</body></html>

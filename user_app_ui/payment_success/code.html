@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed-variant": "#3a4a46",
+                    "on-error": "#ffffff",
+                    "surface-bright": "#fbf9f8",
+                    "surface-variant": "#e4e2e1",
+                    "on-primary": "#ffffff",
+                    "on-secondary-container": "#65645f",
+                    "outline-variant": "#c2c8c5",
+                    "on-tertiary-container": "#7f8682",
+                    "inverse-surface": "#303030",
+                    "primary-container": "#0f1f1c",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed": "#161d1a",
+                    "secondary-container": "#e5e2db",
+                    "on-surface-variant": "#424846",
+                    "on-background": "#1b1c1b",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#414845",
+                    "on-error-container": "#93000a",
+                    "surface-container-highest": "#e4e2e1",
+                    "surface-container": "#efedec",
+                    "on-secondary-fixed": "#1c1c18",
+                    "tertiary": "#000201",
+                    "outline": "#727876",
+                    "surface": "#fbf9f8",
+                    "surface-tint": "#51625e",
+                    "brand-green": "#1a2e29",
+                    "secondary": "#5f5e59",
+                    "border-subtle": "rgba(255, 255, 255, 0.1)",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-high": "#eae8e6",
+                    "on-primary-fixed": "#0e1e1b",
+                    "status-sale": "#0f1f1c",
+                    "surface-card": "#ffffff",
+                    "secondary-fixed-dim": "#c9c6c0",
+                    "primary-fixed-dim": "#b8cac5",
+                    "error-container": "#ffdad6",
+                    "primary-fixed": "#d4e6e1",
+                    "text-muted": "rgba(15, 31, 28, 0.6)",
+                    "tertiary-fixed": "#dde4df",
+                    "primary": "#000101",
+                    "secondary-fixed": "#e5e2db",
+                    "on-primary-container": "#778884",
+                    "inverse-primary": "#b8cac5",
+                    "on-surface": "#1b1c1b",
+                    "surface-container-low": "#f5f3f2",
+                    "inverse-on-surface": "#f2f0ef",
+                    "surface-dim": "#dbdad8",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed-variant": "#474742",
+                    "background": "#fbf9f8",
+                    "tertiary-container": "#171e1b",
+                    "tertiary-fixed-dim": "#c1c8c3"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "container-margin": "1.5rem",
+                    "grid-gutter": "1rem",
+                    "section-gap-sm": "2.5rem",
+                    "section-gap-lg": "5rem",
+                    "element-gap": "0.5rem"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"],
+                    "body-md": ["Noto Sans"],
+                    "label-caps": ["Noto Sans"],
+                    "headline-md": ["Playfair Display"],
+                    "price-tag": ["Noto Sans"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                    "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                    "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+<!-- TopAppBar Fragment: Suppressed Navigation for transactional success screen -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-center items-center px-container-margin h-16 bg-brand-green">
+<span class="font-headline-md text-headline-md text-on-primary tracking-widest uppercase">NATURE'S ALCHEMIST</span>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex items-center justify-center pt-16 pb-24 px-container-margin">
+<div class="max-w-md w-full text-center">
+<!-- Success Illustration/Icon Section -->
+<div class="relative mb-section-gap-sm flex justify-center">
+<!-- Decorative concentric circles following the 'Modern Apothecary' aesthetic -->
+<div class="absolute inset-0 flex items-center justify-center opacity-10">
+<div class="w-48 h-48 rounded-full border border-primary"></div>
+<div class="absolute w-64 h-64 rounded-full border border-primary"></div>
+</div>
+<!-- Botanical Success Icon -->
+<div class="relative bg-surface-container-low p-8 rounded-full border border-outline-variant">
+<span class="material-symbols-outlined text-brand-green !text-6xl" data-icon="herbal_medicine" data-weight="normal">Certificate</span>
+</div>
+</div>
+<!-- Confirmation Text -->
+<div class="space-y-element-gap mb-section-gap-sm">
+<h1 class="font-headline-lg text-headline-lg text-primary uppercase tracking-tight">Order Confirmed</h1>
+<p class="font-headline-md text-headline-md text-secondary italic">Your ritual has begun.</p>
+<div class="pt-4">
+<span class="font-label-caps text-label-caps text-on-surface-variant block mb-1">ORDER NUMBER</span>
+<span class="font-price-tag text-price-tag text-primary tracking-widest font-bold">NA-77294-ALCH</span>
+</div>
+</div>
+<!-- Detail Card (Bento-style Minimalist) -->
+<div class="bg-surface-card border border-outline-variant p-6 text-left mb-section-gap-sm">
+<div class="flex justify-between items-center pb-4 border-b border-outline-variant mb-4">
+<span class="font-label-caps text-label-caps text-on-surface-variant">ESTIMATED DELIVERY</span>
+<span class="font-body-md text-body-md font-bold">Oct 24 - Oct 26</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 bg-surface-container-high flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A macro photograph of a dark glass apothecary bottle with a minimalist cream label, resting on a textured linen surface. The lighting is soft and moody, emphasizing a luxurious, organic wellness vibe. The color palette consists of deep forest greens, warm cream tones, and subtle earthy browns, perfectly capturing the Nature's Alchemist modern herbalist identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYpkj2pN9rxRI82NWVDrWSah0VXTh3NTb79gVx09qJh1Rz2SDlVJ3wyvEAYhaxhaI_nVYc3kxA9j6ttOyX3AZD-4Vkq8p_huc-GKXjAe_yiokusJyuYgDEda7R1cV7xWOhq9Q1m3Ayh1x1GMWDsniBR5p_rk756mJA7LdwY0GodF1a8tErxn7HdQ_flqulT8zheTeOIT9ikpJrIFFL71rIxV38g0y_PKBMRu7oFx1ZbPDH_uFFxwzkiu61B0Af_6pRadtVpL7URh5Q"/>
+</div>
+<div>
+<p class="font-body-md text-body-md font-bold text-primary">Sacred Forest Elixir</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant">Qty: 1 • $48.00</p>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col gap-4">
+<button class="w-full bg-brand-green text-on-primary py-4 font-label-caps text-label-caps tracking-[0.3em] hover:opacity-90 transition-all active:scale-[0.98]">
+                    VIEW ORDER
+                </button>
+<button class="w-full bg-transparent border border-brand-green text-brand-green py-4 font-label-caps text-label-caps tracking-[0.3em] hover:bg-brand-green hover:text-on-primary transition-all active:scale-[0.98]">
+                    CONTINUE SHOPPING
+                </button>
+</div>
+</div>
+</main>
+<!-- Footer Note -->
+<footer class="py-8 px-container-margin text-center">
+<p class="font-label-caps text-label-caps text-on-surface-variant max-w-xs mx-auto">
+            A confirmation email has been sent to your registered address. For any inquiries, contact our master alchemists.
+        </p>
+</footer>
+</body></html>

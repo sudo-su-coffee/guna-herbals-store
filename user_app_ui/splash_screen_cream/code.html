@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed": "#1c1c18",
+                    "on-primary-fixed-variant": "#3a4a46",
+                    "surface": "#fbf9f8",
+                    "error": "#ba1a1a",
+                    "primary": "#000101",
+                    "border-subtle": "rgba(255, 255, 255, 0.1)",
+                    "on-secondary-container": "#65645f",
+                    "on-surface-variant": "#424846",
+                    "on-primary": "#ffffff",
+                    "surface-container-high": "#eae8e6",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed-dim": "#c1c8c3",
+                    "surface-container": "#efedec",
+                    "brand-green": "#1a2e29",
+                    "background": "#fbf9f8",
+                    "on-error-container": "#93000a",
+                    "secondary": "#5f5e59",
+                    "on-background": "#1b1c1b",
+                    "surface-card": "#ffffff",
+                    "primary-container": "#0f1f1c",
+                    "inverse-on-surface": "#f2f0ef",
+                    "surface-container-highest": "#e4e2e1",
+                    "surface-bright": "#fbf9f8",
+                    "tertiary-fixed": "#dde4df",
+                    "secondary-container": "#e5e2db",
+                    "text-muted": "rgba(15, 31, 28, 0.6)",
+                    "surface-dim": "#dbdad8",
+                    "secondary-fixed-dim": "#c9c6c0",
+                    "on-surface": "#1b1c1b",
+                    "on-tertiary-fixed-variant": "#414845",
+                    "on-error": "#ffffff",
+                    "surface-tint": "#51625e",
+                    "primary-fixed-dim": "#b8cac5",
+                    "tertiary": "#000201",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-container": "#7f8682",
+                    "surface-variant": "#e4e2e1",
+                    "surface-container-low": "#f5f3f2",
+                    "status-sale": "#0f1f1c",
+                    "outline-variant": "#c2c8c5",
+                    "inverse-primary": "#b8cac5",
+                    "tertiary-container": "#171e1b",
+                    "primary-fixed": "#d4e6e1",
+                    "on-primary-container": "#778884",
+                    "secondary-fixed": "#e5e2db",
+                    "on-secondary-fixed-variant": "#474742",
+                    "inverse-surface": "#303030",
+                    "on-tertiary-fixed": "#161d1a",
+                    "outline": "#727876",
+                    "on-primary-fixed": "#0e1e1b",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "grid-gutter": "1rem",
+                    "section-gap-sm": "2.5rem",
+                    "section-gap-lg": "5rem",
+                    "container-margin": "1.5rem",
+                    "element-gap": "0.5rem"
+            },
+            "fontFamily": {
+                    "body-md": ["Noto Sans"],
+                    "label-caps": ["Noto Sans"],
+                    "display-lg": ["Playfair Display"],
+                    "price-tag": ["Noto Sans"],
+                    "headline-md": ["Playfair Display"],
+                    "headline-lg": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                    "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                    "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>body {
+    background-color: #fbf9f8;
+    color: #1b1c1b;
+    margin: 0;
+    overflow: hidden
+    }
+.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 200, "GRAD" 0, "opsz" 48;
+    color: #1a2e29
+    }
+.grain-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 50;
+    opacity: 0.03;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuAgcaCA6z5g9-QB90hNNa-wCubJz3KaAxqWpRXlliHS9fFpqaoBnaObKZ0AV-f394VWs-fjHSiYUccHF_5dNyw4j7QLMDcWH4LiiTVV0NkjqYS5FeoQAfAzCRA1ECo2mp5IFUE63CmYhmdwGyQSVSAUwjW0oWheR2BC9KsY80jMInUcDQkorvsqElS6EfrFZ3bSdHpbsKZ1gCz3VfQxSjXM4i8ulrPABODhG8naszZ8C1A_Nax_q8j-WDvhqSjKtfBiYY-JBk6Wwq4z)
+    }
+.fade-in {
+    animation: fadeIn 2.5s ease-out forwards
+    }
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+        } to {
+        opacity: 1;
+        transform: translateY(0);
+        }
+    }</style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-body-md bg-surface selection:bg-brand-green selection:text-on-primary">
+<div class="grain-overlay"></div>
+<main class="relative min-h-screen flex flex-col items-center justify-center px-container-margin">
+<!-- Background Ambient Element -->
+<div class="absolute inset-0 z-0 overflow-hidden opacity-20">
+<div class="absolute -top-[20%] -left-[10%] w-[60%] aspect-square rounded-full blur-[120px] bg-brand-green/10"></div>
+<div class="absolute -bottom-[10%] -right-[5%] w-[40%] aspect-square rounded-full blur-[100px] bg-brand-green/5"></div>
+</div>
+<!-- Central Content Canvas -->
+<div class="z-10 flex flex-col items-center text-center fade-in">
+<!-- Botanical Alchemist Iconography -->
+<div class="mb-section-gap-sm flex items-center justify-center relative">
+<div class="absolute inset-0 border border-brand-green/20 rounded-full scale-[1.6]"></div>
+<div class="w-16 h-16 rounded-full border border-brand-green/40 flex items-center justify-center bg-surface-container-lowest">
+<span class="material-symbols-outlined text-[32px]" data-icon="eco">eco</span>
+</div>
+</div>
+<!-- Brand Identity -->
+<div class="space-y-element-gap">
+<p class="font-label-caps text-label-caps text-on-primary-container tracking-[0.3em] mb-4">EST. 1894</p>
+<h1 class="font-display-lg text-display-lg text-primary tracking-tight md:text-[80px]">
+                    NATURE'S ALCHEMIST
+                </h1>
+<div class="flex items-center justify-center space-x-4 pt-6">
+<span class="h-[1px] w-8 bg-outline-variant"></span>
+<p class="font-body-md text-body-md italic text-secondary tracking-wide">The Botanical Ritual</p>
+<span class="h-[1px] w-8 bg-outline-variant"></span>
+</div>
+</div>
+<!-- Tertiary Accents -->
+<div class="mt-section-gap-lg max-w-xs">
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed opacity-70">
+                    A curated collection of artisanal tinctures and restorative essences, crafted with ancient wisdom for modern vitality.
+                </p>
+</div>
+</div>
+<!-- Call to Action / Footer -->
+<div class="absolute bottom-16 z-10 flex flex-col items-center fade-in" style="animation-delay: 1s;">
+<button class="px-10 py-4 bg-brand-green text-on-primary font-label-caps text-label-caps tracking-widest transition-all hover:opacity-90 active:scale-95">
+                BEGIN THE RITUAL
+            </button>
+<div class="mt-8 flex flex-col items-center">
+<span class="material-symbols-outlined text-secondary text-[20px]" data-icon="keyboard_double_arrow_down">keyboard_double_arrow_down</span>
+<p class="font-label-caps text-[9px] mt-2 text-outline tracking-[0.4em]">SCROLL TO DISCOVER</p>
+</div>
+</div>
+<!-- Decorative Floating Image - Left (Artistic Context) -->
+<div class="hidden lg:block absolute left-[8%] top-[25%] w-[220px] aspect-[4/5] bg-surface-container-high p-1 shadow-sm opacity-40 hover:opacity-80 transition-opacity duration-700">
+<img alt="Botanical Still Life" class="w-full h-full object-cover grayscale-[20%]" data-alt="A macro photography shot of dried herbs, lavender sprigs, and amber glass apothecary bottles resting on a textured linen cloth. The lighting is soft and directional, coming from a side window, creating deep, elegant shadows. The color palette is composed of muted greens, warm browns, and the creamy off-white of the linen. The overall mood is quiet, artisanal, and sophisticated." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJRitPH8utwDjxsUB7Iu2mUJiOv_yiEW694LFvQNwCxwt8CqzcnQzacQSG1T6G3i0jKhI4ahrfNGdbIZYJmVgAvxWftO49Unmm3i9jK_OK8wn-1wsOT-YMnv_NxpJE0an3m5N5ynIY82RqnQxJoWZHpk1EHBGgoasPuVuIlq2VobSUXPNoASgvpp29M65iddXkDIYD1Ab4I2IGFDrIerJcLcJuU0KpYHYCYJcGO0-dPBU9S4RY_Q7iBodaX5f8m-R6vkJ7RDO2R9ty"/>
+</div>
+<!-- Decorative Floating Image - Right (Artistic Context) -->
+<div class="hidden lg:block absolute right-[8%] bottom-[20%] w-[180px] aspect-[1/1] rounded-full overflow-hidden border-[12px] border-surface-container-lowest shadow-sm opacity-40 hover:opacity-80 transition-opacity duration-700">
+<img alt="Herbal Texture" class="w-full h-full object-cover grayscale-[10%]" data-alt="A minimalist close-up of a single dark green monstera leaf against a solid soft cream background. The leaf is perfectly centered, showing intricate vein details and natural textures. The lighting is high-key and flat, emphasizing the clean silhouette of the plant. The aesthetic is modern, organic, and peaceful, aligning with a high-end apothecary brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjv0d4bQx0YX4-KyzurFtoUVbHhV13R5nmLCsAUWaLUhjPnI8o-8d4JwjbDD11cxEQKTOuDFmAvWe32xPgIY2B-a3xVudmeOZWpfFyxbGKk9D6OFdktnEQFuv0JI9b1Jv0F9O55lhKfL9N1HCSbuPVQloqP2R-woFqnGkgcA30Fg5w7O6aDJMTSzbqo-NPPtHatxt3ghlBrzjSa5t_PMXZMR2FncSD0NR1XWqm0hGr6YX_ZLaBM3cqr0Tjgr0ugmBodgCa073w3Ci2"/>
+</div>
+</main>
+</body></html>

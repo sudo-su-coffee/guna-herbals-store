@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed-variant": "#474742",
+                    "error": "#ba1a1a",
+                    "surface-container": "#efedec",
+                    "secondary": "#5f5e59",
+                    "on-tertiary-fixed": "#161d1a",
+                    "on-secondary": "#ffffff",
+                    "background": "#fbf9f8",
+                    "secondary-fixed": "#e5e2db",
+                    "primary-fixed": "#d4e6e1",
+                    "on-primary-fixed-variant": "#3a4a46",
+                    "surface-variant": "#e4e2e1",
+                    "surface-container-high": "#eae8e6",
+                    "surface-card": "#ffffff",
+                    "on-surface-variant": "#424846",
+                    "on-primary-container": "#778884",
+                    "surface-bright": "#fbf9f8",
+                    "on-background": "#1b1c1b",
+                    "on-error": "#ffffff",
+                    "tertiary": "#000201",
+                    "tertiary-container": "#171e1b",
+                    "on-surface": "#1b1c1b",
+                    "surface-dim": "#dbdad8",
+                    "primary-container": "#0f1f1c",
+                    "tertiary-fixed-dim": "#c1c8c3",
+                    "secondary-container": "#e5e2db",
+                    "on-tertiary-fixed-variant": "#414845",
+                    "on-primary": "#ffffff",
+                    "status-sale": "#0f1f1c",
+                    "on-primary-fixed": "#0e1e1b",
+                    "text-muted": "rgba(15, 31, 28, 0.6)",
+                    "outline-variant": "#c2c8c5",
+                    "primary-fixed-dim": "#b8cac5",
+                    "surface-container-highest": "#e4e2e1",
+                    "on-secondary-fixed": "#1c1c18",
+                    "surface-tint": "#51625e",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed-dim": "#c9c6c0",
+                    "tertiary-fixed": "#dde4df",
+                    "brand-green": "#1a2e29",
+                    "surface-container-lowest": "#ffffff",
+                    "outline": "#727876",
+                    "on-error-container": "#93000a",
+                    "on-secondary-container": "#65645f",
+                    "inverse-surface": "#303030",
+                    "inverse-primary": "#b8cac5",
+                    "surface": "#fbf9f8",
+                    "inverse-on-surface": "#f2f0ef",
+                    "on-tertiary-container": "#7f8682",
+                    "surface-container-low": "#f5f3f2",
+                    "border-subtle": "rgba(255, 255, 255, 0.1)",
+                    "primary": "#000101"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "section-gap-sm": "2.5rem",
+                    "element-gap": "0.5rem",
+                    "section-gap-lg": "5rem",
+                    "grid-gutter": "1rem",
+                    "container-margin": "1.5rem"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Playfair Display"],
+                    "body-md": ["Noto Sans"],
+                    "price-tag": ["Noto Sans"],
+                    "headline-md": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"],
+                    "label-caps": ["Noto Sans"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                    "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                    "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #fbf9f8;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-background dark:bg-background flex items-center justify-between px-container-margin h-16 w-full">
+<div class="flex items-center gap-4">
+<button class="hover:opacity-70 transition-opacity active:scale-95 transition-transform text-primary dark:text-primary-fixed">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+<h1 class="font-headline-md text-headline-md text-primary dark:text-primary-fixed font-extrabold tracking-tight">Nature's Alchemist</h1>
+<div class="flex items-center gap-4">
+<button class="hover:opacity-70 transition-opacity active:scale-95 transition-transform text-primary dark:text-primary-fixed">
+<span class="material-symbols-outlined">shopping_bag</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-16 pb-20 flex flex-col items-center justify-center">
+<!-- Empty State Container -->
+<div class="w-full max-w-md px-container-margin text-center flex flex-col items-center">
+<!-- Minimal Botanical Icon -->
+<div class="mb-section-gap-sm flex items-center justify-center">
+<div class="w-24 h-24 rounded-full border border-outline/20 flex items-center justify-center bg-surface-container-lowest">
+<span class="material-symbols-outlined text-4xl text-on-primary-container" style="font-variation-settings: 'wght' 200;">potted_plant</span>
+</div>
+</div>
+<!-- Typography Lockup -->
+<h2 class="font-headline-lg text-headline-lg mb-4 text-on-surface">Your Ritual Basket is Empty</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-[280px] mx-auto mb-10 italic">
+                A pause before the transformation. Let us help you find the botanicals that speak to your spirit.
+            </p>
+<!-- Primary Action -->
+<button class="w-full bg-brand-green text-on-primary font-label-caps text-label-caps py-5 px-10 tracking-[0.3em] hover:opacity-90 active:scale-95 transition-all shadow-sm">
+                START YOUR JOURNEY
+            </button>
+<!-- Secondary Inspiration -->
+<div class="mt-section-gap-lg w-full">
+<div class="flex items-center justify-between mb-grid-gutter border-b border-outline/10 pb-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant">CURATED SELECTIONS</span>
+<span class="material-symbols-outlined text-sm text-on-surface-variant">arrow_forward</span>
+</div>
+<!-- Small Featured Row -->
+<div class="grid grid-cols-2 gap-grid-gutter">
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] bg-surface-container-high overflow-hidden mb-2 relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A macro photograph of an apothecary-style amber glass bottle with a minimalist cream-colored label. The bottle sits on a natural stone surface under soft, high-key natural light from a window, creating long, gentle shadows. The aesthetic is clean, luxurious, and organic, consistent with a high-end wellness brand's minimalist apothecary style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcBpGjZxn2xfucw6psP5AneQ9X9ls2JYP8v-dsfgOBwag7GjjAl_o1m-9JM7baDquUvoMoyAgg9LnkqJrxQOw_22cIWHWlYaBt-SO4HFX3hzgjWieX9hXhK3x5l0DuiA2rqiQAJWboCo679o_fveOfCFWytItKxHWzboBYfmUR2fTqQqSL366ZFjIuuJJIdHq9Of2KbREXlDz_bQhembBixNqUWwmA-hpY53IBo3XMIunrmWAGt9F9_I-72zjxb505tJgFTQieFQzj"/>
+<div class="absolute top-0 right-0 bg-status-sale text-white px-2 py-1 font-label-caps text-[9px] font-bold">NEW</div>
+</div>
+<p class="font-label-caps text-[10px] text-on-surface-variant">ELIXIRS</p>
+<p class="font-headline-md text-[16px] text-on-surface leading-tight">Wild Harvest Tincture</p>
+</div>
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] bg-surface-container-high overflow-hidden mb-2">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A collection of dried lavender and sage bundles arranged artfully on a light cream linen textile. The lighting is diffused and airy, emphasizing the natural textures of the herbs and the high-quality fabric. The mood is serene and grounded, evoking a sense of ancient herbal wisdom within a contemporary, minimalist wellness framework." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0DPXQL_5clFKoa_QRxcoAbEzfiOsi5ULQfgwiqhIfp8mDdFU3aRfbQcRh7SXea4NgeCDcqByrm4fckUXw2Py8R05ZW-62fybNkZxsQEnt4i4WlQlTR7ntPp_L5WW_YOMUcRiwEdBnghbtTKtQ_Wb2R9dIvPFKCwBauPVcmZXdeC7UQCOfK4y3IG-amJaV8wTCABXibRnuyY4agP2AXqtHovabGEaJF8qSHe0TN4KCtbTCF5x_872Zd0WXVdPGnrTuZ3L5dqedM5ZB"/>
+</div>
+<p class="font-label-caps text-[10px] text-on-surface-variant">HERBALS</p>
+<p class="font-headline-md text-[16px] text-on-surface leading-tight">Ritual Smudge Bundle</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 bg-brand-green dark:bg-primary-container shadow-sm flex justify-around items-center h-20 px-4 w-full">
+<button class="flex flex-col items-center justify-center text-on-primary dark:text-on-primary-fixed opacity-60 hover:opacity-100 transition-opacity active:scale-90 transition-transform">
+<span class="material-symbols-outlined mb-1">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-primary dark:text-on-primary-fixed opacity-100 hover:opacity-100 transition-opacity active:scale-90 transition-transform">
+<span class="material-symbols-outlined mb-1">storefront</span>
+<span class="font-label-caps text-label-caps">Shop</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-primary dark:text-on-primary-fixed opacity-60 hover:opacity-100 transition-opacity active:scale-90 transition-transform">
+<span class="material-symbols-outlined mb-1">search</span>
+<span class="font-label-caps text-label-caps">Search</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-primary dark:text-on-primary-fixed opacity-60 hover:opacity-100 transition-opacity active:scale-90 transition-transform">
+<span class="material-symbols-outlined mb-1">favorite</span>
+<span class="font-label-caps text-label-caps">Wishlist</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-primary dark:text-on-primary-fixed opacity-60 hover:opacity-100 transition-opacity active:scale-90 transition-transform">
+<span class="material-symbols-outlined mb-1">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</button>
+</nav>
+</body></html>

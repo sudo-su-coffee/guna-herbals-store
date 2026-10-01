@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Loyalty &amp; Referrals | Botanical Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Noto+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary": "#ffffff",
+                    "surface-dim": "#dbdad8",
+                    "tertiary-container": "#171e1b",
+                    "tertiary-fixed-dim": "#c1c8c3",
+                    "border-subtle": "rgba(255, 255, 255, 0.1)",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-low": "#f5f3f2",
+                    "inverse-surface": "#303030",
+                    "on-secondary-fixed": "#1c1c18",
+                    "on-primary-fixed-variant": "#3a4a46",
+                    "on-primary-container": "#778884",
+                    "surface-container-highest": "#e4e2e1",
+                    "surface-tint": "#51625e",
+                    "tertiary-fixed": "#dde4df",
+                    "background": "#fbf9f8",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed-variant": "#474742",
+                    "primary-container": "#0f1f1c",
+                    "surface-variant": "#e4e2e1",
+                    "secondary-fixed": "#e5e2db",
+                    "text-muted": "rgba(15, 31, 28, 0.6)",
+                    "surface": "#fbf9f8",
+                    "on-primary-fixed": "#0e1e1b",
+                    "primary-fixed": "#d4e6e1",
+                    "on-error": "#ffffff",
+                    "primary": "#000101",
+                    "brand-green": "#1a2e29",
+                    "outline": "#727876",
+                    "primary-fixed-dim": "#b8cac5",
+                    "on-background": "#1b1c1b",
+                    "surface-card": "#ffffff",
+                    "outline-variant": "#c2c8c5",
+                    "on-tertiary-fixed-variant": "#414845",
+                    "on-secondary-container": "#65645f",
+                    "on-tertiary-container": "#7f8682",
+                    "on-surface": "#1b1c1b",
+                    "surface-bright": "#fbf9f8",
+                    "on-tertiary-fixed": "#161d1a",
+                    "error": "#ba1a1a",
+                    "surface-container-high": "#eae8e6",
+                    "inverse-primary": "#b8cac5",
+                    "on-surface-variant": "#424846",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#e5e2db",
+                    "secondary-fixed-dim": "#c9c6c0",
+                    "secondary": "#5f5e59",
+                    "status-sale": "#0f1f1c",
+                    "error-container": "#ffdad6",
+                    "inverse-on-surface": "#f2f0ef",
+                    "tertiary": "#000201",
+                    "surface-container": "#efedec",
+                    "on-error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "section-gap-sm": "2.5rem",
+                    "grid-gutter": "1rem",
+                    "container-margin": "1.5rem",
+                    "section-gap-lg": "5rem",
+                    "element-gap": "0.5rem"
+            },
+            "fontFamily": {
+                    "label-caps": ["Noto Sans"],
+                    "headline-lg": ["Playfair Display"],
+                    "headline-md": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"],
+                    "price-tag": ["Noto Sans"],
+                    "body-md": ["Noto Sans"]
+            },
+            "fontSize": {
+                    "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                    "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                    "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                    "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .bg-mesh-soft {
+            background-color: #fbf9f8;
+            background-image: radial-gradient(at 0% 0%, hsla(25,10%,90%,1) 0, transparent 50%), 
+                              radial-gradient(at 50% 0%, hsla(160,10%,92%,1) 0, transparent 50%), 
+                              radial-gradient(at 100% 0%, hsla(30,10%,90%,1) 0, transparent 50%);
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #dbdad8; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+<!-- Sidebar Navigation -->
+<aside class="fixed left-0 top-0 h-screen w-64 bg-brand-green dark:bg-status-sale flex flex-col h-full py-8 z-50">
+<div class="px-6 mb-10">
+<h1 class="font-headline-lg text-headline-lg text-on-primary dark:text-on-primary-fixed">Apothecary</h1>
+<p class="font-label-caps text-label-caps text-on-primary-container mt-1 opacity-70">Management Portal</p>
+</div>
+<nav class="flex-1 space-y-1">
+<div class="text-on-tertiary-container hover:text-on-primary p-3 mx-2 cursor-pointer active:scale-95 transition-transform flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-caps text-label-caps">Dashboard</span>
+</div>
+<div class="text-on-tertiary-container hover:text-on-primary p-3 mx-2 cursor-pointer active:scale-95 transition-transform flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="potted_plant">potted_plant</span>
+<span class="font-label-caps text-label-caps">Inventory</span>
+</div>
+<div class="text-on-tertiary-container hover:text-on-primary p-3 mx-2 cursor-pointer active:scale-95 transition-transform flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+<span class="font-label-caps text-label-caps">Orders</span>
+</div>
+<div class="bg-on-primary-container text-on-primary rounded-lg p-3 mx-2 cursor-pointer active:scale-95 transition-transform flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="group" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="font-label-caps text-label-caps">Customers</span>
+</div>
+<div class="text-on-tertiary-container hover:text-on-primary p-3 mx-2 cursor-pointer active:scale-95 transition-transform flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="leaderboard">leaderboard</span>
+<span class="font-label-caps text-label-caps">Analytics</span>
+</div>
+<div class="text-on-tertiary-container hover:text-on-primary p-3 mx-2 cursor-pointer active:scale-95 transition-transform flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="local_shipping">local_shipping</span>
+<span class="font-label-caps text-label-caps">Suppliers</span>
+</div>
+</nav>
+<div class="mt-auto space-y-1 border-t border-border-subtle pt-6">
+<div class="text-on-tertiary-container hover:text-on-primary p-3 mx-2 cursor-pointer active:scale-95 transition-transform flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+<span class="font-label-caps text-label-caps">Support</span>
+</div>
+<div class="text-on-tertiary-container hover:text-on-primary p-3 mx-2 cursor-pointer active:scale-95 transition-transform flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-label-caps text-label-caps">Log Out</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen bg-mesh-soft">
+<!-- Top Bar -->
+<header class="flex items-center justify-between px-container-margin w-full h-20 bg-background border-b border-outline-variant sticky top-0 z-40">
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-headline-md text-primary">Referrals &amp; Loyalty</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors" data-icon="notifications">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full"></span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors" data-icon="settings">settings</span>
+<div class="w-10 h-10 rounded-full bg-surface-container-high border border-outline-variant overflow-hidden">
+<img alt="Administrator profile photo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhTUW8PYp6FD7hUUIsqLzps1d2vAZPGosiNaFJHS8kF57wcFef3ikMn4oj90jLX-0Slp-iCPLXL0d9Fv7uEYT1oVBDQr-A3Ii10ql9VlLixwLg-Iq-RR2LjS8q0bgqvs82CFYjG4O7sdiORIx_rnoUkZEgnK_iqTuhnWK3Uhe-d4L2-bLJRU0q7q-aXBL3sEEv55UIf_3FDw1Df-Dr4Idb6bR4lUyLKqIRvemIUJAOc_H5D4MyRG_0NXEM5piExGy3UAgn9Rd2YD7o"/>
+</div>
+</div>
+</header>
+<div class="p-container-margin space-y-grid-gutter">
+<!-- Dashboard Stats Summary -->
+<section class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+<div class="bg-surface-card p-6 border border-outline-variant flex flex-col justify-between h-32">
+<span class="font-label-caps text-label-caps text-on-surface-variant">TOTAL REWARDS DISTRIBUTED</span>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg text-primary">$42,850</span>
+<span class="text-xs text-status-sale font-medium">+12%</span>
+</div>
+</div>
+<div class="bg-surface-card p-6 border border-outline-variant flex flex-col justify-between h-32">
+<span class="font-label-caps text-label-caps text-on-surface-variant">ACTIVE REFERRERS</span>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg text-primary">1,204</span>
+<span class="text-xs text-on-surface-variant font-medium">Last 30d</span>
+</div>
+</div>
+<div class="bg-surface-card p-6 border border-outline-variant flex flex-col justify-between h-32">
+<span class="font-label-caps text-label-caps text-on-surface-variant">PENDING REDEMPTIONS</span>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg text-error">18</span>
+<span class="text-xs text-error font-medium">Requires Action</span>
+</div>
+</div>
+<div class="bg-surface-card p-6 border border-outline-variant flex flex-col justify-between h-32">
+<span class="font-label-caps text-label-caps text-on-surface-variant">AVG. LOYALTY SCORE</span>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg text-primary">842</span>
+<span class="text-xs text-on-primary-container font-medium">Gold Tier</span>
+</div>
+</div>
+</section>
+<!-- Main Layout: Bento Grid Style -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Column: Pending Redemptions & Leaderboard -->
+<div class="lg:col-span-8 space-y-8">
+<!-- Pending Approvals Table -->
+<div class="bg-surface-card border border-outline-variant overflow-hidden">
+<div class="p-6 border-b border-outline-variant flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md">Pending Redemptions</h3>
+<button class="font-label-caps text-label-caps px-4 py-2 border border-primary hover:bg-primary hover:text-on-primary transition-all">APPROVE ALL</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low">
+<tr>
+<th class="p-4 font-label-caps text-label-caps text-on-surface-variant">Customer</th>
+<th class="p-4 font-label-caps text-label-caps text-on-surface-variant">Type</th>
+<th class="p-4 font-label-caps text-label-caps text-on-surface-variant">Points/Value</th>
+<th class="p-4 font-label-caps text-label-caps text-on-surface-variant">Requested</th>
+<th class="p-4 font-label-caps text-label-caps text-on-surface-variant text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container transition-colors">
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-primary-fixed flex items-center justify-center rounded-full text-xs font-bold">EM</div>
+<div>
+<div class="font-medium">Elena Moretti</div>
+<div class="text-xs text-on-surface-variant">ID: #4920</div>
+</div>
+</div>
+</td>
+<td class="p-4"><span class="bg-secondary-container text-secondary text-[10px] px-2 py-0.5 rounded-full uppercase tracking-tighter">Store Credit</span></td>
+<td class="p-4 font-medium text-primary">$50.00</td>
+<td class="p-4 text-on-surface-variant text-sm">2h ago</td>
+<td class="p-4 text-right space-x-2">
+<button class="material-symbols-outlined text-status-sale hover:scale-110 transition-transform" data-icon="check_circle">check_circle</button>
+<button class="material-symbols-outlined text-error hover:scale-110 transition-transform" data-icon="cancel">cancel</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container transition-colors">
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-tertiary-fixed flex items-center justify-center rounded-full text-xs font-bold">JB</div>
+<div>
+<div class="font-medium">Julian Black</div>
+<div class="text-xs text-on-surface-variant">ID: #8812</div>
+</div>
+</div>
+</td>
+<td class="p-4"><span class="bg-primary-fixed text-primary text-[10px] px-2 py-0.5 rounded-full uppercase tracking-tighter">Product: Sage Elixir</span></td>
+<td class="p-4 font-medium text-primary">5,000 pts</td>
+<td class="p-4 text-on-surface-variant text-sm">5h ago</td>
+<td class="p-4 text-right space-x-2">
+<button class="material-symbols-outlined text-status-sale hover:scale-110 transition-transform" data-icon="check_circle">check_circle</button>
+<button class="material-symbols-outlined text-error hover:scale-110 transition-transform" data-icon="cancel">cancel</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Top Referrers Leaderboard -->
+<div class="bg-surface-card border border-outline-variant p-8">
+<div class="flex justify-between items-end mb-8">
+<div>
+<h3 class="font-headline-md text-headline-md mb-2">Referrer Leaderboard</h3>
+<p class="text-on-surface-variant text-sm italic">Honoring our most dedicated botanical advocates.</p>
+</div>
+<select class="bg-transparent border-none font-label-caps text-label-caps focus:ring-0 text-primary cursor-pointer">
+<option>THIS QUARTER</option>
+<option>LAST 30 DAYS</option>
+<option>ALL TIME</option>
+</select>
+</div>
+<div class="grid grid-cols-1 gap-4">
+<!-- Rank 1 -->
+<div class="flex items-center p-4 bg-background border-l-4 border-brand-green group hover:translate-x-1 transition-all duration-300">
+<span class="w-10 font-headline-md text-headline-md opacity-20">01</span>
+<img alt="Referrer profile photo" class="w-12 h-12 rounded-full object-cover mr-4 grayscale hover:grayscale-0 transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCp0TI9vze3wqw0OAPbs0PH9_CrzQhYsuXALUT5eQigR28QzyPBEP0CRi--s87-biMgmGqE1QlZWB92KbgErKZK5KibMg-g4MHYVJAy7_4nO50nrvKiGMZNRQwBOcC52_L6o5BfO5AfvcvYPWwl3X4Qf4wT84CAv8FU-wvV1-RjU1pLJ1CVNFAF7g65bjBzdO7OdW7UNAmX2iMcaJtK-hwJjTFGw8m-hhVwqHvlCPI-N8GWr1cWc7C8_jY7z9Spys3wnAiOZKjoWl46"/>
+<div class="flex-1">
+<h4 class="font-semibold text-primary">Clara Windfield</h4>
+<span class="text-xs text-on-surface-variant">Level 5 Influencer</span>
+</div>
+<div class="text-right">
+<div class="font-headline-md text-headline-md">48</div>
+<div class="font-label-caps text-[9px] text-on-surface-variant">SUCCESSFUL REFERRALS</div>
+</div>
+<div class="ml-8 text-right min-w-[80px]">
+<div class="text-primary font-medium">$2,400</div>
+<div class="font-label-caps text-[9px] text-on-surface-variant">EARNED</div>
+</div>
+</div>
+<!-- Rank 2 -->
+<div class="flex items-center p-4 bg-surface-container-lowest border-l-4 border-outline-variant group hover:translate-x-1 transition-all duration-300">
+<span class="w-10 font-headline-md text-headline-md opacity-20">02</span>
+<img alt="Referrer profile photo" class="w-12 h-12 rounded-full object-cover mr-4 grayscale hover:grayscale-0 transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOSnYpNHmH3zHo7tNju8UIHhDGQNfkU049JYTrpUjcmZmH7jVGpAHq-vsgl4de1IuJkdcL8BpXtVD0uSRNKcBrsk-mfstZStAmhtBIVQjmr8Y89nf1Dz2zLx02dD8I_2RbdovTUqOFppHkLtiOUZavuJx9PRyR3PV1RfdKU0Up1pNoVcZ3V6qfz5H_0HQqSIqFp37MGNi37kbUtSv-lJpRX253zaUM6423HsRG8_dGS-6I_bTxVsEGoJ27aOFoMxCjLPLyAnbsG_tR"/>
+<div class="flex-1">
+<h4 class="font-semibold text-primary">Thomas Helder</h4>
+<span class="text-xs text-on-surface-variant">Botanical Enthusiast</span>
+</div>
+<div class="text-right">
+<div class="font-headline-md text-headline-md">31</div>
+<div class="font-label-caps text-[9px] text-on-surface-variant">SUCCESSFUL REFERRALS</div>
+</div>
+<div class="ml-8 text-right min-w-[80px]">
+<div class="text-primary font-medium">$1,550</div>
+<div class="font-label-caps text-[9px] text-on-surface-variant">EARNED</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Settings & Config -->
+<div class="lg:col-span-4 space-y-8">
+<!-- Program Controls -->
+<div class="bg-brand-green text-on-primary p-8 space-y-8">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-primary-fixed mb-1">Program Controls</h3>
+<p class="font-label-caps text-[10px] text-on-primary opacity-60">GLOBAL REWARD LOGIC</p>
+</div>
+<!-- Point Multiplier -->
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<label class="font-label-caps text-label-caps">LOYALTY POINT MULTIPLIER</label>
+<span class="text-xl font-headline-md" id="multiplierValue">2.5x</span>
+</div>
+<input class="w-full accent-on-primary opacity-50 hover:opacity-100 transition-opacity" max="5" min="1" oninput="document.getElementById('multiplierValue').innerText = this.value + 'x'" step="0.5" type="range" value="2.5"/>
+<p class="text-[11px] opacity-60 italic">Applies to all purchases for Diamond and Gold members.</p>
+</div>
+<!-- Bonus Threshold -->
+<div class="space-y-4">
+<label class="font-label-caps text-label-caps block">REFERRAL BONUS THRESHOLD</label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 font-medium">$</span>
+<input class="w-full bg-on-primary-container/20 border-none pl-8 pr-4 py-3 focus:ring-1 focus:ring-on-primary text-on-primary" type="number" value="100"/>
+</div>
+<p class="text-[11px] opacity-60">Minimum purchase value required for referrer payout.</p>
+</div>
+<!-- Tier Config Buttons -->
+<div class="pt-4 grid grid-cols-2 gap-4">
+<button class="bg-on-primary text-brand-green py-3 font-label-caps text-[10px] hover:bg-primary-fixed transition-colors">SAVE CHANGES</button>
+<button class="border border-on-primary/30 text-on-primary py-3 font-label-caps text-[10px] hover:bg-on-primary/10 transition-colors">RESET DEFAULTS</button>
+</div>
+</div>
+<!-- Visual Campaign Card -->
+<div class="relative h-[400px] bg-primary group overflow-hidden">
+<img class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" data-alt="A moody, high-contrast close-up of dark green botanical leaves with soft, dramatic lighting creating deep shadows and luminous highlights. The aesthetic is organic, luxurious, and mysterious, mirroring the premium botanical apothecary brand. Thin veins of the leaves are visible, emphasizing the tactile quality of the design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCT1MHlWOGhXacK9nlfTB266TYI_RdvX069peKLf0JbQMZJpmF3H9qTeVF3rA6Fi2US96LuL0IaGEwDxg7RXug1mtPHG8S9TdLW2TjS0MPfZVUkmcVYKK_s2ztISLA7T-BO874aQy3JGIafBVPD8O7l6TPue8F3CWfuOBzePga-x7m68JyZWN0m-qYkbvuUVw6AqnhKE6ReDzAMwCtCwgcQe6yYpyjPsyz_WT0jaEDf62A89Ae9NoYmbwzg8TlrOecbInX13u0X63jJ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent"></div>
+<div class="absolute bottom-0 p-8 w-full">
+<span class="bg-white/10 backdrop-blur-md border border-white/20 text-white px-3 py-1 text-[9px] font-label-caps tracking-widest">ACTIVE CAMPAIGN</span>
+<h2 class="font-headline-lg text-headline-lg text-white mt-4 leading-tight">Harvest Moon <br/>Referral Event</h2>
+<p class="text-white/70 text-sm mt-4 font-light leading-relaxed">Refer 3 friends this week and unlock the exclusive Midnight Jasmine tincture for all participants.</p>
+<button class="mt-8 flex items-center gap-2 text-white font-label-caps text-[11px] border-b border-white/40 pb-1 hover:border-white transition-all">
+                                MANAGE CAMPAIGN 
+                                <span class="material-symbols-outlined text-sm" data-icon="arrow_right_alt">arrow_right_alt</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer / Branding Accent -->
+<footer class="p-container-margin mt-12 pb-12 border-t border-outline-variant flex flex-col md:flex-row justify-between items-center opacity-40">
+<div class="font-label-caps text-label-caps">© 2024 BOTANICAL APOTHECARY ADMIN</div>
+<div class="flex gap-8 mt-4 md:mt-0">
+<span class="font-label-caps text-[9px] cursor-pointer hover:opacity-100 transition-opacity">AUDIT LOGS</span>
+<span class="font-label-caps text-[9px] cursor-pointer hover:opacity-100 transition-opacity">COMPLIANCE</span>
+<span class="font-label-caps text-[9px] cursor-pointer hover:opacity-100 transition-opacity">EXPORT DATA</span>
+</div>
+</footer>
+</main>
+<script>
+        // Micro-interactions and UI Logic
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const icon = this.querySelector('.material-symbols-outlined');
+                if (icon) {
+                    this.classList.add('scale-90');
+                    setTimeout(() => this.classList.remove('scale-90'), 150);
+                }
+            });
+        });
+
+        // Simulating approval flow
+        const approvalButtons = document.querySelectorAll('.text-status-sale');
+        approvalButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const row = this.closest('tr');
+                row.style.opacity = '0.5';
+                row.style.pointerEvents = 'none';
+                setTimeout(() => {
+                    row.remove();
+                }, 1000);
+            });
+        });
+    </script>
+</body></html>

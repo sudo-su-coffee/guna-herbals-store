@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Wishlist | Nature's Alchemist</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface-variant": "#424846",
+                    "text-muted": "rgba(15, 31, 28, 0.6)",
+                    "on-secondary": "#ffffff",
+                    "secondary": "#5f5e59",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-container": "#65645f",
+                    "on-secondary-fixed": "#1c1c18",
+                    "status-sale": "#0f1f1c",
+                    "on-primary": "#ffffff",
+                    "background": "#fbf9f8",
+                    "surface-container-low": "#f5f3f2",
+                    "inverse-primary": "#b8cac5",
+                    "tertiary-fixed-dim": "#c1c8c3",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#c9c6c0",
+                    "primary-fixed": "#d4e6e1",
+                    "on-surface": "#1b1c1b",
+                    "on-error": "#ffffff",
+                    "tertiary": "#000201",
+                    "outline": "#727876",
+                    "tertiary-container": "#171e1b",
+                    "surface-variant": "#e4e2e1",
+                    "surface-tint": "#51625e",
+                    "secondary-container": "#e5e2db",
+                    "inverse-on-surface": "#f2f0ef",
+                    "on-tertiary-container": "#7f8682",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed": "#0e1e1b",
+                    "on-secondary-fixed-variant": "#474742",
+                    "secondary-fixed": "#e5e2db",
+                    "outline-variant": "#c2c8c5",
+                    "primary-container": "#0f1f1c",
+                    "on-primary-fixed-variant": "#3a4a46",
+                    "border-subtle": "rgba(255, 255, 255, 0.1)",
+                    "on-error-container": "#93000a",
+                    "brand-green": "#1a2e29",
+                    "surface": "#fbf9f8",
+                    "surface-container-high": "#eae8e6",
+                    "error-container": "#ffdad6",
+                    "on-primary-container": "#778884",
+                    "on-background": "#1b1c1b",
+                    "inverse-surface": "#303030",
+                    "tertiary-fixed": "#dde4df",
+                    "surface-container-highest": "#e4e2e1",
+                    "primary": "#000101",
+                    "surface-bright": "#fbf9f8",
+                    "surface-card": "#ffffff",
+                    "surface-container": "#efedec",
+                    "on-tertiary-fixed-variant": "#414845",
+                    "surface-dim": "#dbdad8",
+                    "primary-fixed-dim": "#b8cac5",
+                    "on-tertiary-fixed": "#161d1a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "grid-gutter": "1rem",
+                    "element-gap": "0.5rem",
+                    "container-margin": "1.5rem",
+                    "section-gap-sm": "2.5rem",
+                    "section-gap-lg": "5rem"
+            },
+            "fontFamily": {
+                    "headline-md": ["Playfair Display"],
+                    "body-md": ["Noto Sans"],
+                    "price-tag": ["Noto Sans"],
+                    "headline-lg": ["Playfair Display"],
+                    "label-caps": ["Noto Sans"],
+                    "display-lg": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                    "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                    "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            background-color: #fbf9f8;
+            color: #1b1c1b;
+        }
+        .wishlist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .product-card:hover .add-to-bag-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container z-50 flex justify-between items-center px-container-margin py-4 w-full">
+<div class="flex items-center gap-8">
+<h1 class="font-headline-md text-headline-md text-on-primary dark:text-on-primary-container uppercase tracking-widest">Nature's Alchemist</h1>
+<nav class="hidden md:flex gap-6">
+<a class="font-body-md text-body-md text-on-primary-container/80 dark:text-on-primary-container/70 hover:text-on-primary transition-colors duration-300" href="#">Shop All</a>
+<a class="font-body-md text-body-md text-on-primary-container/80 dark:text-on-primary-container/70 hover:text-on-primary transition-colors duration-300" href="#">Rituals</a>
+<a class="font-body-md text-body-md text-on-primary-container/80 dark:text-on-primary-container/70 hover:text-on-primary transition-colors duration-300" href="#">Heritage</a>
+<a class="font-body-md text-body-md text-on-primary-container/80 dark:text-on-primary-container/70 hover:text-on-primary transition-colors duration-300" href="#">Sourcing</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-primary transition-all active:opacity-80">person</button>
+<button class="material-symbols-outlined text-on-primary transition-all active:opacity-80">shopping_cart</button>
+</div>
+</header>
+<main class="pt-32 pb-section-gap-lg max-w-7xl mx-auto px-container-margin">
+<!-- Hero Title Section -->
+<div class="text-center mb-16 space-y-4">
+<span class="font-label-caps text-label-caps text-secondary tracking-[0.3em] uppercase">Your Curated Collection</span>
+<h2 class="font-display-lg text-display-lg text-primary">The Wishlist</h2>
+<p class="text-on-surface-variant max-w-lg mx-auto italic font-serif">A sanctuary for your most desired botanical preparations and alchemical rituals.</p>
+</div>
+<!-- Wishlist Grid -->
+<div class="wishlist-grid">
+<!-- Product Item 1 -->
+<div class="product-card group relative flex flex-col">
+<div class="aspect-[4/5] relative overflow-hidden bg-surface-container-low">
+<img alt="Botanical Serum" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A premium glass apothecary dropper bottle containing a golden botanical serum, set against a soft cream-colored linen background. The lighting is ethereal and soft, casting gentle shadows that emphasize the minimalist-tactile aesthetic of the brand. Natural dried herbs are artfully scattered around the base, reinforcing the organic, heritage-focused wellness identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTEJqRo6Q-VBi7cZi2j2CH3N0dmwMIVob83FDx_PXDKtVGfpz8bnMYzZoH8evaoArGp8ZxLSzPcCU_HNQ-9wIOjWKR8q8uY7aKvLBkHW4ct4bFWUVh5E0GpStUW28m4qDKIX1XIHOocdvVI85U9CtpciwnO9z-RuNXRxyZWeicxtq3WXlv14HniiVSYGL1h6TJeo7ktJ3BY90chUM9jSRWXRbOYECIGLwVCJmLsfJgxDuyD9idmUSgIXEvbPNuIA5URjtz0ndVjuP5"/>
+<button class="absolute top-4 right-4 bg-white/80 p-2 rounded-full hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">close</span>
+</button>
+<div class="add-to-bag-overlay absolute bottom-0 left-0 w-full p-4 opacity-0 transform translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+<button class="w-full bg-primary text-on-primary font-label-caps text-label-caps py-4 tracking-widest uppercase hover:bg-brand-green transition-colors">Add to Bag</button>
+</div>
+</div>
+<div class="pt-6 space-y-1">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-headline-md text-primary">Midnight Jasmine Elixir</h3>
+<span class="font-price-tag text-price-tag text-on-surface-variant">$82.00</span>
+</div>
+<p class="font-label-caps text-label-caps text-on-tertiary-container tracking-widest uppercase">Skin Rituals</p>
+</div>
+</div>
+<!-- Product Item 2 -->
+<div class="product-card group relative flex flex-col">
+<div class="aspect-[4/5] relative overflow-hidden bg-surface-container-low">
+<img alt="Herbal Tea Blend" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A dark amber apothecary jar filled with loose-leaf organic tea, including visible chamomile flowers and dried lavender. The scene is photographed in a high-key light mode setting with a pristine cream-toned backdrop. The mood is calm and restorative, highlighting the tactile quality of the botanical ingredients and the premium minimalism of the packaging." src="https://lh3.googleusercontent.com/aida-public/AB6AXuChh4jS4hcTkX-RBCNReq7GIudpTTr1ATOZbSbhTtdbI4C5tBpYtPXLrREnJ79Iwj8q-XErM0VfvDJPNUBWAph-A4Jl_Jpe-2Y-WQtXcRTjP9jWg0JZOnxhjatfXlq0xS9fq9D_Le--_Yf4u06eZ9Yebdzm6i_SvXcF37gXn2Pai1qgQ8ehLMG2OPWcJyuVNlgGtQcbXdOSdWMSO-Ig7LnLHstqWeeAc5gU5Ni7dHFFOkUU866bV6plifKh-O4bQedP1tdHMw_brEr0"/>
+<button class="absolute top-4 right-4 bg-white/80 p-2 rounded-full hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">close</span>
+</button>
+<div class="add-to-bag-overlay absolute bottom-0 left-0 w-full p-4 opacity-0 transform translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+<button class="w-full bg-primary text-on-primary font-label-caps text-label-caps py-4 tracking-widest uppercase hover:bg-brand-green transition-colors">Add to Bag</button>
+</div>
+</div>
+<div class="pt-6 space-y-1">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-headline-md text-primary">Nirvana Sleep Blend</h3>
+<span class="font-price-tag text-price-tag text-on-surface-variant">$34.00</span>
+</div>
+<p class="font-label-caps text-label-caps text-on-tertiary-container tracking-widest uppercase">Internal Apothecary</p>
+</div>
+</div>
+<!-- Product Item 3 -->
+<div class="product-card group relative flex flex-col">
+<div class="aspect-[4/5] relative overflow-hidden bg-surface-container-low">
+<div class="absolute top-4 left-4 bg-primary text-white px-3 py-1 font-label-caps text-[9px] uppercase z-10 tracking-widest">Limited</div>
+<img alt="Scented Candle" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A minimalist white ceramic candle vessel resting on a rustic wooden plinth. The environment is a sun-drenched, cream-colored studio with soft shadows from a nearby plant. The overall aesthetic is clean, sophisticated, and earthy, evoking the feeling of a high-end botanical boutique where purity and heritage are at the forefront." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJLYjHnNqo-WN6QNXFSbgduYxdiI2looU8fdj47ojx9cOWRHaAsbtfsCragZvZoGLDIpNBw9p45DQqxEXcPC5QQfxYNFeK_jXeBVAN03axjqcy053Ks-hpevpVPSeMK45KRpZb1N19A5A_SWZ1V7fCAczgZOUB8L0u9CkujP61KlYnCwoXItXafpJ-TzYckG9sN9VZMs_EK3bCDJ6o9cSZprXjiP2pLupUktqBraxpAqFZmYs_3Gjv3smYQeDF_74Yvqk4I0DEYI9W"/>
+<button class="absolute top-4 right-4 bg-white/80 p-2 rounded-full hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">close</span>
+</button>
+<div class="add-to-bag-overlay absolute bottom-0 left-0 w-full p-4 opacity-0 transform translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+<button class="w-full bg-primary text-on-primary font-label-caps text-label-caps py-4 tracking-widest uppercase hover:bg-brand-green transition-colors">Add to Bag</button>
+</div>
+</div>
+<div class="pt-6 space-y-1">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-headline-md text-primary">Cedar &amp; Moss Ember</h3>
+<span class="font-price-tag text-price-tag text-on-surface-variant">$56.00</span>
+</div>
+<p class="font-label-caps text-label-caps text-on-tertiary-container tracking-widest uppercase">Home Fragrance</p>
+</div>
+</div>
+<!-- Product Item 4 -->
+<div class="product-card group relative flex flex-col">
+<div class="aspect-[4/5] relative overflow-hidden bg-surface-container-low">
+<img alt="Facial Mist" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A translucent glass spray bottle of rose-infused facial mist, droplets of moisture clinging to the glass. The background is a soft, warm cream tone, characteristic of the modern apothecary brand style. The lighting is bright and high-key, creating an atmosphere of freshness and luxury. The composition is clean, centered, and highlights the artisanal nature of the product." src="https://lh3.googleusercontent.com/aida-public/AB6AXuApX6OOx9UTn9IZB4y5cvpheoUFIhgtTOmZHlrio0IBM9-MsJFz3eWjidag0rnI14NAbRAgqg-yCnOebGtg4xWIY5JAlQED9GcUfUIbL4bBhyHc25kXtipfMUVQPBA-XnzWz_GwVOb5kvB8fAWqndCndXacJMH1ycHDhj0Ghr4KuOCugjYRt09wpwkNXPvp2VsP4LCP91z4BvqF99fwXw5dIOFp45H5BbqC4h5dG4YQG1W2pon6PhLjmKrzdy7JP5j0MZREoIo92NFn"/>
+<button class="absolute top-4 right-4 bg-white/80 p-2 rounded-full hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">close</span>
+</button>
+<div class="add-to-bag-overlay absolute bottom-0 left-0 w-full p-4 opacity-0 transform translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+<button class="w-full bg-primary text-on-primary font-label-caps text-label-caps py-4 tracking-widest uppercase hover:bg-brand-green transition-colors">Add to Bag</button>
+</div>
+</div>
+<div class="pt-6 space-y-1">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-headline-md text-primary">Rose Dew Hydrator</h3>
+<span class="font-price-tag text-price-tag text-on-surface-variant">$48.00</span>
+</div>
+<p class="font-label-caps text-label-caps text-on-tertiary-container tracking-widest uppercase">Skin Rituals</p>
+</div>
+</div>
+</div>
+<!-- Empty State Logic (Hidden by default) -->
+<div class="hidden flex flex-col items-center justify-center py-24 text-center" id="empty-state">
+<span class="material-symbols-outlined text-surface-variant text-6xl mb-6">eco</span>
+<h3 class="font-headline-lg text-headline-lg text-primary mb-2">Your collection is empty</h3>
+<p class="text-on-surface-variant mb-8">Begin your journey by exploring our botanical remedies.</p>
+<button class="bg-primary text-on-primary font-label-caps text-label-caps px-10 py-5 tracking-widest uppercase hover:bg-brand-green transition-all">Shop All Products</button>
+</div>
+<!-- Recommended Section -->
+<section class="mt-section-gap-lg pt-section-gap-sm border-t border-outline-variant/30">
+<h4 class="font-headline-md text-headline-md text-primary mb-8">You May Also Seek</h4>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-grid-gutter">
+<!-- Rec 1 -->
+<a class="group block" href="#">
+<div class="aspect-square bg-surface-container-low mb-4 overflow-hidden">
+<img alt="Botanical Soap" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Hand-cut artisanal soap bars with visible flecks of dried herbs, resting on a textured stone tray. The lighting is soft and side-lit, highlighting the tactile, organic texture. The palette is dominated by warm creams and soft earthy greens, fitting the high-end apothecary lifestyle aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2upVTpudTNfLC_pe_sid_m1cpOdn0ncNm2dDmIV1PNXIkpgR7MtBF0xQ2KXTPY7elpsgUxbVR_uD2U30ecvWx8r_qMG0g3n_89_bvDg6hBGNy5MOH8eICgTGtl93ikONfbfrrWQZ9OpDIOfVcwtDhV9qtOPPShVqownHJGcXP7j_gG-WC0S5isMMk998C9_XFSVrSAjsqkKF7JjgO1g86IQJ9E0QDDndjsfTnekettnJBC-h8skt3zTaa1Ho-Y4hjFudH7QCBN7xL"/>
+</div>
+<p class="font-label-caps text-label-caps text-primary tracking-widest uppercase">Sage &amp; Salt Bar</p>
+<p class="font-price-tag text-price-tag text-on-surface-variant">$18.00</p>
+</a>
+<!-- Rec 2 -->
+<a class="group block" href="#">
+<div class="aspect-square bg-surface-container-low mb-4 overflow-hidden">
+<img alt="Body Oil" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A sleek dark-toned glass bottle of premium body oil placed on a bed of fresh eucalyptus leaves. The high-contrast but soft lighting creates a sense of luxury and wellness. The aesthetic is modern and minimalist with a focus on natural purity and botanical heritage." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBK2hFCdz-3FbkBc6z2KORJ1CpZs9OOhCsC3e9F9_M7eOgK0ACMatP8TssSZ7tnQsYtd6WccdSaLuUbI5OcLhWt52CBj4BKRISDo3zP3OKIENGRI1qeDX0q9yg-1GYIdSxYX2mYBKTIG3_-fMW8I_NLWO6JUxRd3K2nOgpnCIuLg8j6qNP9Gv7f47JDsoEzoorl4FH0Gw9GE_wkC-5yw_W1PyFYPhACkui7pOmqmVnYj5L5CMezFzP2f-6rMGhkCGR3gwVOZ0p4NUAz"/>
+</div>
+<p class="font-label-caps text-label-caps text-primary tracking-widest uppercase">Solstice Body Oil</p>
+<p class="font-price-tag text-price-tag text-on-surface-variant">$65.00</p>
+</a>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-highest dark:bg-tertiary-container text-on-surface dark:text-on-tertiary-container w-full py-section-gap-sm border-t border-outline-variant">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-grid-gutter px-container-margin max-w-7xl mx-auto">
+<div class="space-y-6">
+<h2 class="font-headline-lg text-headline-lg text-primary dark:text-tertiary-fixed">Nature's Alchemist</h2>
+<p class="font-body-md text-body-md max-w-xs text-on-surface-variant">Bridging the wisdom of ancient herbalism with modern clinical efficacy for your daily ritual.</p>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<ul class="space-y-2">
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary dark:hover:text-tertiary-fixed transition-opacity duration-200" href="#">Our Story</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary dark:hover:text-tertiary-fixed transition-opacity duration-200" href="#">Sourcing Ethics</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary dark:hover:text-tertiary-fixed transition-opacity duration-200" href="#">Sustainability</a></li>
+</ul>
+<ul class="space-y-2">
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary dark:hover:text-tertiary-fixed transition-opacity duration-200" href="#">Contact</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary dark:hover:text-tertiary-fixed transition-opacity duration-200" href="#">Wholesale</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary dark:hover:text-tertiary-fixed transition-opacity duration-200" href="#">Returns</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<p class="font-label-caps text-label-caps tracking-widest uppercase">The Botanical Digest</p>
+<form class="flex border-b border-primary py-2">
+<input class="bg-transparent border-none focus:ring-0 w-full placeholder:text-on-surface-variant/40 placeholder:font-label-caps placeholder:uppercase" placeholder="email address" type="email"/>
+<button class="material-symbols-outlined">arrow_forward</button>
+</form>
+<div class="pt-8">
+<p class="text-[10px] text-on-surface-variant opacity-70">© 2024 Nature's Alchemist. Ethical Sourcing &amp; Botanical Integrity.</p>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Simple micro-interaction for removing items
+        document.querySelectorAll('.product-card button').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                if (this.querySelector('.material-symbols-outlined').textContent === 'close') {
+                    const card = this.closest('.product-card');
+                    card.style.opacity = '0';
+                    card.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        card.remove();
+                        const grid = document.querySelector('.wishlist-grid');
+                        if (grid.children.length === 0) {
+                            grid.classList.add('hidden');
+                            document.getElementById('empty-state').classList.remove('hidden');
+                        }
+                    }, 300);
+                }
+            });
+        });
+    </script>
+</body></html>

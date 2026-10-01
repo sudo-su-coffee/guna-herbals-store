@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#5f5e59",
+                        "tertiary-fixed": "#dde4df",
+                        "error-container": "#ffdad6",
+                        "on-secondary-container": "#65645f",
+                        "surface-variant": "#e4e2e1",
+                        "on-surface-variant": "#424846",
+                        "on-tertiary-container": "#7f8682",
+                        "text-muted": "rgba(15, 31, 28, 0.6)",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#474742",
+                        "border-subtle": "rgba(255, 255, 255, 0.1)",
+                        "surface-dim": "#dbdad8",
+                        "inverse-primary": "#b8cac5",
+                        "secondary-fixed-dim": "#c9c6c0",
+                        "tertiary": "#000201",
+                        "primary-fixed": "#d4e6e1",
+                        "outline": "#727876",
+                        "primary": "#000101",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#1b1c1b",
+                        "error": "#ba1a1a",
+                        "primary-container": "#0f1f1c",
+                        "on-surface": "#1b1c1b",
+                        "surface-container": "#efedec",
+                        "on-primary-fixed-variant": "#3a4a46",
+                        "on-error-container": "#93000a",
+                        "surface": "#fbf9f8",
+                        "on-tertiary-fixed-variant": "#414845",
+                        "surface-card": "#ffffff",
+                        "surface-container-low": "#f5f3f2",
+                        "inverse-surface": "#303030",
+                        "on-primary-container": "#778884",
+                        "surface-bright": "#fbf9f8",
+                        "background": "#fbf9f8",
+                        "primary-fixed-dim": "#b8cac5",
+                        "secondary-fixed": "#e5e2db",
+                        "brand-green": "#1a2e29",
+                        "tertiary-fixed-dim": "#c1c8c3",
+                        "on-tertiary-fixed": "#161d1a",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#0e1e1b",
+                        "surface-container-high": "#eae8e6",
+                        "surface-container-highest": "#e4e2e1",
+                        "inverse-on-surface": "#f2f0ef",
+                        "tertiary-container": "#171e1b",
+                        "status-sale": "#0f1f1c",
+                        "secondary-container": "#e5e2db",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#51625e",
+                        "outline-variant": "#c2c8c5",
+                        "on-secondary-fixed": "#1c1c18"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "container-margin": "1.5rem",
+                        "section-gap-sm": "2.5rem",
+                        "section-gap-lg": "5rem",
+                        "grid-gutter": "1rem",
+                        "element-gap": "0.5rem"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "body-md": ["Noto Sans"],
+                        "label-caps": ["Noto Sans"],
+                        "price-tag": ["Noto Sans"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                        "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .hero-gradient {
+            background: linear-gradient(to bottom, rgba(26, 46, 41, 0.4), rgba(26, 46, 41, 0.7));
+        }
+        .product-card-hover:hover .add-to-cart-btn {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-brand-green border-b border-border-subtle">
+<div class="flex justify-between items-center px-container-margin py-6 max-w-full mx-auto">
+<div class="flex items-center gap-10">
+<span class="font-headline-md text-headline-md text-on-primary tracking-tight">Nature's Alchemist</span>
+<div class="hidden md:flex gap-8">
+<a class="font-body-md text-body-md text-on-primary border-b border-on-primary pb-1 cursor-pointer transition-opacity duration-200" href="#">Shop All</a>
+<a class="font-body-md text-body-md text-on-primary-container opacity-80 hover:opacity-100 hover:text-on-primary transition-all duration-300 cursor-pointer" href="#">The Apothecary</a>
+<a class="font-body-md text-body-md text-on-primary-container opacity-80 hover:opacity-100 hover:text-on-primary transition-all duration-300 cursor-pointer" href="#">The Source</a>
+<a class="font-body-md text-body-md text-on-primary-container opacity-80 hover:opacity-100 hover:text-on-primary transition-all duration-300 cursor-pointer" href="#">Herbal Remedies</a>
+<a class="font-body-md text-body-md text-on-primary-container opacity-80 hover:opacity-100 hover:text-on-primary transition-all duration-300 cursor-pointer" href="#">Rituals</a>
+</div>
+</div>
+<div class="flex items-center gap-6 text-on-primary">
+<span class="material-symbols-outlined cursor-pointer hover:opacity-70">search</span>
+<span class="material-symbols-outlined cursor-pointer hover:opacity-70">person</span>
+<span class="material-symbols-outlined cursor-pointer hover:opacity-70">shopping_bag</span>
+</div>
+</div>
+</nav>
+<main class="pt-[88px]">
+<!-- Hero Section -->
+<section class="relative h-[921px] flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700" data-alt="A lush, cinematic close-up of dark green botanical leaves with soft morning dew, creating an immersive apothecary atmosphere. The lighting is moody and low-key with a sophisticated brand-green tint. The overall visual style is premium and minimalist, evoking a sense of ancient herbal wisdom meets modern luxury." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBl1joe5YJvD_CAxkeQ6oSrEC9VpTjpMYALI6e-oCtUo8lGWO3_nMwtWJbQw4aEfdqPaEhVPBzbklPWqUkBn5XQHdYDFf8Rb4L0nnD6HxivT5fBgMCVDA1s1r9Ab6nz-MU6HRx0RckT5RgJUm6B5AFi7wGT8PuvIBtGSERZwNjYDYnIVxNnUjZWhk2WzYfsK74H1S3D-KRzGqPSgpes392YUOBxY4onQ2DT16sXp2PGoCMpHuP6NUi2u6DgbvWzm2czCeeJRiIB9nkE')">
+<div class="absolute inset-0 hero-gradient"></div>
+</div>
+<div class="relative z-10 text-center px-container-margin max-w-4xl">
+<h1 class="font-display-lg text-display-lg text-on-primary mb-6">Nature's Alchemist</h1>
+<p class="font-headline-md text-headline-md text-on-primary opacity-90 mb-10 italic">Ancient wisdom distilled for the modern ritual.</p>
+<div class="flex flex-col md:flex-row gap-4 justify-center items-center">
+<button class="bg-on-primary text-brand-green px-10 py-4 font-label-caps text-label-caps tracking-widest hover:bg-surface-container-highest transition-colors">SHOP NOW</button>
+<button class="border border-on-primary text-on-primary px-10 py-4 font-label-caps text-label-caps tracking-widest hover:bg-on-primary hover:text-brand-green transition-colors">BULK ORDERS</button>
+</div>
+</div>
+</section>
+<!-- Value Propositions -->
+<section class="bg-surface-container-low py-12">
+<div class="max-w-7xl mx-auto px-container-margin grid grid-cols-2 md:grid-cols-4 gap-8">
+<div class="flex flex-col items-center text-center gap-3">
+<div class="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-brand-green">potted_plant</span>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface">MADE IN SUNKANI</span>
+</div>
+<div class="flex flex-col items-center text-center gap-3">
+<div class="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-brand-green">eco</span>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface">100% NATURAL</span>
+</div>
+<div class="flex flex-col items-center text-center gap-3">
+<div class="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-brand-green">local_shipping</span>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface">PAN INDIA SHIPPING</span>
+</div>
+<div class="flex flex-col items-center text-center gap-3">
+<div class="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-brand-green">payments</span>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface">CASH ON DELIVERY</span>
+</div>
+</div>
+</section>
+<!-- Best Sellers -->
+<section class="py-section-gap-lg max-w-7xl mx-auto px-container-margin">
+<div class="flex justify-between items-end mb-12">
+<div>
+<span class="font-label-caps text-label-caps text-secondary block mb-2">CURATED SELECTION</span>
+<h2 class="font-headline-lg text-headline-lg">The Best Sellers</h2>
+</div>
+<a class="font-label-caps text-label-caps text-brand-green border-b border-brand-green pb-1" href="#">VIEW ALL PRODUCTS</a>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-grid-gutter">
+<!-- Product Card 1 -->
+<div class="product-card-hover group cursor-pointer">
+<div class="relative aspect-[4/5] bg-surface-container overflow-hidden mb-4">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A minimalist apothecary glass bottle containing a rich amber herbal elixir, placed on a clean cream-colored surface with soft daylight shadows. The aesthetic is clean, medical-grade yet artisanal, reflecting the high-end Nature's Alchemist brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwaGUIJQg5zyPnN-SvTBZsToncv1n0PNhv02SXEbS_IfS-Gvnl7vQ-_X7QJs8OHtJMc7J9BAvwvBuq9mi-ux_A7y9Nfpz1wApPmHyGf39PcVsGjhYXTK5A32nsjMti17xmlXL-mcjUImkEDRO6sX_CdaeX_28xmkd5JYTYftaHQPssrTpGxSLs4V-eDna7QTNBJRqQzxhHAUu_8xkER5yQY_tWh8ovncBSxBXKx9j4RsyM2ND7EjFbRgHyvoDhtwIuCCc919JvbwQT"/>
+<div class="absolute top-0 right-0 bg-brand-green text-on-primary px-3 py-1 font-label-caps text-label-caps">NEW</div>
+<button class="add-to-cart-btn absolute bottom-4 left-4 right-4 bg-brand-green text-on-primary py-3 font-label-caps text-label-caps opacity-0 translate-y-2 transition-all duration-300">ADD TO CART</button>
+</div>
+<h3 class="font-body-md text-body-md font-bold mb-1">Restorative Night Elixir</h3>
+<p class="font-price-tag text-price-tag text-secondary">₹1,249.00</p>
+</div>
+<!-- Product Card 2 -->
+<div class="product-card-hover group cursor-pointer">
+<div class="relative aspect-[4/5] bg-surface-container overflow-hidden mb-4">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Dry herbal tea blend with chamomile and lavender flowers spread artfully on a tactile linen surface. Warm, natural lighting highlights the organic textures and the muted botanical color palette of the Nature's Alchemist brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjhrpr1VSzJnpjysFDUe_9BCbIJ4A3jC-GtmUZPVPawp8ZFnGw51aFqdJpfoOp5rPpfWhD9wnCnWjiYJEFYFkclXcipIZ72Qu3G_xuSmQMS2mj-fHe3QstZeqk3vBK1pj-f5bqh0KtT5pMDPuPk820eWBCb8tA3dwcjUm5L8E2fJEa9L5X1FyH_9CwMAMRd3avccHzAylcQe0nSweMCMqaXRpFFgevc2YYoJxoU7UgTpWr22CcakifHTjqNAMZe0-QT2_x2nsrJrzq"/>
+<button class="add-to-cart-btn absolute bottom-4 left-4 right-4 bg-brand-green text-on-primary py-3 font-label-caps text-label-caps opacity-0 translate-y-2 transition-all duration-300">ADD TO CART</button>
+</div>
+<h3 class="font-body-md text-body-md font-bold mb-1">Deep Sleep Ritual Blend</h3>
+<p class="font-price-tag text-price-tag text-secondary">₹850.00</p>
+</div>
+<!-- Product Card 3 -->
+<div class="product-card-hover group cursor-pointer">
+<div class="relative aspect-[4/5] bg-surface-container overflow-hidden mb-4">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A dark glass jar of artisan-crafted herbal balm sitting on a block of raw volcanic stone. Minimalist, high-contrast lighting emphasizing the tactile quality and premium nature of the apothecary products." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAETu2_9FZFDiu1sUkvUrkoCzJgjs_EtnuFBjXjviFj3FlAcjV_8ThIml2-p18ooEDfU3pKm2v5_i2vyoqCyHjX9LQrPpwEN-03UwgYCa9WeZc44DEEKyrKojibLGBk1Q403yek3oKH4Vhva8hf2UjbLvpvm-ua5cha2C8BMebmA0qkBsdhNCTp39IyirdxpDAQFWmzH8nR6BwFh7Hb75GszdvTR3U-mb1NeBAx5SILGpfudNcFbEuacJIBRVDJJgI_0i86whlNzpF"/>
+<div class="absolute top-0 right-0 bg-brand-green text-on-primary px-3 py-1 font-label-caps text-label-caps">SALE</div>
+<button class="add-to-cart-btn absolute bottom-4 left-4 right-4 bg-brand-green text-on-primary py-3 font-label-caps text-label-caps opacity-0 translate-y-2 transition-all duration-300">ADD TO CART</button>
+</div>
+<h3 class="font-body-md text-body-md font-bold mb-1">Solar Infused Skin Salve</h3>
+<p class="font-price-tag text-price-tag text-secondary">₹999.00 <span class="line-through text-on-surface-variant ml-2">₹1,200.00</span></p>
+</div>
+<!-- Product Card 4 -->
+<div class="product-card-hover group cursor-pointer">
+<div class="relative aspect-[4/5] bg-surface-container overflow-hidden mb-4">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A collection of dropper bottles arranged in a geometric, architectural composition on a stone pedestal. The scene is illuminated by soft, diffused side-lighting that highlights the pristine glass and sophisticated label design of Nature's Alchemist." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5aXWj5RDiFEDz7oJZbJx-Zp0UBobKi1biJHm23dXvZLPr2SCl_b5z15ULpq2LF9-KWtzLqceopW880M55OrWkwzKxhQIXrxvWj0-WEbeYma3qtZI7rsb5Kn3t9Ku1u8yU-RM9YqcWFdxhiuo46Zaaj10zZD-B6fbhi83PBbnfdgXku-Be_XbTe_DYMMfvYjBNiLvHkQBwjtOGSkFSd4SrtH67tWtMmets_BDRhae09Vq2aX8o6esWGdEIUx4Fp9pUEbiunOc-4m49"/>
+<button class="add-to-cart-btn absolute bottom-4 left-4 right-4 bg-brand-green text-on-primary py-3 font-label-caps text-label-caps opacity-0 translate-y-2 transition-all duration-300">ADD TO CART</button>
+</div>
+<h3 class="font-body-md text-body-md font-bold mb-1">Focus &amp; Clarity Tincture</h3>
+<p class="font-price-tag text-price-tag text-secondary">₹1,500.00</p>
+</div>
+</div>
+</section>
+<!-- Brand Stories (Apothecary & Source) -->
+<section class="bg-surface-container-highest py-section-gap-lg overflow-hidden">
+<div class="max-w-7xl mx-auto px-container-margin grid md:grid-cols-2 gap-16 items-center">
+<div class="relative aspect-[3/4] md:aspect-square overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="An authentic, artisan herbalist studio filled with dried herbs hanging from wooden rafters, vintage apothecary jars, and worn wooden tables. The mood is warm, nostalgic, and deeply rooted in herbal heritage. The lighting is soft and golden, pouring in through a small window." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCysZBoNkLzBHRmdyLYldzEwr0uhQr6Q9b_dycWlDPThB5XpCPfcxmVmguAvsS86cOplKXNrIVq8VZeC_fCRxr518-5opmPz21yPFDFpzeTVXxOuQSO53YfTVKrQZRgyDgtRcp8lLw2B95w3dPFVwKgU1D_yzR92GsGxx6feGVuQgUJ8SXm6yG6sgfYvmdd8vHX7rO3hEde96drycuSM5fta_wCIP17Z1JA2kcU4iA5y81ptMhtOKfcFuWT1HUPUFFEiJHll1VCPI_O"/>
+<div class="absolute inset-0 bg-brand-green/20"></div>
+</div>
+<div class="flex flex-col gap-6">
+<span class="font-label-caps text-label-caps text-brand-green">THE APOTHECARY</span>
+<h2 class="font-headline-lg text-headline-lg max-w-md">Distilled by Hand, Guided by Tradition</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-lg leading-relaxed">
+                        In our Sunkani workshop, we honor the rhythm of the seasons. Every tincture is macerated for exactly one lunar cycle, ensuring the full potency of the botanical spirit is captured in every drop. We don't just make remedies; we craft legacies of wellness.
+                    </p>
+<a class="font-label-caps text-label-caps text-on-surface flex items-center gap-2 group" href="#">
+                        LEARN ABOUT OUR PROCESS 
+                        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_right_alt</span>
+</a>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-container-margin grid md:grid-cols-2 gap-16 items-center mt-24">
+<div class="md:order-2 relative aspect-[3/4] md:aspect-square overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Aerial view of a sustainable herbal garden in the Sunkani valley, showing geometric rows of diverse medicinal plants under a soft morning mist. The landscape is lush and green, emphasizing the organic and pure source of the ingredients used by Nature's Alchemist." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDs2Xtya1FuvPNYnWSRlGsKFK6rnQvGf8b9q1_cmvv1eaPY--50sXItJTO6xuAYXheq1Qfo_dT5SJxC96-SobA6PMz5t1Smm3YyRtuIJe6zE4nf4pV6mXEHlf7paCimfcKd3JyfmZn5MvHj8gJCqIXgvNh6KJHJvmvfue8UOFf14GL8fEK57Liw6uMMhfDnc036AH2iYiLjXNE594EjRWwtdKZVyxybKcBIF1BsmphG7ED6G-NMdchSzQquq6lHhw_hprrl5SWr-UaN"/>
+<div class="absolute inset-0 bg-brand-green/20"></div>
+</div>
+<div class="md:order-1 flex flex-col gap-6 md:text-right md:items-end">
+<span class="font-label-caps text-label-caps text-brand-green">THE SOURCE</span>
+<h2 class="font-headline-lg text-headline-lg max-w-md">From Soil to Spirit</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-lg leading-relaxed">
+                        Our ingredients are wild-harvested or grown in regenerative gardens that respect the earth's natural balance. We trace every leaf back to its origin, ensuring that the purity of the source remains untarnished until it reaches your hands.
+                    </p>
+<a class="font-label-caps text-label-caps text-on-surface flex items-center gap-2 group flex-row-reverse" href="#">
+                        DISCOVER THE SOURCE 
+                        <span class="material-symbols-outlined group-hover:-translate-x-1 transition-transform rotate-180">arrow_right_alt</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Essentials/Categories -->
+<section class="py-section-gap-lg">
+<div class="max-w-7xl mx-auto px-container-margin">
+<h2 class="font-headline-lg text-headline-lg mb-12 text-center">Daily Ritual Essentials</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="relative h-96 group cursor-pointer overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" data-alt="High-angle shot of various botanical elixirs and bottles arranged artistically on a white marble surface. Bright, airy, and high-key lighting that emphasizes cleanliness and premium wellness aesthetics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzHWCP5FOJ82g54kOUiBPMXMa3dumNbn9gX3jLwR9dE7pzdEayp6qdo6HhWKLRP-KHQL0iLEQ-wwHQzFYaBV7PtkFlMAqWlQO4JmmiRw3I7TejEO_cYCGiWHfWC7PmV_aZ35Eqq4JH2-sRkxbIyVI4SSFyuQ54Il4v6S5eSwN_JwxDNnObFadiiROqtvv8D4NhRcDuYVERnc9npD9gLpvdc2HPQgRV5d5gi0DzSsCMjXZqrTFwqJzxNpzUeVrM4AqdK7jmgN16ovgj"/>
+<div class="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors"></div>
+<div class="absolute inset-0 flex flex-col items-center justify-center text-on-primary">
+<h3 class="font-headline-md text-headline-md mb-2">Elixirs</h3>
+<span class="font-label-caps text-label-caps border-b border-on-primary pb-1">SHOP NOW</span>
+</div>
+</div>
+<div class="relative h-96 group cursor-pointer overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" data-alt="A soothing scene of a steaming cup of herbal tea next to a bundle of dried lavender and a candle. Soft, warm focus with a cozy, calming mood reflecting the Nature's Alchemist 'Calm Blends' category." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAU8CUbEEflvMKhjRkyQ7paXRCc5PDMQKyS_42_7VYP_nxroI6p15BvJl4c7144nxcwwN9rcxMjbl5cXrqNWiyAiyXv0wICjaOjcnAektEvq8M4DCyXVY6t7VcKBxU3EsOJIIysahL7v4gTvH_ep-1mUvvwnx7XMT0eDw5eUj8uVFqEMY2FvAA_IFKPqR3maXUt2CPnoG8yLLhaoThib21FPRku-TBAvG6UG_J-t8ZKGjvRJy9v8FjduMlpux8LARNdfEhWKkSEpOA"/>
+<div class="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors"></div>
+<div class="absolute inset-0 flex flex-col items-center justify-center text-on-primary">
+<h3 class="font-headline-md text-headline-md mb-2">Calm Blends</h3>
+<span class="font-label-caps text-label-caps border-b border-on-primary pb-1">SHOP NOW</span>
+</div>
+</div>
+<div class="relative h-96 group cursor-pointer overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" data-alt="Minimalist wooden shelf displaying neatly organized brown glass jars with white labels, containing various ground herbs and roots. The scene is illuminated by natural light, creating a clean, organized apothecary vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMsiRJ-oMVm0kW-TvKUaTzhhpgkvvh8xvHEmHJNtrFoePcMrgMd24Ji8QZcitek5Bmv0Sa073w2dvzvf9POejPhyrFsLiudoBh-zS9JA7R2MoW-tb60JlX-ZRFyuPVhCwYsPvders98XYfFjm-jjay7sJ8H-YcigolYmUA8LLL7wCJCZVpTryChieUcKTv3jWgUCBA2xihXXFmItP4MNhgK8PIy2L8aNM6PatFWtoxAuHgQU6fj5uSk30sUJVz2gqzcQYEbvu0mfgf"/>
+<div class="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors"></div>
+<div class="absolute inset-0 flex flex-col items-center justify-center text-on-primary">
+<h3 class="font-headline-md text-headline-md mb-2">Artisan Salts</h3>
+<span class="font-label-caps text-label-caps border-b border-on-primary pb-1">SHOP NOW</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Testimonials -->
+<section class="bg-surface py-section-gap-lg">
+<div class="max-w-4xl mx-auto px-container-margin text-center bg-surface-container-lowest p-16 border border-outline-variant/30 shadow-sm">
+<div class="flex justify-center mb-8 gap-1">
+<span class="material-symbols-outlined text-brand-green text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-brand-green text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-brand-green text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-brand-green text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-brand-green text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<blockquote class="font-headline-md text-headline-md italic mb-8 leading-relaxed text-on-surface">
+                    "Nature's Alchemist has completely transformed my evening ritual. The Night Elixir is not just a product, but a profound experience of calm that I look forward to every single day."
+                </blockquote>
+<cite class="font-label-caps text-label-caps text-secondary not-italic">— ADITI VERMA, WELLNESS CONSULTANT</cite>
+</div>
+</section>
+<!-- Brand Philosophy -->
+<section class="py-section-gap-lg max-w-7xl mx-auto px-container-margin">
+<div class="grid md:grid-cols-3 gap-12">
+<div class="text-center px-6">
+<span class="material-symbols-outlined text-4xl text-brand-green mb-6">verified</span>
+<h3 class="font-headline-md text-headline-md mb-4">Pure</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">No synthetics, no fillers, no compromises. We believe in the unadulterated power of nature in its most potent form.</p>
+</div>
+<div class="text-center px-6">
+<span class="material-symbols-outlined text-4xl text-brand-green mb-6">workspace_premium</span>
+<h3 class="font-headline-md text-headline-md mb-4">Artisan</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Small-batch production ensures that every bottle receives the focused attention of our master herbalists.</p>
+</div>
+<div class="text-center px-6">
+<span class="material-symbols-outlined text-4xl text-brand-green mb-6">volunteer_activism</span>
+<h3 class="font-headline-md text-headline-md mb-4">Ethical</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Fair wages for our harvesters and regenerative practices that give back more to the earth than we take.</p>
+</div>
+</div>
+</section>
+<!-- The Academy -->
+<section class="bg-brand-green text-on-primary py-section-gap-lg">
+<div class="max-w-7xl mx-auto px-container-margin grid md:grid-cols-2 gap-16 items-center">
+<div class="flex flex-col gap-6">
+<span class="font-label-caps text-label-caps opacity-70">THE ACADEMY</span>
+<h2 class="font-headline-lg text-headline-lg">Master the Craft of Herbalism</h2>
+<p class="font-body-md text-body-md opacity-80 leading-relaxed max-w-md">
+                        Join our weekend workshops in Sunkani or attend our digital masterclasses. Learn to identify wild botanicals, understand the art of infusion, and create your own home apothecary.
+                    </p>
+<button class="w-fit bg-on-primary text-brand-green px-10 py-4 font-label-caps text-label-caps tracking-widest hover:bg-surface-container-highest transition-colors">VIEW WORKSHOPS</button>
+</div>
+<div class="relative h-[500px] overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A workshop setting where a small group is learning about medicinal herbs. A rustic wooden table is covered with botanical books, dried herbs, and glass beakers. The atmosphere is studious, serene, and sophisticated, reflecting the educational 'Academy' aspect of the brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB06pYGlwyZLcNBSoOnnvjd1xU7_WcvvBpniSIKiIBmKhMbyQNvWjsdWMjpXDTL7KDAhL9gFeoW5Ue6vAQybn2ewHSqyBCCuPNzueQhkdGB5C7AkiNNZv3BFsQboWKT07c1Bp1thsdmWSS6iVHyPeBng1AtpYin_TDs-J0qu2k5T8wlZXOQtBMTeC-55YbJnFUvV-4T7R-4GQnuxWTRa5awn3pYVj8Cv5FDo_uSH6DiqH7VW9eb2JgzkSiRz1uY-5donD_jr46rUd6l"/>
+</div>
+</div>
+</section>
+<!-- Premium Sourcing (B2B) -->
+<section class="py-section-gap-lg bg-surface-container-low border-y border-outline-variant/20">
+<div class="max-w-4xl mx-auto px-container-margin text-center">
+<h2 class="font-headline-lg text-headline-lg mb-6">Premium Wholesale Sourcing</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-10 max-w-2xl mx-auto">
+                    We partner with luxury spas, boutique hotels, and wellness practitioners to provide custom formulations and bulk supply of our heritage ingredients.
+                </p>
+<a class="inline-block border border-brand-green text-brand-green px-10 py-4 font-label-caps text-label-caps tracking-widest hover:bg-brand-green hover:text-on-primary transition-all" href="#">BUSINESS INQUIRIES</a>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full pt-section-gap-lg pb-section-gap-sm bg-surface-container-highest">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-grid-gutter px-container-margin max-w-7xl mx-auto">
+<div class="flex flex-col gap-6">
+<span class="font-headline-lg text-headline-lg text-brand-green">Nature's Alchemist</span>
+<p class="font-body-md text-body-md text-on-surface-variant">Crafting botanical remedies with intention and ancient wisdom from our gardens in Sunkani.</p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-brand-green">share</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-brand-green">public</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-brand-green">mail</span>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-label-caps text-label-caps text-on-surface mb-2">SHOP</span>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">All Remedies</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Best Sellers</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Gift Rituals</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Subscription</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-label-caps text-label-caps text-on-surface mb-2">RESOURCES</span>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Sustainability</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Wholesale</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Shipping &amp; Returns</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">The Academy</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-label-caps text-label-caps text-on-surface mb-2">JOIN OUR CIRCLE</span>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">Subscribe for lunar updates and herbal wisdom.</p>
+<div class="flex border-b border-outline-variant pb-2">
+<input class="bg-transparent border-none focus:ring-0 w-full text-on-surface p-0" placeholder="Email Address" type="email"/>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer">arrow_forward</span>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-container-margin mt-20 pt-8 border-t border-outline-variant/30 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-body-md text-body-md text-on-surface-variant">© 2024 Nature's Alchemist. Crafted with Intention.</p>
+<div class="flex gap-8">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Contact Us</a>
+</div>
+</div>
+</footer>
+</body></html>

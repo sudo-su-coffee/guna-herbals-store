@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Secure Checkout | Nature's Alchemist</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#fbf9f8",
+                    "on-secondary-fixed-variant": "#474742",
+                    "on-secondary": "#ffffff",
+                    "secondary": "#5f5e59",
+                    "tertiary": "#000201",
+                    "surface-container-high": "#eae8e6",
+                    "outline-variant": "#c2c8c5",
+                    "surface-container": "#efedec",
+                    "on-primary-fixed-variant": "#3a4a46",
+                    "inverse-primary": "#b8cac5",
+                    "surface-container-low": "#f5f3f2",
+                    "on-primary-fixed": "#0e1e1b",
+                    "on-tertiary-fixed-variant": "#414845",
+                    "outline": "#727876",
+                    "secondary-fixed-dim": "#c9c6c0",
+                    "primary": "#000101",
+                    "tertiary-fixed": "#dde4df",
+                    "tertiary-fixed-dim": "#c1c8c3",
+                    "secondary-fixed": "#e5e2db",
+                    "inverse-surface": "#303030",
+                    "on-secondary-fixed": "#1c1c18",
+                    "surface-dim": "#dbdad8",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-bright": "#fbf9f8",
+                    "error": "#ba1a1a",
+                    "on-primary-container": "#778884",
+                    "surface-card": "#ffffff",
+                    "on-tertiary-fixed": "#161d1a",
+                    "on-error": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-secondary-container": "#65645f",
+                    "inverse-on-surface": "#f2f0ef",
+                    "on-surface": "#1b1c1b",
+                    "on-surface-variant": "#424846",
+                    "text-muted": "rgba(15, 31, 28, 0.6)",
+                    "background": "#fbf9f8",
+                    "status-sale": "#0f1f1c",
+                    "primary-container": "#0f1f1c",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed-dim": "#b8cac5",
+                    "on-background": "#1b1c1b",
+                    "error-container": "#ffdad6",
+                    "brand-green": "#1a2e29",
+                    "surface-tint": "#51625e",
+                    "tertiary-container": "#171e1b",
+                    "primary-fixed": "#d4e6e1",
+                    "on-primary": "#ffffff",
+                    "surface-container-highest": "#e4e2e1",
+                    "border-subtle": "rgba(255, 255, 255, 0.1)"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "section-gap-sm": "2.5rem",
+                    "element-gap": "0.5rem",
+                    "container-margin": "1.5rem",
+                    "grid-gutter": "1rem",
+                    "section-gap-lg": "5rem"
+            },
+            "fontFamily": {
+                    "price-tag": ["Noto Sans"],
+                    "headline-md": ["Playfair Display"],
+                    "headline-lg": ["Playfair Display"],
+                    "label-caps": ["Noto Sans"],
+                    "display-lg": ["Playfair Display"],
+                    "body-md": ["Noto Sans"]
+            },
+            "fontSize": {
+                    "price-tag": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                    "label-caps": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                    "display-lg": ["60px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .form-input-custom {
+            @apply block w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:ring-0 focus:border-brand-green transition-colors text-body-md font-body-md text-on-surface;
+        }
+        .form-label-custom {
+            @apply block text-label-caps font-label-caps uppercase text-on-surface-variant mb-1;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md selection:bg-brand-green selection:text-white">
+<!-- TopNavBar (Simplified for Checkout) -->
+<header class="w-full sticky top-0 z-50 bg-brand-green shadow-sm px-12 py-6 flex justify-between items-center">
+<div class="font-display-lg text-headline-lg text-on-primary">Nature's Alchemist</div>
+<div class="flex items-center space-gap-4">
+<span class="font-label-caps text-on-primary opacity-80 uppercase tracking-widest mr-4">Secure Checkout</span>
+<span class="material-symbols-outlined text-on-primary" style="font-variation-settings: 'FILL' 1;">lock</span>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-12 py-16 grid grid-cols-1 lg:grid-cols-12 gap-16">
+<!-- Left Column: Shipping & Payment -->
+<div class="lg:col-span-7 space-y-12">
+<!-- Breadcrumbs / Steps -->
+<nav class="flex items-center space-x-4 mb-8">
+<span class="text-brand-green font-bold">1. Shipping</span>
+<span class="text-outline-variant">/</span>
+<span class="text-on-surface-variant">2. Payment</span>
+<span class="text-outline-variant">/</span>
+<span class="text-on-surface-variant">3. Review</span>
+</nav>
+<!-- Section 1: Shipping Address -->
+<section class="animate-fade-in">
+<h2 class="font-headline-md text-headline-md mb-8 border-b border-outline-variant pb-4">Shipping Address</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
+<div>
+<label class="form-label-custom">First Name</label>
+<input class="block w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:ring-0 focus:border-brand-green transition-colors text-body-md font-body-md text-on-surface" placeholder="Julian" type="text"/>
+</div>
+<div>
+<label class="form-label-custom">Last Name</label>
+<input class="block w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:ring-0 focus:border-brand-green transition-colors text-body-md font-body-md text-on-surface" placeholder="Vandermeer" type="text"/>
+</div>
+<div class="md:col-span-2">
+<label class="form-label-custom">Street Address</label>
+<input class="block w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:ring-0 focus:border-brand-green transition-colors text-body-md font-body-md text-on-surface" placeholder="1248 Botanical Lane, Suite 4B" type="text"/>
+</div>
+<div>
+<label class="form-label-custom">City</label>
+<input class="block w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:ring-0 focus:border-brand-green transition-colors text-body-md font-body-md text-on-surface" placeholder="San Francisco" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="form-label-custom">State</label>
+<input class="block w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:ring-0 focus:border-brand-green transition-colors text-body-md font-body-md text-on-surface text-center" placeholder="CA" type="text"/>
+</div>
+<div>
+<label class="form-label-custom">ZIP</label>
+<input class="block w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:ring-0 focus:border-brand-green transition-colors text-body-md font-body-md text-on-surface text-center" placeholder="94107" type="text"/>
+</div>
+</div>
+<div class="md:col-span-2">
+<label class="form-label-custom">Phone (for delivery updates)</label>
+<input class="block w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:ring-0 focus:border-brand-green transition-colors text-body-md font-body-md text-on-surface" placeholder="+1 (555) 000-0000" type="tel"/>
+</div>
+</div>
+</section>
+<!-- Section 2: Delivery Method -->
+<section>
+<h2 class="font-headline-md text-headline-md mb-8 border-b border-outline-variant pb-4">Delivery Method</h2>
+<div class="space-y-4">
+<label class="flex items-center justify-between p-6 bg-surface-container-low border border-outline-variant cursor-pointer hover:border-brand-green transition-colors">
+<div class="flex items-center">
+<input checked="" class="w-4 h-4 text-brand-green border-outline-variant focus:ring-brand-green" name="delivery" type="radio"/>
+<div class="ml-4">
+<span class="font-bold block">Carbon Neutral Shipping</span>
+<span class="text-on-surface-variant text-sm">3–5 Business Days via GreenCourier</span>
+</div>
+</div>
+<span class="font-price-tag text-price-tag">$0.00</span>
+</label>
+<label class="flex items-center justify-between p-6 bg-surface-container-low border border-outline-variant cursor-pointer hover:border-brand-green transition-colors">
+<div class="flex items-center">
+<input class="w-4 h-4 text-brand-green border-outline-variant focus:ring-brand-green" name="delivery" type="radio"/>
+<div class="ml-4">
+<span class="font-bold block">Priority Apothecary Delivery</span>
+<span class="text-on-surface-variant text-sm">1–2 Business Days</span>
+</div>
+</div>
+<span class="font-price-tag text-price-tag">$18.00</span>
+</label>
+</div>
+</section>
+<!-- Section 3: Payment (Visual Only) -->
+<section class="opacity-50">
+<div class="flex justify-between items-center mb-8 border-b border-outline-variant pb-4">
+<h2 class="font-headline-md text-headline-md">Payment Details</h2>
+<span class="text-label-caps uppercase">Next Step</span>
+</div>
+<div class="p-8 border border-dashed border-outline-variant text-center text-on-surface-variant italic">
+                    You will be prompted to enter payment details after confirming shipping.
+                </div>
+</section>
+<div class="pt-8">
+<button class="w-full bg-primary text-on-primary py-6 px-12 font-label-caps text-body-md uppercase tracking-widest hover:bg-brand-green transition-colors active:scale-[0.98] duration-200">
+                    Continue to Payment
+                </button>
+</div>
+</div>
+<!-- Right Column: Order Summary (Sticky) -->
+<aside class="lg:col-span-5">
+<div class="sticky top-32 bg-white p-10 border border-outline-variant shadow-sm space-y-8">
+<h3 class="font-headline-md text-headline-md">Order Summary</h3>
+<!-- Order Items -->
+<div class="space-y-6">
+<div class="flex gap-4">
+<div class="w-20 h-24 flex-shrink-0">
+<img alt="Botanical Serum" class="w-full h-full object-cover" data-alt="A macro studio photograph of a premium dark green glass apothecary dropper bottle sitting on a minimalist beige stone surface. Soft natural lighting filters through leaves, creating elegant shadows. The mood is calm and high-end, matching a minimalist wellness brand aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJzXyPPevIspc0z6uz9O4-WjIn-3ahEul8qjU2MRKcuahSRFyAkC_IrTcop29LP4nKgakFWmgesbWszfeWHFyk5AOWF-QhF6GjRdOe1_oXtYT_Xih1DZ8wqaEWrXmc4FowXcwtWoaqIgGR2dlGBPo40efnVL9QsLQ-6wKdz7Tvmw-LG5fBsU7xGiHSnWNTnhuf216fR3NcP_7mm85LDNEEcfcSa-B-ZnjrjLq1hk-Eumcwst4h6-k6GZUKSUvZpo0ll3Rm3klDmUtS"/>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between">
+<span class="font-bold text-on-surface">Lunar Clarity Oil</span>
+<span class="font-price-tag text-price-tag">$84.00</span>
+</div>
+<span class="text-xs text-on-surface-variant block mt-1">30ml • Glass Bottle</span>
+<span class="text-xs text-on-surface-variant mt-2 block">Qty: 1</span>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-20 h-24 flex-shrink-0">
+<img alt="Herbal Tea" class="w-full h-full object-cover" data-alt="A high-contrast overhead shot of loose leaf herbal tea with visible dried rose petals and elderberries scattered around a dark metal tin. The lighting is dramatic and moody with a clear focus on the organic textures of the ingredients. The background is a textured cream linen fabric." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDW5MuD0oQTXX1dxCDmfi5gud3HMBDHMieRtZEtF3AU7GRf7FoEAP1RO-JZTgK1dCM6r0CsthpAFp7-32HQXt3WYxumq2FjImYJynjmbVwfAlvhxX0-h9MEfafOFS-DDfDxv2iqFyTBrNGLJiwX_gU3KkWpxLbVpE6TdrfXO7_DTKgFf7EalREUhds7Ukr111UA_HHgafHZNbvHxhRnadDSbW2EkAvkRmuoosBv_nBkFNA-tdrsN_rrChkO6fkobMmMZtm1TuEaCV_9"/>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between">
+<span class="font-bold text-on-surface">Dreamwalker Infusion</span>
+<span class="font-price-tag text-price-tag">$26.00</span>
+</div>
+<span class="text-xs text-on-surface-variant block mt-1">100g • Sustainable Pouch</span>
+<span class="text-xs text-on-surface-variant mt-2 block">Qty: 1</span>
+</div>
+</div>
+</div>
+<div class="pt-8 border-t border-outline-variant space-y-3">
+<div class="flex justify-between text-body-md">
+<span class="text-on-surface-variant">Subtotal</span>
+<span class="font-price-tag">$110.00</span>
+</div>
+<div class="flex justify-between text-body-md">
+<span class="text-on-surface-variant">Shipping</span>
+<span class="font-price-tag">Calculated at next step</span>
+</div>
+<div class="flex justify-between text-body-md">
+<span class="text-on-surface-variant">Estimated Taxes</span>
+<span class="font-price-tag">$9.35</span>
+</div>
+<div class="flex justify-between pt-6 border-t border-brand-green">
+<span class="font-headline-md text-headline-md">Total</span>
+<span class="font-headline-md text-headline-md">$119.35</span>
+</div>
+</div>
+<!-- Trust Badges -->
+<div class="bg-surface-container py-4 px-6 flex items-center justify-center space-x-6">
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-brand-green text-xl mb-1">eco</span>
+<span class="text-[9px] font-bold uppercase tracking-tighter">Plastic Neutral</span>
+</div>
+<div class="w-px h-8 bg-outline-variant"></div>
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-brand-green text-xl mb-1">verified_user</span>
+<span class="text-[9px] font-bold uppercase tracking-tighter">Encrypted Payment</span>
+</div>
+<div class="w-px h-8 bg-outline-variant"></div>
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-brand-green text-xl mb-1">history</span>
+<span class="text-[9px] font-bold uppercase tracking-tighter">90-Day Returns</span>
+</div>
+</div>
+</div>
+</aside>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-section-gap-lg bg-surface-container-lowest border-t border-outline-variant">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-grid-gutter px-container-margin py-section-gap-sm max-w-7xl mx-auto">
+<div class="col-span-1 md:col-span-1">
+<div class="font-display-lg text-headline-md text-brand-green mb-4">Nature's Alchemist</div>
+<p class="text-on-surface-variant text-body-md">Crafting biological harmony through the lens of ancient botanical wisdom and modern purity.</p>
+</div>
+<div class="flex flex-col space-y-2">
+<h4 class="font-bold text-sm uppercase tracking-widest mb-2">Ethics</h4>
+<a class="text-on-surface-variant hover:text-brand-green transition-colors text-body-md" href="#">Sourcing Ethics</a>
+<a class="text-on-surface-variant hover:text-brand-green transition-colors text-body-md" href="#">Plastic Neutrality</a>
+<a class="text-on-surface-variant hover:text-brand-green transition-colors text-body-md" href="#">Refill Program</a>
+</div>
+<div class="flex flex-col space-y-2">
+<h4 class="font-bold text-sm uppercase tracking-widest mb-2">Legal</h4>
+<a class="text-on-surface-variant hover:text-brand-green transition-colors text-body-md" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-brand-green transition-colors text-body-md" href="#">Terms of Service</a>
+</div>
+<div class="flex flex-col space-y-4">
+<h4 class="font-bold text-sm uppercase tracking-widest">Connect</h4>
+<div class="flex space-x-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-brand-green">share</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-brand-green">mail</span>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-container-margin py-8 border-t border-outline-variant flex flex-col md:flex-row justify-between items-center text-on-surface-variant text-xs opacity-60">
+<span>© 2024 Nature's Alchemist Botanical Apothecary. All rights reserved.</span>
+<div class="flex space-x-4 mt-4 md:mt-0">
+<span class="material-symbols-outlined text-lg">payments</span>
+<span class="material-symbols-outlined text-lg">credit_card</span>
+<span class="material-symbols-outlined text-lg">contactless</span>
+</div>
+</div>
+</footer>
+<script>
+        // Simple micro-interaction for form inputs
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('focus', () => {
+                input.previousElementSibling?.classList.add('text-brand-green');
+            });
+            input.addEventListener('blur', () => {
+                input.previousElementSibling?.classList.remove('text-brand-green');
+            });
+        });
+
+        // Toggle radio visual focus
+        const radios = document.querySelectorAll('input[type="radio"]');
+        radios.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                document.querySelectorAll('label.bg-surface-container-low').forEach(label => {
+                    label.classList.remove('border-brand-green', 'bg-white');
+                    label.classList.add('border-outline-variant', 'bg-surface-container-low');
+                });
+                if(e.target.checked) {
+                    const parentLabel = e.target.closest('label');
+                    parentLabel.classList.add('border-brand-green', 'bg-white');
+                    parentLabel.classList.remove('border-outline-variant', 'bg-surface-container-low');
+                }
+            });
+        });
+    </script>
+</body></html>
